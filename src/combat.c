@@ -902,8 +902,8 @@ void cut_limb(struct char_data *ch, struct char_data *vict, int wlvl, int hitspo
  } else { /* We've only succeeded in removing a limb. */
   if (!IS_NPC(vict)) {
     if (HAS_ARMS(vict) && rand_number(1, 2) == 2) {
-     if (GET_LIMBCOND(vict, 2) > 0) {
-      GET_LIMBCOND(vict, 2) = 0;
+     if (GET_LIMBCOND(vict, 1) > 0) {
+      GET_LIMBCOND(vict, 1) = 0;
        if (PLR_FLAGGED(vict, PLR_CLARM)) {
         REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_CLARM);
        }
@@ -911,8 +911,8 @@ void cut_limb(struct char_data *ch, struct char_data *vict, int wlvl, int hitspo
       act("@RYOU lose your left arm!@n", TRUE, ch, 0, vict, TO_VICT);
       act("@R$N@r loses $s left arm!@n", TRUE, ch, 0, vict, TO_NOTVICT);
       remove_limb(vict, 2);
-     } else if (GET_LIMBCOND(vict, 1) > 0) {
-       GET_LIMBCOND(vict, 1) = 100;
+     } else if (GET_LIMBCOND(vict, 0) > 0) {
+       GET_LIMBCOND(vict, 0) = 100;
        if (PLR_FLAGGED(vict, PLR_CRARM)) {
         REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_CRARM);
        }
@@ -922,8 +922,8 @@ void cut_limb(struct char_data *ch, struct char_data *vict, int wlvl, int hitspo
       remove_limb(vict, 1);
      }
     } else { /* It's a leg */
-     if (GET_LIMBCOND(vict, 4) > 0) {
-       GET_LIMBCOND(vict, 4) = 100;
+     if (GET_LIMBCOND(vict, 3) > 0) {
+       GET_LIMBCOND(vict, 3) = 100;
        if (PLR_FLAGGED(vict, PLR_CLLEG)) {
         REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_CLLEG);
        }
@@ -931,8 +931,8 @@ void cut_limb(struct char_data *ch, struct char_data *vict, int wlvl, int hitspo
       act("@RYOU lose your left leg!@n", TRUE, ch, 0, vict, TO_VICT);
       act("@R$N@r loses $s left leg!@n", TRUE, ch, 0, vict, TO_NOTVICT);
       remove_limb(vict, 4);
-     } else if (GET_LIMBCOND(vict, 3) > 0) {
-       GET_LIMBCOND(vict, 3) = 100;
+     } else if (GET_LIMBCOND(vict, 2) > 0) {
+       GET_LIMBCOND(vict, 2) = 100;
        if (PLR_FLAGGED(vict, PLR_CRLEG)) {
         REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_CRLEG);
        }
@@ -1187,15 +1187,15 @@ int roll_hitloc(struct char_data *ch, struct char_data *vict, int skill)
  }
 
  if (!IS_NPC(vict)) {
-  if (location == 4 && GET_LIMBCOND(vict, 1) <= 0 && GET_LIMBCOND(vict, 2) <= 0) { /* No arms */
+  if (location == 4 && GET_LIMBCOND(vict, 0) <= 0 && GET_LIMBCOND(vict, 1) <= 0) { /* No arms */
    location = 5;
   }
 
-  if (location == 5 && GET_LIMBCOND(vict, 3) <= 0 && GET_LIMBCOND(vict, 4) <= 0) { /* No legs */
+  if (location == 5 && GET_LIMBCOND(vict, 2) <= 0 && GET_LIMBCOND(vict, 3) <= 0) { /* No legs */
    location = 4;
   }
   
-  if (location == 4 && GET_LIMBCOND(vict, 1) <= 0 && GET_LIMBCOND(vict, 2) <= 0) { /* Both failed, make body */
+  if (location == 4 && GET_LIMBCOND(vict, 0) <= 0 && GET_LIMBCOND(vict, 1) <= 0) { /* Both failed, make body */
    location = 1;
   }
  }
@@ -1411,11 +1411,11 @@ void hurt_limb(struct char_data *ch, struct char_data *vict, int chance, int are
 
    if (!is_sparring(ch)) {
     if (area == 0) { /* Arms */
-     if (GET_LIMBCOND(vict, 2) - dmg <= 0) {
+     if (GET_LIMBCOND(vict, 1) - dmg <= 0) {
       act("@RYour attack @YDESTROYS @r$N's@R left arm!@n", TRUE, ch, 0, vict, TO_CHAR);
       act("@r$n's@R attack @YDESTROYS@R YOUR left arm!@n", TRUE, ch, 0, vict, TO_VICT);
       act("@r$n's@R attack @YDESTROYS @r$N's@R left arm!@n", TRUE, ch, 0, vict, TO_NOTVICT);
-      GET_LIMBCOND(vict, 2) = 0;
+      GET_LIMBCOND(vict, 1) = 0;
       if (PLR_FLAGGED(vict, PLR_THANDW)) {
        REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_THANDW);
       }
@@ -1423,16 +1423,16 @@ void hurt_limb(struct char_data *ch, struct char_data *vict, int chance, int are
        REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_CLARM);
       }
       remove_limb(vict, 2);
-     } else if (GET_LIMBCOND(vict, 2) > 0) {
-      GET_LIMBCOND(vict, 2) -= dmg;
+     } else if (GET_LIMBCOND(vict, 1) > 0) {
+      GET_LIMBCOND(vict, 1) -= dmg;
       act("@RYour attack hurts @r$N's@R left arm!@n", TRUE, ch, 0, vict, TO_CHAR);
       act("@r$n's@R attack hurts YOUR left arm!@n", TRUE, ch, 0, vict, TO_VICT);
       act("@r$n's@R attack hurts @r$N's@R left arm!@n", TRUE, ch, 0, vict, TO_NOTVICT);
-     } else if (GET_LIMBCOND(vict, 1) - dmg <= 0) {
+     } else if (GET_LIMBCOND(vict, 0) - dmg <= 0) {
       act("@RYour attack @YDESTROYS @r$N's@R right arm!@n", TRUE, ch, 0, vict, TO_CHAR);
       act("@r$n's@R attack @YDESTROYS@R YOUR right arm!@n", TRUE, ch, 0, vict, TO_VICT);
       act("@r$n's@R attack @YDESTROYS @r$N's@R right arm!@n", TRUE, ch, 0, vict, TO_NOTVICT);
-      GET_LIMBCOND(vict, 1) = 0;
+      GET_LIMBCOND(vict, 0) = 0;
       if (PLR_FLAGGED(vict, PLR_THANDW)) {
        REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_THANDW);
       }
@@ -1440,34 +1440,17 @@ void hurt_limb(struct char_data *ch, struct char_data *vict, int chance, int are
        REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_CRARM);
       }
       remove_limb(vict, 2);
-     } else if (GET_LIMBCOND(vict, 1) > 0) {
-      GET_LIMBCOND(vict, 1) -= dmg;
+     } else if (GET_LIMBCOND(vict, 0) > 0) {
+      GET_LIMBCOND(vict, 0) -= dmg;
       act("@RYour attack hurts @r$N's@R right arm!@n", TRUE, ch, 0, vict, TO_CHAR);
       act("@r$n's@R attack hurts YOUR right arm!@n", TRUE, ch, 0, vict, TO_VICT);
       act("@r$n's@R attack hurts @r$N's@R right arm!@n", TRUE, ch, 0, vict, TO_NOTVICT);
      }
     } else if (area == 1) { /* Legs */
-     if (GET_LIMBCOND(vict, 4) - dmg <= 0) {
+     if (GET_LIMBCOND(vict, 3) - dmg <= 0) {
       act("@RYour attack @YDESTROYS @r$N's@R left leg!@n", TRUE, ch, 0, vict, TO_CHAR);
       act("@r$n's@R attack @YDESTROYS@R YOUR left leg!@n", TRUE, ch, 0, vict, TO_VICT);
       act("@r$n's@R attack @YDESTROYS @r$N's@R left leg!@n", TRUE, ch, 0, vict, TO_NOTVICT);
-      GET_LIMBCOND(vict, 4) = 0;
-      if (PLR_FLAGGED(vict, PLR_THANDW)) {
-       REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_THANDW);
-      }
-      if (PLR_FLAGGED(vict, PLR_CLLEG)) {
-       REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_CLLEG);
-      }
-      remove_limb(vict, 2);
-     } else if (GET_LIMBCOND(vict, 4) > 0) {
-      GET_LIMBCOND(vict, 4) -= dmg;
-      act("@RYour attack hurts @r$N's@R left leg!@n", TRUE, ch, 0, vict, TO_CHAR);
-      act("@r$n's@R attack hurts YOUR left leg!@n", TRUE, ch, 0, vict, TO_VICT);
-      act("@r$n's@R attack hurts @r$N's@R left leg!@n", TRUE, ch, 0, vict, TO_NOTVICT);
-     } else if (GET_LIMBCOND(vict, 3) - dmg <= 0) {
-      act("@RYour attack @YDESTROYS @r$N's@R right leg!@n", TRUE, ch, 0, vict, TO_CHAR);
-      act("@r$n's@R attack @YDESTROYS@R YOUR right leg!@n", TRUE, ch, 0, vict, TO_VICT);
-      act("@r$n's@R attack @YDESTROYS @r$N's@R right leg!@n", TRUE, ch, 0, vict, TO_NOTVICT);
       GET_LIMBCOND(vict, 3) = 0;
       if (PLR_FLAGGED(vict, PLR_THANDW)) {
        REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_THANDW);
@@ -1478,6 +1461,23 @@ void hurt_limb(struct char_data *ch, struct char_data *vict, int chance, int are
       remove_limb(vict, 2);
      } else if (GET_LIMBCOND(vict, 3) > 0) {
       GET_LIMBCOND(vict, 3) -= dmg;
+      act("@RYour attack hurts @r$N's@R left leg!@n", TRUE, ch, 0, vict, TO_CHAR);
+      act("@r$n's@R attack hurts YOUR left leg!@n", TRUE, ch, 0, vict, TO_VICT);
+      act("@r$n's@R attack hurts @r$N's@R left leg!@n", TRUE, ch, 0, vict, TO_NOTVICT);
+     } else if (GET_LIMBCOND(vict, 2) - dmg <= 0) {
+      act("@RYour attack @YDESTROYS @r$N's@R right leg!@n", TRUE, ch, 0, vict, TO_CHAR);
+      act("@r$n's@R attack @YDESTROYS@R YOUR right leg!@n", TRUE, ch, 0, vict, TO_VICT);
+      act("@r$n's@R attack @YDESTROYS @r$N's@R right leg!@n", TRUE, ch, 0, vict, TO_NOTVICT);
+      GET_LIMBCOND(vict, 2) = 0;
+      if (PLR_FLAGGED(vict, PLR_THANDW)) {
+       REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_THANDW);
+      }
+      if (PLR_FLAGGED(vict, PLR_CLLEG)) {
+       REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_CLLEG);
+      }
+      remove_limb(vict, 2);
+     } else if (GET_LIMBCOND(vict, 2) > 0) {
+      GET_LIMBCOND(vict, 2) -= dmg;
       act("@RYour attack hurts @r$N's@R right leg!@n", TRUE, ch, 0, vict, TO_CHAR);
       act("@r$n's@R attack hurts YOUR right leg!@n", TRUE, ch, 0, vict, TO_VICT);
       act("@r$n's@R attack hurts @r$N's@R right leg!@n", TRUE, ch, 0, vict, TO_NOTVICT);

@@ -1180,7 +1180,7 @@ ACMD(do_move)
     }
   }
 
-  if (!IS_NPC(ch) && GET_LIMBCOND(ch, 1) <= 0 && GET_LIMBCOND(ch, 2) <= 0 && GET_LIMBCOND(ch, 3) <= 0 && GET_LIMBCOND(ch, 4) <= 0 && !AFF_FLAGGED(ch, AFF_FLYING)) {
+  if (!IS_NPC(ch) && GET_LIMBCOND(ch, 0) <= 0 && GET_LIMBCOND(ch, 1) <= 0 && GET_LIMBCOND(ch, 2) <= 0 && GET_LIMBCOND(ch, 3) <= 0 && !AFF_FLAGGED(ch, AFF_FLYING)) {
    send_to_char(ch, "Unless you fly, you can't get far with no limbs.\r\n");
    return;
   }
@@ -1262,69 +1262,69 @@ ACMD(do_move)
   } if (ROOM_FLAGGED(IN_ROOM(ch), ROOM_SPACE) && GET_ADMLEVEL(ch) < 1) {
      send_to_char(ch, "You struggle to cross the vast distance.\r\n");
      WAIT_STATE(ch, PULSE_6SEC);
-  } else if ((GET_LIMBCOND(ch, 3) <= 0 && GET_LIMBCOND(ch, 4) <= 0) && GET_LIMBCOND(ch, 1) <= 0 && !AFF_FLAGGED(ch, AFF_FLYING)) {
+  } else if ((GET_LIMBCOND(ch, 2) <= 0 && GET_LIMBCOND(ch, 3) <= 0) && GET_LIMBCOND(ch, 0) <= 0 && !AFF_FLAGGED(ch, AFF_FLYING)) {
    act("@wYou slowly pull yourself along with your arm...@n", TRUE, ch, 0, 0, TO_CHAR);
    act("@C$n@w slowly pulls $mself along with one arm...@n", TRUE, ch, 0, 0, TO_ROOM);
-   if (GET_LIMBCOND(ch, 2) < 50) {
+   if (GET_LIMBCOND(ch, 1) < 50) {
     send_to_char(ch, "@RYour left arm is damaged by the forced use!@n\r\n");
-    GET_LIMBCOND(ch, 2) -= rand_number(1, 5);
-    if (GET_LIMBCOND(ch, 1) <= 0) {
+    GET_LIMBCOND(ch, 1) -= rand_number(1, 5);
+    if (GET_LIMBCOND(ch, 0) <= 0) {
      act("@RYour left arm falls apart!@n", TRUE, ch, 0, 0, TO_CHAR);
      act("@r$n's@R left arm falls apart!@n", TRUE, ch, 0, 0, TO_ROOM);
     }
    }
    WAIT_STATE(ch, PULSE_5SEC);
-  } else if ((GET_LIMBCOND(ch, 3) <= 0 && GET_LIMBCOND(ch, 4) <= 0) && GET_LIMBCOND(ch, 2) <= 0 && !AFF_FLAGGED(ch, AFF_FLYING)) {
+  } else if ((GET_LIMBCOND(ch, 2) <= 0 && GET_LIMBCOND(ch, 3) <= 0) && GET_LIMBCOND(ch, 1) <= 0 && !AFF_FLAGGED(ch, AFF_FLYING)) {
    act("@wYou slowly pull yourself along with your arm...@n", TRUE, ch, 0, 0, TO_CHAR);
    act("@C$n@w slowly pulls $mself along with one arm...@n", TRUE, ch, 0, 0, TO_ROOM);
-   if (GET_LIMBCOND(ch, 1) < 50) {
+   if (GET_LIMBCOND(ch, 0) < 50) {
     send_to_char(ch, "@RYour right arm is damaged by the forced use!@n\r\n");
-    GET_LIMBCOND(ch, 1) -= rand_number(1, 5);
-    if (GET_LIMBCOND(ch, 1) <= 0) {
+    GET_LIMBCOND(ch, 0) -= rand_number(1, 5);
+    if (GET_LIMBCOND(ch, 0) <= 0) {
      act("@RYour right arm falls apart!@n", TRUE, ch, 0, 0, TO_CHAR);
      act("@r$n's@R right arm falls apart!@n", TRUE, ch, 0, 0, TO_ROOM);
     }
    }
    WAIT_STATE(ch, PULSE_5SEC);
-  } else if ((GET_LIMBCOND(ch, 3) <= 0 && GET_LIMBCOND(ch, 4) <= 0) && !AFF_FLAGGED(ch, AFF_FLYING)) {
+  } else if ((GET_LIMBCOND(ch, 2) <= 0 && GET_LIMBCOND(ch, 3) <= 0) && !AFF_FLAGGED(ch, AFF_FLYING)) {
    act("@wYou slowly pull yourself along with your arms...@n", TRUE, ch, 0, 0, TO_CHAR);
    act("@C$n@w slowly pulls $mself along with one arms...@n", TRUE, ch, 0, 0, TO_ROOM);
-   if (GET_LIMBCOND(ch, 2) < 50) {
+   if (GET_LIMBCOND(ch, 1) < 50) {
     send_to_char(ch, "@RYour left arm is damaged by the forced use!@n\r\n");
-    GET_LIMBCOND(ch, 2) -= rand_number(1, 5);
-    if (GET_LIMBCOND(ch, 2) <= 0) {
+    GET_LIMBCOND(ch, 1) -= rand_number(1, 5);
+    if (GET_LIMBCOND(ch, 1) <= 0) {
      act("@RYour left arm falls apart!@n", TRUE, ch, 0, 0, TO_CHAR);
      act("@r$n's@R left arm falls apart!@n", TRUE, ch, 0, 0, TO_ROOM);
     }
    }
-   if (GET_LIMBCOND(ch, 1) < 50) {
+   if (GET_LIMBCOND(ch, 0) < 50) {
     send_to_char(ch, "@RYour right arm is damaged by the forced use!@n\r\n");
-    GET_LIMBCOND(ch, 1) -= rand_number(1, 5);
-    if (GET_LIMBCOND(ch, 1) <= 0) {
+    GET_LIMBCOND(ch, 0) -= rand_number(1, 5);
+    if (GET_LIMBCOND(ch, 0) <= 0) {
      act("@RYour right arm falls apart!@n", TRUE, ch, 0, 0, TO_CHAR);
      act("@r$n's@R right arm falls apart!@n", TRUE, ch, 0, 0, TO_ROOM);
     }
    }
    WAIT_STATE(ch, PULSE_3SEC);
-  } else if (GET_LIMBCOND(ch, 3) <= 0 && !AFF_FLAGGED(ch, AFF_FLYING)) {
+  } else if (GET_LIMBCOND(ch, 2) <= 0 && !AFF_FLAGGED(ch, AFF_FLYING)) {
    act("@wYou hop on one leg...@n", TRUE, ch, 0, 0, TO_CHAR);
    act("@C$n@w hops on one leg...@n", TRUE, ch, 0, 0, TO_ROOM);
-   if (GET_LIMBCOND(ch, 4) < 50) {
+   if (GET_LIMBCOND(ch, 3) < 50) {
     send_to_char(ch, "@RYour left leg is damaged by the forced use!@n\r\n");
-    GET_LIMBCOND(ch, 4) -= rand_number(1, 5);
-    if (GET_LIMBCOND(ch, 4) <= 0) {
+    GET_LIMBCOND(ch, 3) -= rand_number(1, 5);
+    if (GET_LIMBCOND(ch, 3) <= 0) {
      act("@RYour left leg falls apart!@n", TRUE, ch, 0, 0, TO_CHAR);
      act("@r$n's@R left leg falls apart!@n", TRUE, ch, 0, 0, TO_ROOM);
     }     
    }
    WAIT_STATE(ch, PULSE_2SEC);
-  } else if (GET_LIMBCOND(ch, 4) <= 0 && !AFF_FLAGGED(ch, AFF_FLYING)) {
+  } else if (GET_LIMBCOND(ch, 3) <= 0 && !AFF_FLAGGED(ch, AFF_FLYING)) {
    act("@wYou hop on one leg...@n", TRUE, ch, 0, 0, TO_CHAR);
    act("@C$n@w hops on one leg...@n", TRUE, ch, 0, 0, TO_ROOM);
-   if (GET_LIMBCOND(ch, 3) < 50) {
+   if (GET_LIMBCOND(ch, 2) < 50) {
     send_to_char(ch, "@RYour right leg is damaged by the forced use!@n\r\n");
-    GET_LIMBCOND(ch, 3) -= rand_number(1, 5);
-    if (GET_LIMBCOND(ch, 3) <= 0) {
+    GET_LIMBCOND(ch, 2) -= rand_number(1, 5);
+    if (GET_LIMBCOND(ch, 2) <= 0) {
      act("@RYour right leg falls apart!@n", TRUE, ch, 0, 0, TO_CHAR);
      act("@r$n's@R right leg falls apart!@n", TRUE, ch, 0, 0, TO_ROOM);
     }
@@ -2768,7 +2768,7 @@ ACMD(do_stand)
    send_to_char(ch, "You are knocked out cold for right now!\r\n");
    return;
   }
-  if (!IS_NPC(ch) && GET_LIMBCOND(ch, 3) <= 0 && GET_LIMBCOND(ch, 4) <= 0) {
+  if (!IS_NPC(ch) && GET_LIMBCOND(ch, 2) <= 0 && GET_LIMBCOND(ch, 3) <= 0) {
    send_to_char(ch, "With what legs will you be standing up on?\r\n");
    return;
   }

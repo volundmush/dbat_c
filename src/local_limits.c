@@ -1423,75 +1423,75 @@ static void heal_limb(struct char_data *ch)
  }
 
  if (healrate > 0) {
- if (GET_LIMBCOND(ch, 1) > 0 && GET_LIMBCOND(ch, 1) < 50) {
-  if (GET_LIMBCOND(ch, 1) + healrate >= 50) {
+ if (GET_LIMBCOND(ch, 0) > 0 && GET_LIMBCOND(ch, 0) < 50) {
+  if (GET_LIMBCOND(ch, 0) + healrate >= 50) {
    act("You realize your right arm is no longer broken.", TRUE, ch, 0, 0, TO_CHAR);
    act("$n starts moving $s right arm gingerly for a moment.", TRUE, ch, 0, 0, TO_ROOM);
+   GET_LIMBCOND(ch, 0) += healrate;
+   recovered = TRUE;
+  } else {
+   GET_LIMBCOND(ch, 0) += healrate;
+   send_to_char(ch, "Your right arm feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 0), "%", "%");
+  }
+ } else if (GET_LIMBCOND(ch, 0) + healrate < 100) {
+  GET_LIMBCOND(ch, 0) += healrate;
+  send_to_char(ch, "Your right arm feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 0), "%", "%");
+ } else if (GET_LIMBCOND(ch, 0) < 100 && GET_LIMBCOND(ch, 0) + healrate >= 100) {
+  GET_LIMBCOND(ch, 0) = 100;
+  send_to_char(ch, "Your right arm has fully recovered.\r\n");
+ }
+
+ if (GET_LIMBCOND(ch, 1) > 0 && GET_LIMBCOND(ch, 1) < 50) {
+  if (GET_LIMBCOND(ch, 1) + healrate >= 50) {
+   act("You realize your left arm is no longer broken.", TRUE, ch, 0, 0, TO_CHAR);
+   act("$n starts moving $s left arm gingerly for a moment.", TRUE, ch, 0, 0, TO_ROOM);
    GET_LIMBCOND(ch, 1) += healrate;
    recovered = TRUE;
   } else {
    GET_LIMBCOND(ch, 1) += healrate;
-   send_to_char(ch, "Your right arm feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 1), "%", "%");
+   send_to_char(ch, "Your left arm feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 0), "%", "%");
   }
  } else if (GET_LIMBCOND(ch, 1) + healrate < 100) {
   GET_LIMBCOND(ch, 1) += healrate;
-  send_to_char(ch, "Your right arm feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 1), "%", "%");
+  send_to_char(ch, "Your left arm feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 1), "%", "%");
  } else if (GET_LIMBCOND(ch, 1) < 100 && GET_LIMBCOND(ch, 1) + healrate >= 100) {
   GET_LIMBCOND(ch, 1) = 100;
-  send_to_char(ch, "Your right arm has fully recovered.\r\n");
+  send_to_char(ch, "Your left arm has fully recovered.\r\n");
  }
 
  if (GET_LIMBCOND(ch, 2) > 0 && GET_LIMBCOND(ch, 2) < 50) {
   if (GET_LIMBCOND(ch, 2) + healrate >= 50) {
-   act("You realize your left arm is no longer broken.", TRUE, ch, 0, 0, TO_CHAR);
-   act("$n starts moving $s left arm gingerly for a moment.", TRUE, ch, 0, 0, TO_ROOM);
+   act("You realize your right leg is no longer broken.", TRUE, ch, 0, 0, TO_CHAR);
+   act("$n starts moving $s right leg gingerly for a moment.", TRUE, ch, 0, 0, TO_ROOM);
    GET_LIMBCOND(ch, 2) += healrate;
    recovered = TRUE;
   } else {
    GET_LIMBCOND(ch, 2) += healrate;
-   send_to_char(ch, "Your left arm feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 1), "%", "%");
+   send_to_char(ch, "Your right leg feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 0), "%", "%");
   }
  } else if (GET_LIMBCOND(ch, 2) + healrate < 100) {
   GET_LIMBCOND(ch, 2) += healrate;
-  send_to_char(ch, "Your left arm feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 2), "%", "%");
+  send_to_char(ch, "Your right leg feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 2), "%", "%");
  } else if (GET_LIMBCOND(ch, 2) < 100 && GET_LIMBCOND(ch, 2) + healrate >= 100) {
   GET_LIMBCOND(ch, 2) = 100;
-  send_to_char(ch, "Your left arm has fully recovered.\r\n");
+  send_to_char(ch, "Your right leg has fully recovered.\r\n");
  }
 
  if (GET_LIMBCOND(ch, 3) > 0 && GET_LIMBCOND(ch, 3) < 50) {
   if (GET_LIMBCOND(ch, 3) + healrate >= 50) {
-   act("You realize your right leg is no longer broken.", TRUE, ch, 0, 0, TO_CHAR);
-   act("$n starts moving $s right leg gingerly for a moment.", TRUE, ch, 0, 0, TO_ROOM);
+   act("You realize your left leg is no longer broken.", TRUE, ch, 0, 0, TO_CHAR);
+   act("$n starts moving $s left leg gingerly for a moment.", TRUE, ch, 0, 0, TO_ROOM);
    GET_LIMBCOND(ch, 3) += healrate;
    recovered = TRUE;
   } else {
    GET_LIMBCOND(ch, 3) += healrate;
-   send_to_char(ch, "Your right leg feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 1), "%", "%");
+   send_to_char(ch, "Your left leg feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 0), "%", "%");
   }
  } else if (GET_LIMBCOND(ch, 3) + healrate < 100) {
   GET_LIMBCOND(ch, 3) += healrate;
-  send_to_char(ch, "Your right leg feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 3), "%", "%");
+  send_to_char(ch, "Your left leg feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 3), "%", "%");
  } else if (GET_LIMBCOND(ch, 3) < 100 && GET_LIMBCOND(ch, 3) + healrate >= 100) {
   GET_LIMBCOND(ch, 3) = 100;
-  send_to_char(ch, "Your right leg has fully recovered.\r\n");
- }
-
- if (GET_LIMBCOND(ch, 4) > 0 && GET_LIMBCOND(ch, 4) < 50) {
-  if (GET_LIMBCOND(ch, 4) + healrate >= 50) {
-   act("You realize your left leg is no longer broken.", TRUE, ch, 0, 0, TO_CHAR);
-   act("$n starts moving $s left leg gingerly for a moment.", TRUE, ch, 0, 0, TO_ROOM);
-   GET_LIMBCOND(ch, 4) += healrate;
-   recovered = TRUE;
-  } else {
-   GET_LIMBCOND(ch, 4) += healrate;
-   send_to_char(ch, "Your left leg feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 1), "%", "%");
-  }
- } else if (GET_LIMBCOND(ch, 4) + healrate < 100) {
-  GET_LIMBCOND(ch, 4) += healrate;
-  send_to_char(ch, "Your left leg feels a little better @D[@G%d%s@D/@g100%s@D]@n.\r\n", GET_LIMBCOND(ch, 4), "%", "%");
- } else if (GET_LIMBCOND(ch, 4) < 100 && GET_LIMBCOND(ch, 4) + healrate >= 100) {
-  GET_LIMBCOND(ch, 4) = 100;
   send_to_char(ch, "Your left leg as fully recovered.\r\n");
  }
 

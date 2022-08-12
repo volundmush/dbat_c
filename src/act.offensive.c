@@ -1061,17 +1061,17 @@ ACMD(do_tslash)
   if (!HAS_ARMS(ch)) {
    send_to_char(ch, "You have no available arms!\r\n");
    return;
-  } else if (GET_LIMBCOND(ch, 1) > 0 && GET_LIMBCOND(ch, 1) < 50 && GET_LIMBCOND(ch, 2) < 0) {
+  } else if (GET_LIMBCOND(ch, 0) > 0 && GET_LIMBCOND(ch, 0) < 50 && GET_LIMBCOND(ch, 1) < 0) {
    send_to_char(ch, "Using your broken right arm has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 1) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 1) < 0) {
+   GET_LIMBCOND(ch, 0) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 0) < 0) {
     act("@RYour right arm has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's right arm has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
-  } else if (GET_LIMBCOND(ch, 2) > 0 && GET_LIMBCOND(ch, 2) < 50 && GET_LIMBCOND(ch, 1) < 0) {
+  } else if (GET_LIMBCOND(ch, 1) > 0 && GET_LIMBCOND(ch, 1) < 50 && GET_LIMBCOND(ch, 0) < 0) {
    send_to_char(ch, "Using your broken left arm has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 2) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 2) < 0) {
+   GET_LIMBCOND(ch, 1) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 1) < 0) {
     act("@RYour left arm has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's left arm has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
@@ -1426,18 +1426,18 @@ ACMD(do_tslash)
       act("@C$n @Wchannels $s charged ki into the blade of $s sword. @rF@Rl@Ya@rm@Ri@Yn@rg @gg@Gre@wen@W energy burns around the blade as $e draws it up to attack. Two blindingly quick slashes connect with @c$N@W's arm as $e flies past, leaving a green after-image behind!@n", TRUE, ch, 0, vict, TO_NOTVICT);
       dmg *= calc_critical(ch, 1);
       if (rand_number(1, 100) >= 70 && !IS_NPC(vict) && !AFF_FLAGGED(vict, AFF_SANCTUARY)) {
-        if (GET_LIMBCOND(vict, 2) > 0 && !is_sparring(ch) && rand_number(1, 2) == 2) {
+        if (GET_LIMBCOND(vict, 1) > 0 && !is_sparring(ch) && rand_number(1, 2) == 2) {
          act("@RYour attack severs $N's left arm!@n", TRUE, ch, 0, vict, TO_CHAR);
          act("@R$n's attack severs your left arm!@n", TRUE, ch, 0, vict, TO_VICT);
          act("@R$N's left arm is severered in the attack!@n", TRUE, ch, 0, vict, TO_VICT);
-         GET_LIMBCOND(vict, 2) = 0;
+         GET_LIMBCOND(vict, 1) = 0;
          remove_limb(vict, 2);
         }
-        else if (GET_LIMBCOND(vict, 1) > 0 && !is_sparring(ch)) {
+        else if (GET_LIMBCOND(vict, 0) > 0 && !is_sparring(ch)) {
          act("@RYour attack severs $N's right arm!@n", TRUE, ch, 0, vict, TO_CHAR);
          act("@R$n's attack severs your right arm!@n", TRUE, ch, 0, vict, TO_VICT);
          act("@R$N's right arm is severered in the attack!@n", TRUE, ch, 0, vict, TO_VICT);
-         GET_LIMBCOND(vict, 1) = 0;
+         GET_LIMBCOND(vict, 0) = 0;
          remove_limb(vict, 1);
         }
       }
@@ -1451,18 +1451,18 @@ ACMD(do_tslash)
       act("@C$n @Wchannels $s charged ki into the blade of $s sword. @rF@Rl@Ya@rm@Ri@Yn@rg @gg@Gre@wen@W energy burns around the blade as $e draws it up to attack. Two blindingly quick slashes connect with @c$N@W's leg as $e flies past, leaving a green after-image behind!@n", TRUE, ch, 0, vict, TO_NOTVICT);
       dmg *= calc_critical(ch, 1);
       if (rand_number(1, 100) >= 70 && !IS_NPC(vict) && !AFF_FLAGGED(vict, AFF_SANCTUARY)) {
-        if (GET_LIMBCOND(vict, 4) > 0 && !is_sparring(ch) && rand_number(1, 2) == 2) {
+        if (GET_LIMBCOND(vict, 3) > 0 && !is_sparring(ch) && rand_number(1, 2) == 2) {
          act("@RYour attack severs $N's left leg!@n", TRUE, ch, 0, vict, TO_CHAR);
          act("@R$n's attack severs your left leg!@n", TRUE, ch, 0, vict, TO_VICT);
          act("@R$N's left leg is severered in the attack!@n", TRUE, ch, 0, vict, TO_VICT);
-         GET_LIMBCOND(vict, 4) = 0;
+         GET_LIMBCOND(vict, 3) = 0;
          remove_limb(vict, 4);
         }
-        else if (GET_LIMBCOND(vict, 3) > 0 && !is_sparring(ch)) {
+        else if (GET_LIMBCOND(vict, 2) > 0 && !is_sparring(ch)) {
          act("@RYour attack severs $N's right leg!@n", TRUE, ch, 0, vict, TO_CHAR);
          act("@R$n's attack severs your right leg!@n", TRUE, ch, 0, vict, TO_VICT);
          act("@R$N's right leg is severered in the attack!@n", TRUE, ch, 0, vict, TO_VICT);
-         GET_LIMBCOND(vict, 3) = 0;
+         GET_LIMBCOND(vict, 2) = 0;
          remove_limb(vict, 3);
         }
       }
@@ -2883,17 +2883,17 @@ ACMD(do_pslash)
   if (!HAS_ARMS(ch)) {
    send_to_char(ch, "You have no available arms!\r\n");
    return;
-  } else if (GET_LIMBCOND(ch, 1) > 0 && GET_LIMBCOND(ch, 1) < 50 && GET_LIMBCOND(ch, 2) < 0) {
+  } else if (GET_LIMBCOND(ch, 0) > 0 && GET_LIMBCOND(ch, 0) < 50 && GET_LIMBCOND(ch, 1) < 0) {
    send_to_char(ch, "Using your broken right arm has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 1) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 1) < 0) {
+   GET_LIMBCOND(ch, 0) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 0) < 0) {
     act("@RYour right arm has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's right arm has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
-  } else if (GET_LIMBCOND(ch, 2) > 0 && GET_LIMBCOND(ch, 2) < 50 && GET_LIMBCOND(ch, 1) < 0) {
+  } else if (GET_LIMBCOND(ch, 1) > 0 && GET_LIMBCOND(ch, 1) < 50 && GET_LIMBCOND(ch, 0) < 0) {
    send_to_char(ch, "Using your broken left arm has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 2) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 2) < 0) {
+   GET_LIMBCOND(ch, 1) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 1) < 0) {
     act("@RYour left arm has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's left arm has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
@@ -4743,17 +4743,17 @@ ACMD(do_ddslash)
   if (!HAS_ARMS(ch)) {
    send_to_char(ch, "You have no available arms!\r\n");
    return;
-  } else if (GET_LIMBCOND(ch, 1) > 0 && GET_LIMBCOND(ch, 1) < 50 && GET_LIMBCOND(ch, 2) < 0) {
+  } else if (GET_LIMBCOND(ch, 0) > 0 && GET_LIMBCOND(ch, 0) < 50 && GET_LIMBCOND(ch, 1) < 0) {
    send_to_char(ch, "Using your broken right arm has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 1) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 1) < 0) {
+   GET_LIMBCOND(ch, 0) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 0) < 0) {
     act("@RYour right arm has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's right arm has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
-  } else if (GET_LIMBCOND(ch, 2) > 0 && GET_LIMBCOND(ch, 2) < 50 && GET_LIMBCOND(ch, 1) < 0) {
+  } else if (GET_LIMBCOND(ch, 1) > 0 && GET_LIMBCOND(ch, 1) < 50 && GET_LIMBCOND(ch, 0) < 0) {
    send_to_char(ch, "Using your broken left arm has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 2) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 2) < 0) {
+   GET_LIMBCOND(ch, 1) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 1) < 0) {
     act("@RYour left arm has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's left arm has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
@@ -6476,18 +6476,18 @@ ACMD(do_kienzan)
       act("@C$n@W raises $s hand above $s head and pools $s charged ki above $s flattened palm. Slowly a golden spinning disk of energy grows from the ki. With the attack complete $e shouts '@yK@Yi@we@yn@Yz@wa@yn@W!' and throws it! @C$n@W watches as it slices into @c$N@W's arm!@n", TRUE, ch, 0, vict, TO_NOTVICT);
       dmg *= calc_critical(ch, 1);
       if (rand_number(1, 100) >= 70 && !IS_NPC(vict) && !AFF_FLAGGED(vict, AFF_SANCTUARY)) {
-        if (GET_LIMBCOND(vict, 2) > 0 && !is_sparring(ch) && rand_number(1, 2) == 2) {
+        if (GET_LIMBCOND(vict, 1) > 0 && !is_sparring(ch) && rand_number(1, 2) == 2) {
          act("@RYour attack severes $N's left arm!@n", TRUE, ch, 0, vict, TO_CHAR);
          act("@R$n's attack severes your left arm!@n", TRUE, ch, 0, vict, TO_VICT);
          act("@R$N's left arm is severed in the attack!@n", TRUE, ch, 0, vict, TO_NOTVICT);
-         GET_LIMBCOND(vict, 2) = 0;
+         GET_LIMBCOND(vict, 1) = 0;
          remove_limb(vict, 2);
         }
-        else if (GET_LIMBCOND(vict, 1) > 0 && !is_sparring(ch)) {
+        else if (GET_LIMBCOND(vict, 0) > 0 && !is_sparring(ch)) {
          act("@RYour attack severes $N's right arm!@n", TRUE, ch, 0, vict, TO_CHAR);
          act("@R$n's attack severes your right arm!@n", TRUE, ch, 0, vict, TO_VICT);
          act("@R$N's right arm is severed in the attack!@n", TRUE, ch, 0, vict, TO_NOTVICT);
-         GET_LIMBCOND(vict, 1) = 0;
+         GET_LIMBCOND(vict, 0) = 0;
          remove_limb(vict, 1);
         }
       }
@@ -6501,18 +6501,18 @@ ACMD(do_kienzan)
       act("@C$n@W raises $s hand above $s head and pools $s charged ki above $s flattened palm. Slowly a golden spinning disk of energy grows from the ki. With the attack complete $e shouts '@yK@Yi@we@yn@Yz@wa@yn@W!' and throws it! @C$n@W watches as it slices into @c$N@W's leg!@n", TRUE, ch, 0, vict, TO_NOTVICT);
       dmg *= calc_critical(ch, 1);
       if (rand_number(1, 100) >= 70 && !IS_NPC(vict) && !AFF_FLAGGED(vict, AFF_SANCTUARY)) {
-        if (GET_LIMBCOND(vict, 4) > 0 && !is_sparring(ch) && rand_number(1, 2) == 2) {
+        if (GET_LIMBCOND(vict, 3) > 0 && !is_sparring(ch) && rand_number(1, 2) == 2) {
          act("@RYour attack severes $N's left leg!@n", TRUE, ch, 0, vict, TO_CHAR);
          act("@R$n's attack severes your left leg!@n", TRUE, ch, 0, vict, TO_VICT);
          act("@R$N's left leg is severed in the attack!@n", TRUE, ch, 0, vict, TO_NOTVICT);
-         GET_LIMBCOND(vict, 4) = 0;
+         GET_LIMBCOND(vict, 3) = 0;
          remove_limb(vict, 4);
         }
-        else if (GET_LIMBCOND(vict, 3) > 0 && !is_sparring(ch)) {
+        else if (GET_LIMBCOND(vict, 2) > 0 && !is_sparring(ch)) {
          act("@RYour attack severes $N's right leg!@n", TRUE, ch, 0, vict, TO_CHAR);
          act("@R$n's attack severes your right leg!@n", TRUE, ch, 0, vict, TO_VICT);
          act("@R$N's right leg is severed in the attack!@n", TRUE, ch, 0, vict, TO_NOTVICT);
-         GET_LIMBCOND(vict, 3) = 0;
+         GET_LIMBCOND(vict, 2) = 0;
          remove_limb(vict, 3);
         }
       }
@@ -11482,17 +11482,17 @@ ACMD(do_attack2)
  if (!HAS_ARMS(ch)) {
    send_to_char(ch, "With what arms!?\r\n");
    return;
- } else if (GET_LIMBCOND(ch, 1) > 0 && GET_LIMBCOND(ch, 1) < 50 && GET_LIMBCOND(ch, 2) < 0) {
+ } else if (GET_LIMBCOND(ch, 0) > 0 && GET_LIMBCOND(ch, 0) < 50 && GET_LIMBCOND(ch, 1) < 0) {
    send_to_char(ch, "Using your broken right arm has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 1) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 1) < 0) {
+   GET_LIMBCOND(ch, 0) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 0) < 0) {
     act("@RYour right arm has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's right arm has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
-  } else if (GET_LIMBCOND(ch, 2) > 0 && GET_LIMBCOND(ch, 2) < 50 && GET_LIMBCOND(ch, 1) < 0) {
+  } else if (GET_LIMBCOND(ch, 1) > 0 && GET_LIMBCOND(ch, 1) < 50 && GET_LIMBCOND(ch, 0) < 0) {
    send_to_char(ch, "Using your broken left arm has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 2) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 2) < 0) {
+   GET_LIMBCOND(ch, 1) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 1) < 0) {
     act("@RYour left arm has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's left arm has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
@@ -14377,17 +14377,17 @@ ACMD(do_roundhouse)
 
   if (!limb_ok(ch, 1)) {
    return;
-  } else if (GET_LIMBCOND(ch, 3) > 0 && GET_LIMBCOND(ch, 3) < 50 && GET_LIMBCOND(ch, 4) < 0) {
+  } else if (GET_LIMBCOND(ch, 2) > 0 && GET_LIMBCOND(ch, 2) < 50 && GET_LIMBCOND(ch, 3) < 0) {
    send_to_char(ch, "Using your broken right leg has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 3) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 3) < 0) {
+   GET_LIMBCOND(ch, 2) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 2) < 0) {
     act("@RYour right leg has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's right leg has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
-  } else if (GET_LIMBCOND(ch, 4) > 0 && GET_LIMBCOND(ch, 4) < 50 && GET_LIMBCOND(ch, 3) < 0) {
+  } else if (GET_LIMBCOND(ch, 3) > 0 && GET_LIMBCOND(ch, 3) < 50 && GET_LIMBCOND(ch, 2) < 0) {
    send_to_char(ch, "Using your broken left leg has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 4) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 4) < 0) {
+   GET_LIMBCOND(ch, 3) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 3) < 0) {
     act("@RYour left leg has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's left leg has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
@@ -14945,17 +14945,17 @@ ACMD(do_kick)
 
   if (!limb_ok(ch, 1)) {
    return;
-  } else if (GET_LIMBCOND(ch, 3) > 0 && GET_LIMBCOND(ch, 3) < 50 && GET_LIMBCOND(ch, 4) < 0) {
+  } else if (GET_LIMBCOND(ch, 2) > 0 && GET_LIMBCOND(ch, 2) < 50 && GET_LIMBCOND(ch, 3) < 0) {
    send_to_char(ch, "Using your broken right leg has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 3) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 3) < 0) {
+   GET_LIMBCOND(ch, 2) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 2) < 0) {
     act("@RYour right leg has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's right leg has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
-  } else if (GET_LIMBCOND(ch, 4) > 0 && GET_LIMBCOND(ch, 4) < 50 && GET_LIMBCOND(ch, 3) < 0) {
+  } else if (GET_LIMBCOND(ch, 3) > 0 && GET_LIMBCOND(ch, 3) < 50 && GET_LIMBCOND(ch, 2) < 0) {
    send_to_char(ch, "Using your broken left leg has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 4) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 4) < 0) {
+   GET_LIMBCOND(ch, 3) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 3) < 0) {
     act("@RYour left leg has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's left leg has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
@@ -15227,17 +15227,17 @@ ACMD(do_knee)
 
   if (!limb_ok(ch, 1)) {
    return;
-  } else if (GET_LIMBCOND(ch, 3) > 0 && GET_LIMBCOND(ch, 3) < 50 && GET_LIMBCOND(ch, 4) < 0) {
+  } else if (GET_LIMBCOND(ch, 2) > 0 && GET_LIMBCOND(ch, 2) < 50 && GET_LIMBCOND(ch, 3) < 0) {
    send_to_char(ch, "Using your broken right leg has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 3) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 3) < 0) {
+   GET_LIMBCOND(ch, 2) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 2) < 0) {
     act("@RYour right leg has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's right leg has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
-  } else if (GET_LIMBCOND(ch, 4) > 0 && GET_LIMBCOND(ch, 4) < 50 && GET_LIMBCOND(ch, 3) < 0) {
+  } else if (GET_LIMBCOND(ch, 3) > 0 && GET_LIMBCOND(ch, 3) < 50 && GET_LIMBCOND(ch, 2) < 0) {
    send_to_char(ch, "Using your broken left leg has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 4) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 4) < 0) {
+   GET_LIMBCOND(ch, 3) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 3) < 0) {
     act("@RYour left leg has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's left leg has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }

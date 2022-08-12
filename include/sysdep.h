@@ -59,7 +59,7 @@
 
 #define HAS_RLIMIT
 
-#define CIRCLE_UNSIGNED_INDEX 1	/* 0 = signed, 1 = unsigned */
+#define CIRCLE_UNSIGNED_INDEX 0	/* 0 = signed, 1 = unsigned */
 
 #if CIRCLE_UNSIGNED_INDEX
 #define IDXTYPE	uint16_t
@@ -68,7 +68,7 @@
 #define NOBODY	((IDXTYPE)~0)
 #define NOFLAG  ((IDXTYPE)~0)
 #else
-#define IDXTYPE	int16_t
+#define IDXTYPE	int32_t
 #define NOWHERE	(-1)	/* nil reference for rooms	*/
 #define NOTHING	(-1)	/* nil reference for objects	*/
 #define NOBODY		(-1)	/* nil reference for mobiles	*/

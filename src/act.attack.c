@@ -1262,17 +1262,17 @@ ACMD(do_zen)
   if (!HAS_ARMS(ch)) {
    send_to_char(ch, "You have no available arms!\r\n");
    return;
-  } else if (GET_LIMBCOND(ch, 1) > 0 && GET_LIMBCOND(ch, 1) < 50 && GET_LIMBCOND(ch, 2) < 0) {
+  } else if (GET_LIMBCOND(ch, 0) > 0 && GET_LIMBCOND(ch, 0) < 50 && GET_LIMBCOND(ch, 1) < 0) {
    send_to_char(ch, "Using your broken right arm has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 1) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 1) < 0) {
+   GET_LIMBCOND(ch, 0) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 0) < 0) {
     act("@RYour right arm has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's right arm has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
-  } else if (GET_LIMBCOND(ch, 2) > 0 && GET_LIMBCOND(ch, 2) < 50 && GET_LIMBCOND(ch, 1) < 0) {
+  } else if (GET_LIMBCOND(ch, 1) > 0 && GET_LIMBCOND(ch, 1) < 50 && GET_LIMBCOND(ch, 0) < 0) {
    send_to_char(ch, "Using your broken left arm has damaged it more!@n\r\n");
-   GET_LIMBCOND(ch, 2) -= rand_number(3, 5);
-   if (GET_LIMBCOND(ch, 2) < 0) {
+   GET_LIMBCOND(ch, 1) -= rand_number(3, 5);
+   if (GET_LIMBCOND(ch, 1) < 0) {
     act("@RYour left arm has fallen apart!@n", TRUE, ch, 0, 0, TO_CHAR);
     act("@r$n@R's left arm has fallen apart!@n", TRUE, ch, 0, 0, TO_ROOM);
    }
@@ -1606,18 +1606,18 @@ ACMD(do_zen)
       act("@G$n @Craises $s blade above $s head, and closes $s eyes. The edge of the blade begins to glow a soft blue as the blade begins to throb with excess energy. Peels of lighting begin to arc from the blade in all directions as $e opens $s eyes and instantly moves past @g$N's@C body while slashing with the pure energy of $s resolve! A large explosion of energy erupts across @g$N's@C arm!@n", TRUE, ch, 0, vict, TO_NOTVICT);
       dmg *= calc_critical(ch, 1);
       if (rand_number(1, 100) >= 80 && !IS_NPC(vict) && !AFF_FLAGGED(vict, AFF_SANCTUARY)) {
-        if (GET_LIMBCOND(vict, 2) > 0 && !is_sparring(ch) && rand_number(1, 2) == 2) {
+        if (GET_LIMBCOND(vict, 1) > 0 && !is_sparring(ch) && rand_number(1, 2) == 2) {
          act("@RYour attack severs $N's left arm!@n", TRUE, ch, 0, vict, TO_CHAR);
          act("@R$n's attack severs your left arm!@n", TRUE, ch, 0, vict, TO_VICT);
          act("@R$N's left arm is severered in the attack!@n", TRUE, ch, 0, vict, TO_VICT);
-         GET_LIMBCOND(vict, 2) = 0;
+         GET_LIMBCOND(vict, 1) = 0;
          remove_limb(vict, 2);
         }
-        else if (GET_LIMBCOND(vict, 1) > 0 && !is_sparring(ch)) {
+        else if (GET_LIMBCOND(vict, 0) > 0 && !is_sparring(ch)) {
          act("@RYour attack severs $N's right arm!@n", TRUE, ch, 0, vict, TO_CHAR);
          act("@R$n's attack severs your right arm!@n", TRUE, ch, 0, vict, TO_VICT);
          act("@R$N's right arm is severered in the attack!@n", TRUE, ch, 0, vict, TO_VICT);
-         GET_LIMBCOND(vict, 1) = 0;
+         GET_LIMBCOND(vict, 0) = 0;
          remove_limb(vict, 1);
         }
       }
@@ -1631,18 +1631,18 @@ ACMD(do_zen)
       act("@G$n @Craises $s blade above $s head, and closes $s eyes. The edge of the blade begins to glow a soft blue as the blade begins to throb with excess energy. Peels of lighting begin to arc from the blade in all directions as $e opens $s eyes and instantly moves past @g$N's@C body while slashing with the pure energy of $s resolve! A large explosion of energy erupts across @g$N's@C leg!@n", TRUE, ch, 0, vict, TO_NOTVICT);
       dmg *= calc_critical(ch, 1);
       if (rand_number(1, 100) >= 80 && !IS_NPC(vict) && !AFF_FLAGGED(vict, AFF_SANCTUARY)) {
-        if (GET_LIMBCOND(vict, 4) > 0 && !is_sparring(ch) && rand_number(1, 2) == 2) {
+        if (GET_LIMBCOND(vict, 3) > 0 && !is_sparring(ch) && rand_number(1, 2) == 2) {
          act("@RYour attack severs $N's left leg!@n", TRUE, ch, 0, vict, TO_CHAR);
          act("@R$n's attack severs your left leg!@n", TRUE, ch, 0, vict, TO_VICT);
          act("@R$N's left leg is severered in the attack!@n", TRUE, ch, 0, vict, TO_VICT);
-         GET_LIMBCOND(vict, 4) = 0;
+         GET_LIMBCOND(vict, 3) = 0;
          remove_limb(vict, 4);
         }
-        else if (GET_LIMBCOND(vict, 3) > 0 && !is_sparring(ch)) {
+        else if (GET_LIMBCOND(vict, 2) > 0 && !is_sparring(ch)) {
          act("@RYour attack severs $N's right leg!@n", TRUE, ch, 0, vict, TO_CHAR);
          act("@R$n's attack severs your right leg!@n", TRUE, ch, 0, vict, TO_VICT);
          act("@R$N's right leg is severered in the attack!@n", TRUE, ch, 0, vict, TO_VICT);
-         GET_LIMBCOND(vict, 3) = 0;
+         GET_LIMBCOND(vict, 2) = 0;
          remove_limb(vict, 3);
         }
       }

@@ -551,32 +551,32 @@ static void resolve_song(struct char_data *ch)
          if (GET_MOVE(vict) > GET_MAX_MOVE(vict)) {
           GET_MOVE(vict) = GET_MAX_MOVE(vict);
          }
+         if (GET_LIMBCOND(vict, 0) < 100) {
+         GET_LIMBCOND(vict, 0) += 1 + (skill * 0.1);
+         if (GET_LIMBCOND(vict, 0) > 100) {
+          send_to_char(vict, "Your right arm is no longer broken!@n\r\n");
+          GET_LIMBCOND(vict, 0) = 100;
+         }
+         }
          if (GET_LIMBCOND(vict, 1) < 100) {
          GET_LIMBCOND(vict, 1) += 1 + (skill * 0.1);
          if (GET_LIMBCOND(vict, 1) > 100) {
-          send_to_char(vict, "Your right arm is no longer broken!@n\r\n");
+          send_to_char(vict, "Your left arm is no longer broken!@n\r\n");
           GET_LIMBCOND(vict, 1) = 100;
          }
          }
          if (GET_LIMBCOND(vict, 2) < 100) {
          GET_LIMBCOND(vict, 2) += 1 + (skill * 0.1);
          if (GET_LIMBCOND(vict, 2) > 100) {
-          send_to_char(vict, "Your left arm is no longer broken!@n\r\n");
+          send_to_char(vict, "Your right leg is no longer broken!@n\r\n");
           GET_LIMBCOND(vict, 2) = 100;
          }
          }
-         if (GET_LIMBCOND(vict, 3) < 100) {
+         if (GET_LIMBCOND(vict, 0) < 100) {
          GET_LIMBCOND(vict, 3) += 1 + (skill * 0.1);
          if (GET_LIMBCOND(vict, 3) > 100) {
-          send_to_char(vict, "Your right leg is no longer broken!@n\r\n");
-          GET_LIMBCOND(vict, 3) = 100;
-         }
-         }
-         if (GET_LIMBCOND(vict, 1) < 100) {
-         GET_LIMBCOND(vict, 4) += 1 + (skill * 0.1);
-         if (GET_LIMBCOND(vict, 4) > 100) {
           send_to_char(vict, "Your left leg is no longer broken!@n\r\n");
-          GET_LIMBCOND(vict, 4) = 100;
+          GET_LIMBCOND(vict, 3) = 100;
          }
          }
          if (vict != ch) {

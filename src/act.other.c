@@ -732,10 +732,10 @@ ACMD(do_rpp)
      GET_HIT(ch) = gear_pl(ch);
      GET_MANA(ch) = GET_MAX_MANA(ch);
      GET_MOVE(ch) = GET_MAX_MOVE(ch);
+     GET_LIMBCOND(ch, 0) = 100;
      GET_LIMBCOND(ch, 1) = 100;
      GET_LIMBCOND(ch, 2) = 100;
      GET_LIMBCOND(ch, 3) = 100;
-     GET_LIMBCOND(ch, 4) = 100;
      SET_BIT_AR(PLR_FLAGS(ch), PLR_HEAD);
      REMOVE_BIT_AR(PLR_FLAGS(ch), PLR_PDEATH);
      char_from_room(ch);
@@ -3381,7 +3381,7 @@ ACMD(do_implant)
  }
 
  if (!(strcmp(arg, "rarm"))) {
-  if (GET_LIMBCOND(vict, 1) >= 1) {
+  if (GET_LIMBCOND(vict, 0) >= 1) {
    if (vict != ch) {
    send_to_char(ch, "They already have a right arm!\r\n");
    }
@@ -3409,7 +3409,7 @@ ACMD(do_implant)
   }
  }
  else if (!(strcmp(arg, "larm"))) {
-  if (GET_LIMBCOND(vict, 2) >= 1) {
+  if (GET_LIMBCOND(vict, 1) >= 1) {
    if (vict != ch) {
    send_to_char(ch, "They already have a left arm!\r\n");
    }
@@ -3437,7 +3437,7 @@ ACMD(do_implant)
   }
  }
  else if (!(strcmp(arg, "rleg"))) {
-  if (GET_LIMBCOND(vict, 3) >= 1) {
+  if (GET_LIMBCOND(vict, 2) >= 1) {
    if (vict != ch) {
    send_to_char(ch, "They already have a right leg!\r\n");
    }
@@ -3465,7 +3465,7 @@ ACMD(do_implant)
   }
  }
  else if (!(strcmp(arg, "lleg"))) {
-  if (GET_LIMBCOND(vict, 4) >= 1) {
+  if (GET_LIMBCOND(vict, 3) >= 1) {
    if (vict != ch) {
    send_to_char(ch, "They already have a left leg!\r\n");
    }
@@ -6168,39 +6168,39 @@ ACMD(do_regenerate) {
  }
 
  if (!IS_NPC(ch)) {
-  if (GET_LIMBCOND(ch, 1) <= 0) {
+  if (GET_LIMBCOND(ch, 0) <= 0) {
    act("You regrow your right arm!", TRUE, ch, 0, 0, TO_CHAR);
    act("$n regrows $s right arm!", TRUE, ch, 0, 0, TO_ROOM);
-   GET_LIMBCOND(ch, 1) = 100;
-  } else if (GET_LIMBCOND(ch, 1) >= 0 && GET_LIMBCOND(ch, 1) < 50) {
+   GET_LIMBCOND(ch, 0) = 100;
+  } else if (GET_LIMBCOND(ch, 0) >= 0 && GET_LIMBCOND(ch, 0) < 50) {
    act("Your broken right arm mends itself!", TRUE, ch, 0, 0, TO_CHAR);
    act("$n regenerates $s broken right arm!", TRUE, ch, 0, 0, TO_ROOM);
-   GET_LIMBCOND(ch, 1) = 100;
+   GET_LIMBCOND(ch, 0) = 100;
   }
-  if (GET_LIMBCOND(ch, 2) <= 0) {
-   GET_LIMBCOND(ch, 2) = 100;
+  if (GET_LIMBCOND(ch, 1) <= 0) {
+   GET_LIMBCOND(ch, 1) = 100;
    act("You regrow your left arm!", TRUE, ch, 0, 0, TO_CHAR);
    act("$n regrows $s left arm!", TRUE, ch, 0, 0, TO_ROOM);
-  } else if (GET_LIMBCOND(ch, 2) > 0 && GET_LIMBCOND(ch, 2) < 50) {
+  } else if (GET_LIMBCOND(ch, 1) > 0 && GET_LIMBCOND(ch, 1) < 50) {
    act("Your broken left arm mends itself!", TRUE, ch, 0, 0, TO_CHAR);
    act("$n regenerates $s broken left arm!", TRUE, ch, 0, 0, TO_ROOM);
-   GET_LIMBCOND(ch, 2) = 100;
-  }
-  if (GET_LIMBCOND(ch, 4) <= 0) {
-   GET_LIMBCOND(ch, 4) = 100;
-   act("You regrow your left leg!", TRUE, ch, 0, 0, TO_CHAR);
-   act("$n regrows $s left leg!", TRUE, ch, 0, 0, TO_ROOM);
-  } else if (GET_LIMBCOND(ch, 4) > 0 && GET_LIMBCOND(ch, 4) < 50) {
-   act("Your broken left leg mends itself!", TRUE, ch, 0, 0, TO_CHAR);
-   act("$n regenerates $s broken left leg!", TRUE, ch, 0, 0, TO_ROOM);
-   GET_LIMBCOND(ch, 4) = 100;
+   GET_LIMBCOND(ch, 1) = 100;
   }
   if (GET_LIMBCOND(ch, 3) <= 0) {
    GET_LIMBCOND(ch, 3) = 100;
+   act("You regrow your left leg!", TRUE, ch, 0, 0, TO_CHAR);
+   act("$n regrows $s left leg!", TRUE, ch, 0, 0, TO_ROOM);
+  } else if (GET_LIMBCOND(ch, 3) > 0 && GET_LIMBCOND(ch, 3) < 50) {
+   act("Your broken left leg mends itself!", TRUE, ch, 0, 0, TO_CHAR);
+   act("$n regenerates $s broken left leg!", TRUE, ch, 0, 0, TO_ROOM);
+   GET_LIMBCOND(ch, 3) = 100;
+  }
+  if (GET_LIMBCOND(ch, 2) <= 0) {
+   GET_LIMBCOND(ch, 2) = 100;
    act("You regrow your right leg!", TRUE, ch, 0, 0, TO_CHAR);
    act("$n regrows $s right leg!", TRUE, ch, 0, 0, TO_ROOM);
-  }  else if (GET_LIMBCOND(ch, 3) > 0 && GET_LIMBCOND(ch, 3) < 50) {
-   GET_LIMBCOND(ch, 3) = 100;
+  }  else if (GET_LIMBCOND(ch, 2) > 0 && GET_LIMBCOND(ch, 2) < 50) {
+   GET_LIMBCOND(ch, 2) = 100;
    act("Your broken right leg mends itself!", TRUE, ch, 0, 0, TO_CHAR);
    act("$n regenerates $s broken right leg!", TRUE, ch, 0, 0, TO_ROOM);
   }
@@ -8288,10 +8288,10 @@ ACMD(do_heal)
         act("$n@w no longer looks as if they could drink an ocean.@n", TRUE, vict, 0, 0, TO_ROOM);
         REMOVE_BIT_AR(AFF_FLAGS(vict), AFF_HYDROZAP);
     }
+   GET_LIMBCOND(vict, 0) = 100;
    GET_LIMBCOND(vict, 1) = 100;
    GET_LIMBCOND(vict, 2) = 100;
    GET_LIMBCOND(vict, 3) = 100;
-   GET_LIMBCOND(vict, 4) = 100;
    if (GET_LIFEFORCE(vict) <= GET_LIFEMAX(vict) * 0.5 && !IS_ANDROID(vict)) {
     GET_LIFEFORCE(vict) += GET_LIFEMAX(ch) * 0.35;
     if (GET_LIFEFORCE(vict) > GET_LIFEMAX(ch)) {
@@ -8339,10 +8339,10 @@ ACMD(do_heal)
     }
    }
    REMOVE_BIT_AR(AFF_FLAGS(vict), AFF_BLIND);
+   GET_LIMBCOND(vict, 0) = 100;
    GET_LIMBCOND(vict, 1) = 100;
    GET_LIMBCOND(vict, 2) = 100;
    GET_LIMBCOND(vict, 3) = 100;
-   GET_LIMBCOND(vict, 4) = 100;
    if (!PLR_FLAGGED(vict, PLR_TAIL) && (IS_BIO(vict) || IS_ICER(vict))) {
     SET_BIT_AR(PLR_FLAGS(vict), PLR_TAIL);
    }
@@ -13390,13 +13390,13 @@ static void check_eq(struct char_data *ch)
      perform_remove(ch, i);
      return;
     }
-    if (obj == GET_EQ(ch, WEAR_WIELD1) && GET_LIMBCOND(ch, 1) <= 0) {
+    if (obj == GET_EQ(ch, WEAR_WIELD1) && GET_LIMBCOND(ch, 0) <= 0) {
      act("@WWithout your right arm you let go of @c$p@W!@n", FALSE, ch, obj, 0, TO_CHAR);
      act("@C$n@W lets go of @c$p@W!@n", FALSE, ch, obj, 0, TO_ROOM);
      perform_remove(ch, i);
      return;
     }
-    if (obj == GET_EQ(ch, WEAR_WIELD2) && GET_LIMBCOND(ch, 2) <= 0) {
+    if (obj == GET_EQ(ch, WEAR_WIELD2) && GET_LIMBCOND(ch, 1) <= 0) {
      act("@WWithout your left arm you let go of @c$p@W!@n", FALSE, ch, obj, 0, TO_CHAR);
      act("@C$n@W lets go of @c$p@W!@n", FALSE, ch, obj, 0, TO_ROOM);
      perform_remove(ch, i);

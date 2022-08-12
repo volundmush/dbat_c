@@ -1015,7 +1015,7 @@ ACMD(do_twohand)
   send_to_char(ch, "You have something in your offhand already and can't two hand wield your main weapon.\r\n");
   return;
  }
- else if ((GET_LIMBCOND(ch, 1) <= 0 || GET_LIMBCOND(ch, 2) <= 0) && !PLR_FLAGGED(ch, PLR_THANDW)) {
+ else if ((GET_LIMBCOND(ch, 0) <= 0 || GET_LIMBCOND(ch, 1) <= 0) && !PLR_FLAGGED(ch, PLR_THANDW)) {
   send_to_char(ch, "Kind of hard with only one arm...\r\n");
   return;
  }

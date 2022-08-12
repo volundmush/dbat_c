@@ -578,10 +578,10 @@ void do_start(struct char_data *ch)
   SET_BIT_AR(PRF_FLAGS(ch), PRF_HINTS);
   SET_BIT_AR(PRF_FLAGS(ch), PRF_NOMUSIC);
   SET_BIT_AR(PRF_FLAGS(ch), PRF_DISPHP);
+  GET_LIMBCOND(ch, 0) = 100;
   GET_LIMBCOND(ch, 1) = 100;
   GET_LIMBCOND(ch, 2) = 100;
   GET_LIMBCOND(ch, 3) = 100;
-  GET_LIMBCOND(ch, 4) = 100;
   SET_BIT_AR(PLR_FLAGS(ch), PLR_HEAD);
 
   GET_SLOTS(ch) = 30;

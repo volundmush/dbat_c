@@ -2742,10 +2742,10 @@ ACMD(do_restore)
     GET_MOVE(vict) = GET_MAX_MOVE(vict);
     GET_KI(vict) = GET_MAX_KI(vict);
     REMOVE_BIT_AR(AFF_FLAGS(vict), AFF_BLIND);
+    GET_LIMBCOND(vict, 0) = 100;
     GET_LIMBCOND(vict, 1) = 100;
     GET_LIMBCOND(vict, 2) = 100;
     GET_LIMBCOND(vict, 3) = 100;
-    GET_LIMBCOND(vict, 4) = 100;
     SET_BIT_AR(PLR_FLAGS(vict), PLR_HEAD);
     if (!IS_NPC(vict) && GET_ADMLEVEL(ch) >= ADMLVL_VICE) {
       if (GET_ADMLEVEL(vict) >= ADMLVL_IMMORT)
@@ -4689,10 +4689,10 @@ ACMD(do_raise)
     GET_HIT(vict) = gear_pl(vict);
   GET_MANA(vict) = GET_MAX_MANA(vict);
   GET_MOVE(vict) = GET_MAX_MOVE(vict);
+  GET_LIMBCOND(vict, 0) = 100;
   GET_LIMBCOND(vict, 1) = 100;
   GET_LIMBCOND(vict, 2) = 100;
   GET_LIMBCOND(vict, 3) = 100;
-  GET_LIMBCOND(vict, 4) = 100;
   SET_BIT_AR(PLR_FLAGS(vict), PLR_HEAD);
   REMOVE_BIT_AR(PLR_FLAGS(vict), PLR_PDEATH);
   char_from_room(vict);

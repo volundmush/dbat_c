@@ -404,9 +404,9 @@ int load_char(const char *name, struct char_data *ch)
     GET_GROUPKILLS(ch) = 0;
     GET_SONG(ch) = 0;
     GET_LIMBCOND(ch, 0) = 0;
+    GET_LIMBCOND(ch, 0) = 0;
     GET_LIMBCOND(ch, 1) = 0;
     GET_LIMBCOND(ch, 2) = 0;
-    GET_LIMBCOND(ch, 3) = 0;
     GET_BOARD(ch, 0) = PFDEF_BOARD;
     GET_BOARD(ch, 1) = PFDEF_BOARD;
     GET_BOARD(ch, 2) = PFDEF_BOARD;
@@ -623,10 +623,10 @@ int load_char(const char *name, struct char_data *ch)
        /* else if (!strcmp(tag, "LevD"))  read_level_data(ch, fl);*/
         else if (!strcmp(tag, "LF  "))  load_BASE(ch, line, LOAD_LIFE);
         else if (!strcmp(tag, "LFPC"))  GET_LIFEPERC(ch)      = atoi(line);
-        else if (!strcmp(tag, "Lila"))  GET_LIMBCOND(ch, 2)      = atoi(line);
-        else if (!strcmp(tag, "Lill"))  GET_LIMBCOND(ch, 4)      = atoi(line);
-        else if (!strcmp(tag, "Lira"))  GET_LIMBCOND(ch, 1)      = atoi(line);
-        else if (!strcmp(tag, "Lirl"))  GET_LIMBCOND(ch, 3)      = atoi(line);
+        else if (!strcmp(tag, "Lila"))  GET_LIMBCOND(ch, 1)      = atoi(line);
+        else if (!strcmp(tag, "Lill"))  GET_LIMBCOND(ch, 3)      = atoi(line);
+        else if (!strcmp(tag, "Lira"))  GET_LIMBCOND(ch, 0)      = atoi(line);
+        else if (!strcmp(tag, "Lirl"))  GET_LIMBCOND(ch, 2)      = atoi(line);
         else if (!strcmp(tag, "Lint"))  GET_LINTEREST(ch)     = atoi(line);
         else if (!strcmp(tag, "Lpla"))  GET_LPLAY(ch)         = atoi(line);
         else if (!strcmp(tag, "LvlA"))  GET_LEVEL_ADJ(ch)     = atoi(line);
@@ -1171,10 +1171,10 @@ void save_char(struct char_data * ch)
   if (GET_BOARD(ch, 2)     != PFDEF_BOARD)      fprintf(fl, "Boac: %ld\n", GET_BOARD(ch, 2));
   if (GET_BOARD(ch, 3)     != PFDEF_BOARD)      fprintf(fl, "Boad: %ld\n", GET_BOARD(ch, 3));
   if (GET_BOARD(ch, 4)     != PFDEF_BOARD)      fprintf(fl, "Boab: %ld\n", GET_BOARD(ch, 4));
-  if (GET_LIMBCOND(ch, 1)  != PFDEF_BOARD)      fprintf(fl, "Lira: %d\n", GET_LIMBCOND(ch, 1));
-  if (GET_LIMBCOND(ch, 2)  != PFDEF_BOARD)      fprintf(fl, "Lila: %d\n", GET_LIMBCOND(ch, 2));
-  if (GET_LIMBCOND(ch, 3)  != PFDEF_BOARD)      fprintf(fl, "Lirl: %d\n", GET_LIMBCOND(ch, 3));
-  if (GET_LIMBCOND(ch, 4)  != PFDEF_BOARD)      fprintf(fl, "Lill: %d\n", GET_LIMBCOND(ch, 4));
+  if (GET_LIMBCOND(ch, 0)  != PFDEF_BOARD)      fprintf(fl, "Lira: %d\n", GET_LIMBCOND(ch, 0));
+  if (GET_LIMBCOND(ch, 1)  != PFDEF_BOARD)      fprintf(fl, "Lila: %d\n", GET_LIMBCOND(ch, 1));
+  if (GET_LIMBCOND(ch, 2)  != PFDEF_BOARD)      fprintf(fl, "Lirl: %d\n", GET_LIMBCOND(ch, 2));
+  if (GET_LIMBCOND(ch, 3)  != PFDEF_BOARD)      fprintf(fl, "Lill: %d\n", GET_LIMBCOND(ch, 3));
   if (GET_CRANK(ch)        != PFDEF_CRANK)      fprintf(fl, "Clar: %d\n", GET_CRANK(ch));
   if (GET_RP(ch)           != PFDEF_SKIN)       fprintf(fl, "RPP : %d\n", GET_RP(ch));
   if (GET_RBANK(ch)        != PFDEF_SKIN)       fprintf(fl, "RBan: %d\n", GET_RBANK(ch));

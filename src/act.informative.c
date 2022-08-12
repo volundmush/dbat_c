@@ -2936,52 +2936,52 @@ static void look_at_char(struct char_data *i, struct char_data *ch)
 	}
 	send_to_char(ch, "\r\n");
 	if (!IS_NPC(i)) {
-		if (GET_LIMBCOND(i, 1) >= 50 && !PLR_FLAGGED(i, PLR_CRARM)) {
-			send_to_char(ch, "            @D[@cRight Arm   @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(i, 1), "%", "%");
+		if (GET_LIMBCOND(i, 0) >= 50 && !PLR_FLAGGED(i, PLR_CRARM)) {
+			send_to_char(ch, "            @D[@cRight Arm   @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(i, 0), "%", "%");
 		}
-		else if (GET_LIMBCOND(i, 1) > 0 && !PLR_FLAGGED(i, PLR_CRARM)) {
-			send_to_char(ch, "            @D[@cRight Arm   @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(i, 1), "%", "%");
+		else if (GET_LIMBCOND(i, 0) > 0 && !PLR_FLAGGED(i, PLR_CRARM)) {
+			send_to_char(ch, "            @D[@cRight Arm   @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(i, 0), "%", "%");
 		}
-		else if (GET_LIMBCOND(i, 1) > 0 && PLR_FLAGGED(i, PLR_CRARM)) {
-			send_to_char(ch, "            @D[@cRight Arm   @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(i, 1), "%", "%");
+		else if (GET_LIMBCOND(i, 0) > 0 && PLR_FLAGGED(i, PLR_CRARM)) {
+			send_to_char(ch, "            @D[@cRight Arm   @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(i, 0), "%", "%");
 		}
-		else if (GET_LIMBCOND(i, 1) <= 0) {
+		else if (GET_LIMBCOND(i, 0) <= 0) {
 			send_to_char(ch, "            @D[@cRight Arm   @D: @rMissing.            @D]@n\r\n");
 		}
-		if (GET_LIMBCOND(i, 2) >= 50 && !PLR_FLAGGED(i, PLR_CLARM)) {
-			send_to_char(ch, "            @D[@cLeft Arm    @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(i, 2), "%", "%");
+		if (GET_LIMBCOND(i, 1) >= 50 && !PLR_FLAGGED(i, PLR_CLARM)) {
+			send_to_char(ch, "            @D[@cLeft Arm    @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(i, 1), "%", "%");
 		}
-		else if (GET_LIMBCOND(i, 2) > 0 && !PLR_FLAGGED(i, PLR_CLARM)) {
-			send_to_char(ch, "            @D[@cLeft Arm    @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(i, 2), "%", "%");
+		else if (GET_LIMBCOND(i, 1) > 0 && !PLR_FLAGGED(i, PLR_CLARM)) {
+			send_to_char(ch, "            @D[@cLeft Arm    @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(i, 1), "%", "%");
 		}
-		else if (GET_LIMBCOND(i, 2) > 0 && PLR_FLAGGED(i, PLR_CLARM)) {
-			send_to_char(ch, "            @D[@cLeft Arm    @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(i, 2), "%", "%");
+		else if (GET_LIMBCOND(i, 1) > 0 && PLR_FLAGGED(i, PLR_CLARM)) {
+			send_to_char(ch, "            @D[@cLeft Arm    @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(i, 1), "%", "%");
 		}
-		else if (GET_LIMBCOND(i, 2) <= 0) {
+		else if (GET_LIMBCOND(i, 1) <= 0) {
 			send_to_char(ch, "            @D[@cLeft Arm    @D: @rMissing.            @D]@n\r\n");
 		}
-		if (GET_LIMBCOND(i, 3) >= 50 && !PLR_FLAGGED(i, PLR_CLARM)) {
-			send_to_char(ch, "            @D[@cRight Leg   @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(i, 3), "%", "%");
+		if (GET_LIMBCOND(i, 2) >= 50 && !PLR_FLAGGED(i, PLR_CLARM)) {
+			send_to_char(ch, "            @D[@cRight Leg   @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(i, 2), "%", "%");
 		}
-		else if (GET_LIMBCOND(i, 3) > 0 && !PLR_FLAGGED(i, PLR_CRLEG)) {
-			send_to_char(ch, "            @D[@cRight Leg   @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(i, 3), "%", "%");
+		else if (GET_LIMBCOND(i, 2) > 0 && !PLR_FLAGGED(i, PLR_CRLEG)) {
+			send_to_char(ch, "            @D[@cRight Leg   @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(i, 2), "%", "%");
 		}
-		else if (GET_LIMBCOND(i, 3) > 0 && PLR_FLAGGED(i, PLR_CRLEG)) {
-			send_to_char(ch, "            @D[@cRight Leg   @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(i, 3), "%", "%");
+		else if (GET_LIMBCOND(i, 2) > 0 && PLR_FLAGGED(i, PLR_CRLEG)) {
+			send_to_char(ch, "            @D[@cRight Leg   @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(i, 2), "%", "%");
 		}
-		else if (GET_LIMBCOND(i, 3) <= 0) {
+		else if (GET_LIMBCOND(i, 2) <= 0) {
 			send_to_char(ch, "            @D[@cRight Leg   @D: @rMissing.            @D]@n\r\n");
 		}
-		if (GET_LIMBCOND(i, 4) >= 50 && !PLR_FLAGGED(i, PLR_CLLEG)) {
-			send_to_char(ch, "            @D[@cLeft Leg    @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(i, 4), "%", "%");
+		if (GET_LIMBCOND(i, 3) >= 50 && !PLR_FLAGGED(i, PLR_CLLEG)) {
+			send_to_char(ch, "            @D[@cLeft Leg    @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(i, 3), "%", "%");
 		}
-		else if (GET_LIMBCOND(i, 4) > 0 && !PLR_FLAGGED(i, PLR_CLLEG)) {
-			send_to_char(ch, "            @D[@cLeft Leg    @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(i, 4), "%", "%");
+		else if (GET_LIMBCOND(i, 3) > 0 && !PLR_FLAGGED(i, PLR_CLLEG)) {
+			send_to_char(ch, "            @D[@cLeft Leg    @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(i, 3), "%", "%");
 		}
-		else if (GET_LIMBCOND(i, 4) > 0 && PLR_FLAGGED(i, PLR_CLLEG)) {
-			send_to_char(ch, "            @D[@cLeft Leg    @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(i, 4), "%", "%");
+		else if (GET_LIMBCOND(i, 3) > 0 && PLR_FLAGGED(i, PLR_CLLEG)) {
+			send_to_char(ch, "            @D[@cLeft Leg    @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(i, 3), "%", "%");
 		}
-		else if (GET_LIMBCOND(i, 4) <= 0) {
+		else if (GET_LIMBCOND(i, 3) <= 0) {
 			send_to_char(ch, "            @D[@cLeft Leg    @D: @rMissing.             @D]@n\r\n");
 		}
 		if (PLR_FLAGGED(i, PLR_HEAD)) {
@@ -6013,52 +6013,52 @@ ACMD(do_status)
         if (!PLR_FLAGGED(ch, PLR_HEAD)) {
             send_to_char(ch, "            @D[@cHead        @D: @rMissing.         @D]@n\r\n");
         }
-        if (GET_LIMBCOND(ch, 1) >= 50 && !PLR_FLAGGED(ch, PLR_CRARM)) {
-            send_to_char(ch, "            @D[@cRight Arm   @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(ch, 1), "%", "%");
+        if (GET_LIMBCOND(ch, 0) >= 50 && !PLR_FLAGGED(ch, PLR_CRARM)) {
+            send_to_char(ch, "            @D[@cRight Arm   @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(ch, 0), "%", "%");
         }
-        else if (GET_LIMBCOND(ch, 1) > 0 && !PLR_FLAGGED(ch, PLR_CRARM)) {
-            send_to_char(ch, "            @D[@cRight Arm   @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(ch, 1), "%", "%");
+        else if (GET_LIMBCOND(ch, 0) > 0 && !PLR_FLAGGED(ch, PLR_CRARM)) {
+            send_to_char(ch, "            @D[@cRight Arm   @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(ch, 0), "%", "%");
         }
-        else if (GET_LIMBCOND(ch, 1) > 0 && PLR_FLAGGED(ch, PLR_CRARM)) {
-            send_to_char(ch, "            @D[@cRight Arm   @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(ch, 1), "%", "%");
+        else if (GET_LIMBCOND(ch, 0) > 0 && PLR_FLAGGED(ch, PLR_CRARM)) {
+            send_to_char(ch, "            @D[@cRight Arm   @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(ch, 0), "%", "%");
         }
-        else if (GET_LIMBCOND(ch, 1) <= 0) {
+        else if (GET_LIMBCOND(ch, 0) <= 0) {
             send_to_char(ch, "            @D[@cRight Arm   @D: @rMissing.         @D]@n\r\n");
         }
-        if (GET_LIMBCOND(ch, 2) >= 50 && !PLR_FLAGGED(ch, PLR_CLARM)) {
-            send_to_char(ch, "            @D[@cLeft Arm    @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(ch, 2), "%", "%");
+        if (GET_LIMBCOND(ch, 1) >= 50 && !PLR_FLAGGED(ch, PLR_CLARM)) {
+            send_to_char(ch, "            @D[@cLeft Arm    @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(ch, 1), "%", "%");
         }
-        else if (GET_LIMBCOND(ch, 2) > 0 && !PLR_FLAGGED(ch, PLR_CLARM)) {
-            send_to_char(ch, "            @D[@cLeft Arm    @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(ch, 2), "%", "%");
+        else if (GET_LIMBCOND(ch, 1) > 0 && !PLR_FLAGGED(ch, PLR_CLARM)) {
+            send_to_char(ch, "            @D[@cLeft Arm    @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(ch, 1), "%", "%");
         }
-        else if (GET_LIMBCOND(ch, 2) > 0 && PLR_FLAGGED(ch, PLR_CLARM)) {
-            send_to_char(ch, "            @D[@cLeft Arm    @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(ch, 2), "%", "%");
+        else if (GET_LIMBCOND(ch, 1) > 0 && PLR_FLAGGED(ch, PLR_CLARM)) {
+            send_to_char(ch, "            @D[@cLeft Arm    @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(ch, 1), "%", "%");
         }
-        else if (GET_LIMBCOND(ch, 2) <= 0) {
+        else if (GET_LIMBCOND(ch, 1) <= 0) {
             send_to_char(ch, "            @D[@cLeft Arm    @D: @rMissing.         @D]@n\r\n");
         }
-        if (GET_LIMBCOND(ch, 3) >= 50 && !PLR_FLAGGED(ch, PLR_CLARM)) {
-            send_to_char(ch, "            @D[@cRight Leg   @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(ch, 3), "%", "%");
+        if (GET_LIMBCOND(ch, 2) >= 50 && !PLR_FLAGGED(ch, PLR_CLARM)) {
+            send_to_char(ch, "            @D[@cRight Leg   @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(ch, 2), "%", "%");
         }
-        else if (GET_LIMBCOND(ch, 3) > 0 && !PLR_FLAGGED(ch, PLR_CRLEG)) {
-            send_to_char(ch, "            @D[@cRight Leg   @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(ch, 3), "%", "%");
+        else if (GET_LIMBCOND(ch, 2) > 0 && !PLR_FLAGGED(ch, PLR_CRLEG)) {
+            send_to_char(ch, "            @D[@cRight Leg   @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(ch, 2), "%", "%");
         }
-        else if (GET_LIMBCOND(ch, 3) > 0 && PLR_FLAGGED(ch, PLR_CRLEG)) {
-            send_to_char(ch, "            @D[@cRight Leg   @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(ch, 3), "%", "%");
+        else if (GET_LIMBCOND(ch, 2) > 0 && PLR_FLAGGED(ch, PLR_CRLEG)) {
+            send_to_char(ch, "            @D[@cRight Leg   @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(ch, 2), "%", "%");
         }
-        else if (GET_LIMBCOND(ch, 3) <= 0) {
+        else if (GET_LIMBCOND(ch, 2) <= 0) {
             send_to_char(ch, "            @D[@cRight Leg   @D: @rMissing.         @D]@n\r\n");
         }
-        if (GET_LIMBCOND(ch, 4) >= 50 && !PLR_FLAGGED(ch, PLR_CLLEG)) {
-            send_to_char(ch, "            @D[@cLeft Leg    @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(ch, 4), "%", "%");
+        if (GET_LIMBCOND(ch, 3) >= 50 && !PLR_FLAGGED(ch, PLR_CLLEG)) {
+            send_to_char(ch, "            @D[@cLeft Leg    @D: @G%2d%s@D/@g100%s        @D]@n\r\n", GET_LIMBCOND(ch, 3), "%", "%");
         }
-        else if (GET_LIMBCOND(ch, 4) > 0 && !PLR_FLAGGED(ch, PLR_CLLEG)) {
-            send_to_char(ch, "            @D[@cLeft Leg    @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(ch, 4), "%", "%");
+        else if (GET_LIMBCOND(ch, 3) > 0 && !PLR_FLAGGED(ch, PLR_CLLEG)) {
+            send_to_char(ch, "            @D[@cLeft Leg    @D: @rBroken @y%2d%s@D/@g100%s @D]@n\r\n", GET_LIMBCOND(ch, 3), "%", "%");
         }
-        else if (GET_LIMBCOND(ch, 4) > 0 && PLR_FLAGGED(ch, PLR_CLLEG)) {
-            send_to_char(ch, "            @D[@cLeft Leg    @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(ch, 4), "%", "%");
+        else if (GET_LIMBCOND(ch, 3) > 0 && PLR_FLAGGED(ch, PLR_CLLEG)) {
+            send_to_char(ch, "            @D[@cLeft Leg    @D: @cCybernetic @G%2d%s@D/@G100%s@D]@n\r\n", GET_LIMBCOND(ch, 3), "%", "%");
         }
-        else if (GET_LIMBCOND(ch, 4) <= 0) {
+        else if (GET_LIMBCOND(ch, 3) <= 0) {
             send_to_char(ch, "            @D[@cLeft Leg    @D: @rMissing.         @D]@n\r\n");
         }
 
