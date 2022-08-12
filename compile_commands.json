@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/volund/CLionProjects/dbat_c",
+  "command": "/usr/bin/cc -DCIRCLE_UNIX=1 -DPOSIX=1 -DUSING_CMAKE=1 -I/home/volund/CLionProjects/dbat_c/include -g -o CMakeFiles/circle.dir/amalgam.c.o -c /home/volund/CLionProjects/dbat_c/amalgam.c",
+  "file": "/home/volund/CLionProjects/dbat_c/amalgam.c"
+}
+]

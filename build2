@@ -1,0 +1,19 @@
+#!/bin/bash
+
+case "${1,,}" in
+debug)
+echo "Compiling as debug...";
+MODE=Debug
+;;
+release)
+echo "Compiling as release..."
+MODE=Release
+;;
+*)
+echo "Error: Must be called as debug or release!";
+exit 1
+;;
+esac
+
+cmake -D CMAKE_EXPORT_COMPILE_COMMANDS=1 -D CMAKE_BUILD_TYPE:STRING=$MODE .
+cmake --build .

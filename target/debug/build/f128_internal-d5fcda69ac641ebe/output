@@ -1,0 +1,27 @@
+TARGET = Some("x86_64-unknown-linux-gnu")
+OPT_LEVEL = Some("0")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+CRATE_CC_NO_DEFAULTS = None
+DEBUG = Some("true")
+CARGO_CFG_TARGET_FEATURE = Some("fxsr,sse,sse2")
+running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-Wall" "-Wextra" "-Bstatic" "-lgfortran" "-lquadmath" "-o" "/home/volund/CLionProjects/dbat_c/target/debug/build/f128_internal-d5fcda69ac641ebe/out/src/f128.o" "-c" "src/f128.c"
+exit status: 0
+AR_x86_64-unknown-linux-gnu = None
+AR_x86_64_unknown_linux_gnu = None
+HOST_AR = None
+AR = None
+running: "ar" "cq" "/home/volund/CLionProjects/dbat_c/target/debug/build/f128_internal-d5fcda69ac641ebe/out/libf128.a" "/home/volund/CLionProjects/dbat_c/target/debug/build/f128_internal-d5fcda69ac641ebe/out/src/f128.o"
+exit status: 0
+running: "ar" "s" "/home/volund/CLionProjects/dbat_c/target/debug/build/f128_internal-d5fcda69ac641ebe/out/libf128.a"
+exit status: 0
+cargo:rustc-link-lib=static=f128
+cargo:rustc-link-search=native=/home/volund/CLionProjects/dbat_c/target/debug/build/f128_internal-d5fcda69ac641ebe/out
+cargo:rustc-flags=-l quadmath

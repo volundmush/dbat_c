@@ -1,0 +1,579 @@
+changelog:
+	6/7/08
+	- (R) Updated guild_guard special procedure to better deal with
+	  multiclass characters. 
+	  Thanks cansian!
+	- (R) Updated apply_ac to remove some dead weight, but though it
+	  would be a good idea to leave old code commented out as an
+	  example how to have WEAR position modify AC value if desired.
+	5/27/08
+	- (R) Updated memorization code to deal with multiclass characters.
+	- (R) Added code to memorizations for bonus casting levels given
+	  by several of the new Prestige classes.
+	- (R) Added cedit toggle for use of Prestige classes. Default is
+	  off as they are still under development.
+	- (R) Removed full/complete arguments from version command and
+	  moved the patch list into the online help system instead.
+	- (R) Update for send_to_char which was caused by speaking %s that
+	  could cause crashes. 
+	  Thanks Laoris!
+	5/25/08
+	- (R) Update for list_obj_to_char as some object stacking was being
+	  counted incorrectly.
+	  Thanks Laoris!
+	5/13/08
+	- (R) Updated autorun script for enhanced portability. Several
+	  Debian based distros are using /bin/dash which does not seem
+	  to support some of the things being done in the script which
+	  also was causing strange syslog numbers (syslog.1+1+1+1 etc)
+	5/9/08
+	- (R) Added average mob damage display to mlist command.
+	- (R) Cleanup of many, many warnings revealed by using some
+	  additional compiler flags.
+	  Thanks especially Fnord and welcor!
+	- (R) Added average damage display for weapons under do_stat_object 
+	  and for mobs in do_stat_character.
+	5/8/08
+	- (R) Updated configure.in and configuration script to make them
+	  more intelligent for SIZEOF determinations as well as support for 
+	  Mudflap debugging.
+	  Thanks Fnord!
+	11/16/07
+	- (R) Updated lib/etc/levels file for additional classes and
+	  prestige classes.
+	- (R) Added 4 new languages to spoken language code.
+	- (R) Added mob mount code so you can ride certian types of
+	  mobs.
+	- (R) Added the tame command which uses SKILL_HANDLE_ANIMAL to
+	  make mobs mountable.
+	- (R) Updated steal command so FEAT_DEFT_HANDS give proper
+	  bonus.
+	- (R) Added has_o2 function which is a simple check to see
+	  if a character can breathe in SECT_UNDERWATER.
+	11/15/07 (amended release)
+	- (R) Moved BASEHIT in etc/lib/levels file as it seems to be
+	  be causing some strange problems for Cywin users.
+	- (R) Updated Crash_load to correcly read in all object saved
+	  values.
+	- (C) Corrected sloppy patching of ZMALLOC code which was
+	  causing core dumps on shutdown.
+	  Thanks Syrth!
+	10/31/07 (release)
+	- (R) Updated ZONE_MIN_LEVEL and ZONE_MAX_LEVEL inputs.
+	- (C) Updated OUTSIDE macro so that logcial SECT types and
+	  ROOM flags will supress send_to_outdoor messages.
+	- (R) Added missing IS_WARHOST and IS_FAERIE macros.
+	- (R) Updated count_color_chars to work with custom color tags.
+	- (C) Increased the size of MAX_SOCK_BUF, MAX_INPUT_LENGTH, 
+	  MAX_RAW_INPUT_LENGTH, EXDSCR_LENGTH.
+	- (R) Removed several feats, skills and spells which are unlikely to 
+	  be implemented anytime soon due to complexity.
+	- (C) Updated mag_objectmagic bug where action description was not
+	  being used correctly on scrolls.
+	- (C) Updated pre-128 bit flag checking in evaluate_expression.
+	- (C) Added feature to shops to allow shopkeepers to buy or not
+	  buy (default behavior) items which have the BROKEN flag. Also
+	  shop list display clearly indicates a BROKEN item.
+	- (C) Updated sedit_rooms_menu to prevent a crash bug when trying
+	  to display a shop with rooms that have been removed.
+	- (C) Updated remove_player so that the players command would
+	  not show phantom users when someone self-deletes.
+	- (R) Updated Crash_load for spellbook handeling.
+	- (R) Updated Crash_load to load OBJ values 8-15 (unused).
+	- (R) Updated spell memorization for multi-class characters as well
+	  as worn holy symbols.
+	- (C) Added some senable defaults for new MOB and OBJ types.
+	- (C) Increased the size of a mail message from 4k to 8k.
+	- (C) Lowered the MIN level to mail.
+	- (R) Updated MUD Mail so it doesn't cost IMMs anything.
+	- (R) Added mobs and summon values for Summon Monster II spell.
+	- (R) Updated the Bestow Curse spell.
+	- (R) Added the Flare spell.
+	- (R) Added the Bane spell.
+	- (R) Updated the Bless spell.
+	- (C) Updated the damage done each round by Poison from 2 to 6.
+	- (C) Added Random option for choices of Race and Class.
+	- (C) Updated possible bug with LIGHT objects.
+	- (R) Updated skill list display so it would color code class and
+	  cross-class skills.
+	- (C) Added Oasis options for Copy and Delete on OBJ, MOB and ROOM.
+	- (R) Removed the Spells and Weapon Profs menus from gedit as they
+	  are not used that way in CWG-Rasputin.
+	- (R) Updated guild master behavior so they can teach feats the same
+	  way they teach skills.
+	- (R) Updated damage_object logic which was causing weapons to break
+	  way too quickly.
+	- (C) Added level-difference penalty for killing mobs below your level.
+	- (C) Removed a straight /3 loss of EXP earned in combat. I
+	  assume this was left over from when you used to gain EXP for
+	  damage inflicted in combat, and was supposed to equlize.
+	- (C) Changed EXP loss on death from /2 to /10.
+	- (R) Updated feats display so it is more informative for things
+	  like skill focus and weapon based feats.
+	- (C) Added many new trigger keywords: drunk, hunger, size, thirst,
+	  affects, extra, is_pc, setaffects, setextra, val4, val5, val6, val7,
+	  zonenumber, zonename, roomflag, northwest, northeast, southwest and
+	  southeast.
+	- (C) Updated vdelete command to take the 'all' argument.
+	- (C) Added Trigger copy to Oasis.
+	- (R) Updated load_config so pulse cedit choices would 
+	  save/load correctly.
+	- (C) Added several new material types.
+	- (C) Added an AUTOBALANCE system for mobs. By default mobs
+	  will be created with the AUTOBALANCE flag on, which means
+	  most of their key stats are generated by selecting their level.
+	  Manually settings these key stats will toggle the AUTOBALANCE off.
+	  The coder can then easily update the mob_autobalance function to
+	  readjust/reset all AUTOBALANCED mobs on the next reboot/copyover.
+	- (R) Changed the unused SCAVENGER flag to NOSCAVENGER
+	  so that this behavior could be supressed from a humanoid mob.
+	- (C) Added zmalloc hooks for easier memory debugging.
+	- (R) Added checks for ITEM_ONLY type flags.
+	- (C) Added a base of 10 HP for all starting charcters.
+	- (R) Updated some missing alignment sets on creation.
+	- (C) Added default case to roll_real_abils, just in case.
+	- (R) Updated some object saving throw values.
+	- (R) Updated many incorrect instances of GET_LEVEL vs. GET_ADMLEVEL.
+	- (C) Added spells command to display all spells in the game.
+	- (R) Removed depricated APPLY_SAVING types.
+	- (C) Updated the players command.
+	- (R) Changed set level so that you could no longer do this.
+	  You should use the advance command.
+	- (C) Changed the level needed to perform a world reset from 
+	  GOD to GRGOD.
+	- (C) Added quantity argument to do_load command, so you can
+	  easily load the same obj/mob many times.
+	- (R) Changed breakdown of accuracy display in do_stat.
+	- (C) Changed usage of 'Alias(es)' to 'Keywords' in stat displays.
+	- (C) Added new options to vnum command.
+	- (R) Added the heal skill to allow players to try and heal someone
+	  from bleeding to death.
+	- (C) Lowered levels on all file arguments from IMPL to GRGOD.
+	- (C) Update to steal command so that ADMINs could steal from
+	  NOKILL mobs.
+	- (C) Update to flee to properly stop everyone fighting.
+	- (C) Update to prevent collsion of container object keywords
+	  and door keywords.
+	- (C) Update to allow charmed mobs to follow their master into
+	  NOMOB rooms.
+	- (C) Updated behavior of the sacrifice command.
+	- (C) Updated missing object level checks on wield and grab commands.
+	- (C) Updated the drink command to work in rooms where the sector
+	  type should logically allow it.
+	- (R) Allowed broken items to be picked up even if character is 
+	  carrying 'too many.'
+	- (R) Updated prompt command so only Monks can display Ki.
+	- (C) Added EXP and TNL displays to prompt command.
+	- (C) Updated users command to fix GET_INVIS_LEV bug.
+	- (C) Updated the who command.
+	- (C) Many HEDIT updates.
+	- (R) Changed behavior of the equipment command to show you all wear
+	  slots for your character, empty or not.
+	- (R) Added complete body part system. Each race can have different
+	  body parts and equipment slots!
+	- (C) Changed FULL to HUNGER as it makes a little more sense.
+	- (R) Added admin flag to score display for more information on admin
+	  level abilities.
+	- (R) Updated score display for color uniformity and questionable use
+	  of 'till.'
+	- (C) Drink container behavior for infinite capacity containers.
+	- (R) Added size display when looking at others.
+	- (C) Updated attached trigger display.
+	- (R) Updated spellbook/scroll display output.
+	- (C) Added gossip arg ':' to trigger gemote.
+	- (R) Added 3 more custom color options, tell, you say and room say..
+	- (C) Added history command to see various types of communication history.
+	4/30/07 (release)
+	4/28/07
+	- (S, R) Changed some typoes in SPELL_PARALYZE.
+	- (C) Cleaned up some of the usage in various save_xxxx functions for
+	  OLC. This goes along with the addition of create_world_index calls
+	  in them.
+	4/15/07
+	- (C) Update to save_boards because of better use of BOARD_DIRECTORY
+	  define.
+	4/08/07
+	- (C) Added has_mail check on login and return from AFK.
+	4/07/07
+	- (C) Applied various updates from the tbaMUD project, for cleanup and
+	  clarity.
+	  Thanks to Rumble and everyone who helps support tbaMUD!
+	4/02/07
+	- (C) Changed find_door back to is_name instead of isname so you can
+	  no longer shorten door keywords. This could lead to finding secret
+	  doors very easily.
+	3/31/07
+	- (C) Update to print_zone as it did not include the trigger count
+	  in the zone size information. Also (B, S) did not include shop count.
+	- (C) Update to print_zone_to_buf as it did not include the guild count
+	  in the zone stats information.
+	- (C) Found a minor bug in do_spec_comm which would lead to the speaker
+	  not seeing their text if CONFIG_ENABLE_LANGUAGES was off.
+	3/22/07
+	- (C) Update to all oasis edit commands so that the index files will be
+	  properly generated or updated when things on those zones are saved.
+	- (C) Update to do_quit so IMMs cannot snoop players on a password
+	  change.
+	  Thanks to Rumble!
+	3/15/07
+	- (C) Update to HOST_LENGTH suggested by Sryth!
+	  Thanks to Sryth!
+	3/12/07
+	- (C) Replaced do_players with a much nicer version donated by Rhade!
+	  Thanks to Rhade!
+	3/11/07
+	- (C) Updates to a few of the patch strings for the version full
+	  command.
+	  Thanks to Fizban (mudaddict4life@gmail.com)!
+	3/02/07
+	- (C) Added in an updated version of Cunning's Zoneflag patch.
+	  I've been working with Sryth on this to clean it up and expand
+	  it to allow upto 128 different zone flags. You can now also set
+	  min and max levels on a zone to control access.
+	- (C) Added in hedit feature! This allows you to edit your help
+	  files online. All help file entries are combined into a new file
+	  called help.hlp and entries can have a min level assigned to them
+	  to keep mortals from reading about immortals commands and such.
+	  Lots of people have helped with the hedit code to get it to a good
+	  and stable point.
+	  Thanks to them all!
+	2/28/07 (release)
+	2/20/07
+	- (C) Updates to the way mob skills are handled/loaded.
+	  Thanks to Sryth!
+	- (C) Upgrade of dg_scripts to 1.0.14 version!
+	  Thanks to Welcor!
+	2/18/07
+	- (C) Updates to character creation methods to allow reroll
+	  on some other methods, as well as a cedit entry to control
+	  the size of the points pool method.
+	  Thanks to Sryth!
+	2/14/07
+	- (C) Update to do_shutdown to remove bad copy/paste.
+	  Thanks to Sryth!
+	2/13/07
+	- (C) Update to do_stat_character. GET_HOME macro was not being
+	  used as it should be.
+	- (C) Update to isname to disallow abbreviated numbers.
+	  Thanks to Sryth!
+	- (C) Added new zone reset feature which allows you to specify a
+	  max_in_room in addition to the max_in_game for M and O type zone
+	  resets. Additionally, all stock zones have now been updated for full
+	  compatibility for new zone format.
+	  Thanks to Sryth!
+	2/4/07
+	- (C) Update to remove_board_msg
+	  Thanks to Sryth (sryth@killerpixie.com)!
+	1/12/07
+	- (S) Update to load_char so OLC value loads correctly.
+	  Thanks to Welcor and Rumble!
+	- (C) Update PFDEF_OLC from 0 to NOWHERE (65535) so builders do not
+	  have default access to zone 0.
+	  Thanks to Gilean42 and Ken!
+	12/21/06
+	- (C) Update to format_text so color codes don't upset formatting.
+	  Thanks to Rhade!
+	- (C) Update to hcontrol_list_houses.
+	  Thanks to Jamdog (AderonMUD@hotmail.com)!
+	- (C) Update to perform_socket_write and evel_op to clear up some GCC
+	  warnings.
+	  Thanks to Rhade!
+	- (C) Update to create_new_zone.
+	  Thanks to Rhade!
+	- (C) Bad cut and paste in copyover_recover removed.
+	  Thanks to Rumble!
+	- (C) Applied the Circle 3.1 CVS changes to CWG-Core. A large part
+	  of these updates include meaningful SYSERR descriptions.
+	- (C) Updated show_obj_to_char and list_obj_to_char to prevent object
+	  vnums from being shown on objects which have been hidden.
+	  Thanks to Rhade!
+	11/26/06
+	- (C) Updated next_page so page lenght isn't thrown off by color codes.
+	  Thanks to Rhade (rhade_73@hotmail.com)!
+	7/31/06 (release)
+	7/23/06
+	- (R) Added missing element to apply_types.
+	- (R) Removed command_info entry for disarm, which was dead weight.
+	- (R) Removed PFDEF_STRADD define, which was dead weight.
+	- (C) Added new object affect flag which will modify all
+	  the attributes of the player.
+	  Idea from Ryan Stuck (ryanstuck@novadsl.net)
+	- (C) Updated oedit_disp_apply_menu to use 3 columns instead of 2
+	  when display apply choices.
+	7/17/06
+	- (C) Update to list_obj_to_char for object stacking and iedit
+	  objects.
+	7/15/06
+	- (C) Update so that parse_class correctly accepts the argument
+	  as an int instead of a char, so choices over 9 work as expected.
+	  Also updated correct definition for parse_race in interpreter.c
+	6/1/06
+	- (C) Possible isname updates suggested via CircleMUD Mailing List.
+	- (C) Added missing element to connected_types.
+	  Thanks to Rumble!
+	5/15/06
+	- (C) Removed duplicate Buildwalking check in do_who.
+	  Thanks to Rumble!
+	5/2/06
+	- (C) Update to Crash_load_house_xapobjs and Crash_load_xapobjs
+	  to correct double free crashes.
+	  Thanks to Fnord!
+	4/30/06 (release)
+	- (C) Addition to xxx_checkload to show vnums.
+	  Thanks to Ken!
+	- (C) Added do_findkey and do_finddoor wizard commands.
+	  Thanks to Ken!
+	4/26/06
+	- (C) Finished updates to act.comm.c for spoken language support.
+	  Everything is pretty well wrapped up in checks for
+	  CONFIG_ENABLE_LANGUAGES, and this allowed some additional cleanup
+	  as well.
+	4/5/06
+	- (C) Update to delete_room to remove the room from the htree.
+	  Thanks to Welcor!
+	- (C) Update to create_new_zone to correct buildwalk issues after
+	  a new zone is created.
+	  Thanks to MTFox (mtprower@yahoo.com)!
+	4/2/06
+	- (C) Update to do_zpurge.
+	  Thanks to Kris!
+	3/31/06 (release)
+	- (C) Update to do_say_languages, do_gsay and perform_tell to
+	  streamline the code and add spoken language support. There are
+	  still a few communication methods that don't have language support
+	  but they will be added soon.
+	3/27/06
+	- (R) Update to art_abundant_step to fix crash on null exit.
+	  Thanks to Fnord!
+	3/18/06
+	- (R) Update to act() because SNEAK/HIDE logic wasn't right.
+	- (R) Added a skill use message to do_simple_move do the player will
+	  know what/if skill they are using to pass through an exit.
+	3/7/06
+	- (C) Added zpurge, checkloadstatus and zcheck Immortal commands.
+	  Thanks to Rumble (and Welcor)!
+	3/2/06
+	- (C) Update to list_char_to_char so mobs long_descr that starts
+	  with a '.' will be hidden from non-holylight people. Same
+	  logic already works for objects.
+	  Thanks to Rumble!
+	2/28/06 (release)
+	2/26/06
+	- (R) Cleared up a few mobs which had 'An undefined string' for their
+	  extra description.
+	- (R) Fixed broken do_say_languages. This has never worked right :P
+	- (C) Updates to garble_text and do_say_languages in preparation
+	  for expansion of spoken language code. Also removed some dead
+	  weight from do_languages.
+	2/25/06
+	- (C) Update to zreset and do_links based on TBA versions.
+	  Thanks to Rumble!
+	2/02/06
+	- (C) Update to do_hit to prevent crash if the players if AFF_CHARM
+	  somehow without a master.
+	  Thanks to Welcor!
+	- (C) Update to oedit_parse to correct minor display bug introduced with
+	  my last fix for setting AFF_CHARM.
+	  Thanks to Ken!
+	1/31/06 (release)
+	- Happy 3rd Birthday to the CWG Project! Thanks to everyone for their
+	  help and hard work!
+	  --Ziz
+	1/29/06
+	- (C) Updates to parse_object, oedit_disp_perm_menu and oedit_parse to
+	  remove the ability of setting AFF_CHARM as on object perm affect.
+	  Setting this on a player (without having a clearly defined MASTER)
+	  is dangerous and can cause crashes.
+	  Thanks to Rumble!
+	1/20/06
+	- (C) Added social gossip bug fix in do_gen_comm.
+	  Thanks to Welcor!
+	- (C) Added missing if check in dstroy_db.
+	- (C) Change in setup_dir that was causing boot crashes. I think
+	  it was due to some gcc updates??
+	1/13/06
+	- (C) Added House_save_all call to do_saveall IMM command.
+	1/09/06
+	- (C) Removed typo in index_boot.
+	  Thanks to Ken!
+	- (C) Removed typo in redit_parse.
+	  Thanks to Ken!
+	- (C) Change of order in save_types, as it appears that SL_ACTION
+	  should be the last real element of the array.
+	  Thanks to Ken!
+	- (C) Update to boot_world to include guilds in the no_specials check.
+	  Thanks to Ken!
+	1/08/06
+	- (C) Update to postmaster_receive_mail so that mail objects
+	  were being created correctly.
+	- (C) Update to Crash_is_unrentable so that mail objects would
+	  be correctly saved.
+	- (C) Update to do_dg_affect, as it was no longer 128 bit compatable.
+	  Thanks to Kriss (psenne@gmail.com)
+	1/06/06
+	- (C) Update to say_spell so that LVL_IMMORT and up automatically
+	  understand spoken magic.
+	  Thanks to Ken
+	10/31/05 (release)
+	10/28/05
+	- (C) Update to has_flight function so non-wearable flying items
+	  in inventory will also work.
+	  Thanks to Ken!
+	- (C) Update to OBJAFF_FLAGGED macro so it check 128 bit flags.
+	  Thanks to Ken!
+	- (C) Added in a patch to help with 128 bit conversion of mobs
+	  and unsigned int code.
+	  Thanks to Ken!
+	- (C) Added free_assemblies to clear out memory used by assembly
+	  code on shutdown. 
+	  Thanks to Jamie (mordacai@xtra.co.nz)
+	10/08/05
+	- (R) Minor update in save_char for class feats and epic class feats.
+	10/04/05
+	- (C) Removed some unused code from cedit_creation.
+	  Thanks to Ken!
+	9/30/05 (release)
+	9/29/05 
+	- (R) Added assembly type of FORGE. It was already in Buddha and
+	  SunTzu. Ultimately these may all come out of Rasputin, but for now
+	  we'll keep everything in tune. 
+	9/25/05 
+	- (S, R) Update to look_at_target to reduce spammy output.
+	  Thanks to Ken!
+	9/24/05 
+	- (C) Update to do_gen_comm to make gemote and gossip behave
+	  the same for socials. 
+	  Thanks to Ken!
+	- (C) Update to do_gen_comm to remove some SYSERRs generated
+	  while switched into mobs.
+	  Thanks to Ken!
+	- (C) Update to make_prompt to capitalize mob strings while
+	  switched into them.
+	  Thanks to Ken!
+	- (C) Update to SPECIAL(shop_keeper) so that MSG_NO_STEAL_HERE
+	  is sent TO_ROOM as well as TO_CHAR.
+	  Thanks to Ken!
+	- (S, R) Updated mob stealing behavior, as well as working in a new
+	  flag for shopkeepers weather they allow stealing or not.
+	  Thanks to Ken!
+	9/11/05
+	- (C) Updates to SCMD_XXXX and ASSM_XXXX defines so they will
+	  batch with the SKILL_XXXX defines for all the assembly skills.
+	  Thanks to Arnold!
+	9/07/05 
+	- (C) Update to zedit_parse per Welcor.
+	  Thanks to Welcor!
+	9/06/05 
+	- (C) Updated load_zones to fix reported bug with behavior of the
+	  'Set a global variable' zedit command.
+	  Thanks to Melzaren (melzaren@hotmail.com) and Welcor!
+	9/05/05 
+	- (C) Replaced lots of calls for ch|vict|obj->in_room to 
+	  IN_ROOM(ch|vict|obj). Use of the macro is better :)
+	9/03/05 
+	- (C) Update to get_filename and SUF_OBJS so that cryorent and
+	  regular rent work the same for objects.
+	- (C) Update to save_config as the value of min_rent_cost was
+	  not being written to lib/etc/config when changed.
+	- (C) Added new cedit creation code which allows you to choose 1 of 5
+	  methods. Check the help system for more information.
+	- (R) Update to look_at_target to correct problem with any object 
+	  having an extra description being treated like a spellbook and 
+	  scroll.
+	- (R) Update to do_stat_object to add an extra line after displaying
+	  extra discription keywords.
+	8/31/05 (release)
+	8/18/05 
+	- (C) Update to init_boards so it would stop logging an error
+	  trying to open a randomly none existent board.
+	8/15/05 
+	- (R, S) Changed RACE_MINDFLAYER to RACE_LIZARDFOLK.
+	- (C) Change to LIMIT cap in zedit_parse from 32000 to 65000.
+	  Thanks to Gilean42!
+	- (R, S) Updated Kortaal gate guard trigger.
+	  Thanks to Welcor!
+	- (C) Added changes to real_guild and real_shop to avoid crashing.
+	  Thanks to Gnomaana (gnomaana@adelphia.net) and 
+	    Gilean42 (gilean@krynnmud.com)!
+	- (C) Changed SYSERR messages in check_start_rooms to be more helpful.
+	8/13/05 
+	- (R) Changes to find_skill_num to correct problems identified with
+	  conflicting skill names of different types.
+	  Thanks to Arnold and Fnord!
+	7/31/05 (release)
+	7/30/05  
+	- (R) Update to oedit_parse for OEDIT_EXTRAS not toggling the
+	  correct flag.
+	  Thanks to Arnold (arnold_p_ziffel@hotmail.com)
+	7/29/05  
+	- (R) Updated typo in skill for intimidate.
+	  Thanks to Dastuun!
+	- (R) Updated art_abundant_step to initilize variable 'i'.
+	7/23/05  
+	- (C) Added new IMM command, chown. This allows you to get inventory
+	  or equipment from a mortal without having to use the force command.
+	  Donated by Random!
+	  Originally created by Crimson Wizard (cwizard@GIBLETS.COM)!
+	- (C) Added new color code, (@x) which randomly inserts a color.
+	  Donated by Random! 
+	7/11/05  
+	- (R) Removed duplicate entry in list_one_char.
+	  Thanks to Random (real.random@gmail.com)!
+	- (R) Removed leftover cedit check for REROLL in nanny.
+	- (S, R) Updated header in race_ok_gender, because they were out of 
+	  order.
+	7/03/05  
+	- (C) Some changes as part of character creation. Reordered display 
+	  values and added some color.
+	7/01/05  
+	- (B, R, S) I have changed all defalut port binding sockets. This is
+	  mainly to allow me to run the pre-release versions on my cwg server
+	  all at once.
+	  CWG-Rasputin default port binding is 5001.
+	  CWG-SunTzu default port binding is 5002.
+	  CWG-Buddha default port binding is 5003.
+	  I will exclude these changes from the next release patch, so no one
+	  is accidently impacted. However, all new full downloads will behave
+	  this way.
+	6/30/05  (release)
+	- (C) Initialized unique object pools as part of boot_db.
+	  Thanks to Fnord!
+	6/23/05 
+	- (R) Update to find_eq_pos. If a mob was trying to wear something 
+	  that was flagged WEAR_HOLD, the game would crash. 
+	- (C) Updates to free_room_strings, free_room, and free_srings.
+	  Thanks to Welcor!
+	6/14/05 
+	- (R) Update to roll_real_abils.
+	  Thanks to Welcor (welcor@builderacademy.net)!
+	6/09/05 
+	- (R) Changed byte to int8_t for ability_mod_value and dex_mod_capped.
+	  Thanks to Fnord (fnord@cosanostra.net)!
+	6/08/05 
+	- (R) Removed various log() statements left over from DEBUG.
+	- (C) Applied board update patch
+	  Thanks to Cunning (scmeis1@hotmail.com)! 
+	- (R) Removed redundant NUM_SEX define in structs.h
+	  Thanks to Fantebsb (fantebsb@gmail.com)!
+	- (R) Updated external call to spell_sort_info in feats.c.
+	  Thanks to Dastuun (theeds@mac.com)!
+	6/03/05 
+	- (C) Added pagelength patch provided by Ken!
+	6/02/05 
+	- There is some confusion about the changes made to item_in_list. So
+	  the changes were rolled out.
+	  Thanks Ken!
+	6/01/05 
+	- (R) Fixed scroll objects for memorization code. Scrolls are now 
+	  limited to only 1 spell per scroll.
+	- (R) Also fixed small bug where spellbook and scroll objects wouldn't
+	  show you what spells were scribed in them if the object had an extra
+	  description.
+	- (R) Update class_names from warrior to fighter to keep consistancy.
+	  Thanks to snob99 (prattgary@hotmail.com)
+	- (C) Fixed typo and bad logic related to EXP_MULTIPLIER cedit addition.
+	  Thanks to Maclir (kenr86@hotmail.com)
+	5/31/05 (release)
+	5/29/05
+	- Start of the ChangeLog.rasputin file.
+	- Happy Birthday to Fnord! :P
