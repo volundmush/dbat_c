@@ -2169,7 +2169,7 @@ int parse_mobile_from_file(FILE *mob_f, struct char_data *ch)
   if (tmpptr && *tmpptr)
     if (!strcasecmp(fname(tmpptr), "a") || !strcasecmp(fname(tmpptr), "an") ||
 	!strcasecmp(fname(tmpptr), "the"))
-      *tmpptr = LOWER(*tmpptr);
+      *tmpptr = tolower(*tmpptr);
   ch->long_descr = fread_string(mob_f, buf2);
   ch->description = fread_string(mob_f, buf2);
 
@@ -2269,7 +2269,7 @@ int parse_mobile_from_file(FILE *mob_f, struct char_data *ch)
    *   SET_BIT_AR(MOB_FLAGS(ch), MOB_AUTOBALANCE);
    * } */
 
-  switch (UPPER(letter)) {
+  switch (toupper(letter)) {
   case 'S':	/* Simple monsters */
     parse_simple_mob(mob_f, ch, nr);
     break;
@@ -2367,7 +2367,7 @@ static char *parse_object(FILE *obj_f, int nr)
   if (tmpptr && *tmpptr)
     if (!strcasecmp(fname(tmpptr), "a") || !strcasecmp(fname(tmpptr), "an") ||
 	!strcasecmp(fname(tmpptr), "the"))
-      *tmpptr = LOWER(*tmpptr);
+      *tmpptr = tolower(*tmpptr);
 
   tmpptr = obj_proto[i].description = fread_string(obj_f, buf2);
   if (tmpptr && *tmpptr)
@@ -5329,7 +5329,7 @@ void load_config( void )
     num = atoi(line);
     fum = atof(line);
     
-    switch (LOWER(*tag)) {
+    switch (tolower(*tag)) {
       case 'a':
         if (!strcasecmp(tag, "auto_save"))
           CONFIG_AUTO_SAVE = num;

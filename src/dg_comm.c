@@ -40,7 +40,7 @@ char *any_one_name(char *argument, char *first_arg)
         *argument && !isspace(*argument) &&
           (!ispunct(*argument) || *argument == '#' || *argument == '-') ;
         arg++, argument++)
-        *arg = LOWER(*argument);
+        *arg = tolower(*argument);
     *arg = '\0';
 
     return argument;

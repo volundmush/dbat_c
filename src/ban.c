@@ -80,7 +80,7 @@ int isbanned(char *hostname)
 
   i = 0;
   for (nextchar = hostname; *nextchar; nextchar++)
-    *nextchar = LOWER(*nextchar);
+    *nextchar = tolower(*nextchar);
 
   for (banned_node = ban_list; banned_node; banned_node = banned_node->next)
     if (strstr(hostname, banned_node->site))	/* if hostname is a substring */
@@ -167,7 +167,7 @@ ACMD(do_ban)
   CREATE(ban_node, struct ban_list_element, 1);
   strncpy(ban_node->site, site, BANNED_SITE_LENGTH);	/* strncpy: OK (b_n->site:BANNED_SITE_LENGTH+1) */
   for (nextchar = ban_node->site; *nextchar; nextchar++)
-    *nextchar = LOWER(*nextchar);
+    *nextchar = tolower(*nextchar);
   ban_node->site[BANNED_SITE_LENGTH] = '\0';
   strncpy(ban_node->name, GET_NAME(ch), MAX_NAME_LENGTH);	/* strncpy: OK (b_n->size:MAX_NAME_LENGTH+1) */
   ban_node->name[MAX_NAME_LENGTH] = '\0';
@@ -271,7 +271,7 @@ int Valid_Name(char *newname)
   /* change to lowercase */
   strlcpy(tempname, newname, sizeof(tempname));
   for (i = 0; tempname[i]; i++)
-    tempname[i] = LOWER(tempname[i]);
+    tempname[i] = tolower(tempname[i]);
 
   /* Does the desired name contain a string in the invalid list? */
   for (i = 0; i < num_invalid; i++)

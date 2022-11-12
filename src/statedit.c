@@ -97,7 +97,7 @@ int stats_disp_menu(struct descriptor_data *d)
 int parse_stat_menu(struct descriptor_data *d, char *arg)
 {
   /* Main parse loop */
-  *arg = LOWER(*arg);
+  *arg = tolower(*arg);
   switch (*arg) {
     case 's': 
       OLC_MODE(d) = STAT_GET_STR;

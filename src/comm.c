@@ -3240,7 +3240,7 @@ void perform_act(const char *orig, struct char_data *ch, struct obj_data *obj, c
       case 'u':
         for (j=buf; j > lbuf && !isspace((int) *(j-1)); j--);
         if (j != buf)
-          *j = UPPER(*j);
+          *j = toupper(*j);
         i = "";
         break;
       /* uppercase next word */
@@ -3259,7 +3259,7 @@ void perform_act(const char *orig, struct char_data *ch, struct obj_data *obj, c
         {
         if (uppercasenext && !isspace((int) *buf))
           {
-          *buf = UPPER(*buf);
+          *buf = toupper(*buf);
           uppercasenext = FALSE;
           }
 	buf++;
@@ -3268,7 +3268,7 @@ void perform_act(const char *orig, struct char_data *ch, struct obj_data *obj, c
     } else if (!(*(buf++) = *(orig++))) {
       break;
     } else if (uppercasenext && !isspace((int) *(buf-1))) {
-      *(buf-1) = UPPER(*(buf-1));
+      *(buf-1) = toupper(*(buf-1));
       uppercasenext = FALSE;
     }
   }

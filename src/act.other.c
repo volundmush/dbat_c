@@ -15414,7 +15414,7 @@ ACMD(do_display)
     REMOVE_BIT_AR(PRF_FLAGS(ch), PRF_DISPKI);*/
 
     for (i = 0; i < strlen(argument); i++) {
-      switch (LOWER(argument[i])) {
+      switch (tolower(argument[i])) {
       case 'p':
 	TOGGLE_BIT_AR(PRF_FLAGS(ch), PRF_DISPHP);
 	break;

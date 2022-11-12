@@ -417,7 +417,7 @@ char *hsedit_list_guests(struct house_control_rec *thishouse, char *guestlist)
       continue; 
 
     num_printed++; 
-    sprintf(guestlist, "%s%c%s ", guestlist, UPPER(*temp), temp + 1); 
+    sprintf(guestlist, "%s%c%s ", guestlist, toupper(*temp), temp + 1);
   } 
 
   if (num_printed == 0) 

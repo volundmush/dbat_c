@@ -183,7 +183,7 @@ int create_entry(char *name)
   CREATE(player_table[pos].name, char, strlen(name) + 1);
 
   /* copy lowercase equivalent of name to table field */
-  for (i = 0; (player_table[pos].name[i] = LOWER(name[i])); i++)
+  for (i = 0; (player_table[pos].name[i] = tolower(name[i])); i++)
 	/* Nothing */;
 
   /* clear the bitflag in case we have garbage data */

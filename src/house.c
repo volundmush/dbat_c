@@ -524,7 +524,7 @@ void House_list_guests(struct char_data *ch, int i, int quiet)
       continue;
 
     num_printed++;
-    send_to_char(ch, "%c%s ", UPPER(*temp), temp + 1);
+    send_to_char(ch, "%c%s ", toupper(*temp), temp + 1);
   }
 
   if (num_printed == 0)

@@ -76,7 +76,7 @@ int main(int argc, char **argv)
     okay = 1;
 
     for (ptr = player.name; *ptr; ptr++)
-      *ptr = LOWER(*ptr);
+      *ptr = tolower(*ptr);
 
     /* if (player.char_specials_saved.act & PLR_DELETED)
       okay = 0; */

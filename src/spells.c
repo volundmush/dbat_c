@@ -179,7 +179,7 @@ ASPELL(spell_locate_object)
     if (!isname(name, i->name))
       continue;
 
-    send_to_char(ch, "%c%s", UPPER(*i->short_description), (i->short_description)+1);
+    send_to_char(ch, "%c%s", toupper(*i->short_description), (i->short_description)+1);
 
     if (i->carried_by)
       send_to_char(ch, " is being carried by %s.\r\n", PERS(i->carried_by, ch));
@@ -507,7 +507,7 @@ ASPELL(art_abundant_step)
     } else
       rep = 1;
     if (isalpha(*p)) {
-      for (i = 0; isalpha(*p); i++, p++) buf[i] = LOWER(*p);
+      for (i = 0; isalpha(*p); i++, p++) buf[i] = tolower(*p);
       j = i;
       tc = buf[i];
       buf[i] = 0;

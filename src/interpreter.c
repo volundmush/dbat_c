@@ -41,6 +41,7 @@
 #include "ban.h"
 #include "assedit.h"
 #include "obj_edit.h"
+#include "utils.h"
 
 /* local global variables */
 DISABLED_DATA *disabled_first = NULL;
@@ -1451,7 +1452,7 @@ int search_block(char *arg, const char **list, int exact)
 
   /* Make into lower case, and get length of string */
   for (l = 0; *(arg + l); l++)
-    *(arg + l) = LOWER(*(arg + l));
+    *(arg + l) = tolower(*(arg + l));
 
   if (exact) {
     for (i = 0; **(list + i) != '\n'; i++)
@@ -1876,7 +1877,7 @@ char *one_argument(char *argument, char *first_arg)
 
     first_arg = begin;
     while (*argument && !isspace(*argument)) {
-      *(first_arg++) = LOWER(*argument);
+      *(first_arg++) = tolower(*argument);
       argument++;
     }
 
@@ -1900,13 +1901,13 @@ char *one_word(char *argument, char *first_arg)
     if (*argument == '\"') {
       argument++;
       while (*argument && *argument != '\"') {
-        *(first_arg++) = LOWER(*argument);
+        *(first_arg++) = tolower(*argument);
         argument++;
       }
       argument++;
     } else {
       while (*argument && !isspace(*argument)) {
-        *(first_arg++) = LOWER(*argument);
+        *(first_arg++) = tolower(*argument);
         argument++;
       }
     }
@@ -1922,7 +1923,7 @@ char *any_one_arg(char *argument, char *first_arg)
   skip_spaces(&argument);
 
   while (*argument && !isspace(*argument)) {
-    *(first_arg++) = LOWER(*argument);
+    *(first_arg++) = tolower(*argument);
     argument++;
   }
 
@@ -2041,7 +2042,7 @@ int is_abbrev(const char *arg1, const char *arg2)
     return (0);
 
   for (; *arg1 && *arg2; arg1++, arg2++)
-    if (LOWER(*arg1) != LOWER(*arg2))
+    if (tolower(*arg1) != tolower(*arg2))
       return (0);
 
   if (!*arg1)
@@ -4189,7 +4190,7 @@ void nanny(struct descriptor_data *d, char *arg)
     break;
 
   case CON_NAME_CNFRM:		/* wait for conf. of new name    */
-    if (UPPER(*arg) == 'Y') {
+    if (toupper(*arg) == 'Y') {
       if (isbanned(d->host) >= BAN_NEW) {
 	mudlog(NRM, ADMLVL_GOD, TRUE, "Request for new char %s denied from [%s] (siteban)", GET_PC_NAME(d->character), d->host);
 	write_to_output(d, "Sorry, new characters are not allowed from your site!\r\n");

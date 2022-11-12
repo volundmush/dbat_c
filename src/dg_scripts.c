@@ -82,12 +82,12 @@ char *str_str(char *cs, char *ct)
   while (*cs) {
     t = ct;
 
-    while (*cs && (LOWER(*cs) != LOWER(*t)))
+    while (*cs && (tolower(*cs) != tolower(*t)))
       cs++;
 
     s = cs;
 
-    while (*t && *cs && (LOWER(*cs) == LOWER(*t))) {
+    while (*t && *cs && (tolower(*cs) == tolower(*t))) {
       t++;
       cs++;
     }

@@ -218,27 +218,17 @@ extern int wield_type(int chsize, const struct obj_data *weap);
 #define YESNO(a) ((a) ? "YES" : "NO")
 #define ONOFF(a) ((a) ? "ON" : "OFF")
 
-#define LOWER(c)   (((c)>='A'  && (c) <= 'Z') ? ((c)+('a'-'A')) : (c))
-#define UPPER(c)   (((c)>='a'  && (c) <= 'z') ? ((c)+('A'-'a')) : (c) )
-
-#define ISNEWL(ch) ((ch) == '\n' || (ch) == '\r') 
+extern bool ISNEWL(char ch);
 
 /* See also: ANA, SANA */
-#define AN(string) (strchr("aeiouAEIOU", *string) ? "an" : "a")
-
+extern char *AN(const char *str);
 
 /* memory utils **********************************************************/
 
 
-#define CREATE(result, type, number)  do {\
-	if ((number) * sizeof(type) <= 0)	\
-		log("SYSERR: Zero bytes or less requested at %s:%d.", __FILE__, __LINE__);	\
-	if (!((result) = (type *) calloc ((number), sizeof(type))))	\
-		{ perror("SYSERR: malloc failure"); abort(); } } while(0)
+#define CREATE(result, type, number) result = (type*)calloc(number, sizeof(type))
 
-#define RECREATE(result,type,number) do {\
-  if (!((result) = (type *) realloc ((result), sizeof(type) * (number))))\
-		{ perror("SYSERR: realloc failure"); abort(); } } while(0)
+#define RECREATE(result,type,number) result = (type*)realloc(result, sizeof(type) * number)
 
 /*
  * the source previously used the same code in many places to remove an item
@@ -302,17 +292,17 @@ extern int wield_type(int chsize, const struct obj_data *weap);
  * for it, 'wimpy' would be an extremely bad thing for a mob to do, as an
  * example.  If you really couldn't care less, change this to a '#if 0'.
  */
-#if 1
+#if 0
 /* Subtle bug in the '#var', but works well for now. */
 #define CHECK_PLAYER_SPECIAL(ch, var) \
 	(*(((ch)->player_specials == &dummy_mob) ? (log("OHNO: Mob using '"#var"' at %s:%d.", __FILE__, __LINE__), &(var)) : &(var)))
 #else
-#define CHECK_PLAYER_SPECIAL(ch, var)	(var)
+#define CHECK_PLAYER_SPECIAL(ch, var) var
 #endif
 
 #define MOB_FLAGS(ch)	((ch)->act)
 #define PLR_FLAGS(ch)	((ch)->act)
-#define PRF_FLAGS(ch) CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->pref))
+#define PRF_FLAGS(ch)   CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->pref))
 #define AFF_FLAGS(ch)	((ch)->affected_by)
 #define ADM_FLAGS(ch)	((ch)->admflags)
 #define ROOM_FLAGS(loc)	(world[(loc)].room_flags)
@@ -389,9 +379,9 @@ extern int wield_type(int chsize, const struct obj_data *weap);
 #define GET_AGE(ch)     (age(ch)->year)
 
 #define GET_PC_NAME(ch)	((ch)->name)
-#define GET_NAME(ch)    (IS_NPC(ch) ? \
-			 (ch)->short_descr : GET_PC_NAME(ch))
-#define GET_TITLE(ch)   ((ch)->desc ? ((ch)->desc->title ? (ch)->desc->title : "[Unset Title]") : "@D[@GNew User@D]")
+extern char *GET_NAME(struct char_data *ch);
+extern char *GET_USER(struct char_data *ch);
+//#define GET_NAME(ch)    (IS_NPC(ch) ? (ch)->short_descr : GET_PC_NAME(ch))
 #define GET_USER_TITLE(d) ((d)->title)
 #define GET_PHASE(ch)   ((ch)->starphase)
 #define GET_MIMIC(ch)   ((ch)->mimic)
@@ -399,7 +389,7 @@ extern int wield_type(int chsize, const struct obj_data *weap);
 #define GET_CLAN(ch)    ((ch)->clan)
 #define GET_TRANSCLASS(ch) ((ch)->transclass)
 #define GET_FEATURE(ch) ((ch)->feature)
-#define GET_USER(ch)    ((ch)->desc ? ((ch)->desc->user ? (ch)->desc->user : "NOUSER") : "NOUSER")
+
 #define GET_LOG_USER(ch) ((ch)->loguser)
 #define GET_CRANK(ch)   ((ch)->crank)
 #define GET_ADMLEVEL(ch)	((ch)->admlevel)

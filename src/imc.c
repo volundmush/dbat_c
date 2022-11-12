@@ -430,7 +430,7 @@ bool imcstr_prefix( const char *astr, const char *bstr )
 
    for( ; *astr; astr++, bstr++ )
    {
-      if( LOWER( *astr ) != LOWER( *bstr ) )
+      if( tolower( *astr ) != tolower( *bstr ) )
          return TRUE;
    }
    return FALSE;
@@ -7466,7 +7466,7 @@ char *imc_act_string( const char *format, struct char_data * ch, struct char_dat
    point++;
    *point = '\0';
 
-   buf[0] = UPPER( buf[0] );
+   buf[0] = toupper( buf[0] );
    return buf;
 }
 

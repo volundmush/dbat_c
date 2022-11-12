@@ -123,7 +123,7 @@ int is_name(const char *str, const char *namelist)
       if (!*curstr || *curname == ' ')
         break;
 
-      if (LOWER(*curstr) != LOWER(*curname))
+      if (tolower(*curstr) != tolower(*curname))
         break;
     }
 

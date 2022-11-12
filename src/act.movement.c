@@ -1794,7 +1794,7 @@ ACMD(do_gen_door)
 
   skip_spaces(&argument);
   if (!*argument) {
-    send_to_char(ch, "%c%s what?\r\n", UPPER(*cmd_door[subcmd]), cmd_door[subcmd] + 1);
+    send_to_char(ch, "%c%s what?\r\n", toupper(*cmd_door[subcmd]), cmd_door[subcmd] + 1);
     return;
   }
   two_arguments(argument, type, dir);

@@ -4058,7 +4058,7 @@ char *CAP(char *txt)
   int i;
   for (i = 0; txt[i] != '\0' && (txt[i] == '@' && IS_COLOR_CHAR(txt[i + 1])); i += 2);
 
-  txt[i] = UPPER(txt[i]);
+  txt[i] = toupper(txt[i]);
   return (txt);
 }
 
@@ -4070,7 +4070,7 @@ char *strlwr(char *s)
       char *p; 
 
       for (p = s; *p; ++p) 
-         *p = LOWER(*p); 
+         *p = tolower(*p);
    } 
    return s; 
 } 
@@ -4543,9 +4543,9 @@ int get_filename(char *filename, size_t fbufsize, int mode, const char *orig_nam
 
   strlcpy(name, orig_name, sizeof(name));
   for (ptr = name; *ptr; ptr++)
-    *ptr = LOWER(*ptr);
+    *ptr = tolower(*ptr);
 
-  switch (LOWER(*name)) {
+  switch (tolower(*name)) {
   case 'a':  case 'b':  case 'c':  case 'd':  case 'e':
     middle = "A-E";
     break;
@@ -4996,4 +4996,24 @@ int get_flag_by_name(const char *flag_list[], char *flag_name)
      if (!strcmp(flag_list[i], flag_name)) 
        return (i); 
    return (NOFLAG); 
+}
+
+bool ISNEWL(char ch) {
+    return ch == '\n' || ch == '\r';
+}
+
+char *AN(const char *str) {
+    return strchr("aeiouAEIOU", *str) ? "an" : "a";
+}
+
+char *GET_TITLE(struct char_data *ch) {
+    return ch->desc ? (ch->desc->title ? ch->desc->title : "[Unset Title]") : "@D[@GNew User@D]";
+}
+
+char *GET_USER(struct char_data *ch) {
+    return ch->desc ? (ch->desc->user ? ch->desc->user : "NOUSER") : "NOUSER";
+}
+
+char *GET_NAME(struct char_data *ch) {
+    return IS_NPC(ch) ? ch->short_descr : ch->name;
 }

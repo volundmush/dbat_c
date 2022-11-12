@@ -1493,7 +1493,7 @@ ACMD(do_qcomm)
   skip_spaces(&argument);
 
   if (!*argument)
-    send_to_char(ch, "%c%s?  Yes, fine, %s we must, but WHAT??\r\n", UPPER(*CMD_NAME), CMD_NAME + 1, CMD_NAME);
+    send_to_char(ch, "%c%s?  Yes, fine, %s we must, but WHAT??\r\n", toupper(*CMD_NAME), CMD_NAME + 1, CMD_NAME);
   else {
     char buf[MAX_STRING_LENGTH];
     struct descriptor_data *i;

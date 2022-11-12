@@ -392,7 +392,7 @@ ACMD(do_skillset)
   /* Locate the last quote and lowercase the magic words (if any) */
 
   for (qend = 1; argument[qend] && argument[qend] != '\''; qend++)
-    argument[qend] = LOWER(argument[qend]);
+    argument[qend] = tolower(argument[qend]);
 
   if (argument[qend] != '\'') {
     send_to_char(ch, "Skill must be enclosed in: ''\r\n");
@@ -544,7 +544,7 @@ void show_string(struct descriptor_data *d, char *input)
   any_one_arg(input, buf);
 
   /* Q is for quit. :) */
-  if (LOWER(*buf) == 'q') {
+  if (tolower(*buf) == 'q') {
     free(d->showstr_vector);
     d->showstr_vector = NULL;
     d->showstr_count = 0;
@@ -557,13 +557,13 @@ void show_string(struct descriptor_data *d, char *input)
   /* R is for refresh, so back up one page internally so we can display
    * it again.
    */
-  else if (LOWER(*buf) == 'r')
+  else if (tolower(*buf) == 'r')
     d->showstr_page = MAX(0, d->showstr_page - 1);
 
   /* B is for back, so back up two pages internally so we can display the
    * correct page here.
    */
-  else if (LOWER(*buf) == 'b')
+  else if (tolower(*buf) == 'b')
     d->showstr_page = MAX(0, d->showstr_page - 2);
 
   /* Feature to 'goto' a page.  Just type the number of the page and you

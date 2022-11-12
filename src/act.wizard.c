@@ -5589,17 +5589,17 @@ ACMD(do_checkloadstatus)
     return;
   }   
 
-  if (LOWER(*buf1) == 'm') {         
+  if (tolower(*buf1) == 'm') {
     mob_checkload(ch, atoi(buf2));
     return;
   }
  
-  if (LOWER(*buf1) == 'o') {         
+  if (tolower(*buf1) == 'o') {
     obj_checkload(ch, atoi(buf2));
     return;
   }
 
-  if (LOWER(*buf1) == 't') {
+  if (tolower(*buf1) == 't') {
     trg_checkload(ch, atoi(buf2));
     return;
   }

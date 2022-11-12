@@ -2841,7 +2841,7 @@ static void diag_obj_to_char(struct obj_data *obj, struct char_data *ch)
     if (percent >= diagnosis[ar_index].percent)
       break;
 
-  send_to_char(ch, "\r\n%c%s %s\r\n", UPPER(*objs), objs + 1, diagnosis[ar_index].text);
+  send_to_char(ch, "\r\n%c%s %s\r\n", toupper(*objs), objs + 1, diagnosis[ar_index].text);
 }
 
 static void diag_char_to_char(struct char_data *i, struct char_data *ch)
@@ -3029,9 +3029,9 @@ static void look_at_char(struct char_data *i, struct char_data *ch)
 	}
 	else if (ch == i || IS_NPC(i)) {
 		if (GET_SEX(i) == SEX_NEUTRAL)
-			send_to_char(ch, "%c%s appears to be %s %s, ", UPPER(*GET_NAME(i)), GET_NAME(i) + 1, AN(RACE(i)), LRACE(i));
+			send_to_char(ch, "%c%s appears to be %s %s, ", toupper(*GET_NAME(i)), GET_NAME(i) + 1, AN(RACE(i)), LRACE(i));
 		else
-			send_to_char(ch, "%c%s appears to be %s %s %s, ", UPPER(*GET_NAME(i)), GET_NAME(i) + 1, AN(MAFE(i)), MAFE(i), LRACE(i));
+			send_to_char(ch, "%c%s appears to be %s %s %s, ", toupper(*GET_NAME(i)), GET_NAME(i) + 1, AN(MAFE(i)), MAFE(i), LRACE(i));
 	}
 	else {
 		if (GET_SEX(i) == SEX_NEUTRAL)
@@ -3285,29 +3285,29 @@ static void list_one_char(struct char_data *i, struct char_data *ch)
   }
 
   if (IS_NPC(i) && !FIGHTING(i) && GET_POS(i) != POS_SITTING && GET_POS(i) != POS_SLEEPING)
-    send_to_char(ch, "@w%c%s", UPPER(*i->short_descr), i->short_descr + 1);
+    send_to_char(ch, "@w%c%s", toupper(*i->short_descr), i->short_descr + 1);
   else if (IS_NPC(i) && GRAPPLED(i) && GRAPPLED(i) == ch)
-    send_to_char(ch, "@w%c%s is being grappled with by YOU!", UPPER(*i->short_descr), i->short_descr + 1);
+    send_to_char(ch, "@w%c%s is being grappled with by YOU!", toupper(*i->short_descr), i->short_descr + 1);
   else if (IS_NPC(i) && GRAPPLED(i) && GRAPPLED(i) != ch)
-    send_to_char(ch, "@w%c%s is being absorbed from by %s!", UPPER(*i->short_descr), i->short_descr + 1, readIntro(ch, GRAPPLED(i)) == 1 ? get_i_name(ch, GRAPPLED(i)) : AN(RACE(GRAPPLED(i))));
+    send_to_char(ch, "@w%c%s is being absorbed from by %s!", toupper(*i->short_descr), i->short_descr + 1, readIntro(ch, GRAPPLED(i)) == 1 ? get_i_name(ch, GRAPPLED(i)) : AN(RACE(GRAPPLED(i))));
   else if (IS_NPC(i) && ABSORBBY(i) && ABSORBBY(i) == ch)
-    send_to_char(ch, "@w%c%s is being absorbed from by YOU!", UPPER(*i->short_descr), i->short_descr + 1);
+    send_to_char(ch, "@w%c%s is being absorbed from by YOU!", toupper(*i->short_descr), i->short_descr + 1);
   else if (IS_NPC(i) && ABSORBBY(i) && ABSORBBY(i) != ch)
-    send_to_char(ch, "@w%c%s is being absorbed from by %s!", UPPER(*i->short_descr), i->short_descr + 1, readIntro(ch, ABSORBBY(i)) == 1 ? get_i_name(ch, ABSORBBY(i)) : AN(RACE(ABSORBBY(i))));
+    send_to_char(ch, "@w%c%s is being absorbed from by %s!", toupper(*i->short_descr), i->short_descr + 1, readIntro(ch, ABSORBBY(i)) == 1 ? get_i_name(ch, ABSORBBY(i)) : AN(RACE(ABSORBBY(i))));
   else if (IS_NPC(i) && FIGHTING(i) && FIGHTING(i) != ch && GET_POS(i) != POS_SITTING && GET_POS(i) != POS_SLEEPING && is_sparring(i))
-    send_to_char(ch, "@w%c%s is sparring with %s!", UPPER(*i->short_descr), i->short_descr + 1, GET_ADMLEVEL(ch) ? GET_NAME(FIGHTING(i)) : (readIntro(ch, FIGHTING(i)) == 1 ? get_i_name(ch, FIGHTING(i)) : LRACE(FIGHTING(i))));
+    send_to_char(ch, "@w%c%s is sparring with %s!", toupper(*i->short_descr), i->short_descr + 1, GET_ADMLEVEL(ch) ? GET_NAME(FIGHTING(i)) : (readIntro(ch, FIGHTING(i)) == 1 ? get_i_name(ch, FIGHTING(i)) : LRACE(FIGHTING(i))));
   else if (IS_NPC(i) && FIGHTING(i) && is_sparring(i) && FIGHTING(i) == ch && GET_POS(i) != POS_SITTING && GET_POS(i) != POS_SLEEPING)
-    send_to_char(ch, "@w%c%s is sparring with you!", UPPER(*i->short_descr), i->short_descr + 1);
+    send_to_char(ch, "@w%c%s is sparring with you!", toupper(*i->short_descr), i->short_descr + 1);
   else if (IS_NPC(i) && FIGHTING(i) && FIGHTING(i) != ch && GET_POS(i) != POS_SITTING && GET_POS(i) != POS_SLEEPING)
-    send_to_char(ch, "@w%c%s is fighting %s!", UPPER(*i->short_descr), i->short_descr + 1, GET_ADMLEVEL(ch) ? GET_NAME(FIGHTING(i)) : (readIntro(ch, FIGHTING(i)) == 1 ? get_i_name(ch, FIGHTING(i)) : LRACE(FIGHTING(i))));
+    send_to_char(ch, "@w%c%s is fighting %s!", toupper(*i->short_descr), i->short_descr + 1, GET_ADMLEVEL(ch) ? GET_NAME(FIGHTING(i)) : (readIntro(ch, FIGHTING(i)) == 1 ? get_i_name(ch, FIGHTING(i)) : LRACE(FIGHTING(i))));
   else if (IS_NPC(i) && FIGHTING(i) && FIGHTING(i) == ch && GET_POS(i) != POS_SITTING && GET_POS(i) != POS_SLEEPING)
-    send_to_char(ch, "@w%c%s is fighting YOU!", UPPER(*i->short_descr), i->short_descr + 1);
+    send_to_char(ch, "@w%c%s is fighting YOU!", toupper(*i->short_descr), i->short_descr + 1);
   else if (IS_NPC(i) && FIGHTING(i) && GET_POS(i) == POS_SITTING)
-    send_to_char(ch, "@w%c%s is sitting here.", UPPER(*i->short_descr), i->short_descr + 1);
+    send_to_char(ch, "@w%c%s is sitting here.", toupper(*i->short_descr), i->short_descr + 1);
   else if (IS_NPC(i) && FIGHTING(i) && GET_POS(i) == POS_SLEEPING)
-    send_to_char(ch, "@w%c%s is sleeping here.", UPPER(*i->short_descr), i->short_descr + 1);
+    send_to_char(ch, "@w%c%s is sleeping here.", toupper(*i->short_descr), i->short_descr + 1);
   else if (IS_NPC(i))
-    send_to_char(ch, "@w%c%s", UPPER(*i->short_descr), i->short_descr + 1);
+    send_to_char(ch, "@w%c%s", toupper(*i->short_descr), i->short_descr + 1);
   else if (!IS_NPC(i)) {
    if (IS_MAJIN(i) && AFF_FLAGGED(i, AFF_LIQUEFIED)) {
     send_to_char(ch, "@wSeveral blobs of %s colored goo spread out here.@n\n", skin_types[(int)GET_SKIN(i)]);
