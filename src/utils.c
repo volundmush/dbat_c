@@ -4997,3 +4997,21 @@ int get_flag_by_name(const char *flag_list[], char *flag_name)
        return (i); 
    return (NOFLAG); 
 }
+
+
+// NEW SECTION:
+char LOWER(char c) {
+    return tolower(c);
+}
+
+char UPPER(char c) {
+    return toupper(c);
+}
+
+bool ISNEWL(char c) {
+    return c == '\n' || c == 'r';
+}
+
+const char* AN(const char *str) {
+    return strchr("aeiouAEIOU", *str) ? "an" : "a";
+}

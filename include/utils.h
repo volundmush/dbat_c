@@ -218,14 +218,12 @@ extern int wield_type(int chsize, const struct obj_data *weap);
 #define YESNO(a) ((a) ? "YES" : "NO")
 #define ONOFF(a) ((a) ? "ON" : "OFF")
 
-#define LOWER(c)   (((c)>='A'  && (c) <= 'Z') ? ((c)+('a'-'A')) : (c))
-#define UPPER(c)   (((c)>='a'  && (c) <= 'z') ? ((c)+('A'-'a')) : (c) )
-
-#define ISNEWL(ch) ((ch) == '\n' || (ch) == '\r') 
+extern char LOWER(char c);
+extern char UPPER(char c);
+extern bool ISNEWL(char c);
 
 /* See also: ANA, SANA */
-#define AN(string) (strchr("aeiouAEIOU", *string) ? "an" : "a")
-
+extern const char* AN(const char *str);
 
 /* memory utils **********************************************************/
 
