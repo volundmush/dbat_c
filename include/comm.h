@@ -59,7 +59,7 @@ extern void close_socket(struct descriptor_data *d);
 
 /* I/O functions */
 extern void write_to_q(const char *txt, struct txt_q *queue, int aliased);
-extern int write_to_descriptor(socklen_t desc, const char *txt, struct compr *comp);
+extern int write_to_descriptor(socklen_t desc, const char *txt);
 extern size_t write_to_output(struct descriptor_data *d, const char *txt, ...) __attribute__ ((format (printf, 2, 3)));
 extern size_t vwrite_to_output(struct descriptor_data *d, const char *format, va_list args);
 extern void string_add(struct descriptor_data *d, char *str);
@@ -80,7 +80,6 @@ extern socklen_t mother_desc;
 extern uint16_t port;
 extern int buf_switches, buf_largecount, buf_overflows;
 extern int no_specials, scheck;
-extern const char compress_offer[4];
 extern bool fCopyOver;
 extern char *last_act_message;
 extern int to_sleeping;
@@ -93,7 +92,7 @@ extern void reap(int sig);
 extern void checkpointing(int sig);
 extern void hupsig(int sig);
 extern ssize_t perform_socket_read(socklen_t desc, char *read_point, size_t space_left);
-extern ssize_t perform_socket_write(socklen_t desc, const char *txt, size_t length, struct compr *comp);
+extern ssize_t perform_socket_write(socklen_t desc, const char *txt, size_t length);
 extern void echo_off(struct descriptor_data *d);
 extern void echo_on(struct descriptor_data *d);
 extern void circle_sleep(struct timeval *timeout);

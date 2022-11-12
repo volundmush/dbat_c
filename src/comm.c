@@ -71,30 +71,10 @@ uint16_t port;
 socklen_t mother_desc;
 char *last_act_message = NULL;
 
-
-void *z_alloc(void *opaque, uInt items, uInt size)
-{
-    return calloc(items, size);
-}
-
-void z_free(void *opaque, void *address)
-{
-    return free(address);
-}
-
 /***********************************************************************
 *  main game loop and related stuff                                    *
 ***********************************************************************/
 int enter_player_game(struct descriptor_data *d);
-
-/* first compression neg. string */
-const char compress_offer[4] =
-{
-  (char) IAC,
-  (char) WILL,
-  (char) COMPRESS2,
-  (char) 0,
-};
 
 
 /* Reload players after a copyover */
@@ -128,7 +108,7 @@ void copyover_recover()
       break;
 
     /* Write something, and check if it goes error-free */		
-    if (write_to_descriptor (desc, "\n\rFolding initiated...\n\r", NULL) < 0) {
+    if (write_to_descriptor (desc, "\n\rFolding initiated...\n\r") < 0) {
       close (desc); /* nope */
       continue;
     }
@@ -166,14 +146,11 @@ void copyover_recover()
      fOld = FALSE;
 		
     if (!fOld) /* Player file not found?! */ {
-       write_to_descriptor (desc, "\n\rSomehow, your character was lost during the folding. Sorry.\n\r", NULL);
+       write_to_descriptor (desc, "\n\rSomehow, your character was lost during the folding. Sorry.\n\r");
        close_socket(d);
      } else {
-       write_to_descriptor (desc, "\n\rFolding complete.\n\r", NULL);
-        if (CONFIG_ENABLE_COMPRESSION && !PRF_FLAGGED(d->character, PRF_NOCOMPRESS)) {
-            d->comp->state = 1; /* indicates waiting for comp negotiation */
-            write_to_output(d, "%s", compress_offer);
-        }
+       write_to_descriptor (desc, "\n\rFolding complete.\n\r");
+
        set_loadroom = GET_LOADROOM(d->character);
          GET_LOADROOM(d->character) = saved_loadroom;
        enter_player_game(d);
@@ -1985,9 +1962,6 @@ void init_descriptor (struct descriptor_data *newd, int desc)
     last_desc = 1;
   newd->desc_num = last_desc;
 
-  CREATE(newd->comp, struct compr, 1);
-  newd->comp->state = 0; /* we start in normal mode */
-    newd->comp->stream = NULL;
 }
 
 void set_color(struct descriptor_data *d)
@@ -2045,7 +2019,7 @@ int new_descriptor(socklen_t s)
     sockets_connected++;
 
   if (sockets_connected >= CONFIG_MAX_PLAYING) {
-    write_to_descriptor(desc, "Sorry, CircleMUD is full right now... please try again later!\r\n", NULL);
+    write_to_descriptor(desc, "Sorry, CircleMUD is full right now... please try again later!\r\n");
       close(desc);
     return (0);
   }
@@ -2130,11 +2104,11 @@ int process_output(struct descriptor_data *t)
    */
   if (t->has_prompt) {
     t->has_prompt = FALSE;
-    result = write_to_descriptor(t->descriptor, i, t->comp);
+    result = write_to_descriptor(t->descriptor, i);
     if (result >= 2)
       result -= 2;
   } else
-    result = write_to_descriptor(t->descriptor, osb, t->comp);
+    result = write_to_descriptor(t->descriptor, osb);
 
   if (result < 0) {     /* Oops, fatal error. Bye! */
     close_socket(t);
@@ -2205,79 +2179,11 @@ int process_output(struct descriptor_data *t)
  */
 
 /* perform_socket_write for all Non-Windows platforms */
-ssize_t perform_socket_write(socklen_t desc, const char *txt, size_t length, struct compr *comp)
+ssize_t perform_socket_write(socklen_t desc, const char *txt, size_t length)
 {
   ssize_t result = 0;
 
   int compr_result, tmp, cnt, bytes_copied;
-  
-  /* MCCP! this is where the zlib compression is handled */
-  if (comp && comp->state >= 2) { /* compress2 on */
-    /* copy data to input buffer */
-    /* first check that overflow won't happen */
-    /* if it will, we only copy over so much text */
-    if (comp->size_in + length > comp->total_in)
-      bytes_copied = comp->total_in - comp->size_in;
-    else
-      bytes_copied = length;
-    
-    /* now copy what will fit into the buffer */
-    strncpy((char *)comp->buff_in + comp->size_in, txt, bytes_copied);
-    comp->size_in += bytes_copied;
-
-    /* set up stream input */
-    comp->stream->avail_in = comp->size_in;
-    comp->stream->next_in = comp->buff_in;
-    
-    /* lets do it */
-    /* deflate all the input - this means flushing our output buffer when it fills */
-    do {
-      /* set up stream output - the size_out bit is somewhat unnecessary, but makes things safer */
-      comp->stream->avail_out = comp->total_out - comp->size_out;
-      comp->stream->next_out = comp->buff_out + comp->size_out;
-      
-      compr_result = deflate(comp->stream, comp->state == 3 ? Z_FINISH : Z_SYNC_FLUSH);
-      
-      if (compr_result == Z_STREAM_END)
-        compr_result = 0;
-      else if (compr_result == Z_OK && !(comp->stream->avail_out))
-        compr_result = 1;
-      else if (compr_result < 0) {  /* uh oh, fatal zlib error */
-	result = 0;
-	break;
-      } else
-	compr_result = 0;
-    
-      /* adjust output state value */
-      comp->size_out = comp->total_out - comp->stream->avail_out;
-
-      /* write out compressed data - flush buff_out */
-      /* if problems encountered, resort to resending all data by breaking and returning < 1.. */
-      tmp = 0;
-      while (comp->size_out > 0) {
-	result = write(desc, comp->buff_out + tmp, comp->size_out);
-	if (result < 1) /* unsuccessful write or socket error */
-	  goto exitzlibdo; /* yummy, goto. faster than two breaks ! */ 
-	comp->size_out -= result;
-	tmp += result;
-      }
-    } while (compr_result);
-exitzlibdo:
-    
-    /* adjust buffers - is this necessary? not with Z_SYNC_FLUSH I think - but just to be safe */
-    /* input loses size_in - avail_in bytes */
-    tmp = comp->size_in - comp->stream->avail_in;
-    for (cnt = tmp; cnt < comp->size_in; cnt++)
-	*(comp->buff_in + (cnt - tmp)) = *(comp->buff_in + cnt);
-
-    /* adjust input state value - it is important that this is done after the previous step */
-    comp->size_in = comp->stream->avail_in;
-    /* the above as taken out because I don't think its necessary.. this is faster too */
-    /*comp->size_in = 0;*/
-
-    if (result > 0)
-	result = bytes_copied;
-  } else 
 
   result = write(desc, txt, length);
 
@@ -2316,13 +2222,13 @@ exitzlibdo:
  * >=0  If all is well and good.
  *  -1  If an error was encountered, so that the player should be cut off.
  */
-int write_to_descriptor(socklen_t desc, const char *txt, struct compr *comp)
+int write_to_descriptor(socklen_t desc, const char *txt)
 {
   ssize_t bytes_written;
   size_t total = strlen(txt), write_total = 0;
 
   while (total > 0) {
-    bytes_written = perform_socket_write(desc, txt, total, comp);
+    bytes_written = perform_socket_write(desc, txt, total);
 
     if (bytes_written < 0) {
       /* Fatal error.  Disconnect the player. */
@@ -2435,40 +2341,6 @@ const char compress_start[] =
     /* note: this will bork if the user is giving lots of input when he first connects */
     /* he shouldn't be doing this, and for the sake of efficiency, the read buffer isn't searched */
     /* (ie. it assumes that read_point[0] will be IAC, etc.) */
-    if (t->comp->state == 1) {
-
-      if (*read_point == (char)IAC && *(read_point + 1) == (char)DO && *(read_point + 2) == (char)COMPRESS2) {
-	/* compression just turned on */
-	/* first send plaintext start of the compression stream */
-	write_to_descriptor(t->descriptor, compress_start, NULL);
-	
-	/* init the compression stream */	
-	CREATE(t->comp->stream, z_stream, 1);
-	t->comp->stream->zalloc = z_alloc;
-	t->comp->stream->zfree = z_free;
-	t->comp->stream->opaque = Z_NULL;
-	deflateInit(t->comp->stream, Z_DEFAULT_COMPRESSION);
-        
-	/* init the state structure */
-	/* first the output component */
-	CREATE(t->comp->buff_out, Bytef, SMALL_BUFSIZE);
-	t->comp->total_out = SMALL_BUFSIZE;
-	t->comp->size_out = 0;
-	/* now the input component */
-	CREATE(t->comp->buff_in, Bytef, SMALL_BUFSIZE);
-	t->comp->total_in = SMALL_BUFSIZE;
-	t->comp->size_in = 0;
-
-	/* finally, turn compression on */
-	t->comp->state = 2;
-	
-	bytes_read = 0; /* ignore the compression string - don't process it further */
-      } else if (*read_point == (char)IAC && *(read_point + 1) == (char)DONT && *(read_point + 2) == (char)COMPRESS2) {
-	t->comp->state = 0;
-	
-	bytes_read = 0; /* ignore the compression string - don't process it further */
-      }
-    }
     /* at this point, we know we got some data from the read */
 
     *(read_point + bytes_read) = '\0';	/* terminate the string */
@@ -2529,7 +2401,7 @@ const char compress_start[] =
       char buffer[MAX_INPUT_LENGTH + 64];
 
       snprintf(buffer, sizeof(buffer), "Line too long.  Truncated to:\r\n%s\r\n", tmp);
-      if (write_to_descriptor(t->descriptor, buffer, t->comp) < 0)
+      if (write_to_descriptor(t->descriptor, buffer) < 0)
 	return (-1);
     }
     if (t->snoop_by)
@@ -2782,17 +2654,6 @@ void close_socket(struct descriptor_data *d)
       break;
   }
 
-  /* free compression structures */
-    if (d->comp->stream) {
-        deflateEnd(d->comp->stream);
-        free(d->comp->stream);
-        free(d->comp->buff_out);
-        free(d->comp->buff_in);
-    }
-  /* d->comp was still created even if there is no zlib, for comp->state) */
-  if (d->comp)
-    free(d->comp);  
-      
   free(d);
 }
 

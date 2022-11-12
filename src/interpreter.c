@@ -2338,10 +2338,7 @@ int perform_dupe_check(struct descriptor_data *d)
                                   "@cBank Interest@D: @Y%s@n\r\n", mult, add_commas(inc));
       }
     }
-  if (CONFIG_ENABLE_COMPRESSION && !PRF_FLAGGED(d->character, PRF_NOCOMPRESS)) {
-      d->comp->state = 1;	/* waiting for response to offer */
-      write_to_output(d, "%s", compress_offer);
-  }
+
     break;
   case USURP:
     write_to_output(d, "You take over your own body, already in use!\r\n");
@@ -2351,10 +2348,6 @@ int perform_dupe_check(struct descriptor_data *d)
     d->character->rp = d->rpp;
     mudlog(NRM, MAX(ADMLVL_IMMORT, GET_INVIS_LEV(d->character)), TRUE,
 	"%s has re-logged in ... disconnecting old socket.", GET_NAME(d->character));
-          if (CONFIG_ENABLE_COMPRESSION && !PRF_FLAGGED(d->character, PRF_NOCOMPRESS)) {
-              d->comp->state = 1;       /* waiting for response to offer */
-              write_to_output(d, "%s", compress_offer);
-          }
     break;
   case UNSWITCH:
     write_to_output(d, "Reconnecting to unswitched char.");
@@ -6668,10 +6661,6 @@ void nanny(struct descriptor_data *d, char *arg)
     break;
 
   case CON_RMOTD:		/* read CR after printing motd   */
-      if (CONFIG_ENABLE_COMPRESSION && !PRF_FLAGGED(d->character, PRF_NOCOMPRESS) && !d->comp->state) {
-          d->comp->state = 1;	/* waiting for response to offer */
-          write_to_output(d, "%s", compress_offer);
-      }
     write_to_output(d, "%s", CONFIG_MENU);
     STATE(d) = CON_MENU;
     break;

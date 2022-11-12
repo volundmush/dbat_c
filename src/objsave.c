@@ -9,8 +9,6 @@
 ************************************************************************ */
 
 #include "objsave.h"
-#include "unistd.h"
-#include "errno.h"
 #include "structs.h"
 #include "comm.h"
 #include "handler.h"

@@ -17,11 +17,9 @@
 #include <unistd.h>
 #include <limits.h>
 #include <errno.h>
-#include <crypt.h>
 #include <sys/time.h>
 #include <time.h>
 #include <assert.h>
-#include <zlib.h>
 #include <sys/select.h>
 #include <fcntl.h>
 #include <sys/fcntl.h>

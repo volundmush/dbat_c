@@ -2522,7 +2522,7 @@ static void execute_copyover(void)
     struct char_data * och = d->character;
     d_next = d->next; /* We delete from the list , so need to save this */
     if (!d->character || d->connected > CON_PLAYING) {
-      write_to_descriptor (d->descriptor, "\n\rSorry, we are rebooting. Come back in a few seconds.\n\r", d->comp);
+      write_to_descriptor (d->descriptor, "\n\rSorry, we are rebooting. Come back in a few seconds.\n\r");
       close (d); /* throw'em out */
     } else {
       if (GET_ROOM_VNUM(IN_ROOM(och)) > 1) {
@@ -2536,17 +2536,7 @@ static void execute_copyover(void)
       /* save och */
       Crash_rentsave(och, 0);
       save_char(och);
-        if (d->comp->state == 2) {
-            d->comp->state = 3; /* Code to use Z_FINISH for deflate */
-        }
-      write_to_descriptor (d->descriptor, buf, d->comp);
-      d->comp->state = 0;
-        if (d->comp->stream) {
-            deflateEnd(d->comp->stream);
-            free(d->comp->stream);
-            free(d->comp->buff_out);
-            free(d->comp->buff_in);
-        }
+      write_to_descriptor (d->descriptor, buf);
     }
   }
 
