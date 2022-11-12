@@ -198,11 +198,11 @@ struct reset_com {
    char	command;   /* current command                      */
 
    bool if_flag;	/* if TRUE: exe only if preceding exe'd */
-   int	arg1;		/*                                      */
-   int	arg2;		/* Arguments to the command             */
-   int	arg3;		/*                                      */
-   int  arg4;		/* room_max  default 0			*/
-   int  arg5;           /* percentages variable                 */
+   vnum	arg1;		/*                                      */
+    vnum	arg2;		/* Arguments to the command             */
+    vnum	arg3;		/*                                      */
+    vnum  arg4;		/* room_max  default 0			*/
+    vnum  arg5;           /* percentages variable                 */
    int line;		/* line number this command appears on  */
    char *sarg1;		/* string argument                      */
    char *sarg2;		/* string argument                      */

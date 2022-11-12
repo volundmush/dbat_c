@@ -982,7 +982,7 @@ void auc_save()
     for (obj = world[real_room(80)].contents; obj; obj = next_obj) {
      next_obj = obj->next_content;
      if (obj) {
-      fprintf(fl, "%"I64T" %s %d %d %d %d %ld\n", obj->unique_id, GET_AUCTERN(obj), GET_AUCTER(obj), GET_CURBID(obj), GET_STARTBID(obj), GET_BID(obj), GET_AUCTIME(obj));
+      fprintf(fl, "%" I64T " %s %d %d %d %d %ld\n", obj->unique_id, GET_AUCTERN(obj), GET_AUCTER(obj), GET_CURBID(obj), GET_STARTBID(obj), GET_BID(obj), GET_AUCTIME(obj));
      }
     }
     fprintf(fl, "~END~\n");
@@ -1027,20 +1027,20 @@ static void reset_time(void)
   if ((bgtime = fopen(TIME_FILE, "r")) == NULL)
     log("SYSERR: Can't read from '%s' time file.", TIME_FILE);
   else {
-    fscanf(bgtime, "%ld\n", &beginning_of_time);
-    fscanf(bgtime, "%ld\n", &NEWSUPDATE);
-    fscanf(bgtime, "%ld\n", &BOARDNEWMORT);
-    fscanf(bgtime, "%ld\n", &BOARDNEWDUO);
-    fscanf(bgtime, "%ld\n", &BOARDNEWCOD);
-    fscanf(bgtime, "%ld\n", &BOARDNEWBUI);
-    fscanf(bgtime, "%ld\n", &BOARDNEWIMM);
-    fscanf(bgtime, "%ld\n", &INTERESTTIME);
-    fscanf(bgtime, "%ld\n", &LASTINTEREST);
+    fscanf(bgtime, "%" SZT "\n", &beginning_of_time);
+    fscanf(bgtime, "%" SZT "\n", &NEWSUPDATE);
+    fscanf(bgtime, "%" SZT "\n", &BOARDNEWMORT);
+    fscanf(bgtime, "%" SZT "\n", &BOARDNEWDUO);
+    fscanf(bgtime, "%" SZT "\n", &BOARDNEWCOD);
+    fscanf(bgtime, "%" SZT "\n", &BOARDNEWBUI);
+    fscanf(bgtime, "%" SZT "\n", &BOARDNEWIMM);
+    fscanf(bgtime, "%" SZT "\n", &INTERESTTIME);
+    fscanf(bgtime, "%" SZT "\n", &LASTINTEREST);
     fscanf(bgtime, "%d\n", &HIGHPCOUNT);
-    fscanf(bgtime, "%ld\n", &PCOUNTDATE);
+    fscanf(bgtime, "%" SZT "\n", &PCOUNTDATE);
     fscanf(bgtime, "%d\n", &WISHTIME);
     fscanf(bgtime, "%d\n", &PCOUNT);
-    fscanf(bgtime, "%ld\n", &LASTPAYOUT);
+    fscanf(bgtime, "%" SZT "\n", &LASTPAYOUT);
     fscanf(bgtime, "%d\n", &LASTPAYTYPE);
     fscanf(bgtime, "%d\n", &LASTNEWS);
     fscanf(bgtime, "%d\n", &dballtime);
@@ -1823,7 +1823,7 @@ static void renum_zone_table(void)
       }
       if (a == NOWHERE || b == NOWHERE || c == NOWHERE) {
 	if (!mini_mud) {
-	  snprintf(buf, sizeof(buf), "Invalid vnum %d, cmd disabled",
+	  snprintf(buf, sizeof(buf), "Invalid vnum %lld, cmd disabled",
 			 a == NOWHERE ? olda : b == NOWHERE ? oldb : oldc);
 	  log_zone_error(zone, cmd_no, buf);
 	}

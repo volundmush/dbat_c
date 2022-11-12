@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/volund/CLionProjects/dbat_c
+CMAKE_SOURCE_DIR = /home/volund/dbat_c
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/volund/CLionProjects/dbat_c
+CMAKE_BINARY_DIR = /home/volund/dbat_c
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/volund/CLionProjects/dbat_c/CMakeFiles /home/volund/CLionProjects/dbat_c//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/volund/dbat_c/CMakeFiles /home/volund/dbat_c//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/volund/CLionProjects/dbat_c/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/volund/dbat_c/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named circlemud
+
+# Build rule for target.
+circlemud: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 circlemud
+.PHONY : circlemud
+
+# fast build rule for target.
+circlemud/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/build
+.PHONY : circlemud/fast
+
+#=============================================================================
 # Target rules for targets named circle
 
 # Build rule for target.
@@ -129,29 +142,2261 @@ circle/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/circle.dir/build.make CMakeFiles/circle.dir/build
 .PHONY : circle/fast
 
-amalgam.o: amalgam.c.o
-.PHONY : amalgam.o
+apps/circle.o: apps/circle.c.o
+.PHONY : apps/circle.o
 
 # target to build an object file
-amalgam.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/circle.dir/build.make CMakeFiles/circle.dir/amalgam.c.o
-.PHONY : amalgam.c.o
+apps/circle.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circle.dir/build.make CMakeFiles/circle.dir/apps/circle.c.o
+.PHONY : apps/circle.c.o
 
-amalgam.i: amalgam.c.i
-.PHONY : amalgam.i
+apps/circle.i: apps/circle.c.i
+.PHONY : apps/circle.i
 
 # target to preprocess a source file
-amalgam.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/circle.dir/build.make CMakeFiles/circle.dir/amalgam.c.i
-.PHONY : amalgam.c.i
+apps/circle.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circle.dir/build.make CMakeFiles/circle.dir/apps/circle.c.i
+.PHONY : apps/circle.c.i
 
-amalgam.s: amalgam.c.s
-.PHONY : amalgam.s
+apps/circle.s: apps/circle.c.s
+.PHONY : apps/circle.s
 
 # target to generate assembly for a file
-amalgam.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/circle.dir/build.make CMakeFiles/circle.dir/amalgam.c.s
-.PHONY : amalgam.c.s
+apps/circle.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circle.dir/build.make CMakeFiles/circle.dir/apps/circle.c.s
+.PHONY : apps/circle.c.s
+
+src/act.attack.o: src/act.attack.c.o
+.PHONY : src/act.attack.o
+
+# target to build an object file
+src/act.attack.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.attack.c.o
+.PHONY : src/act.attack.c.o
+
+src/act.attack.i: src/act.attack.c.i
+.PHONY : src/act.attack.i
+
+# target to preprocess a source file
+src/act.attack.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.attack.c.i
+.PHONY : src/act.attack.c.i
+
+src/act.attack.s: src/act.attack.c.s
+.PHONY : src/act.attack.s
+
+# target to generate assembly for a file
+src/act.attack.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.attack.c.s
+.PHONY : src/act.attack.c.s
+
+src/act.comm.o: src/act.comm.c.o
+.PHONY : src/act.comm.o
+
+# target to build an object file
+src/act.comm.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.comm.c.o
+.PHONY : src/act.comm.c.o
+
+src/act.comm.i: src/act.comm.c.i
+.PHONY : src/act.comm.i
+
+# target to preprocess a source file
+src/act.comm.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.comm.c.i
+.PHONY : src/act.comm.c.i
+
+src/act.comm.s: src/act.comm.c.s
+.PHONY : src/act.comm.s
+
+# target to generate assembly for a file
+src/act.comm.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.comm.c.s
+.PHONY : src/act.comm.c.s
+
+src/act.informative.o: src/act.informative.c.o
+.PHONY : src/act.informative.o
+
+# target to build an object file
+src/act.informative.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.informative.c.o
+.PHONY : src/act.informative.c.o
+
+src/act.informative.i: src/act.informative.c.i
+.PHONY : src/act.informative.i
+
+# target to preprocess a source file
+src/act.informative.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.informative.c.i
+.PHONY : src/act.informative.c.i
+
+src/act.informative.s: src/act.informative.c.s
+.PHONY : src/act.informative.s
+
+# target to generate assembly for a file
+src/act.informative.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.informative.c.s
+.PHONY : src/act.informative.c.s
+
+src/act.item.o: src/act.item.c.o
+.PHONY : src/act.item.o
+
+# target to build an object file
+src/act.item.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.item.c.o
+.PHONY : src/act.item.c.o
+
+src/act.item.i: src/act.item.c.i
+.PHONY : src/act.item.i
+
+# target to preprocess a source file
+src/act.item.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.item.c.i
+.PHONY : src/act.item.c.i
+
+src/act.item.s: src/act.item.c.s
+.PHONY : src/act.item.s
+
+# target to generate assembly for a file
+src/act.item.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.item.c.s
+.PHONY : src/act.item.c.s
+
+src/act.misc.o: src/act.misc.c.o
+.PHONY : src/act.misc.o
+
+# target to build an object file
+src/act.misc.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.misc.c.o
+.PHONY : src/act.misc.c.o
+
+src/act.misc.i: src/act.misc.c.i
+.PHONY : src/act.misc.i
+
+# target to preprocess a source file
+src/act.misc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.misc.c.i
+.PHONY : src/act.misc.c.i
+
+src/act.misc.s: src/act.misc.c.s
+.PHONY : src/act.misc.s
+
+# target to generate assembly for a file
+src/act.misc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.misc.c.s
+.PHONY : src/act.misc.c.s
+
+src/act.movement.o: src/act.movement.c.o
+.PHONY : src/act.movement.o
+
+# target to build an object file
+src/act.movement.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.movement.c.o
+.PHONY : src/act.movement.c.o
+
+src/act.movement.i: src/act.movement.c.i
+.PHONY : src/act.movement.i
+
+# target to preprocess a source file
+src/act.movement.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.movement.c.i
+.PHONY : src/act.movement.c.i
+
+src/act.movement.s: src/act.movement.c.s
+.PHONY : src/act.movement.s
+
+# target to generate assembly for a file
+src/act.movement.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.movement.c.s
+.PHONY : src/act.movement.c.s
+
+src/act.offensive.o: src/act.offensive.c.o
+.PHONY : src/act.offensive.o
+
+# target to build an object file
+src/act.offensive.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.offensive.c.o
+.PHONY : src/act.offensive.c.o
+
+src/act.offensive.i: src/act.offensive.c.i
+.PHONY : src/act.offensive.i
+
+# target to preprocess a source file
+src/act.offensive.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.offensive.c.i
+.PHONY : src/act.offensive.c.i
+
+src/act.offensive.s: src/act.offensive.c.s
+.PHONY : src/act.offensive.s
+
+# target to generate assembly for a file
+src/act.offensive.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.offensive.c.s
+.PHONY : src/act.offensive.c.s
+
+src/act.other.o: src/act.other.c.o
+.PHONY : src/act.other.o
+
+# target to build an object file
+src/act.other.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.other.c.o
+.PHONY : src/act.other.c.o
+
+src/act.other.i: src/act.other.c.i
+.PHONY : src/act.other.i
+
+# target to preprocess a source file
+src/act.other.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.other.c.i
+.PHONY : src/act.other.c.i
+
+src/act.other.s: src/act.other.c.s
+.PHONY : src/act.other.s
+
+# target to generate assembly for a file
+src/act.other.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.other.c.s
+.PHONY : src/act.other.c.s
+
+src/act.social.o: src/act.social.c.o
+.PHONY : src/act.social.o
+
+# target to build an object file
+src/act.social.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.social.c.o
+.PHONY : src/act.social.c.o
+
+src/act.social.i: src/act.social.c.i
+.PHONY : src/act.social.i
+
+# target to preprocess a source file
+src/act.social.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.social.c.i
+.PHONY : src/act.social.c.i
+
+src/act.social.s: src/act.social.c.s
+.PHONY : src/act.social.s
+
+# target to generate assembly for a file
+src/act.social.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.social.c.s
+.PHONY : src/act.social.c.s
+
+src/act.wizard.o: src/act.wizard.c.o
+.PHONY : src/act.wizard.o
+
+# target to build an object file
+src/act.wizard.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.wizard.c.o
+.PHONY : src/act.wizard.c.o
+
+src/act.wizard.i: src/act.wizard.c.i
+.PHONY : src/act.wizard.i
+
+# target to preprocess a source file
+src/act.wizard.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.wizard.c.i
+.PHONY : src/act.wizard.c.i
+
+src/act.wizard.s: src/act.wizard.c.s
+.PHONY : src/act.wizard.s
+
+# target to generate assembly for a file
+src/act.wizard.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/act.wizard.c.s
+.PHONY : src/act.wizard.c.s
+
+src/aedit.o: src/aedit.c.o
+.PHONY : src/aedit.o
+
+# target to build an object file
+src/aedit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/aedit.c.o
+.PHONY : src/aedit.c.o
+
+src/aedit.i: src/aedit.c.i
+.PHONY : src/aedit.i
+
+# target to preprocess a source file
+src/aedit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/aedit.c.i
+.PHONY : src/aedit.c.i
+
+src/aedit.s: src/aedit.c.s
+.PHONY : src/aedit.s
+
+# target to generate assembly for a file
+src/aedit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/aedit.c.s
+.PHONY : src/aedit.c.s
+
+src/alias.o: src/alias.c.o
+.PHONY : src/alias.o
+
+# target to build an object file
+src/alias.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/alias.c.o
+.PHONY : src/alias.c.o
+
+src/alias.i: src/alias.c.i
+.PHONY : src/alias.i
+
+# target to preprocess a source file
+src/alias.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/alias.c.i
+.PHONY : src/alias.c.i
+
+src/alias.s: src/alias.c.s
+.PHONY : src/alias.s
+
+# target to generate assembly for a file
+src/alias.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/alias.c.s
+.PHONY : src/alias.c.s
+
+src/assedit.o: src/assedit.c.o
+.PHONY : src/assedit.o
+
+# target to build an object file
+src/assedit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/assedit.c.o
+.PHONY : src/assedit.c.o
+
+src/assedit.i: src/assedit.c.i
+.PHONY : src/assedit.i
+
+# target to preprocess a source file
+src/assedit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/assedit.c.i
+.PHONY : src/assedit.c.i
+
+src/assedit.s: src/assedit.c.s
+.PHONY : src/assedit.s
+
+# target to generate assembly for a file
+src/assedit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/assedit.c.s
+.PHONY : src/assedit.c.s
+
+src/assemblies.o: src/assemblies.c.o
+.PHONY : src/assemblies.o
+
+# target to build an object file
+src/assemblies.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/assemblies.c.o
+.PHONY : src/assemblies.c.o
+
+src/assemblies.i: src/assemblies.c.i
+.PHONY : src/assemblies.i
+
+# target to preprocess a source file
+src/assemblies.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/assemblies.c.i
+.PHONY : src/assemblies.c.i
+
+src/assemblies.s: src/assemblies.c.s
+.PHONY : src/assemblies.s
+
+# target to generate assembly for a file
+src/assemblies.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/assemblies.c.s
+.PHONY : src/assemblies.c.s
+
+src/ban.o: src/ban.c.o
+.PHONY : src/ban.o
+
+# target to build an object file
+src/ban.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/ban.c.o
+.PHONY : src/ban.c.o
+
+src/ban.i: src/ban.c.i
+.PHONY : src/ban.i
+
+# target to preprocess a source file
+src/ban.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/ban.c.i
+.PHONY : src/ban.c.i
+
+src/ban.s: src/ban.c.s
+.PHONY : src/ban.s
+
+# target to generate assembly for a file
+src/ban.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/ban.c.s
+.PHONY : src/ban.c.s
+
+src/boards.o: src/boards.c.o
+.PHONY : src/boards.o
+
+# target to build an object file
+src/boards.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/boards.c.o
+.PHONY : src/boards.c.o
+
+src/boards.i: src/boards.c.i
+.PHONY : src/boards.i
+
+# target to preprocess a source file
+src/boards.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/boards.c.i
+.PHONY : src/boards.c.i
+
+src/boards.s: src/boards.c.s
+.PHONY : src/boards.s
+
+# target to generate assembly for a file
+src/boards.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/boards.c.s
+.PHONY : src/boards.c.s
+
+src/bsd-snprintf.o: src/bsd-snprintf.c.o
+.PHONY : src/bsd-snprintf.o
+
+# target to build an object file
+src/bsd-snprintf.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/bsd-snprintf.c.o
+.PHONY : src/bsd-snprintf.c.o
+
+src/bsd-snprintf.i: src/bsd-snprintf.c.i
+.PHONY : src/bsd-snprintf.i
+
+# target to preprocess a source file
+src/bsd-snprintf.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/bsd-snprintf.c.i
+.PHONY : src/bsd-snprintf.c.i
+
+src/bsd-snprintf.s: src/bsd-snprintf.c.s
+.PHONY : src/bsd-snprintf.s
+
+# target to generate assembly for a file
+src/bsd-snprintf.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/bsd-snprintf.c.s
+.PHONY : src/bsd-snprintf.c.s
+
+src/cedit.o: src/cedit.c.o
+.PHONY : src/cedit.o
+
+# target to build an object file
+src/cedit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/cedit.c.o
+.PHONY : src/cedit.c.o
+
+src/cedit.i: src/cedit.c.i
+.PHONY : src/cedit.i
+
+# target to preprocess a source file
+src/cedit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/cedit.c.i
+.PHONY : src/cedit.c.i
+
+src/cedit.s: src/cedit.c.s
+.PHONY : src/cedit.s
+
+# target to generate assembly for a file
+src/cedit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/cedit.c.s
+.PHONY : src/cedit.c.s
+
+src/clan.o: src/clan.c.o
+.PHONY : src/clan.o
+
+# target to build an object file
+src/clan.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/clan.c.o
+.PHONY : src/clan.c.o
+
+src/clan.i: src/clan.c.i
+.PHONY : src/clan.i
+
+# target to preprocess a source file
+src/clan.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/clan.c.i
+.PHONY : src/clan.c.i
+
+src/clan.s: src/clan.c.s
+.PHONY : src/clan.s
+
+# target to generate assembly for a file
+src/clan.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/clan.c.s
+.PHONY : src/clan.c.s
+
+src/class.o: src/class.c.o
+.PHONY : src/class.o
+
+# target to build an object file
+src/class.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/class.c.o
+.PHONY : src/class.c.o
+
+src/class.i: src/class.c.i
+.PHONY : src/class.i
+
+# target to preprocess a source file
+src/class.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/class.c.i
+.PHONY : src/class.c.i
+
+src/class.s: src/class.c.s
+.PHONY : src/class.s
+
+# target to generate assembly for a file
+src/class.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/class.c.s
+.PHONY : src/class.c.s
+
+src/combat.o: src/combat.c.o
+.PHONY : src/combat.o
+
+# target to build an object file
+src/combat.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/combat.c.o
+.PHONY : src/combat.c.o
+
+src/combat.i: src/combat.c.i
+.PHONY : src/combat.i
+
+# target to preprocess a source file
+src/combat.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/combat.c.i
+.PHONY : src/combat.c.i
+
+src/combat.s: src/combat.c.s
+.PHONY : src/combat.s
+
+# target to generate assembly for a file
+src/combat.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/combat.c.s
+.PHONY : src/combat.c.s
+
+src/comm.o: src/comm.c.o
+.PHONY : src/comm.o
+
+# target to build an object file
+src/comm.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/comm.c.o
+.PHONY : src/comm.c.o
+
+src/comm.i: src/comm.c.i
+.PHONY : src/comm.i
+
+# target to preprocess a source file
+src/comm.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/comm.c.i
+.PHONY : src/comm.c.i
+
+src/comm.s: src/comm.c.s
+.PHONY : src/comm.s
+
+# target to generate assembly for a file
+src/comm.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/comm.c.s
+.PHONY : src/comm.c.s
+
+src/config.o: src/config.c.o
+.PHONY : src/config.o
+
+# target to build an object file
+src/config.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/config.c.o
+.PHONY : src/config.c.o
+
+src/config.i: src/config.c.i
+.PHONY : src/config.i
+
+# target to preprocess a source file
+src/config.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/config.c.i
+.PHONY : src/config.c.i
+
+src/config.s: src/config.c.s
+.PHONY : src/config.s
+
+# target to generate assembly for a file
+src/config.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/config.c.s
+.PHONY : src/config.c.s
+
+src/constants.o: src/constants.c.o
+.PHONY : src/constants.o
+
+# target to build an object file
+src/constants.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/constants.c.o
+.PHONY : src/constants.c.o
+
+src/constants.i: src/constants.c.i
+.PHONY : src/constants.i
+
+# target to preprocess a source file
+src/constants.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/constants.c.i
+.PHONY : src/constants.c.i
+
+src/constants.s: src/constants.c.s
+.PHONY : src/constants.s
+
+# target to generate assembly for a file
+src/constants.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/constants.c.s
+.PHONY : src/constants.c.s
+
+src/context_help.o: src/context_help.c.o
+.PHONY : src/context_help.o
+
+# target to build an object file
+src/context_help.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/context_help.c.o
+.PHONY : src/context_help.c.o
+
+src/context_help.i: src/context_help.c.i
+.PHONY : src/context_help.i
+
+# target to preprocess a source file
+src/context_help.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/context_help.c.i
+.PHONY : src/context_help.c.i
+
+src/context_help.s: src/context_help.c.s
+.PHONY : src/context_help.s
+
+# target to generate assembly for a file
+src/context_help.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/context_help.c.s
+.PHONY : src/context_help.c.s
+
+src/db.o: src/db.c.o
+.PHONY : src/db.o
+
+# target to build an object file
+src/db.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/db.c.o
+.PHONY : src/db.c.o
+
+src/db.i: src/db.c.i
+.PHONY : src/db.i
+
+# target to preprocess a source file
+src/db.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/db.c.i
+.PHONY : src/db.c.i
+
+src/db.s: src/db.c.s
+.PHONY : src/db.s
+
+# target to generate assembly for a file
+src/db.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/db.c.s
+.PHONY : src/db.c.s
+
+src/dg_comm.o: src/dg_comm.c.o
+.PHONY : src/dg_comm.o
+
+# target to build an object file
+src/dg_comm.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_comm.c.o
+.PHONY : src/dg_comm.c.o
+
+src/dg_comm.i: src/dg_comm.c.i
+.PHONY : src/dg_comm.i
+
+# target to preprocess a source file
+src/dg_comm.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_comm.c.i
+.PHONY : src/dg_comm.c.i
+
+src/dg_comm.s: src/dg_comm.c.s
+.PHONY : src/dg_comm.s
+
+# target to generate assembly for a file
+src/dg_comm.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_comm.c.s
+.PHONY : src/dg_comm.c.s
+
+src/dg_db_scripts.o: src/dg_db_scripts.c.o
+.PHONY : src/dg_db_scripts.o
+
+# target to build an object file
+src/dg_db_scripts.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_db_scripts.c.o
+.PHONY : src/dg_db_scripts.c.o
+
+src/dg_db_scripts.i: src/dg_db_scripts.c.i
+.PHONY : src/dg_db_scripts.i
+
+# target to preprocess a source file
+src/dg_db_scripts.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_db_scripts.c.i
+.PHONY : src/dg_db_scripts.c.i
+
+src/dg_db_scripts.s: src/dg_db_scripts.c.s
+.PHONY : src/dg_db_scripts.s
+
+# target to generate assembly for a file
+src/dg_db_scripts.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_db_scripts.c.s
+.PHONY : src/dg_db_scripts.c.s
+
+src/dg_event.o: src/dg_event.c.o
+.PHONY : src/dg_event.o
+
+# target to build an object file
+src/dg_event.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_event.c.o
+.PHONY : src/dg_event.c.o
+
+src/dg_event.i: src/dg_event.c.i
+.PHONY : src/dg_event.i
+
+# target to preprocess a source file
+src/dg_event.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_event.c.i
+.PHONY : src/dg_event.c.i
+
+src/dg_event.s: src/dg_event.c.s
+.PHONY : src/dg_event.s
+
+# target to generate assembly for a file
+src/dg_event.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_event.c.s
+.PHONY : src/dg_event.c.s
+
+src/dg_handler.o: src/dg_handler.c.o
+.PHONY : src/dg_handler.o
+
+# target to build an object file
+src/dg_handler.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_handler.c.o
+.PHONY : src/dg_handler.c.o
+
+src/dg_handler.i: src/dg_handler.c.i
+.PHONY : src/dg_handler.i
+
+# target to preprocess a source file
+src/dg_handler.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_handler.c.i
+.PHONY : src/dg_handler.c.i
+
+src/dg_handler.s: src/dg_handler.c.s
+.PHONY : src/dg_handler.s
+
+# target to generate assembly for a file
+src/dg_handler.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_handler.c.s
+.PHONY : src/dg_handler.c.s
+
+src/dg_misc.o: src/dg_misc.c.o
+.PHONY : src/dg_misc.o
+
+# target to build an object file
+src/dg_misc.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_misc.c.o
+.PHONY : src/dg_misc.c.o
+
+src/dg_misc.i: src/dg_misc.c.i
+.PHONY : src/dg_misc.i
+
+# target to preprocess a source file
+src/dg_misc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_misc.c.i
+.PHONY : src/dg_misc.c.i
+
+src/dg_misc.s: src/dg_misc.c.s
+.PHONY : src/dg_misc.s
+
+# target to generate assembly for a file
+src/dg_misc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_misc.c.s
+.PHONY : src/dg_misc.c.s
+
+src/dg_mobcmd.o: src/dg_mobcmd.c.o
+.PHONY : src/dg_mobcmd.o
+
+# target to build an object file
+src/dg_mobcmd.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_mobcmd.c.o
+.PHONY : src/dg_mobcmd.c.o
+
+src/dg_mobcmd.i: src/dg_mobcmd.c.i
+.PHONY : src/dg_mobcmd.i
+
+# target to preprocess a source file
+src/dg_mobcmd.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_mobcmd.c.i
+.PHONY : src/dg_mobcmd.c.i
+
+src/dg_mobcmd.s: src/dg_mobcmd.c.s
+.PHONY : src/dg_mobcmd.s
+
+# target to generate assembly for a file
+src/dg_mobcmd.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_mobcmd.c.s
+.PHONY : src/dg_mobcmd.c.s
+
+src/dg_objcmd.o: src/dg_objcmd.c.o
+.PHONY : src/dg_objcmd.o
+
+# target to build an object file
+src/dg_objcmd.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_objcmd.c.o
+.PHONY : src/dg_objcmd.c.o
+
+src/dg_objcmd.i: src/dg_objcmd.c.i
+.PHONY : src/dg_objcmd.i
+
+# target to preprocess a source file
+src/dg_objcmd.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_objcmd.c.i
+.PHONY : src/dg_objcmd.c.i
+
+src/dg_objcmd.s: src/dg_objcmd.c.s
+.PHONY : src/dg_objcmd.s
+
+# target to generate assembly for a file
+src/dg_objcmd.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_objcmd.c.s
+.PHONY : src/dg_objcmd.c.s
+
+src/dg_olc.o: src/dg_olc.c.o
+.PHONY : src/dg_olc.o
+
+# target to build an object file
+src/dg_olc.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_olc.c.o
+.PHONY : src/dg_olc.c.o
+
+src/dg_olc.i: src/dg_olc.c.i
+.PHONY : src/dg_olc.i
+
+# target to preprocess a source file
+src/dg_olc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_olc.c.i
+.PHONY : src/dg_olc.c.i
+
+src/dg_olc.s: src/dg_olc.c.s
+.PHONY : src/dg_olc.s
+
+# target to generate assembly for a file
+src/dg_olc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_olc.c.s
+.PHONY : src/dg_olc.c.s
+
+src/dg_scripts.o: src/dg_scripts.c.o
+.PHONY : src/dg_scripts.o
+
+# target to build an object file
+src/dg_scripts.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_scripts.c.o
+.PHONY : src/dg_scripts.c.o
+
+src/dg_scripts.i: src/dg_scripts.c.i
+.PHONY : src/dg_scripts.i
+
+# target to preprocess a source file
+src/dg_scripts.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_scripts.c.i
+.PHONY : src/dg_scripts.c.i
+
+src/dg_scripts.s: src/dg_scripts.c.s
+.PHONY : src/dg_scripts.s
+
+# target to generate assembly for a file
+src/dg_scripts.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_scripts.c.s
+.PHONY : src/dg_scripts.c.s
+
+src/dg_triggers.o: src/dg_triggers.c.o
+.PHONY : src/dg_triggers.o
+
+# target to build an object file
+src/dg_triggers.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_triggers.c.o
+.PHONY : src/dg_triggers.c.o
+
+src/dg_triggers.i: src/dg_triggers.c.i
+.PHONY : src/dg_triggers.i
+
+# target to preprocess a source file
+src/dg_triggers.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_triggers.c.i
+.PHONY : src/dg_triggers.c.i
+
+src/dg_triggers.s: src/dg_triggers.c.s
+.PHONY : src/dg_triggers.s
+
+# target to generate assembly for a file
+src/dg_triggers.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_triggers.c.s
+.PHONY : src/dg_triggers.c.s
+
+src/dg_variables.o: src/dg_variables.c.o
+.PHONY : src/dg_variables.o
+
+# target to build an object file
+src/dg_variables.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_variables.c.o
+.PHONY : src/dg_variables.c.o
+
+src/dg_variables.i: src/dg_variables.c.i
+.PHONY : src/dg_variables.i
+
+# target to preprocess a source file
+src/dg_variables.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_variables.c.i
+.PHONY : src/dg_variables.c.i
+
+src/dg_variables.s: src/dg_variables.c.s
+.PHONY : src/dg_variables.s
+
+# target to generate assembly for a file
+src/dg_variables.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_variables.c.s
+.PHONY : src/dg_variables.c.s
+
+src/dg_wldcmd.o: src/dg_wldcmd.c.o
+.PHONY : src/dg_wldcmd.o
+
+# target to build an object file
+src/dg_wldcmd.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_wldcmd.c.o
+.PHONY : src/dg_wldcmd.c.o
+
+src/dg_wldcmd.i: src/dg_wldcmd.c.i
+.PHONY : src/dg_wldcmd.i
+
+# target to preprocess a source file
+src/dg_wldcmd.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_wldcmd.c.i
+.PHONY : src/dg_wldcmd.c.i
+
+src/dg_wldcmd.s: src/dg_wldcmd.c.s
+.PHONY : src/dg_wldcmd.s
+
+# target to generate assembly for a file
+src/dg_wldcmd.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/dg_wldcmd.c.s
+.PHONY : src/dg_wldcmd.c.s
+
+src/feats.o: src/feats.c.o
+.PHONY : src/feats.o
+
+# target to build an object file
+src/feats.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/feats.c.o
+.PHONY : src/feats.c.o
+
+src/feats.i: src/feats.c.i
+.PHONY : src/feats.i
+
+# target to preprocess a source file
+src/feats.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/feats.c.i
+.PHONY : src/feats.c.i
+
+src/feats.s: src/feats.c.s
+.PHONY : src/feats.s
+
+# target to generate assembly for a file
+src/feats.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/feats.c.s
+.PHONY : src/feats.c.s
+
+src/fight.o: src/fight.c.o
+.PHONY : src/fight.o
+
+# target to build an object file
+src/fight.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/fight.c.o
+.PHONY : src/fight.c.o
+
+src/fight.i: src/fight.c.i
+.PHONY : src/fight.i
+
+# target to preprocess a source file
+src/fight.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/fight.c.i
+.PHONY : src/fight.c.i
+
+src/fight.s: src/fight.c.s
+.PHONY : src/fight.s
+
+# target to generate assembly for a file
+src/fight.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/fight.c.s
+.PHONY : src/fight.c.s
+
+src/gedit.o: src/gedit.c.o
+.PHONY : src/gedit.o
+
+# target to build an object file
+src/gedit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/gedit.c.o
+.PHONY : src/gedit.c.o
+
+src/gedit.i: src/gedit.c.i
+.PHONY : src/gedit.i
+
+# target to preprocess a source file
+src/gedit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/gedit.c.i
+.PHONY : src/gedit.c.i
+
+src/gedit.s: src/gedit.c.s
+.PHONY : src/gedit.s
+
+# target to generate assembly for a file
+src/gedit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/gedit.c.s
+.PHONY : src/gedit.c.s
+
+src/gengld.o: src/gengld.c.o
+.PHONY : src/gengld.o
+
+# target to build an object file
+src/gengld.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/gengld.c.o
+.PHONY : src/gengld.c.o
+
+src/gengld.i: src/gengld.c.i
+.PHONY : src/gengld.i
+
+# target to preprocess a source file
+src/gengld.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/gengld.c.i
+.PHONY : src/gengld.c.i
+
+src/gengld.s: src/gengld.c.s
+.PHONY : src/gengld.s
+
+# target to generate assembly for a file
+src/gengld.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/gengld.c.s
+.PHONY : src/gengld.c.s
+
+src/genmob.o: src/genmob.c.o
+.PHONY : src/genmob.o
+
+# target to build an object file
+src/genmob.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genmob.c.o
+.PHONY : src/genmob.c.o
+
+src/genmob.i: src/genmob.c.i
+.PHONY : src/genmob.i
+
+# target to preprocess a source file
+src/genmob.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genmob.c.i
+.PHONY : src/genmob.c.i
+
+src/genmob.s: src/genmob.c.s
+.PHONY : src/genmob.s
+
+# target to generate assembly for a file
+src/genmob.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genmob.c.s
+.PHONY : src/genmob.c.s
+
+src/genobj.o: src/genobj.c.o
+.PHONY : src/genobj.o
+
+# target to build an object file
+src/genobj.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genobj.c.o
+.PHONY : src/genobj.c.o
+
+src/genobj.i: src/genobj.c.i
+.PHONY : src/genobj.i
+
+# target to preprocess a source file
+src/genobj.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genobj.c.i
+.PHONY : src/genobj.c.i
+
+src/genobj.s: src/genobj.c.s
+.PHONY : src/genobj.s
+
+# target to generate assembly for a file
+src/genobj.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genobj.c.s
+.PHONY : src/genobj.c.s
+
+src/genolc.o: src/genolc.c.o
+.PHONY : src/genolc.o
+
+# target to build an object file
+src/genolc.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genolc.c.o
+.PHONY : src/genolc.c.o
+
+src/genolc.i: src/genolc.c.i
+.PHONY : src/genolc.i
+
+# target to preprocess a source file
+src/genolc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genolc.c.i
+.PHONY : src/genolc.c.i
+
+src/genolc.s: src/genolc.c.s
+.PHONY : src/genolc.s
+
+# target to generate assembly for a file
+src/genolc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genolc.c.s
+.PHONY : src/genolc.c.s
+
+src/genshp.o: src/genshp.c.o
+.PHONY : src/genshp.o
+
+# target to build an object file
+src/genshp.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genshp.c.o
+.PHONY : src/genshp.c.o
+
+src/genshp.i: src/genshp.c.i
+.PHONY : src/genshp.i
+
+# target to preprocess a source file
+src/genshp.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genshp.c.i
+.PHONY : src/genshp.c.i
+
+src/genshp.s: src/genshp.c.s
+.PHONY : src/genshp.s
+
+# target to generate assembly for a file
+src/genshp.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genshp.c.s
+.PHONY : src/genshp.c.s
+
+src/genwld.o: src/genwld.c.o
+.PHONY : src/genwld.o
+
+# target to build an object file
+src/genwld.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genwld.c.o
+.PHONY : src/genwld.c.o
+
+src/genwld.i: src/genwld.c.i
+.PHONY : src/genwld.i
+
+# target to preprocess a source file
+src/genwld.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genwld.c.i
+.PHONY : src/genwld.c.i
+
+src/genwld.s: src/genwld.c.s
+.PHONY : src/genwld.s
+
+# target to generate assembly for a file
+src/genwld.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genwld.c.s
+.PHONY : src/genwld.c.s
+
+src/genzon.o: src/genzon.c.o
+.PHONY : src/genzon.o
+
+# target to build an object file
+src/genzon.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genzon.c.o
+.PHONY : src/genzon.c.o
+
+src/genzon.i: src/genzon.c.i
+.PHONY : src/genzon.i
+
+# target to preprocess a source file
+src/genzon.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genzon.c.i
+.PHONY : src/genzon.c.i
+
+src/genzon.s: src/genzon.c.s
+.PHONY : src/genzon.s
+
+# target to generate assembly for a file
+src/genzon.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/genzon.c.s
+.PHONY : src/genzon.c.s
+
+src/graph.o: src/graph.c.o
+.PHONY : src/graph.o
+
+# target to build an object file
+src/graph.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/graph.c.o
+.PHONY : src/graph.c.o
+
+src/graph.i: src/graph.c.i
+.PHONY : src/graph.i
+
+# target to preprocess a source file
+src/graph.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/graph.c.i
+.PHONY : src/graph.c.i
+
+src/graph.s: src/graph.c.s
+.PHONY : src/graph.s
+
+# target to generate assembly for a file
+src/graph.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/graph.c.s
+.PHONY : src/graph.c.s
+
+src/guild.o: src/guild.c.o
+.PHONY : src/guild.o
+
+# target to build an object file
+src/guild.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/guild.c.o
+.PHONY : src/guild.c.o
+
+src/guild.i: src/guild.c.i
+.PHONY : src/guild.i
+
+# target to preprocess a source file
+src/guild.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/guild.c.i
+.PHONY : src/guild.c.i
+
+src/guild.s: src/guild.c.s
+.PHONY : src/guild.s
+
+# target to generate assembly for a file
+src/guild.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/guild.c.s
+.PHONY : src/guild.c.s
+
+src/handler.o: src/handler.c.o
+.PHONY : src/handler.o
+
+# target to build an object file
+src/handler.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/handler.c.o
+.PHONY : src/handler.c.o
+
+src/handler.i: src/handler.c.i
+.PHONY : src/handler.i
+
+# target to preprocess a source file
+src/handler.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/handler.c.i
+.PHONY : src/handler.c.i
+
+src/handler.s: src/handler.c.s
+.PHONY : src/handler.s
+
+# target to generate assembly for a file
+src/handler.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/handler.c.s
+.PHONY : src/handler.c.s
+
+src/hedit.o: src/hedit.c.o
+.PHONY : src/hedit.o
+
+# target to build an object file
+src/hedit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/hedit.c.o
+.PHONY : src/hedit.c.o
+
+src/hedit.i: src/hedit.c.i
+.PHONY : src/hedit.i
+
+# target to preprocess a source file
+src/hedit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/hedit.c.i
+.PHONY : src/hedit.c.i
+
+src/hedit.s: src/hedit.c.s
+.PHONY : src/hedit.s
+
+# target to generate assembly for a file
+src/hedit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/hedit.c.s
+.PHONY : src/hedit.c.s
+
+src/house.o: src/house.c.o
+.PHONY : src/house.o
+
+# target to build an object file
+src/house.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/house.c.o
+.PHONY : src/house.c.o
+
+src/house.i: src/house.c.i
+.PHONY : src/house.i
+
+# target to preprocess a source file
+src/house.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/house.c.i
+.PHONY : src/house.c.i
+
+src/house.s: src/house.c.s
+.PHONY : src/house.s
+
+# target to generate assembly for a file
+src/house.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/house.c.s
+.PHONY : src/house.c.s
+
+src/hsedit.o: src/hsedit.c.o
+.PHONY : src/hsedit.o
+
+# target to build an object file
+src/hsedit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/hsedit.c.o
+.PHONY : src/hsedit.c.o
+
+src/hsedit.i: src/hsedit.c.i
+.PHONY : src/hsedit.i
+
+# target to preprocess a source file
+src/hsedit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/hsedit.c.i
+.PHONY : src/hsedit.c.i
+
+src/hsedit.s: src/hsedit.c.s
+.PHONY : src/hsedit.s
+
+# target to generate assembly for a file
+src/hsedit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/hsedit.c.s
+.PHONY : src/hsedit.c.s
+
+src/htree.o: src/htree.c.o
+.PHONY : src/htree.o
+
+# target to build an object file
+src/htree.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/htree.c.o
+.PHONY : src/htree.c.o
+
+src/htree.i: src/htree.c.i
+.PHONY : src/htree.i
+
+# target to preprocess a source file
+src/htree.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/htree.c.i
+.PHONY : src/htree.c.i
+
+src/htree.s: src/htree.c.s
+.PHONY : src/htree.s
+
+# target to generate assembly for a file
+src/htree.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/htree.c.s
+.PHONY : src/htree.c.s
+
+src/imc.o: src/imc.c.o
+.PHONY : src/imc.o
+
+# target to build an object file
+src/imc.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/imc.c.o
+.PHONY : src/imc.c.o
+
+src/imc.i: src/imc.c.i
+.PHONY : src/imc.i
+
+# target to preprocess a source file
+src/imc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/imc.c.i
+.PHONY : src/imc.c.i
+
+src/imc.s: src/imc.c.s
+.PHONY : src/imc.s
+
+# target to generate assembly for a file
+src/imc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/imc.c.s
+.PHONY : src/imc.c.s
+
+src/improved-edit.o: src/improved-edit.c.o
+.PHONY : src/improved-edit.o
+
+# target to build an object file
+src/improved-edit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/improved-edit.c.o
+.PHONY : src/improved-edit.c.o
+
+src/improved-edit.i: src/improved-edit.c.i
+.PHONY : src/improved-edit.i
+
+# target to preprocess a source file
+src/improved-edit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/improved-edit.c.i
+.PHONY : src/improved-edit.c.i
+
+src/improved-edit.s: src/improved-edit.c.s
+.PHONY : src/improved-edit.s
+
+# target to generate assembly for a file
+src/improved-edit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/improved-edit.c.s
+.PHONY : src/improved-edit.c.s
+
+src/interpreter.o: src/interpreter.c.o
+.PHONY : src/interpreter.o
+
+# target to build an object file
+src/interpreter.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/interpreter.c.o
+.PHONY : src/interpreter.c.o
+
+src/interpreter.i: src/interpreter.c.i
+.PHONY : src/interpreter.i
+
+# target to preprocess a source file
+src/interpreter.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/interpreter.c.i
+.PHONY : src/interpreter.c.i
+
+src/interpreter.s: src/interpreter.c.s
+.PHONY : src/interpreter.s
+
+# target to generate assembly for a file
+src/interpreter.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/interpreter.c.s
+.PHONY : src/interpreter.c.s
+
+src/local_limits.o: src/local_limits.c.o
+.PHONY : src/local_limits.o
+
+# target to build an object file
+src/local_limits.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/local_limits.c.o
+.PHONY : src/local_limits.c.o
+
+src/local_limits.i: src/local_limits.c.i
+.PHONY : src/local_limits.i
+
+# target to preprocess a source file
+src/local_limits.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/local_limits.c.i
+.PHONY : src/local_limits.c.i
+
+src/local_limits.s: src/local_limits.c.s
+.PHONY : src/local_limits.s
+
+# target to generate assembly for a file
+src/local_limits.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/local_limits.c.s
+.PHONY : src/local_limits.c.s
+
+src/magic.o: src/magic.c.o
+.PHONY : src/magic.o
+
+# target to build an object file
+src/magic.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/magic.c.o
+.PHONY : src/magic.c.o
+
+src/magic.i: src/magic.c.i
+.PHONY : src/magic.i
+
+# target to preprocess a source file
+src/magic.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/magic.c.i
+.PHONY : src/magic.c.i
+
+src/magic.s: src/magic.c.s
+.PHONY : src/magic.s
+
+# target to generate assembly for a file
+src/magic.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/magic.c.s
+.PHONY : src/magic.c.s
+
+src/mail.o: src/mail.c.o
+.PHONY : src/mail.o
+
+# target to build an object file
+src/mail.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/mail.c.o
+.PHONY : src/mail.c.o
+
+src/mail.i: src/mail.c.i
+.PHONY : src/mail.i
+
+# target to preprocess a source file
+src/mail.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/mail.c.i
+.PHONY : src/mail.c.i
+
+src/mail.s: src/mail.c.s
+.PHONY : src/mail.s
+
+# target to generate assembly for a file
+src/mail.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/mail.c.s
+.PHONY : src/mail.c.s
+
+src/maputils.o: src/maputils.c.o
+.PHONY : src/maputils.o
+
+# target to build an object file
+src/maputils.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/maputils.c.o
+.PHONY : src/maputils.c.o
+
+src/maputils.i: src/maputils.c.i
+.PHONY : src/maputils.i
+
+# target to preprocess a source file
+src/maputils.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/maputils.c.i
+.PHONY : src/maputils.c.i
+
+src/maputils.s: src/maputils.c.s
+.PHONY : src/maputils.s
+
+# target to generate assembly for a file
+src/maputils.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/maputils.c.s
+.PHONY : src/maputils.c.s
+
+src/medit.o: src/medit.c.o
+.PHONY : src/medit.o
+
+# target to build an object file
+src/medit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/medit.c.o
+.PHONY : src/medit.c.o
+
+src/medit.i: src/medit.c.i
+.PHONY : src/medit.i
+
+# target to preprocess a source file
+src/medit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/medit.c.i
+.PHONY : src/medit.c.i
+
+src/medit.s: src/medit.c.s
+.PHONY : src/medit.s
+
+# target to generate assembly for a file
+src/medit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/medit.c.s
+.PHONY : src/medit.c.s
+
+src/mobact.o: src/mobact.c.o
+.PHONY : src/mobact.o
+
+# target to build an object file
+src/mobact.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/mobact.c.o
+.PHONY : src/mobact.c.o
+
+src/mobact.i: src/mobact.c.i
+.PHONY : src/mobact.i
+
+# target to preprocess a source file
+src/mobact.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/mobact.c.i
+.PHONY : src/mobact.c.i
+
+src/mobact.s: src/mobact.c.s
+.PHONY : src/mobact.s
+
+# target to generate assembly for a file
+src/mobact.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/mobact.c.s
+.PHONY : src/mobact.c.s
+
+src/modify.o: src/modify.c.o
+.PHONY : src/modify.o
+
+# target to build an object file
+src/modify.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/modify.c.o
+.PHONY : src/modify.c.o
+
+src/modify.i: src/modify.c.i
+.PHONY : src/modify.i
+
+# target to preprocess a source file
+src/modify.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/modify.c.i
+.PHONY : src/modify.c.i
+
+src/modify.s: src/modify.c.s
+.PHONY : src/modify.s
+
+# target to generate assembly for a file
+src/modify.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/modify.c.s
+.PHONY : src/modify.c.s
+
+src/oasis.o: src/oasis.c.o
+.PHONY : src/oasis.o
+
+# target to build an object file
+src/oasis.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oasis.c.o
+.PHONY : src/oasis.c.o
+
+src/oasis.i: src/oasis.c.i
+.PHONY : src/oasis.i
+
+# target to preprocess a source file
+src/oasis.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oasis.c.i
+.PHONY : src/oasis.c.i
+
+src/oasis.s: src/oasis.c.s
+.PHONY : src/oasis.s
+
+# target to generate assembly for a file
+src/oasis.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oasis.c.s
+.PHONY : src/oasis.c.s
+
+src/oasis_copy.o: src/oasis_copy.c.o
+.PHONY : src/oasis_copy.o
+
+# target to build an object file
+src/oasis_copy.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oasis_copy.c.o
+.PHONY : src/oasis_copy.c.o
+
+src/oasis_copy.i: src/oasis_copy.c.i
+.PHONY : src/oasis_copy.i
+
+# target to preprocess a source file
+src/oasis_copy.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oasis_copy.c.i
+.PHONY : src/oasis_copy.c.i
+
+src/oasis_copy.s: src/oasis_copy.c.s
+.PHONY : src/oasis_copy.s
+
+# target to generate assembly for a file
+src/oasis_copy.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oasis_copy.c.s
+.PHONY : src/oasis_copy.c.s
+
+src/oasis_delete.o: src/oasis_delete.c.o
+.PHONY : src/oasis_delete.o
+
+# target to build an object file
+src/oasis_delete.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oasis_delete.c.o
+.PHONY : src/oasis_delete.c.o
+
+src/oasis_delete.i: src/oasis_delete.c.i
+.PHONY : src/oasis_delete.i
+
+# target to preprocess a source file
+src/oasis_delete.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oasis_delete.c.i
+.PHONY : src/oasis_delete.c.i
+
+src/oasis_delete.s: src/oasis_delete.c.s
+.PHONY : src/oasis_delete.s
+
+# target to generate assembly for a file
+src/oasis_delete.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oasis_delete.c.s
+.PHONY : src/oasis_delete.c.s
+
+src/oasis_list.o: src/oasis_list.c.o
+.PHONY : src/oasis_list.o
+
+# target to build an object file
+src/oasis_list.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oasis_list.c.o
+.PHONY : src/oasis_list.c.o
+
+src/oasis_list.i: src/oasis_list.c.i
+.PHONY : src/oasis_list.i
+
+# target to preprocess a source file
+src/oasis_list.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oasis_list.c.i
+.PHONY : src/oasis_list.c.i
+
+src/oasis_list.s: src/oasis_list.c.s
+.PHONY : src/oasis_list.s
+
+# target to generate assembly for a file
+src/oasis_list.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oasis_list.c.s
+.PHONY : src/oasis_list.c.s
+
+src/obj_edit.o: src/obj_edit.c.o
+.PHONY : src/obj_edit.o
+
+# target to build an object file
+src/obj_edit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/obj_edit.c.o
+.PHONY : src/obj_edit.c.o
+
+src/obj_edit.i: src/obj_edit.c.i
+.PHONY : src/obj_edit.i
+
+# target to preprocess a source file
+src/obj_edit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/obj_edit.c.i
+.PHONY : src/obj_edit.c.i
+
+src/obj_edit.s: src/obj_edit.c.s
+.PHONY : src/obj_edit.s
+
+# target to generate assembly for a file
+src/obj_edit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/obj_edit.c.s
+.PHONY : src/obj_edit.c.s
+
+src/objsave.o: src/objsave.c.o
+.PHONY : src/objsave.o
+
+# target to build an object file
+src/objsave.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/objsave.c.o
+.PHONY : src/objsave.c.o
+
+src/objsave.i: src/objsave.c.i
+.PHONY : src/objsave.i
+
+# target to preprocess a source file
+src/objsave.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/objsave.c.i
+.PHONY : src/objsave.c.i
+
+src/objsave.s: src/objsave.c.s
+.PHONY : src/objsave.s
+
+# target to generate assembly for a file
+src/objsave.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/objsave.c.s
+.PHONY : src/objsave.c.s
+
+src/oedit.o: src/oedit.c.o
+.PHONY : src/oedit.o
+
+# target to build an object file
+src/oedit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oedit.c.o
+.PHONY : src/oedit.c.o
+
+src/oedit.i: src/oedit.c.i
+.PHONY : src/oedit.i
+
+# target to preprocess a source file
+src/oedit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oedit.c.i
+.PHONY : src/oedit.c.i
+
+src/oedit.s: src/oedit.c.s
+.PHONY : src/oedit.s
+
+# target to generate assembly for a file
+src/oedit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/oedit.c.s
+.PHONY : src/oedit.c.s
+
+src/olc.o: src/olc.c.o
+.PHONY : src/olc.o
+
+# target to build an object file
+src/olc.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/olc.c.o
+.PHONY : src/olc.c.o
+
+src/olc.i: src/olc.c.i
+.PHONY : src/olc.i
+
+# target to preprocess a source file
+src/olc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/olc.c.i
+.PHONY : src/olc.c.i
+
+src/olc.s: src/olc.c.s
+.PHONY : src/olc.s
+
+# target to generate assembly for a file
+src/olc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/olc.c.s
+.PHONY : src/olc.c.s
+
+src/players.o: src/players.c.o
+.PHONY : src/players.o
+
+# target to build an object file
+src/players.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/players.c.o
+.PHONY : src/players.c.o
+
+src/players.i: src/players.c.i
+.PHONY : src/players.i
+
+# target to preprocess a source file
+src/players.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/players.c.i
+.PHONY : src/players.c.i
+
+src/players.s: src/players.c.s
+.PHONY : src/players.s
+
+# target to generate assembly for a file
+src/players.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/players.c.s
+.PHONY : src/players.c.s
+
+src/races.o: src/races.c.o
+.PHONY : src/races.o
+
+# target to build an object file
+src/races.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/races.c.o
+.PHONY : src/races.c.o
+
+src/races.i: src/races.c.i
+.PHONY : src/races.i
+
+# target to preprocess a source file
+src/races.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/races.c.i
+.PHONY : src/races.c.i
+
+src/races.s: src/races.c.s
+.PHONY : src/races.s
+
+# target to generate assembly for a file
+src/races.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/races.c.s
+.PHONY : src/races.c.s
+
+src/random.o: src/random.c.o
+.PHONY : src/random.o
+
+# target to build an object file
+src/random.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/random.c.o
+.PHONY : src/random.c.o
+
+src/random.i: src/random.c.i
+.PHONY : src/random.i
+
+# target to preprocess a source file
+src/random.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/random.c.i
+.PHONY : src/random.c.i
+
+src/random.s: src/random.c.s
+.PHONY : src/random.s
+
+# target to generate assembly for a file
+src/random.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/random.c.s
+.PHONY : src/random.c.s
+
+src/redit.o: src/redit.c.o
+.PHONY : src/redit.o
+
+# target to build an object file
+src/redit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/redit.c.o
+.PHONY : src/redit.c.o
+
+src/redit.i: src/redit.c.i
+.PHONY : src/redit.i
+
+# target to preprocess a source file
+src/redit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/redit.c.i
+.PHONY : src/redit.c.i
+
+src/redit.s: src/redit.c.s
+.PHONY : src/redit.s
+
+# target to generate assembly for a file
+src/redit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/redit.c.s
+.PHONY : src/redit.c.s
+
+src/reset.o: src/reset.c.o
+.PHONY : src/reset.o
+
+# target to build an object file
+src/reset.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/reset.c.o
+.PHONY : src/reset.c.o
+
+src/reset.i: src/reset.c.i
+.PHONY : src/reset.i
+
+# target to preprocess a source file
+src/reset.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/reset.c.i
+.PHONY : src/reset.c.i
+
+src/reset.s: src/reset.c.s
+.PHONY : src/reset.s
+
+# target to generate assembly for a file
+src/reset.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/reset.c.s
+.PHONY : src/reset.c.s
+
+src/sedit.o: src/sedit.c.o
+.PHONY : src/sedit.o
+
+# target to build an object file
+src/sedit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/sedit.c.o
+.PHONY : src/sedit.c.o
+
+src/sedit.i: src/sedit.c.i
+.PHONY : src/sedit.i
+
+# target to preprocess a source file
+src/sedit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/sedit.c.i
+.PHONY : src/sedit.c.i
+
+src/sedit.s: src/sedit.c.s
+.PHONY : src/sedit.s
+
+# target to generate assembly for a file
+src/sedit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/sedit.c.s
+.PHONY : src/sedit.c.s
+
+src/sha256.o: src/sha256.c.o
+.PHONY : src/sha256.o
+
+# target to build an object file
+src/sha256.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/sha256.c.o
+.PHONY : src/sha256.c.o
+
+src/sha256.i: src/sha256.c.i
+.PHONY : src/sha256.i
+
+# target to preprocess a source file
+src/sha256.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/sha256.c.i
+.PHONY : src/sha256.c.i
+
+src/sha256.s: src/sha256.c.s
+.PHONY : src/sha256.s
+
+# target to generate assembly for a file
+src/sha256.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/sha256.c.s
+.PHONY : src/sha256.c.s
+
+src/shop.o: src/shop.c.o
+.PHONY : src/shop.o
+
+# target to build an object file
+src/shop.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/shop.c.o
+.PHONY : src/shop.c.o
+
+src/shop.i: src/shop.c.i
+.PHONY : src/shop.i
+
+# target to preprocess a source file
+src/shop.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/shop.c.i
+.PHONY : src/shop.c.i
+
+src/shop.s: src/shop.c.s
+.PHONY : src/shop.s
+
+# target to generate assembly for a file
+src/shop.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/shop.c.s
+.PHONY : src/shop.c.s
+
+src/spec_assign.o: src/spec_assign.c.o
+.PHONY : src/spec_assign.o
+
+# target to build an object file
+src/spec_assign.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/spec_assign.c.o
+.PHONY : src/spec_assign.c.o
+
+src/spec_assign.i: src/spec_assign.c.i
+.PHONY : src/spec_assign.i
+
+# target to preprocess a source file
+src/spec_assign.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/spec_assign.c.i
+.PHONY : src/spec_assign.c.i
+
+src/spec_assign.s: src/spec_assign.c.s
+.PHONY : src/spec_assign.s
+
+# target to generate assembly for a file
+src/spec_assign.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/spec_assign.c.s
+.PHONY : src/spec_assign.c.s
+
+src/spec_procs.o: src/spec_procs.c.o
+.PHONY : src/spec_procs.o
+
+# target to build an object file
+src/spec_procs.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/spec_procs.c.o
+.PHONY : src/spec_procs.c.o
+
+src/spec_procs.i: src/spec_procs.c.i
+.PHONY : src/spec_procs.i
+
+# target to preprocess a source file
+src/spec_procs.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/spec_procs.c.i
+.PHONY : src/spec_procs.c.i
+
+src/spec_procs.s: src/spec_procs.c.s
+.PHONY : src/spec_procs.s
+
+# target to generate assembly for a file
+src/spec_procs.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/spec_procs.c.s
+.PHONY : src/spec_procs.c.s
+
+src/spell_parser.o: src/spell_parser.c.o
+.PHONY : src/spell_parser.o
+
+# target to build an object file
+src/spell_parser.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/spell_parser.c.o
+.PHONY : src/spell_parser.c.o
+
+src/spell_parser.i: src/spell_parser.c.i
+.PHONY : src/spell_parser.i
+
+# target to preprocess a source file
+src/spell_parser.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/spell_parser.c.i
+.PHONY : src/spell_parser.c.i
+
+src/spell_parser.s: src/spell_parser.c.s
+.PHONY : src/spell_parser.s
+
+# target to generate assembly for a file
+src/spell_parser.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/spell_parser.c.s
+.PHONY : src/spell_parser.c.s
+
+src/spells.o: src/spells.c.o
+.PHONY : src/spells.o
+
+# target to build an object file
+src/spells.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/spells.c.o
+.PHONY : src/spells.c.o
+
+src/spells.i: src/spells.c.i
+.PHONY : src/spells.i
+
+# target to preprocess a source file
+src/spells.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/spells.c.i
+.PHONY : src/spells.c.i
+
+src/spells.s: src/spells.c.s
+.PHONY : src/spells.s
+
+# target to generate assembly for a file
+src/spells.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/spells.c.s
+.PHONY : src/spells.c.s
+
+src/statedit.o: src/statedit.c.o
+.PHONY : src/statedit.o
+
+# target to build an object file
+src/statedit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/statedit.c.o
+.PHONY : src/statedit.c.o
+
+src/statedit.i: src/statedit.c.i
+.PHONY : src/statedit.i
+
+# target to preprocess a source file
+src/statedit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/statedit.c.i
+.PHONY : src/statedit.c.i
+
+src/statedit.s: src/statedit.c.s
+.PHONY : src/statedit.s
+
+# target to generate assembly for a file
+src/statedit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/statedit.c.s
+.PHONY : src/statedit.c.s
+
+src/stringutils.o: src/stringutils.c.o
+.PHONY : src/stringutils.o
+
+# target to build an object file
+src/stringutils.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/stringutils.c.o
+.PHONY : src/stringutils.c.o
+
+src/stringutils.i: src/stringutils.c.i
+.PHONY : src/stringutils.i
+
+# target to preprocess a source file
+src/stringutils.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/stringutils.c.i
+.PHONY : src/stringutils.c.i
+
+src/stringutils.s: src/stringutils.c.s
+.PHONY : src/stringutils.s
+
+# target to generate assembly for a file
+src/stringutils.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/stringutils.c.s
+.PHONY : src/stringutils.c.s
+
+src/tedit.o: src/tedit.c.o
+.PHONY : src/tedit.o
+
+# target to build an object file
+src/tedit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/tedit.c.o
+.PHONY : src/tedit.c.o
+
+src/tedit.i: src/tedit.c.i
+.PHONY : src/tedit.i
+
+# target to preprocess a source file
+src/tedit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/tedit.c.i
+.PHONY : src/tedit.c.i
+
+src/tedit.s: src/tedit.c.s
+.PHONY : src/tedit.s
+
+# target to generate assembly for a file
+src/tedit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/tedit.c.s
+.PHONY : src/tedit.c.s
+
+src/utils.o: src/utils.c.o
+.PHONY : src/utils.o
+
+# target to build an object file
+src/utils.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/utils.c.o
+.PHONY : src/utils.c.o
+
+src/utils.i: src/utils.c.i
+.PHONY : src/utils.i
+
+# target to preprocess a source file
+src/utils.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/utils.c.i
+.PHONY : src/utils.c.i
+
+src/utils.s: src/utils.c.s
+.PHONY : src/utils.s
+
+# target to generate assembly for a file
+src/utils.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/utils.c.s
+.PHONY : src/utils.c.s
+
+src/vehicles.o: src/vehicles.c.o
+.PHONY : src/vehicles.o
+
+# target to build an object file
+src/vehicles.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/vehicles.c.o
+.PHONY : src/vehicles.c.o
+
+src/vehicles.i: src/vehicles.c.i
+.PHONY : src/vehicles.i
+
+# target to preprocess a source file
+src/vehicles.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/vehicles.c.i
+.PHONY : src/vehicles.c.i
+
+src/vehicles.s: src/vehicles.c.s
+.PHONY : src/vehicles.s
+
+# target to generate assembly for a file
+src/vehicles.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/vehicles.c.s
+.PHONY : src/vehicles.c.s
+
+src/weather.o: src/weather.c.o
+.PHONY : src/weather.o
+
+# target to build an object file
+src/weather.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/weather.c.o
+.PHONY : src/weather.c.o
+
+src/weather.i: src/weather.c.i
+.PHONY : src/weather.i
+
+# target to preprocess a source file
+src/weather.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/weather.c.i
+.PHONY : src/weather.c.i
+
+src/weather.s: src/weather.c.s
+.PHONY : src/weather.s
+
+# target to generate assembly for a file
+src/weather.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/weather.c.s
+.PHONY : src/weather.c.s
+
+src/zedit.o: src/zedit.c.o
+.PHONY : src/zedit.o
+
+# target to build an object file
+src/zedit.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/zedit.c.o
+.PHONY : src/zedit.c.o
+
+src/zedit.i: src/zedit.c.i
+.PHONY : src/zedit.i
+
+# target to preprocess a source file
+src/zedit.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/zedit.c.i
+.PHONY : src/zedit.c.i
+
+src/zedit.s: src/zedit.c.s
+.PHONY : src/zedit.s
+
+# target to generate assembly for a file
+src/zedit.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/zedit.c.s
+.PHONY : src/zedit.c.s
+
+src/zmalloc.o: src/zmalloc.c.o
+.PHONY : src/zmalloc.o
+
+# target to build an object file
+src/zmalloc.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/zmalloc.c.o
+.PHONY : src/zmalloc.c.o
+
+src/zmalloc.i: src/zmalloc.c.i
+.PHONY : src/zmalloc.i
+
+# target to preprocess a source file
+src/zmalloc.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/zmalloc.c.i
+.PHONY : src/zmalloc.c.i
+
+src/zmalloc.s: src/zmalloc.c.s
+.PHONY : src/zmalloc.s
+
+# target to generate assembly for a file
+src/zmalloc.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/zmalloc.c.s
+.PHONY : src/zmalloc.c.s
 
 # Help Target
 help:
@@ -162,9 +2407,289 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... circle"
-	@echo "... amalgam.o"
-	@echo "... amalgam.i"
-	@echo "... amalgam.s"
+	@echo "... circlemud"
+	@echo "... apps/circle.o"
+	@echo "... apps/circle.i"
+	@echo "... apps/circle.s"
+	@echo "... src/act.attack.o"
+	@echo "... src/act.attack.i"
+	@echo "... src/act.attack.s"
+	@echo "... src/act.comm.o"
+	@echo "... src/act.comm.i"
+	@echo "... src/act.comm.s"
+	@echo "... src/act.informative.o"
+	@echo "... src/act.informative.i"
+	@echo "... src/act.informative.s"
+	@echo "... src/act.item.o"
+	@echo "... src/act.item.i"
+	@echo "... src/act.item.s"
+	@echo "... src/act.misc.o"
+	@echo "... src/act.misc.i"
+	@echo "... src/act.misc.s"
+	@echo "... src/act.movement.o"
+	@echo "... src/act.movement.i"
+	@echo "... src/act.movement.s"
+	@echo "... src/act.offensive.o"
+	@echo "... src/act.offensive.i"
+	@echo "... src/act.offensive.s"
+	@echo "... src/act.other.o"
+	@echo "... src/act.other.i"
+	@echo "... src/act.other.s"
+	@echo "... src/act.social.o"
+	@echo "... src/act.social.i"
+	@echo "... src/act.social.s"
+	@echo "... src/act.wizard.o"
+	@echo "... src/act.wizard.i"
+	@echo "... src/act.wizard.s"
+	@echo "... src/aedit.o"
+	@echo "... src/aedit.i"
+	@echo "... src/aedit.s"
+	@echo "... src/alias.o"
+	@echo "... src/alias.i"
+	@echo "... src/alias.s"
+	@echo "... src/assedit.o"
+	@echo "... src/assedit.i"
+	@echo "... src/assedit.s"
+	@echo "... src/assemblies.o"
+	@echo "... src/assemblies.i"
+	@echo "... src/assemblies.s"
+	@echo "... src/ban.o"
+	@echo "... src/ban.i"
+	@echo "... src/ban.s"
+	@echo "... src/boards.o"
+	@echo "... src/boards.i"
+	@echo "... src/boards.s"
+	@echo "... src/bsd-snprintf.o"
+	@echo "... src/bsd-snprintf.i"
+	@echo "... src/bsd-snprintf.s"
+	@echo "... src/cedit.o"
+	@echo "... src/cedit.i"
+	@echo "... src/cedit.s"
+	@echo "... src/clan.o"
+	@echo "... src/clan.i"
+	@echo "... src/clan.s"
+	@echo "... src/class.o"
+	@echo "... src/class.i"
+	@echo "... src/class.s"
+	@echo "... src/combat.o"
+	@echo "... src/combat.i"
+	@echo "... src/combat.s"
+	@echo "... src/comm.o"
+	@echo "... src/comm.i"
+	@echo "... src/comm.s"
+	@echo "... src/config.o"
+	@echo "... src/config.i"
+	@echo "... src/config.s"
+	@echo "... src/constants.o"
+	@echo "... src/constants.i"
+	@echo "... src/constants.s"
+	@echo "... src/context_help.o"
+	@echo "... src/context_help.i"
+	@echo "... src/context_help.s"
+	@echo "... src/db.o"
+	@echo "... src/db.i"
+	@echo "... src/db.s"
+	@echo "... src/dg_comm.o"
+	@echo "... src/dg_comm.i"
+	@echo "... src/dg_comm.s"
+	@echo "... src/dg_db_scripts.o"
+	@echo "... src/dg_db_scripts.i"
+	@echo "... src/dg_db_scripts.s"
+	@echo "... src/dg_event.o"
+	@echo "... src/dg_event.i"
+	@echo "... src/dg_event.s"
+	@echo "... src/dg_handler.o"
+	@echo "... src/dg_handler.i"
+	@echo "... src/dg_handler.s"
+	@echo "... src/dg_misc.o"
+	@echo "... src/dg_misc.i"
+	@echo "... src/dg_misc.s"
+	@echo "... src/dg_mobcmd.o"
+	@echo "... src/dg_mobcmd.i"
+	@echo "... src/dg_mobcmd.s"
+	@echo "... src/dg_objcmd.o"
+	@echo "... src/dg_objcmd.i"
+	@echo "... src/dg_objcmd.s"
+	@echo "... src/dg_olc.o"
+	@echo "... src/dg_olc.i"
+	@echo "... src/dg_olc.s"
+	@echo "... src/dg_scripts.o"
+	@echo "... src/dg_scripts.i"
+	@echo "... src/dg_scripts.s"
+	@echo "... src/dg_triggers.o"
+	@echo "... src/dg_triggers.i"
+	@echo "... src/dg_triggers.s"
+	@echo "... src/dg_variables.o"
+	@echo "... src/dg_variables.i"
+	@echo "... src/dg_variables.s"
+	@echo "... src/dg_wldcmd.o"
+	@echo "... src/dg_wldcmd.i"
+	@echo "... src/dg_wldcmd.s"
+	@echo "... src/feats.o"
+	@echo "... src/feats.i"
+	@echo "... src/feats.s"
+	@echo "... src/fight.o"
+	@echo "... src/fight.i"
+	@echo "... src/fight.s"
+	@echo "... src/gedit.o"
+	@echo "... src/gedit.i"
+	@echo "... src/gedit.s"
+	@echo "... src/gengld.o"
+	@echo "... src/gengld.i"
+	@echo "... src/gengld.s"
+	@echo "... src/genmob.o"
+	@echo "... src/genmob.i"
+	@echo "... src/genmob.s"
+	@echo "... src/genobj.o"
+	@echo "... src/genobj.i"
+	@echo "... src/genobj.s"
+	@echo "... src/genolc.o"
+	@echo "... src/genolc.i"
+	@echo "... src/genolc.s"
+	@echo "... src/genshp.o"
+	@echo "... src/genshp.i"
+	@echo "... src/genshp.s"
+	@echo "... src/genwld.o"
+	@echo "... src/genwld.i"
+	@echo "... src/genwld.s"
+	@echo "... src/genzon.o"
+	@echo "... src/genzon.i"
+	@echo "... src/genzon.s"
+	@echo "... src/graph.o"
+	@echo "... src/graph.i"
+	@echo "... src/graph.s"
+	@echo "... src/guild.o"
+	@echo "... src/guild.i"
+	@echo "... src/guild.s"
+	@echo "... src/handler.o"
+	@echo "... src/handler.i"
+	@echo "... src/handler.s"
+	@echo "... src/hedit.o"
+	@echo "... src/hedit.i"
+	@echo "... src/hedit.s"
+	@echo "... src/house.o"
+	@echo "... src/house.i"
+	@echo "... src/house.s"
+	@echo "... src/hsedit.o"
+	@echo "... src/hsedit.i"
+	@echo "... src/hsedit.s"
+	@echo "... src/htree.o"
+	@echo "... src/htree.i"
+	@echo "... src/htree.s"
+	@echo "... src/imc.o"
+	@echo "... src/imc.i"
+	@echo "... src/imc.s"
+	@echo "... src/improved-edit.o"
+	@echo "... src/improved-edit.i"
+	@echo "... src/improved-edit.s"
+	@echo "... src/interpreter.o"
+	@echo "... src/interpreter.i"
+	@echo "... src/interpreter.s"
+	@echo "... src/local_limits.o"
+	@echo "... src/local_limits.i"
+	@echo "... src/local_limits.s"
+	@echo "... src/magic.o"
+	@echo "... src/magic.i"
+	@echo "... src/magic.s"
+	@echo "... src/mail.o"
+	@echo "... src/mail.i"
+	@echo "... src/mail.s"
+	@echo "... src/maputils.o"
+	@echo "... src/maputils.i"
+	@echo "... src/maputils.s"
+	@echo "... src/medit.o"
+	@echo "... src/medit.i"
+	@echo "... src/medit.s"
+	@echo "... src/mobact.o"
+	@echo "... src/mobact.i"
+	@echo "... src/mobact.s"
+	@echo "... src/modify.o"
+	@echo "... src/modify.i"
+	@echo "... src/modify.s"
+	@echo "... src/oasis.o"
+	@echo "... src/oasis.i"
+	@echo "... src/oasis.s"
+	@echo "... src/oasis_copy.o"
+	@echo "... src/oasis_copy.i"
+	@echo "... src/oasis_copy.s"
+	@echo "... src/oasis_delete.o"
+	@echo "... src/oasis_delete.i"
+	@echo "... src/oasis_delete.s"
+	@echo "... src/oasis_list.o"
+	@echo "... src/oasis_list.i"
+	@echo "... src/oasis_list.s"
+	@echo "... src/obj_edit.o"
+	@echo "... src/obj_edit.i"
+	@echo "... src/obj_edit.s"
+	@echo "... src/objsave.o"
+	@echo "... src/objsave.i"
+	@echo "... src/objsave.s"
+	@echo "... src/oedit.o"
+	@echo "... src/oedit.i"
+	@echo "... src/oedit.s"
+	@echo "... src/olc.o"
+	@echo "... src/olc.i"
+	@echo "... src/olc.s"
+	@echo "... src/players.o"
+	@echo "... src/players.i"
+	@echo "... src/players.s"
+	@echo "... src/races.o"
+	@echo "... src/races.i"
+	@echo "... src/races.s"
+	@echo "... src/random.o"
+	@echo "... src/random.i"
+	@echo "... src/random.s"
+	@echo "... src/redit.o"
+	@echo "... src/redit.i"
+	@echo "... src/redit.s"
+	@echo "... src/reset.o"
+	@echo "... src/reset.i"
+	@echo "... src/reset.s"
+	@echo "... src/sedit.o"
+	@echo "... src/sedit.i"
+	@echo "... src/sedit.s"
+	@echo "... src/sha256.o"
+	@echo "... src/sha256.i"
+	@echo "... src/sha256.s"
+	@echo "... src/shop.o"
+	@echo "... src/shop.i"
+	@echo "... src/shop.s"
+	@echo "... src/spec_assign.o"
+	@echo "... src/spec_assign.i"
+	@echo "... src/spec_assign.s"
+	@echo "... src/spec_procs.o"
+	@echo "... src/spec_procs.i"
+	@echo "... src/spec_procs.s"
+	@echo "... src/spell_parser.o"
+	@echo "... src/spell_parser.i"
+	@echo "... src/spell_parser.s"
+	@echo "... src/spells.o"
+	@echo "... src/spells.i"
+	@echo "... src/spells.s"
+	@echo "... src/statedit.o"
+	@echo "... src/statedit.i"
+	@echo "... src/statedit.s"
+	@echo "... src/stringutils.o"
+	@echo "... src/stringutils.i"
+	@echo "... src/stringutils.s"
+	@echo "... src/tedit.o"
+	@echo "... src/tedit.i"
+	@echo "... src/tedit.s"
+	@echo "... src/utils.o"
+	@echo "... src/utils.i"
+	@echo "... src/utils.s"
+	@echo "... src/vehicles.o"
+	@echo "... src/vehicles.i"
+	@echo "... src/vehicles.s"
+	@echo "... src/weather.o"
+	@echo "... src/weather.i"
+	@echo "... src/weather.s"
+	@echo "... src/zedit.o"
+	@echo "... src/zedit.i"
+	@echo "... src/zedit.s"
+	@echo "... src/zmalloc.o"
+	@echo "... src/zmalloc.i"
+	@echo "... src/zmalloc.s"
 .PHONY : help
 
 

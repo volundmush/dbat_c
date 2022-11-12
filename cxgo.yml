@@ -1,0 +1,42 @@
+root: ./
+out: ./go
+package: main
+include:
+  - include
+  - /usr/include
+  - /usr/local/include
+sys_include:
+  - /usr/include
+  - /usr/local/include
+
+use_go_int: true
+
+replace:
+  - old: int8_t
+    new: int8
+  - old: uint8_t
+    new: uint8
+  - old: int16_t
+    new: int16
+  - old: uint16_t
+    new: uint16
+  - old: int32_t
+    new: int32
+  - old: uint32_t
+    new: uint32
+  - old: int64_t
+    new: int64
+  - old: "*Bytef"
+    new: "[]byte"
+  - old: socklen_t
+    new: int
+
+
+idents:
+  - name: select
+    rename: netpoll_select
+
+
+files:
+  - name: "include/*.h"
+  - name: "src/*.c"

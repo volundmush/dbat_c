@@ -139,7 +139,7 @@
 #define MAX_SCRIPT_DEPTH      10          /* maximum depth triggers can
 					     recurse into each other */
 
-#define SCRIPT_ERROR_CODE     -9999999   /* this shouldn't happen too often */
+#define SCRIPT_ERROR_CODE     (-9999999)   /* this shouldn't happen too often */
 
 /* one line of the trigger */
 struct cmdlist_element {
