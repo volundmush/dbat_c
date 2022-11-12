@@ -211,8 +211,8 @@ typedef struct imc_cmd_alias IMC_ALIAS;   /* Big, bad, bloated command alias thi
 typedef struct imc_packet_handler IMC_PHANDLER; /* custom packet handlers added dynamically */
 typedef struct who_template WHO_TEMPLATE; /* The who templates */
 
-typedef void IMC_FUN( CHAR_DATA * ch, char *argument );
-#define IMC_CMD( name ) void (name)( CHAR_DATA *ch, char *argument )
+typedef void IMC_FUN( struct char_data * ch, char *argument );
+#define IMC_CMD( name ) void (name)( struct char_data *ch, char *argument )
 
 typedef void PACKET_FUN( IMC_PACKET * q, char *packet );
 #define PFUN( name ) void (name)( IMC_PACKET *q, char *packet )
@@ -413,30 +413,30 @@ struct who_template
    char *master;
 };
 
-bool imc_command_hook( CHAR_DATA * ch, const char *command, char *argument );
-void imc_hotboot( void );
-void imc_startup( bool force, int desc, bool connected );
-void imc_shutdown( bool reconnect );
-void imc_initchar( CHAR_DATA * ch );
-bool imc_loadchar( CHAR_DATA * ch, FILE * fp, const char *word );
-void imc_savechar( CHAR_DATA * ch, FILE * fp );
-void imc_freechardata( CHAR_DATA * ch );
-void imc_loop( void );
-IMC_CHANNEL *imc_findchannel( const char *name );
-void imc_register_packet_handler( const char *name, PACKET_FUN * func );
-IMC_PACKET *imc_newpacket( const char *from, const char *type, const char *to );
-void imc_addtopacket( IMC_PACKET * p, const char *fmt, ... );
-void imc_write_packet( IMC_PACKET * p );
-char *imc_getData( char *output, const char *key, const char *packet );
-CHAR_DATA *imc_find_user( const char *name );
-char *imc_nameof( const char *src );
-char *imc_mudof( const char *src );
-void imc_send_tell( const char *from, const char *to, const char *txt, int reply );
-char *imcfread_word( FILE * fp );
+extern bool imc_command_hook( struct char_data * ch, const char *command, char *argument );
+extern void imc_hotboot( void );
+extern void imc_startup( bool force, int desc, bool connected );
+extern void imc_shutdown( bool reconnect );
+extern void imc_initchar( struct char_data * ch );
+extern bool imc_loadchar( struct char_data * ch, FILE * fp, const char *word );
+extern void imc_savechar( struct char_data * ch, FILE * fp );
+extern void imc_freechardata( struct char_data * ch );
+extern void imc_loop( void );
+extern IMC_CHANNEL *imc_findchannel( const char *name );
+extern void imc_register_packet_handler( const char *name, PACKET_FUN * func );
+extern IMC_PACKET *imc_newpacket( const char *from, const char *type, const char *to );
+extern void imc_addtopacket( IMC_PACKET * p, const char *fmt, ... );
+extern void imc_write_packet( IMC_PACKET * p );
+extern char *imc_getData( char *output, const char *key, const char *packet );
+extern struct char_data *imc_find_user( const char *name );
+extern char *imc_nameof( const char *src );
+extern char *imc_mudof( const char *src );
+extern void imc_send_tell( const char *from, const char *to, const char *txt, int reply );
+extern char *imcfread_word( FILE * fp );
 
 #if defined(_DISKIO_H_)
-void imc_load_pfile( CHAR_DATA * ch, char *tag, int num, char *line );
-void imc_save_pfile( struct CHAR_DATA *ch, FBFILE * fp );
+extern void imc_load_pfile( struct char_data * ch, char *tag, int num, char *line );
+extern void imc_save_pfile( struct struct char_data *ch, FBFILE * fp );
 #endif
 
 #endif

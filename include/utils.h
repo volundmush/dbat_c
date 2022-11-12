@@ -23,84 +23,84 @@
 extern FILE *player_fl;
 
 /* public functions in utils.c */
-struct time_info_data *real_time_passed(time_t t2, time_t t1);
-struct time_info_data *mud_time_passed(time_t t2, time_t t1);
+extern struct time_info_data *real_time_passed(time_t t2, time_t t1);
+extern struct time_info_data *mud_time_passed(time_t t2, time_t t1);
 
-int masadv(char *tmp, struct char_data *ch);
-void demon_refill_lf(struct char_data *ch, int64_t num);
-void dispel_ash(struct char_data *ch);
-int grav_cost(struct char_data *ch, int64_t num);
-void prune_crlf(char *txt);
-int count_metamagic_feats(struct char_data *ch);
-int mob_respond(struct char_data *ch, struct char_data *vict, const char *speech);
-int armor_evolve(struct char_data *ch);
-int has_group(struct char_data *ch);
-const char *report_party_health(struct char_data *ch);
-int know_skill(struct char_data *ch, int skill);
-int roll_aff_duration(int num, int add);
-void null_affect(struct char_data *ch, int aff_flag);
-void assign_affect(struct char_data *ch, int aff_flag, int skill, int dur, int str, int con, int intel, int agl, int wis, int spd);
-int sec_roll_check(struct char_data *ch);
-int get_measure(struct char_data *ch, int height, int weight);
-int64_t physical_cost(struct char_data *ch, int skill);
-int android_can(struct char_data *ch);
-int trans_cost(struct char_data *ch, int trans);
-int trans_req(struct char_data *ch, int trans);
-void customRead(struct descriptor_data *d, int type, char *name);
-void customWrite(struct char_data *ch, struct obj_data *obj);
-void customCreate(struct descriptor_data *d);
-int axion_dice(int adjust);
-int64_t show_softcap(struct char_data *ch);
-const char *disp_align(struct char_data *ch);
-void senseCreate(struct char_data *ch);
-void sense_memory_write(struct char_data *ch, struct char_data *vict);
-int read_sense_memory(struct char_data *ch, struct char_data *vict);
-int roll_pursue(struct char_data *ch, struct char_data *vict);
-void broken_update(void);
-int wearable_obj(struct obj_data *obj);
-void randomize_eq(struct obj_data *obj);
-char *sense_location(struct char_data *ch);
-void handle_evolution(struct char_data *ch, int64_t dmg);
-int64_t molt_threshold(struct char_data *ch);
-int cook_element(room_rnum room);
-void purge_homing(struct char_data *ch);
-bool soft_cap(struct char_data *ch, int64_t type);
-int64_t gear_pl_restore(struct char_data *ch, int64_t previous);
-int64_t gear_pl(struct char_data *ch);
-int planet_check(struct char_data *ch, struct char_data *vict);
-void improve_skill(struct char_data *ch, int skill, int num);
-double speednar(struct char_data *ch);
-int gear_weight(struct char_data *ch);
-int64_t gear_exp(struct char_data *ch, int64_t exp);
-int get_flag_by_name(const char *flag_list[], char *flag_name);
-char* add_commas(int64_t X);
-void trim(char *s);
-char *handle_racial(struct char_data *ch, int type);
-char *introd_calc(struct char_data *ch);
-void	basic_mud_log(const char *format, ...) __attribute__ ((format (printf, 1, 2)));
-void	basic_mud_vlog(const char *format, va_list args);
-int	touch(const char *path);
-void	mudlog(int type, int level, int file, const char *str, ...) __attribute__ ((format (printf, 4, 5)));
-void	log_death_trap(struct char_data *ch);
-int	rand_number(int from, int to);
-int64_t large_rand(int64_t from, int64_t to);
-int	dice(int number, int size);
-size_t	sprintbit(bitvector_t vektor, const char *names[], char *result, size_t reslen);
-size_t	sprinttype(int type, const char *names[], char *result, size_t reslen);
-void sprintbitarray(int bitvector[], const char *names[], int maxar, char *result);
-int	get_line(FILE *fl, char *buf);
-int	get_filename(char *filename, size_t fbufsize, int mode, const char *orig_name);
-time_t	mud_time_to_secs(struct time_info_data *now);
-struct time_info_data *age(struct char_data *ch);
-int	num_pc_in_room(struct room_data *room);
-void    core_dump_real(const char *who, int line);
-int	room_is_dark(room_rnum room);
-int     count_color_chars(char *string);
-void    game_info(const char *format, ...) __attribute__ ((format (printf, 1, 2)));
-bool is_sparring(struct char_data *ch);
-void mob_talk(struct char_data *ch, const char *speech);
-int block_calc(struct char_data *ch);
-void reveal_hiding(struct char_data *ch, int type);
+extern int masadv(char *tmp, struct char_data *ch);
+extern void demon_refill_lf(struct char_data *ch, int64_t num);
+extern void dispel_ash(struct char_data *ch);
+extern int grav_cost(struct char_data *ch, int64_t num);
+extern void prune_crlf(char *txt);
+extern int count_metamagic_feats(struct char_data *ch);
+extern int mob_respond(struct char_data *ch, struct char_data *vict, const char *speech);
+extern int armor_evolve(struct char_data *ch);
+extern int has_group(struct char_data *ch);
+extern const char *report_party_health(struct char_data *ch);
+extern int know_skill(struct char_data *ch, int skill);
+extern int roll_aff_duration(int num, int add);
+extern void null_affect(struct char_data *ch, int aff_flag);
+extern void assign_affect(struct char_data *ch, int aff_flag, int skill, int dur, int str, int con, int intel, int agl, int wis, int spd);
+extern int sec_roll_check(struct char_data *ch);
+extern int get_measure(struct char_data *ch, int height, int weight);
+extern int64_t physical_cost(struct char_data *ch, int skill);
+extern int android_can(struct char_data *ch);
+extern int trans_cost(struct char_data *ch, int trans);
+extern int trans_req(struct char_data *ch, int trans);
+extern void customRead(struct descriptor_data *d, int type, char *name);
+extern void customWrite(struct char_data *ch, struct obj_data *obj);
+extern void customCreate(struct descriptor_data *d);
+extern int axion_dice(int adjust);
+extern int64_t show_softcap(struct char_data *ch);
+extern const char *disp_align(struct char_data *ch);
+extern void senseCreate(struct char_data *ch);
+extern void sense_memory_write(struct char_data *ch, struct char_data *vict);
+extern int read_sense_memory(struct char_data *ch, struct char_data *vict);
+extern int roll_pursue(struct char_data *ch, struct char_data *vict);
+extern void broken_update(void);
+extern int wearable_obj(struct obj_data *obj);
+extern void randomize_eq(struct obj_data *obj);
+extern char *sense_location(struct char_data *ch);
+extern void handle_evolution(struct char_data *ch, int64_t dmg);
+extern int64_t molt_threshold(struct char_data *ch);
+extern int cook_element(room_rnum room);
+extern void purge_homing(struct char_data *ch);
+extern bool soft_cap(struct char_data *ch, int64_t type);
+extern int64_t gear_pl_restore(struct char_data *ch, int64_t previous);
+extern int64_t gear_pl(struct char_data *ch);
+extern int planet_check(struct char_data *ch, struct char_data *vict);
+extern void improve_skill(struct char_data *ch, int skill, int num);
+extern double speednar(struct char_data *ch);
+extern int gear_weight(struct char_data *ch);
+extern int64_t gear_exp(struct char_data *ch, int64_t exp);
+extern int get_flag_by_name(const char *flag_list[], char *flag_name);
+extern char* add_commas(int64_t X);
+extern void trim(char *s);
+extern char *handle_racial(struct char_data *ch, int type);
+extern char *introd_calc(struct char_data *ch);
+extern void basic_mud_log(const char *format, ...) __attribute__ ((format (printf, 1, 2)));
+extern void basic_mud_vlog(const char *format, va_list args);
+extern int touch(const char *path);
+extern void mudlog(int type, int level, int file, const char *str, ...) __attribute__ ((format (printf, 4, 5)));
+extern void log_death_trap(struct char_data *ch);
+extern int rand_number(int from, int to);
+extern int64_t large_rand(int64_t from, int64_t to);
+extern int dice(int number, int size);
+extern size_t sprintbit(bitvector_t vektor, const char *names[], char *result, size_t reslen);
+extern size_t sprinttype(int type, const char *names[], char *result, size_t reslen);
+extern void sprintbitarray(int bitvector[], const char *names[], int maxar, char *result);
+extern int	get_line(FILE *fl, char *buf);
+extern int	get_filename(char *filename, size_t fbufsize, int mode, const char *orig_name);
+extern time_t mud_time_to_secs(struct time_info_data *now);
+extern struct time_info_data *age(struct char_data *ch);
+extern int num_pc_in_room(struct room_data *room);
+extern void core_dump_real(const char *who, int line);
+extern int room_is_dark(room_rnum room);
+extern int count_color_chars(char *string);
+extern void game_info(const char *format, ...) __attribute__ ((format (printf, 1, 2)));
+extern bool is_sparring(struct char_data *ch);
+extern void mob_talk(struct char_data *ch, const char *speech);
+extern int block_calc(struct char_data *ch);
+extern void reveal_hiding(struct char_data *ch, int type);
 
 #define core_dump()		core_dump_real(__FILE__, __LINE__)
 
@@ -120,50 +120,50 @@ void reveal_hiding(struct char_data *ch, int type);
 #undef MIN
 #endif
 
-int MAX(int a, int b);
-int MIN(int a, int b);
-char *CAP(char *txt);
+extern int MAX(int a, int b);
+extern int MIN(int a, int b);
+extern char *CAP(char *txt);
 
 /* Followers */
-int	num_followers_charmed(struct char_data *ch);
-void	die_follower(struct char_data *ch);
-void	add_follower(struct char_data *ch, struct char_data *leader);
-void	stop_follower(struct char_data *ch);
-bool	circle_follow(struct char_data *ch, struct char_data *victim);
+extern int num_followers_charmed(struct char_data *ch);
+extern void die_follower(struct char_data *ch);
+extern void add_follower(struct char_data *ch, struct char_data *leader);
+extern void stop_follower(struct char_data *ch);
+extern bool circle_follow(struct char_data *ch, struct char_data *victim);
 
 /* in act.informative.c */
 extern void	look_at_room(room_rnum target_room, struct char_data *ch, int mode);
 extern void	add_history(struct char_data *ch, char *msg, int type);
 
 /* in act.movement.c */
-int	do_simple_move(struct char_data *ch, int dir, int following);
-int	perform_move(struct char_data *ch, int dir, int following);
+extern int do_simple_move(struct char_data *ch, int dir, int following);
+extern int perform_move(struct char_data *ch, int dir, int following);
 
 /* in act.item.c */
-int64_t	max_carry_weight(struct char_data *ch);
+extern int64_t max_carry_weight(struct char_data *ch);
 
 /* in limits.c */
-void	advance_level(struct char_data *ch, int whichclass);
-void	set_title(struct char_data *ch, char *title);
-void	gain_exp(struct char_data *ch, int64_t gain);
-void	gain_exp_regardless(struct char_data *ch, int gain);
-void	gain_condition(struct char_data *ch, int condition, int value);
-void	point_update(void);
-void	update_pos(struct char_data *victim);
+extern void advance_level(struct char_data *ch, int whichclass);
+extern void set_title(struct char_data *ch, char *title);
+extern void gain_exp(struct char_data *ch, int64_t gain);
+extern void gain_exp_regardless(struct char_data *ch, int gain);
+extern void gain_condition(struct char_data *ch, int condition, int value);
+extern void point_update(void);
+extern void update_pos(struct char_data *victim);
 
 /* in class.c */
-char *  class_desc_str(struct char_data *ch, int howlong, int wantthe);
-int     total_skill_levels(struct char_data *ch, int skill);
-int8_t  ability_mod_value(int abil);
-int8_t  dex_mod_capped(const struct char_data *ch);
-int	highest_skill_value(int level, int type);
-int     calc_penalty_exp(struct char_data *ch, int gain);
-int	raise_class_only(struct char_data *ch, int cl, int v);
+extern char *  class_desc_str(struct char_data *ch, int howlong, int wantthe);
+extern int     total_skill_levels(struct char_data *ch, int skill);
+extern int8_t  ability_mod_value(int abil);
+extern int8_t  dex_mod_capped(const struct char_data *ch);
+extern int	highest_skill_value(int level, int type);
+extern int     calc_penalty_exp(struct char_data *ch, int gain);
+extern int	raise_class_only(struct char_data *ch, int cl, int v);
 
 /* in races.c */
-int	get_size(struct char_data *ch);
-int get_size_bonus(int sz);
-int wield_type(int chsize, const struct obj_data *weap);
+extern int	get_size(struct char_data *ch);
+extern int get_size_bonus(int sz);
+extern int wield_type(int chsize, const struct obj_data *weap);
 
 
 /* various constants *****************************************************/
@@ -1149,13 +1149,13 @@ struct xap_dir {
     struct dirent **namelist;
 };
 
-int xdir_scan(char *dir_name, struct xap_dir *xapdirp);
-int xdir_get_total(struct xap_dir *xd);
-char *xdir_get_name(struct xap_dir *xd, int num);
-char *xdir_next(struct xap_dir *xd);
-void xdir_close(struct xap_dir *xd);
-int insure_directory(char *path, int isfile);
-void admin_set(struct char_data *ch, int value);
+extern int xdir_scan(char *dir_name, struct xap_dir *xapdirp);
+extern int xdir_get_total(struct xap_dir *xd);
+extern char *xdir_get_name(struct xap_dir *xd, int num);
+extern char *xdir_next(struct xap_dir *xd);
+extern void xdir_close(struct xap_dir *xd);
+extern int insure_directory(char *path, int isfile);
+extern void admin_set(struct char_data *ch, int value);
 #define GET_PAGE_LENGTH(ch)         CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->page_length))
 #define IS_COLOR_CHAR(c)  (c == 'n' || c == 'b' || c == 'B' || c == 'c' || \
    c == 'C' || c == 'g' || c == 'G' || c == 'm' || c == 'M' || c == 'r' || \
@@ -1165,7 +1165,7 @@ void admin_set(struct char_data *ch, int value);
 #define MOB_LOADROOM(ch)      ((ch)->hometown)  /*hometown not used for mobs*/
 #define OBJ_LOADROOM(obj)     ((obj)->room_loaded)
 
-int     levenshtein_distance(char *s1, char *s2);
+extern int     levenshtein_distance(char *s1, char *s2);
 #define GET_MURDER(ch)          CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->murder))
 
 #endif

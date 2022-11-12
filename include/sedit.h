@@ -9,7 +9,7 @@
 
 
 // Commands
-ACMD(do_oasis_sedit);
+extern ACMD(do_oasis_sedit);
 
 
 #endif //CIRCLE_SEDIT_H

@@ -41,14 +41,14 @@
 #define OLC_ITEM_TYPE(d)	(OLC(d)->item_type)	/* mob/obj/room     */
 
 /* prototype exported functions from dg_olc.c */
-void script_save_to_disk(FILE *fp, void *item, int type);
-void dg_olc_script_copy(struct descriptor_data *d);
-void dg_script_menu(struct descriptor_data *d);
-int dg_script_edit_parse(struct descriptor_data *d, char *arg);
-void trigedit_string_cleanup(struct descriptor_data *d, int terminator);
-void trigedit_save(struct descriptor_data *d);
-int format_script(struct descriptor_data *d);
+extern void script_save_to_disk(FILE *fp, void *item, int type);
+extern void dg_olc_script_copy(struct descriptor_data *d);
+extern void dg_script_menu(struct descriptor_data *d);
+extern int dg_script_edit_parse(struct descriptor_data *d, char *arg);
+extern void trigedit_string_cleanup(struct descriptor_data *d, int terminator);
+extern void trigedit_save(struct descriptor_data *d);
+extern int format_script(struct descriptor_data *d);
 
-ACMD(do_oasis_trigedit);
+extern ACMD(do_oasis_trigedit);
 
 #endif

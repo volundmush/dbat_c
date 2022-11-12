@@ -95,7 +95,7 @@ ACMD(do_olc)
       return;
     }
     break;
-  case OLC_ROOM:
+  case OLC_ROOM_TYPE:
     if (isdigit(*argument)) {
       /* room specified.  take the numeric argument off */
       argument = one_argument(argument, arg);
@@ -120,7 +120,7 @@ ACMD(do_olc)
 */
     olc_targ = (void *) &(world[rnum]);
     break;
-  case OLC_MOB:
+  case OLC_MOB_TYPE:
     argument = one_argument(argument, arg);
     if (!is_number(arg)) {
       send_to_char(ch, "Invalid mob vnum '%s'.\r\n", arg);
@@ -132,7 +132,7 @@ ACMD(do_olc)
     else
       olc_targ = (void *) &(mob_proto[rnum]);
     break;
-  case OLC_OBJ:
+  case OLC_OBJ_TYPE:
     argument = one_argument(argument, arg);
     if (!is_number(arg)) {
       send_to_char(ch, "Invalid obj vnum '%s'\r\n", arg);
@@ -180,13 +180,13 @@ void olc_interpreter(void *targ, int mode, char *arg)
     return;
   }
   switch (mode) {
-  case OLC_ROOM:
+  case OLC_ROOM_TYPE:
     olc_room = (struct room_data *) targ;
     break;
-  case OLC_MOB:
+  case OLC_MOB_TYPE:
     olc_mob = (struct char_data *) targ;
     break;
-  case OLC_OBJ:
+  case OLC_OBJ_TYPE:
     olc_obj = (struct obj_data *) targ;
     break;
   default:
@@ -198,11 +198,11 @@ void olc_interpreter(void *targ, int mode, char *arg)
   switch (command) {
   case OLC_COPY:
     switch (mode) {
-    case OLC_ROOM:
+    case OLC_ROOM_TYPE:
       break;
-    case OLC_MOB:
+    case OLC_MOB_TYPE:
       break;
-    case OLC_OBJ:
+    case OLC_OBJ_TYPE:
       break;
     default:
       error = 1;
@@ -211,13 +211,13 @@ void olc_interpreter(void *targ, int mode, char *arg)
     break;
   case OLC_NAME:
     switch (mode) {
-    case OLC_ROOM:
+    case OLC_ROOM_TYPE:
       olc_string(&(olc_room->name), MAX_ROOM_NAME, arg);
       break;
-    case OLC_MOB:
+    case OLC_MOB_TYPE:
       olc_string(&olc_mob->short_descr, MAX_MOB_NAME, arg);
       break;
-    case OLC_OBJ:
+    case OLC_OBJ_TYPE:
       olc_string(&olc_obj->short_description, MAX_OBJ_NAME, arg);
       break;
     default:
@@ -226,15 +226,15 @@ void olc_interpreter(void *targ, int mode, char *arg)
     }
     break;
 
-  case OLC_DESC:
+  case OLC_DESC_TYPE:
     switch (mode) {
-    case OLC_ROOM:
+    case OLC_ROOM_TYPE:
       olc_string(&olc_room->description, MAX_ROOM_DESC, arg);
       break;
-    case OLC_MOB:
+    case OLC_MOB_TYPE:
       olc_string(&olc_mob->long_descr, MAX_MOB_DESC, arg);
       break;
-    case OLC_OBJ:
+    case OLC_OBJ_TYPE:
       olc_string(&olc_obj->description, MAX_OBJ_DESC, arg);
       break;
     default:
@@ -245,11 +245,11 @@ void olc_interpreter(void *targ, int mode, char *arg)
 
   case OLC_ALIASES:
     switch (mode) {
-    case OLC_ROOM:
+    case OLC_ROOM_TYPE:
       break;
-    case OLC_MOB:
+    case OLC_MOB_TYPE:
       break;
-    case OLC_OBJ:
+    case OLC_OBJ_TYPE:
       break;
     default:
       error = 1;

@@ -15,18 +15,18 @@
 
 #define CONFIG_GENOLC_MOBPROG	0
 
-int genolc_checkstring(struct descriptor_data *d, char *arg);
+extern int genolc_checkstring(struct descriptor_data *d, char *arg);
 
-int remove_from_save_list(zone_vnum, int type);
-int add_to_save_list(zone_vnum, int type);
-int in_save_list(zone_vnum, int type);
-void strip_cr(char *);
-int save_all(void);
-char *str_udup(const char *);
-void copy_ex_descriptions(struct extra_descr_data **to, struct extra_descr_data *from);
-void free_ex_descriptions(struct extra_descr_data *head);
-int sprintascii(char *out, bitvector_t bits);
-void free_save_list(void);
+extern int remove_from_save_list(zone_vnum, int type);
+extern int add_to_save_list(zone_vnum, int type);
+extern int in_save_list(zone_vnum, int type);
+extern void strip_cr(char *);
+extern int save_all(void);
+extern char *str_udup(const char *);
+extern void copy_ex_descriptions(struct extra_descr_data **to, struct extra_descr_data *from);
+extern void free_ex_descriptions(struct extra_descr_data *head);
+extern int sprintascii(char *out, bitvector_t bits);
+extern void free_save_list(void);
 
 struct save_list_data {
   int zone;
@@ -52,8 +52,8 @@ extern struct save_list_data *save_list;
 
 #define LIMIT(var, low, high)	MIN(high, MAX(var, low))
 
-room_vnum genolc_zone_bottom(zone_rnum rznum);
-room_vnum genolc_zonep_bottom(struct zone_data *zone);
-void create_world_index(int znum, const char *type);
-void free_save_list(void);
+extern room_vnum genolc_zone_bottom(zone_rnum rznum);
+extern room_vnum genolc_zonep_bottom(struct zone_data *zone);
+extern void create_world_index(int znum, const char *type);
+extern void free_save_list(void);
 #endif

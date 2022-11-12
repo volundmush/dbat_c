@@ -17,6 +17,7 @@
 #include "handler.h"
 #include "constants.h"
 #include "fight.h"
+#include "guild.h"
 
 
 /* Combat commands below this line */

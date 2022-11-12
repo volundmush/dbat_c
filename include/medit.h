@@ -9,7 +9,7 @@
 
 
 // commands
-ACMD(do_oasis_medit);
+extern ACMD(do_oasis_medit);
 
 
 #endif //CIRCLE_MEDIT_H

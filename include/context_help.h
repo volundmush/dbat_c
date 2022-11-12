@@ -7,6 +7,6 @@
 
 #include "structs.h"
 
-void free_context_help(void);
+extern void free_context_help(void);
 
 #endif //CIRCLE_CONTEXT_HELP_H

@@ -3,8 +3,8 @@
 
 #include "structs.h"
 
-ACMD(do_tedit);
-void tedit_string_cleanup(struct descriptor_data *d, int terminator);
-void news_string_cleanup(struct descriptor_data *d, int terminator);
+extern ACMD(do_tedit);
+extern void tedit_string_cleanup(struct descriptor_data *d, int terminator);
+extern void news_string_cleanup(struct descriptor_data *d, int terminator);
 
 #endif

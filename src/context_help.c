@@ -8,6 +8,8 @@
 #include "oasis.h"
 #include "utils.h"
 #include "dg_olc.h"
+#include "interpreter.h"
+#include "comm.h"
 
 /* local global */
 char *context_help_list[NUM_CONTEXTS];

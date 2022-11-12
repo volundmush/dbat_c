@@ -129,16 +129,16 @@ extern int top_guild;
 extern int spell_sort_info[SKILL_TABLE_SIZE + 1];
 
 /* Functions defined in guild.c */
-int print_skills_by_type(struct char_data *ch, char *buf, int maxsz, int sktype, char *argument);
-void levelup_parse(struct descriptor_data *d, char *arg);
-int rpp_to_level(struct char_data *ch);
-int slot_count(struct char_data *ch);
-void show_guild(struct char_data * ch, char *arg);
-void handle_ingest_learn(struct char_data *ch, struct char_data *vict);
-void list_skills(struct char_data *ch, char *arg);
-int count_guilds(guild_vnum low, guild_vnum high);
+extern int print_skills_by_type(struct char_data *ch, char *buf, int maxsz, int sktype, char *argument);
+extern void levelup_parse(struct descriptor_data *d, char *arg);
+extern int rpp_to_level(struct char_data *ch);
+extern int slot_count(struct char_data *ch);
+extern void show_guild(struct char_data * ch, char *arg);
+extern void handle_ingest_learn(struct char_data *ch, struct char_data *vict);
+extern void list_skills(struct char_data *ch, char *arg);
+extern int count_guilds(guild_vnum low, guild_vnum high);
 
 /*. External . */
-SPECIAL(guild);
+extern SPECIAL(guild);
 
 #endif

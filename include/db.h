@@ -132,63 +132,63 @@ extern room_rnum r_immort_start_room;	/* rnum of immort start room	 */
 extern room_rnum r_frozen_start_room;	/* rnum of frozen start room	 */
 
 /* public procedures in db.c */
-void boot_world(void);
-int is_empty(zone_rnum zone_nr);
-void index_boot(int mode);
-void	boot_db(void);
-void	destroy_db(void);
-int	create_entry(char *name);
-void	zone_update(void);
-char	*fread_string(FILE *fl, const char *error);
-long	get_id_by_name(const char *name);
-char	*get_name_by_id(long id);
-void	save_mud_time(struct time_info_data *when);
-void	free_extra_descriptions(struct extra_descr_data *edesc);
-void	free_text_files(void);
-void	free_player_index(void);
-void load_disabled(void);
-void save_disabled(void);
-void free_disabled(void);
-void    free_help_table(void);
-void    load_help(FILE *fl, char *name);
-void auc_save(void);
-void load_config(void);
+extern void boot_world(void);
+extern int is_empty(zone_rnum zone_nr);
+extern void index_boot(int mode);
+extern void boot_db(void);
+extern void destroy_db(void);
+extern int create_entry(char *name);
+extern void zone_update(void);
+extern char *fread_string(FILE *fl, const char *error);
+extern long get_id_by_name(const char *name);
+extern char *get_name_by_id(long id);
+extern void save_mud_time(struct time_info_data *when);
+extern void free_extra_descriptions(struct extra_descr_data *edesc);
+extern void free_text_files(void);
+extern void free_player_index(void);
+extern void load_disabled(void);
+extern void save_disabled(void);
+extern void free_disabled(void);
+extern void free_help_table(void);
+extern void load_help(FILE *fl, char *name);
+extern void auc_save(void);
+extern void load_config(void);
 
-zone_rnum real_zone(zone_vnum vnum);
-room_rnum real_room(room_vnum vnum);
-mob_rnum real_mobile(mob_vnum vnum);
-obj_rnum real_object(obj_vnum vnum);
+extern zone_rnum real_zone(zone_vnum vnum);
+extern room_rnum  real_room(room_vnum vnum);
+extern mob_rnum real_mobile(mob_vnum vnum);
+extern obj_rnum real_object(obj_vnum vnum);
 
-int	load_char(const char *name, struct char_data *ch);
-void	load_char_pets(struct char_data *ch);
-void	save_char(struct char_data *ch);
-void	save_char_pets(struct char_data *ch);
-void	init_char(struct char_data *ch);
-struct char_data* create_char(void);
-struct char_data *read_mobile(mob_vnum nr, int type);
-int	vnum_mobile(char *searchname, struct char_data *ch);
-void	clear_char(struct char_data *ch);
-void	reset_char(struct char_data *ch);
-void	free_char(struct char_data *ch);
-void	save_player_index(void);
-long  get_ptable_by_name(const char *name);
-void	read_level_data(struct char_data *ch, FILE *fl);
-void	write_level_data(struct char_data *ch, FILE *fl);
+extern int load_char(const char *name, struct char_data *ch);
+extern void load_char_pets(struct char_data *ch);
+extern void save_char(struct char_data *ch);
+extern void save_char_pets(struct char_data *ch);
+extern void init_char(struct char_data *ch);
+extern struct char_data* create_char(void);
+extern struct char_data *read_mobile(mob_vnum nr, int type);
+extern int vnum_mobile(char *searchname, struct char_data *ch);
+extern void clear_char(struct char_data *ch);
+extern void reset_char(struct char_data *ch);
+extern void free_char(struct char_data *ch);
+extern void save_player_index(void);
+extern long  get_ptable_by_name(const char *name);
+extern void read_level_data(struct char_data *ch, FILE *fl);
+extern void write_level_data(struct char_data *ch, FILE *fl);
 
-int parse_mobile_from_file(FILE *mob_f, struct char_data *ch);
+extern int parse_mobile_from_file(FILE *mob_f, struct char_data *ch);
 
-struct obj_data *create_obj(void);
-void	clear_object(struct obj_data *obj);
-void	free_obj(struct obj_data *obj);
-struct obj_data *read_object(obj_vnum nr, int type);
-int	vnum_object(char *searchname, struct char_data *ch);
-int my_obj_save_to_disk(FILE *fp, struct obj_data *obj, int locate);
-void add_unique_id(struct obj_data *obj);
-void check_unique_id(struct obj_data *obj);
-char *sprintuniques(int low, int high);
-int	vnum_material(char *searchname, struct char_data *ch);
-int	vnum_weapontype(char *searchname, struct char_data *ch);
-int	vnum_armortype(char *searchname, struct char_data *ch);
+extern struct obj_data *create_obj(void);
+extern void clear_object(struct obj_data *obj);
+extern void free_obj(struct obj_data *obj);
+extern struct obj_data *read_object(obj_vnum nr, int type);
+extern int vnum_object(char *searchname, struct char_data *ch);
+extern int my_obj_save_to_disk(FILE *fp, struct obj_data *obj, int locate);
+extern void add_unique_id(struct obj_data *obj);
+extern void check_unique_id(struct obj_data *obj);
+extern char *sprintuniques(int low, int high);
+extern int vnum_material(char *searchname, struct char_data *ch);
+extern int vnum_weapontype(char *searchname, struct char_data *ch);
+extern int vnum_armortype(char *searchname, struct char_data *ch);
 
 #define REAL 0
 #define VIRTUAL 1
@@ -354,10 +354,10 @@ extern long max_obj_id;
 extern int dg_owner_purged;
 extern int xap_objs;
 
-void strip_string(char *buffer);
-int read_xap_objects(FILE *fl,struct char_data *ch);
-bitvector_t asciiflag_conv(char *flag);
-void reset_zone(zone_rnum zone);
+extern void strip_string(char *buffer);
+extern int read_xap_objects(FILE *fl,struct char_data *ch);
+extern bitvector_t asciiflag_conv(char *flag);
+extern void reset_zone(zone_rnum zone);
 
 /* For disabled commands code by Erwin S. Andreasen, */
 /* ported to CircleMUD by Myrdred (Alexei Svitkine)  */
@@ -379,6 +379,6 @@ struct disabled_data {
 };
 
 // commands
-ACMD(do_reboot);
+extern ACMD(do_reboot);
 
 #endif

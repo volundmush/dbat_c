@@ -14,9 +14,9 @@
 
 
 /* obj_edit.c functions */
-void pobj_edit_parse(struct descriptor_data *d, char *arg);
-void disp_custom_menu(struct descriptor_data *d);
-void disp_restring_menu(struct descriptor_data *d);
+extern void pobj_edit_parse(struct descriptor_data *d, char *arg);
+extern void disp_custom_menu(struct descriptor_data *d);
+extern void disp_restring_menu(struct descriptor_data *d);
 
                /*-------------  obj_edit.c defines -------------*/
 

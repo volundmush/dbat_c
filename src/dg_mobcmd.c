@@ -47,11 +47,12 @@
 #include "constants.h"
 #include "act.wizard.h"
 #include "act.offensive.h"
+#include "fight.h"
 
 /*
  * Local functions.
  */
-void mob_log(char_data *mob, const char *format, ...);
+void mob_log(struct char_data *mob, const char *format, ...);
 
 ACMD(do_masound);
 ACMD(do_mkill);
@@ -76,7 +77,7 @@ ACMD(do_mfollow);
 ACMD(do_mrecho);
 
 /* attaches mob's name and vnum to msg and sends it to script_log */
-void mob_log(char_data *mob, const char *format, ...)
+void mob_log(struct char_data *mob, const char *format, ...)
 {
   va_list args;
   char output[MAX_STRING_LENGTH];
@@ -184,7 +185,7 @@ ACMD(do_mheal)
 ACMD(do_mkill)
 {
     char arg[MAX_INPUT_LENGTH];
-    char_data *victim;
+    struct char_data *victim;
     char buf[MAX_INPUT_LENGTH];
 
     if (!MOB_OR_IMPL(ch)) {
@@ -261,8 +262,8 @@ ACMD(do_mjunk)
 {
     char arg[MAX_INPUT_LENGTH];
     int pos, junk_all = 0;
-    obj_data *obj;
-    obj_data *obj_next;
+    struct obj_data *obj;
+    struct obj_data *obj_next;
 
     if (!MOB_OR_IMPL(ch)) {
         send_to_char(ch, "Huh?!?\r\n");
@@ -309,7 +310,7 @@ ACMD(do_mjunk)
 ACMD(do_mechoaround)
 {
     char arg[MAX_INPUT_LENGTH];
-    char_data *victim;
+    struct char_data *victim;
     char *p;
 
     if (!MOB_OR_IMPL(ch)) {
@@ -351,7 +352,7 @@ ACMD(do_mechoaround)
 ACMD(do_msend)
 {
     char arg[MAX_INPUT_LENGTH];
-    char_data *victim;
+    struct char_data *victim;
     char *p;
 
     if (!MOB_OR_IMPL(ch)) {
@@ -435,11 +436,11 @@ ACMD(do_mload)
 {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     int number = 0;
-    char_data *mob;
-    obj_data *object;
+    struct char_data *mob;
+    struct obj_data *object;
     char *target;
-    char_data *tch;
-    obj_data *cnt;
+    struct char_data *tch;
+    struct obj_data *cnt;
     int pos;
 
     if (!MOB_OR_IMPL(ch)) {
@@ -548,8 +549,8 @@ ACMD(do_mload)
 ACMD(do_mpurge)
 {
   char arg[MAX_INPUT_LENGTH];
-  char_data *victim;
-  obj_data  *obj;
+    struct char_data *victim;
+    struct obj_data  *obj;
 
   if (!MOB_OR_IMPL(ch)) {
     send_to_char(ch, "Huh?!?\r\n");
@@ -566,8 +567,8 @@ ACMD(do_mpurge)
 
   if (!*arg) {
     /* 'purge' */
-    char_data *vnext;
-    obj_data  *obj_next;
+      struct char_data *vnext;
+      struct obj_data  *obj_next;
 
     for (victim = world[IN_ROOM(ch)].people; victim; victim = vnext) {
       vnext = victim->next_in_room;
@@ -697,7 +698,7 @@ ACMD(do_mteleport)
 {
   char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
   room_rnum target;
-  char_data *vict, *next_ch;
+    struct char_data *vict, *next_ch;
 
   if (!MOB_OR_IMPL(ch)) {
     send_to_char(ch, "Huh?!?\r\n");
@@ -759,7 +760,7 @@ ACMD(do_mteleport)
 ACMD(do_mdamage) {
   char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
   int dam = 0;
-  char_data *vict;
+    struct char_data *vict;
 
   if (!MOB_OR_IMPL(ch)) {
     send_to_char(ch, "Huh?!?\r\n");
@@ -818,7 +819,7 @@ ACMD(do_mforce)
 
     if (!strcasecmp(arg, "all")) {
         struct descriptor_data *i;
-        char_data *vch;
+        struct char_data *vch;
 
         for (i = descriptor_list; i ; i = i->next) {
             if ((i->character != ch) && !i->connected &&
@@ -831,7 +832,7 @@ ACMD(do_mforce)
             }
         }
     } else {
-        char_data *victim;
+        struct char_data *victim;
 
         if (*arg == UID_CHAR) {
           if (!(victim = get_char(arg))) {
@@ -857,7 +858,7 @@ ACMD(do_mforce)
 /* place someone into the mob's memory list */
 ACMD(do_mremember)
 {
-    char_data *victim;
+    struct char_data *victim;
     struct script_memory *mem;
     char arg[MAX_INPUT_LENGTH];
 
@@ -909,7 +910,7 @@ ACMD(do_mremember)
 /* remove someone from the list */
 ACMD(do_mforget)
 {
-    char_data *victim;
+    struct char_data *victim;
     struct script_memory *mem, *prev;
     char arg[MAX_INPUT_LENGTH];
 
@@ -967,8 +968,8 @@ ACMD(do_mforget)
 ACMD(do_mtransform)
 {
   char arg[MAX_INPUT_LENGTH];
-  char_data *m, tmpmob;
-  obj_data *obj[NUM_WEARS];
+    struct char_data *m, tmpmob;
+    struct obj_data *obj[NUM_WEARS];
   mob_rnum this_rnum = GET_MOB_RNUM(ch);
   int pos;
 
@@ -1065,7 +1066,7 @@ ACMD(do_mdoor)
 {
     char target[MAX_INPUT_LENGTH], direction[MAX_INPUT_LENGTH];
     char field[MAX_INPUT_LENGTH], *value;
-    room_data *rm;
+    struct room_data *rm;
     struct room_direction_data *newexit;
     int dir, fd, to_room;
 

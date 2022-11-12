@@ -24,10 +24,10 @@
  * Local functions
  */
 #define OCMD(name)  \
-   void (name)(obj_data *obj, char *argument, int cmd, int subcmd)
+   void (name)(struct obj_data *obj, char *argument, int cmd, int subcmd)
 
-void obj_log(obj_data *obj, const char *format, ...);
-room_rnum find_obj_target_room(obj_data *obj, char *rawroomstr);
+void obj_log(struct obj_data *obj, const char *format, ...);
+room_rnum find_obj_target_room(struct obj_data *obj, char *rawroomstr);
 OCMD(do_oecho);
 OCMD(do_oforce);
 OCMD(do_ozoneecho);
@@ -45,12 +45,12 @@ OCMD(do_ogoto);
 OCMD(do_odoor);
 OCMD(do_osetval);
 OCMD(do_oat);
-void obj_command_interpreter(obj_data *obj, char *argument);
+void obj_command_interpreter(struct obj_data *obj, char *argument);
 
 
 struct obj_command_info {
    char *command;
-   void        (*command_pointer)(obj_data *obj, char *argument, int cmd, int subcmd);
+   void        (*command_pointer)(struct obj_data *obj, char *argument, int cmd, int subcmd);
    int        subcmd;
 };
 
@@ -62,7 +62,7 @@ struct obj_command_info {
 
 
 /* attaches object name and vnum to msg and sends it to script_log */
-void obj_log(obj_data *obj, const char *format, ...)
+void obj_log(struct obj_data *obj, const char *format, ...)
 {
   va_list args;
   char output[MAX_STRING_LENGTH];
@@ -75,7 +75,7 @@ void obj_log(obj_data *obj, const char *format, ...)
 }
 
 /* returns the real room number that the object or object's carrier is in */
-room_rnum obj_room(obj_data *obj)
+room_rnum obj_room(struct obj_data *obj)
 {
     if (IN_ROOM(obj) != NOWHERE)
         return IN_ROOM(obj);
@@ -91,12 +91,12 @@ room_rnum obj_room(obj_data *obj)
 
 
 /* returns the real room number, or NOWHERE if not found or invalid */
-room_rnum find_obj_target_room(obj_data *obj, char *rawroomstr)
+room_rnum find_obj_target_room(struct obj_data *obj, char *rawroomstr)
 {
     int tmp;
     room_rnum location;
-    char_data *target_mob;
-    obj_data *target_obj;
+    struct char_data *target_mob;
+    struct obj_data *target_obj;
     char roomstr[MAX_INPUT_LENGTH];
 
     one_argument(rawroomstr, roomstr);
@@ -162,7 +162,7 @@ OCMD(do_oecho)
 
 OCMD(do_oforce)
 {
-    char_data *ch, *next_ch;
+    struct char_data *ch, *next_ch;
     int room;
     char arg1[MAX_INPUT_LENGTH], *line;
 
@@ -229,7 +229,7 @@ OCMD(do_ozoneecho)
 OCMD(do_osend)
 {
     char buf[MAX_INPUT_LENGTH], *msg;
-    char_data *ch;
+    struct char_data *ch;
 
     msg = any_one_arg(argument, buf);
 
@@ -305,7 +305,7 @@ OCMD(do_otimer)
 OCMD(do_otransform)
 {
   char arg[MAX_INPUT_LENGTH];
-  obj_data *o, tmpobj;
+    struct obj_data *o, tmpobj;
   struct char_data *wearer=NULL;
   int pos = 0;
 
@@ -362,8 +362,8 @@ OCMD(do_dupe)
 OCMD(do_opurge)
 {
     char arg[MAX_INPUT_LENGTH];
-    char_data *ch, *next_ch;
-    obj_data *o, *next_obj;
+    struct char_data *ch, *next_ch;
+    struct obj_data *o, *next_obj;
     int rm;
 
     one_argument(argument, arg);
@@ -440,7 +440,7 @@ OCMD(do_ogoto)
 
 OCMD(do_oteleport)
 {
-    char_data *ch, *next_ch;
+    struct char_data *ch, *next_ch;
     room_rnum target, rm;
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
 
@@ -494,11 +494,11 @@ OCMD(do_dgoload)
 {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     int number = 0, room;
-    char_data *mob;
-    obj_data *object;
+    struct char_data *mob;
+    struct obj_data *object;
     char *target;
-    char_data *tch;
-    obj_data *cnt;
+    struct char_data *tch;
+    struct obj_data *cnt;
     int pos;
 
     target = two_arguments(argument, arg1, arg2);
@@ -597,7 +597,7 @@ OCMD(do_dgoload)
 OCMD(do_odamage) {
   char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
   int dam = 0;
-  char_data *ch;
+    struct char_data *ch;
 
   two_arguments(argument, name, amount);
 
@@ -651,7 +651,7 @@ OCMD(do_odoor)
 {
     char target[MAX_INPUT_LENGTH], direction[MAX_INPUT_LENGTH];
     char field[MAX_INPUT_LENGTH], *value;
-    room_data *rm;
+    struct room_data *rm;
     struct room_direction_data *newexit;
     int dir, fd, to_room;
 
@@ -834,7 +834,7 @@ const struct obj_command_info obj_cmd_info[] = {
 /*
  *  This is the command interpreter used by objects, called by script_driver.
  */
-void obj_command_interpreter(obj_data *obj, char *argument)
+void obj_command_interpreter(struct obj_data *obj, char *argument)
 {
     int cmd, length;
     char *line, arg[MAX_INPUT_LENGTH];

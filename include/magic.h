@@ -8,7 +8,7 @@
 #include "structs.h"
 
 
-void affect_update(void);
-void affect_update_violence(void);      /* In magic.c */
+extern void affect_update(void);
+extern void affect_update_violence(void);      /* In magic.c */
 
 #endif //CIRCLE_MAGIC_H

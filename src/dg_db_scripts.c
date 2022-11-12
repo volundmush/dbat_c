@@ -26,7 +26,7 @@ extern void half_chop(char *string, char *arg1, char *arg2);
 extern bitvector_t asciiflag_conv(char *flag);
 
 /* local functions */
-void trig_data_init(trig_data *this_data);
+void trig_data_init(struct trig_data *this_data);
 
 void parse_trigger(FILE *trig_f, int nr)
 {
@@ -36,8 +36,8 @@ void parse_trigger(FILE *trig_f, int nr)
     struct index_data *t_index;
     struct trig_data *trig;
 
-    CREATE(trig, trig_data, 1);
-    CREATE(t_index, index_data, 1);
+    CREATE(trig, struct trig_data, 1);
+    CREATE(t_index, struct index_data, 1);
 
     t_index->vnum = nr;
     t_index->number = 0;
@@ -79,16 +79,16 @@ void parse_trigger(FILE *trig_f, int nr)
  * create a new trigger from a prototype.
  * nr is the real number of the trigger.
  */
-trig_data *read_trigger(int nr)
+struct trig_data *read_trigger(int nr)
 {
-    index_data *t_index;
-    trig_data *trig;
+    struct index_data *t_index;
+    struct trig_data *trig;
 
     if (nr >= top_of_trigt) return NULL;
     if ((t_index = trig_index[nr]) == NULL)
 	return NULL;
 
-    CREATE(trig, trig_data, 1);
+    CREATE(trig, struct trig_data, 1);
     trig_data_copy(trig, t_index->proto);
 
     t_index->number++;
@@ -98,7 +98,7 @@ trig_data *read_trigger(int nr)
 
 
 
-void trig_data_init(trig_data *this_data)
+void trig_data_init(struct trig_data *this_data)
 {
     this_data->nr = NOTHING;
     this_data->data_type = 0;
@@ -117,7 +117,7 @@ void trig_data_init(trig_data *this_data)
 }
 
 
-void trig_data_copy(trig_data *this_data, const trig_data *trg)
+void trig_data_copy(struct trig_data *this_data, const struct trig_data *trg)
 {
     trig_data_init(this_data);
 
@@ -142,8 +142,8 @@ void dg_read_trigger(FILE *fp, void *proto, int type)
   char line[READ_SIZE];
   char junk[8];
   int vnum, rnum, count;
-  char_data *mob;
-  room_data *room;
+    struct char_data *mob;
+    struct room_data *room;
   struct trig_proto_list *trg_proto, *new_trg;
 
   get_line(fp, line);
@@ -161,12 +161,12 @@ void dg_read_trigger(FILE *fp, void *proto, int type)
       case MOB_TRIGGER:
         mudlog(BRF, ADMLVL_BUILDER, TRUE,
                "SYSERR: dg_read_trigger: Trigger vnum #%d asked for but non-existant! (mob: %s - %d)",
-               vnum, GET_NAME((char_data *)proto), GET_MOB_VNUM((char_data *)proto));
+               vnum, GET_NAME((struct char_data *)proto), GET_MOB_VNUM((struct char_data *)proto));
         break;
       case WLD_TRIGGER:
         mudlog(BRF, ADMLVL_BUILDER, TRUE,
                "SYSERR: dg_read_trigger: Trigger vnum #%d asked for but non-existant! (room:%d)",
-               vnum, GET_ROOM_VNUM( ((room_data *)proto)->number ));
+               vnum, GET_ROOM_VNUM( ((struct room_data *)proto)->number ));
         break;
       default:
         mudlog(BRF, ADMLVL_BUILDER, TRUE,
@@ -182,7 +182,7 @@ void dg_read_trigger(FILE *fp, void *proto, int type)
       new_trg->vnum = vnum;
       new_trg->next = NULL;
 
-      mob = (char_data *)proto;
+      mob = (struct char_data *)proto;
       trg_proto = mob->proto_script;
       if (!trg_proto) {
         mob->proto_script = trg_proto = new_trg;
@@ -196,7 +196,7 @@ void dg_read_trigger(FILE *fp, void *proto, int type)
       CREATE(new_trg, struct trig_proto_list, 1);
       new_trg->vnum = vnum;
       new_trg->next = NULL;
-      room = (room_data *)proto;
+      room = (struct room_data *)proto;
       trg_proto = room->proto_script;
       if (!trg_proto) {
         room->proto_script = trg_proto = new_trg;
@@ -268,7 +268,7 @@ void assign_triggers(void *i, int type)
   switch (type)
   {
     case MOB_TRIGGER:
-      mob = (char_data *)i;
+      mob = (struct char_data *)i;
       trg_proto = mob->proto_script;
       while (trg_proto) {
         rnum = real_trigger(trg_proto->vnum);
@@ -285,7 +285,7 @@ void assign_triggers(void *i, int type)
       }
       break;
     case OBJ_TRIGGER:
-      obj = (obj_data *)i;
+      obj = (struct obj_data *)i;
       trg_proto = obj->proto_script;
       while (trg_proto) {
         rnum = real_trigger(trg_proto->vnum);

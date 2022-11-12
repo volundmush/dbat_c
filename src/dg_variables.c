@@ -86,9 +86,9 @@ char *skill_percent(struct char_data *ch, char *skill)
    Now returns the number of matching objects -- Welcor 02/04
 */
 
-int item_in_list(char *item, obj_data *list)
+int item_in_list(char *item, struct obj_data *list)
 {
-  obj_data *i;
+    struct obj_data *i;
   int count = 0;
 
   if (!item || !*item)
@@ -222,11 +222,11 @@ int text_processed(char *field, char *subfield, struct trig_var_data *vd,
 
 
 /* sets str to be the value of var.field */
-void find_replacement(void *go, struct script_data *sc, trig_data *trig, int type, char *var, char *field, char *subfield, char *str, size_t slen)
+void find_replacement(void *gohere, struct script_data *sc, struct trig_data *trig, int type, char *var, char *field, char *subfield, char *str, size_t slen)
 {
   struct trig_var_data *vd=NULL;
-  char_data *ch, *c = NULL, *rndm;
-  obj_data *obj, *o = NULL;
+    struct char_data *ch, *c = NULL, *rndm;
+    struct obj_data *obj, *o = NULL;
   struct room_data *room, *r = NULL;
   char *name;
   int num, count, i, j, doors;
@@ -270,13 +270,13 @@ void find_replacement(void *go, struct script_data *sc, trig_data *trig, int typ
       if (!strcasecmp(var, "self")) {
         switch (type) {
         case MOB_TRIGGER:
-          snprintf(str, slen, "%c%d", UID_CHAR, GET_ID((char_data *) go));
+          snprintf(str, slen, "%c%d", UID_CHAR, GET_ID((struct char_data *) gohere));
           break;
         case OBJ_TRIGGER:
-          snprintf(str, slen, "%c%d", UID_CHAR, GET_ID((obj_data *) go));
+          snprintf(str, slen, "%c%d", UID_CHAR, GET_ID((struct obj_data *) gohere));
           break;
         case WLD_TRIGGER:
-          snprintf(str, slen, "%c%d", UID_CHAR, ((room_data *)go)->number + ROOM_ID_BASE);
+          snprintf(str, slen, "%c%d", UID_CHAR, ((struct room_data *)gohere)->number + ROOM_ID_BASE);
           break;
         }
       }
@@ -328,7 +328,7 @@ void find_replacement(void *go, struct script_data *sc, trig_data *trig, int typ
 
       switch (type) {
       case MOB_TRIGGER:
-        ch = (char_data *) go;
+        ch = (struct char_data *) gohere;
 
         if ((o = get_object_in_equip(ch, name)));
         else if ((o = get_obj_in_list(name, ch->carrying)));
@@ -340,7 +340,7 @@ void find_replacement(void *go, struct script_data *sc, trig_data *trig, int typ
 
         break;
       case OBJ_TRIGGER:
-        obj = (obj_data *) go;
+        obj = (struct obj_data *) gohere;
 
         if ((c = get_char_by_obj(obj, name)));
         else if ((o = get_obj_by_obj(obj, name)));
@@ -348,7 +348,7 @@ void find_replacement(void *go, struct script_data *sc, trig_data *trig, int typ
 
         break;
       case WLD_TRIGGER:
-        room = (struct room_data *) go;
+        room = (struct room_data *) gohere;
 
         if ((c = get_char_by_room(room, name)));
         else if ((o = get_obj_by_room(room, name)));
@@ -362,17 +362,17 @@ void find_replacement(void *go, struct script_data *sc, trig_data *trig, int typ
       if (!strcasecmp(var, "self")) {
         switch (type) {
         case MOB_TRIGGER:
-          c = (char_data *) go;
+          c = (struct char_data *) gohere;
           r = NULL;
           o = NULL;  /* NULL assignments added to avoid self to always be    */
           break;     /* the room.  - Welcor        */
         case OBJ_TRIGGER:
-          o = (obj_data *) go;
+          o = (struct obj_data *) gohere;
           c = NULL;
           r = NULL;
           break;
         case WLD_TRIGGER:
-          r = (struct room_data *) go;
+          r = (struct room_data *) gohere;
           c = NULL;
           o = NULL;
           break;
@@ -476,7 +476,7 @@ in the vault (vnum: 453) now and then. you can just use
           count = 0;
 
           if (type == MOB_TRIGGER) {
-            ch = (char_data *) go;
+            ch = (struct char_data *) gohere;
             for (c = world[IN_ROOM(ch)].people; c; c = c->next_in_room)
               if ((c != ch) && valid_dg_target(c, DG_ALLOW_GODS) &&
                   CAN_SEE(ch, c)) {
@@ -487,7 +487,7 @@ in the vault (vnum: 453) now and then. you can just use
           }
 
           else if (type == OBJ_TRIGGER) {
-            for (c = world[obj_room((obj_data *) go)].people; c;
+            for (c = world[obj_room((struct obj_data *) gohere)].people; c;
                  c = c->next_in_room)
               if (valid_dg_target(c, DG_ALLOW_GODS)) {
                 if (!rand_number(0, count))
@@ -497,7 +497,7 @@ in the vault (vnum: 453) now and then. you can just use
           }
 
           else if (type == WLD_TRIGGER) {
-            for (c = ((struct room_data *) go)->people; c;
+            for (c = ((struct room_data *) gohere)->people; c;
                  c = c->next_in_room)
               if (valid_dg_target(c, DG_ALLOW_GODS)) {
 
@@ -518,13 +518,13 @@ in the vault (vnum: 453) now and then. you can just use
 
           switch (type) {
             case WLD_TRIGGER:
-              in_room = real_room(((struct room_data *) go)->number);
+              in_room = real_room(((struct room_data *) gohere)->number);
               break;
             case OBJ_TRIGGER:
-              in_room = obj_room((struct obj_data *) go);
+              in_room = obj_room((struct obj_data *) gohere);
               break;
             case MOB_TRIGGER:
-              in_room = IN_ROOM((struct char_data *)go);
+              in_room = IN_ROOM((struct char_data *)gohere);
               break;
           }
           if (in_room == NOWHERE) {
@@ -560,7 +560,7 @@ in the vault (vnum: 453) now and then. you can just use
 
       else if (!strcasecmp(field, "global")) { /* get global of something else */
         if (IS_NPC(c) && c->script) {
-          find_replacement(go, c->script, NULL, MOB_TRIGGER,
+          find_replacement(gohere, c->script, NULL, MOB_TRIGGER,
             subfield, NULL, NULL, str, slen);
         }
       }
@@ -604,7 +604,7 @@ in the vault (vnum: 453) now and then. you can just use
           break;
         case 'c':
           if (!strcasecmp(field, "canbeseen")) {
-            if ((type == MOB_TRIGGER) && !CAN_SEE(((char_data *)go), c))
+            if ((type == MOB_TRIGGER) && !CAN_SEE(((struct char_data *)gohere), c))
               strcpy(str, "0");
             else
               strcpy(str, "1");
@@ -1776,7 +1776,7 @@ in the vault (vnum: 453) now and then. you can just use
  */
 
 /* substitutes any variables into line and returns it as buf */
-void var_subst(void *go, struct script_data *sc, trig_data *trig,
+void var_subst(void *gohere, struct script_data *sc, struct trig_data *trig,
                int type, char *line, char *buf)
 {
   char tmp[MAX_INPUT_LENGTH], repl_str[MAX_INPUT_LENGTH];
@@ -1832,10 +1832,10 @@ void var_subst(void *go, struct script_data *sc, trig_data *trig,
         for (field = p; *p && ((*p != '%')||(paren_count > 0) || (dots)); p++) {
           if (dots > 0) {
             *subfield_p = '\0';
-            find_replacement(go, sc, trig, type, var, field, subfield, repl_str, sizeof(repl_str));
+            find_replacement(gohere, sc, trig, type, var, field, subfield, repl_str, sizeof(repl_str));
             if (*repl_str) {
               snprintf(tmp2, sizeof(tmp2), "eval tmpvr %s", repl_str); //temp var
-              process_eval(go, sc, trig, type, tmp2);
+              process_eval(gohere, sc, trig, type, tmp2);
               strcpy(var, "tmpvr");
               field = p;
               dots = 0;
@@ -1861,11 +1861,11 @@ void var_subst(void *go, struct script_data *sc, trig_data *trig,
       *subfield_p = '\0';
 
       if (*subfield) {
-        var_subst(go, sc, trig, type, subfield, tmp2);
+        var_subst(gohere, sc, trig, type, subfield, tmp2);
         strcpy(subfield, tmp2);
       }
 
-      find_replacement(go, sc, trig, type, var, field, subfield, repl_str, sizeof(repl_str));
+      find_replacement(gohere, sc, trig, type, var, field, subfield, repl_str, sizeof(repl_str));
 
       strncat(buf, repl_str, left);
       len = strlen(repl_str);

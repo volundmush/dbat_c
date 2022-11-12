@@ -11,13 +11,13 @@ extern struct ban_list_element *ban_list;
 extern int num_invalid;
 
 
-void load_banned(void);
-int isbanned(char *hostname);
-void Free_Invalid_List(void);
-int Valid_Name(char *newname);
-void Read_Invalid_List(void);
+extern void load_banned(void);
+extern int isbanned(char *hostname);
+extern void Free_Invalid_List(void);
+extern int Valid_Name(char *newname);
+extern void Read_Invalid_List(void);
 
-ACMD(do_ban);
-ACMD(do_unban);
+extern ACMD(do_ban);
+extern ACMD(do_unban);
 
 #endif //CIRCLE_BAN_H

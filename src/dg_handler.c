@@ -117,9 +117,9 @@ void extract_script(void *thing, int type)
 {
   struct script_data *sc = NULL;
   struct trig_data *trig, *next_trig;
-  char_data *mob;
-  obj_data *obj;
-  room_data *room;
+    struct char_data *mob;
+    struct obj_data *obj;
+    struct room_data *room;
 
   switch (type) {
     case MOB_TRIGGER:
@@ -183,9 +183,9 @@ void extract_script_mem(struct script_memory *sc)
 void free_proto_script(void *thing, int type)
 {
   struct trig_proto_list *proto = NULL, *fproto;
-  char_data *mob;
-  obj_data *obj;
-  room_data *room;
+    struct char_data *mob;
+    struct obj_data *obj;
+    struct room_data *room;
 
   switch (type) {
     case MOB_TRIGGER:
@@ -234,13 +234,13 @@ void copy_proto_script(void *source, void *dest, int type)
 
   switch (type) {
     case MOB_TRIGGER:
-      tp_src = ((char_data *)source)->proto_script;
+      tp_src = ((struct char_data *)source)->proto_script;
       break;
     case OBJ_TRIGGER:
-      tp_src = ((obj_data *)source)->proto_script;
+      tp_src = ((struct obj_data *)source)->proto_script;
       break;
     case WLD_TRIGGER:
-      tp_src = ((room_data *)source)->proto_script;
+      tp_src = ((struct room_data *)source)->proto_script;
       break;
   }
 
@@ -248,13 +248,13 @@ void copy_proto_script(void *source, void *dest, int type)
     CREATE(tp_dst, struct trig_proto_list, 1);
     switch (type) {
       case MOB_TRIGGER:
-        ((char_data *)dest)->proto_script = tp_dst;
+        ((struct char_data *)dest)->proto_script = tp_dst;
         break;
       case OBJ_TRIGGER:
-        ((obj_data *)dest)->proto_script = tp_dst;
+        ((struct obj_data *)dest)->proto_script = tp_dst;
         break;
       case WLD_TRIGGER:
-        ((room_data *)dest)->proto_script = tp_dst;
+        ((struct room_data *)dest)->proto_script = tp_dst;
         break;
     }
 
@@ -290,6 +290,6 @@ void update_wait_events(struct room_data *to, struct room_data *from)
     if (!GET_TRIG_WAIT(trig))
       continue;
 
-    ((struct wait_event_data *)GET_TRIG_WAIT(trig)->event_obj)->go = to;
+    ((struct wait_event_data *)GET_TRIG_WAIT(trig)->event_obj)->gohere = to;
   }
 }

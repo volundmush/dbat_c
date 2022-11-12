@@ -6275,8 +6275,8 @@ void nanny(struct descriptor_data *d, char *arg)
         return;
      
      } else {
-        int select = atoi(arg);
-        if (select > 8 || select < 1) {
+        int selected = atoi(arg);
+        if (selected > 8 || selected < 1) {
          write_to_output(d, "@RSelect two genomes to be your primary DNA strains.\n");
          write_to_output(d, "@D--------------------------------------------------------@n\n");
          write_to_output(d, "@B1@W) @CHuman   @c- @CHigher PS gains from fighting@n\n");
@@ -6291,18 +6291,18 @@ void nanny(struct descriptor_data *d, char *arg)
          return;
         } else {
          if (d->character->genome[0] == 0) {
-          d->character->genome[0] = select;
-          if (select == 7) {
+          d->character->genome[0] = selected;
+          if (selected == 7) {
            SET_SKILL(d->character, SKILL_TELEPATHY, 30); 
            SET_SKILL(d->character, SKILL_FOCUS, 30);
           }
-         } else if (d->character->genome[0] > 0 && d->character->genome[0] == select) {
+         } else if (d->character->genome[0] > 0 && d->character->genome[0] == selected) {
           write_to_output(d, "You can't choose the same thing for both genomes!\r\n");
           write_to_output(d, "\n@wChoose: ");
           return;
          } else if (d->character->genome[1] == 0) {
-          d->character->genome[1] = select;
-          if (select == 7) {
+          d->character->genome[1] = selected;
+          if (selected == 7) {
            SET_SKILL(d->character, SKILL_TELEPATHY, 30);
            SET_SKILL(d->character, SKILL_FOCUS, 30);
           }

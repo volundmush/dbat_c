@@ -420,15 +420,15 @@ void game_loop(socklen_t cmmother_desc)
          if ( this_imcmud != NULL && this_imcmud->desc != -1 )
             FD_SET(this_imcmud->desc, &input_set);
        }
-      if (select(top_desc + 1, &input_set, (fd_set *) 0, (fd_set *) 0, NULL) < 0) {
-	if (errno == EINTR)
-	  log("Waking up to process signal.");
-	else
-	  perror("SYSERR: Select coma");
-      } else
-         if (!CONFIG_IMC_ENABLED) {
-          log("New connection.  Waking up.");
-         }
+        if (select(top_desc + 1, &input_set, (fd_set *) 0, (fd_set *) 0, NULL) < 0) {
+            if (errno == EINTR)
+                log("Waking up to process signal.");
+            else
+                perror("SYSERR: Select coma");
+        } else
+        if (!CONFIG_IMC_ENABLED) {
+            log("New connection.  Waking up.");
+        }
       gettimeofday(&last_time, (struct timezone *) 0);
     }
     /* Set up the input, output, and exception sets for select(). */
@@ -485,10 +485,11 @@ void game_loop(socklen_t cmmother_desc)
     } while (timeout.tv_usec || timeout.tv_sec);
 
     /* Poll (without blocking) for new input, output, and exceptions */
-    if (select(maxdesc + 1, &input_set, &output_set, &exc_set, &null_time) < 0) {
-      perror("SYSERR: Select poll");
-      return;
-    }
+      if (select(maxdesc + 1, &input_set, &output_set, &exc_set, &null_time) < 0) {
+          perror("SYSERR: Select poll");
+          return;
+      }
+
     /* If there are new connections waiting, accept them. */
     if (FD_ISSET(cmmother_desc, &input_set))
       new_descriptor(cmmother_desc);
@@ -699,7 +700,7 @@ void heartbeat(int heart_pulse)
 
   if (!(heart_pulse % (SECS_PER_MUD_HOUR * PASSES_PER_SEC))) {
     weather_and_time(1);
-    check_time_triggers();
+      check_timed_triggers();
     affect_update();
   }
   if (!(heart_pulse % ((SECS_PER_MUD_HOUR / 3) * PASSES_PER_SEC))) {
@@ -3488,12 +3489,12 @@ int open_logfile(const char *filename, FILE *stderr_fp)
 
 void circle_sleep(struct timeval *timeout)
 {
-  if (select(0, (fd_set *) 0, (fd_set *) 0, (fd_set *) 0, timeout) < 0) {
-    if (errno != EINTR) {
-      perror("SYSERR: Select sleep");
-      exit(1);
+    if (select(0, (fd_set *) 0, (fd_set *) 0, (fd_set *) 0, timeout) < 0) {
+        if (errno != EINTR) {
+            perror("SYSERR: Select sleep");
+            exit(1);
+        }
     }
-  }
 }
 
 void show_help(struct descriptor_data *t, const char *entry)

@@ -10,17 +10,17 @@
 #include "structs.h"
 #include "guild.h"
 
-void copy_guild(struct guild_data *tguild, struct guild_data *fguild);
-void copy_list(IDXTYPE **tlist, IDXTYPE *flist);
-void remove_from_int_list(IDXTYPE **list, IDXTYPE num);
-void add_to_int_list(IDXTYPE **tlist, IDXTYPE newi);
-void free_guild_string(struct guild_data *guild);
-void free_guild(struct guild_data *guild);
-void free_guild_strings(struct guild_data *guild);
-void modify_string(char **str, char *newstr);
-int add_guild(struct guild_data *guild);
-int save_guilds(zone_rnum zone_num);
-guild_rnum real_guild(guild_vnum vnum);
+extern void copy_guild(struct guild_data *tguild, struct guild_data *fguild);
+extern void copy_list(IDXTYPE **tlist, IDXTYPE *flist);
+extern void remove_from_int_list(IDXTYPE **list, IDXTYPE num);
+extern void add_to_int_list(IDXTYPE **tlist, IDXTYPE newi);
+extern void free_guild_string(struct guild_data *guild);
+extern void free_guild(struct guild_data *guild);
+extern void free_guild_strings(struct guild_data *guild);
+extern void modify_string(char **str, char *newstr);
+extern int add_guild(struct guild_data *guild);
+extern int save_guilds(zone_rnum zone_num);
+extern guild_rnum real_guild(guild_vnum vnum);
 
 /*
  * Handy macros.

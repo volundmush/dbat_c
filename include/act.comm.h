@@ -8,18 +8,18 @@
 #include "structs.h"
 
 // commands
-ACMD(do_say);
-ACMD(do_gsay);
-ACMD(do_tell);
-ACMD(do_reply);
-ACMD(do_respond);
-ACMD(do_spec_comm);
-ACMD(do_write);
-ACMD(do_page);
-ACMD(do_gen_comm);
-ACMD(do_qcomm);
-ACMD(do_voice);
-ACMD(do_languages);
-ACMD(do_osay);
+extern ACMD(do_say);
+extern ACMD(do_gsay);
+extern ACMD(do_tell);
+extern ACMD(do_reply);
+extern ACMD(do_respond);
+extern ACMD(do_spec_comm);
+extern ACMD(do_write);
+extern ACMD(do_page);
+extern ACMD(do_gen_comm);
+extern ACMD(do_qcomm);
+extern ACMD(do_voice);
+extern ACMD(do_languages);
+extern ACMD(do_osay);
 
 #endif //CIRCLE_ACT_COMM_H

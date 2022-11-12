@@ -55,17 +55,17 @@ struct house_control_rec {
 extern struct house_control_rec house_control[MAX_HOUSES];     /* house.c */
 extern int num_of_houses;                                      /* house.c */
 
-void	House_listrent(struct char_data *ch, room_vnum vnum);
-void	House_boot(void);
-void	House_save_all(void);
-int	House_can_enter(struct char_data *ch, room_vnum house);
-void	House_crashsave(room_vnum vnum);
-void	House_list_guests(struct char_data *ch, int i, int quiet);
-void hcontrol_list_houses(struct char_data *ch);
-int find_house(room_vnum vnum);                                /* house.c */
-void House_save_control(void);                                 /* house.c */
-void House_delete_file(room_vnum vnum);                        /* house.c */
+extern void House_listrent(struct char_data *ch, room_vnum vnum);
+extern void House_boot(void);
+extern void House_save_all(void);
+extern int House_can_enter(struct char_data *ch, room_vnum house);
+extern void House_crashsave(room_vnum vnum);
+extern void House_list_guests(struct char_data *ch, int i, int quiet);
+extern void hcontrol_list_houses(struct char_data *ch);
+extern int find_house(room_vnum vnum);                                /* house.c */
+extern void House_save_control(void);                                 /* house.c */
+extern void House_delete_file(room_vnum vnum);                        /* house.c */
 
-ACMD(do_hcontrol);
-ACMD(do_house);
+extern ACMD(do_hcontrol);
+extern ACMD(do_house);
 #endif

@@ -22,6 +22,7 @@
 #include "dg_event.h"
 #include "constants.h"
 #include "act.wizard.h"
+#include "modify.h"
 
 /* local functions */
 static void trigedit_disp_menu(struct descriptor_data *d);
@@ -416,9 +417,9 @@ void trigedit_save(struct descriptor_data *d)
   trig_rnum rnum;
   int found = 0;
   char *s;
-  trig_data *proto;
-  trig_data *trig = OLC_TRIG(d);
-  trig_data *live_trig;
+    struct trig_data *proto;
+    struct trig_data *trig = OLC_TRIG(d);
+    struct trig_data *live_trig;
   struct cmdlist_element *cmd, *next_cmd;
   struct index_data **new_index;
   struct descriptor_data *dsc;

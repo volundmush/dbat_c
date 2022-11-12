@@ -7,10 +7,10 @@
 
 #include "structs.h"
 
-int buildwalk(struct char_data *ch, int dir);
+extern int buildwalk(struct char_data *ch, int dir);
 
 
 // commands
-ACMD(do_dig);
+extern ACMD(do_dig);
 
 #endif //CIRCLE_OASIS_COPY_H

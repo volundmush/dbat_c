@@ -49,12 +49,12 @@
 ***************************************************************************
 **   DON'T TOUCH DEFINES BELOW  */
 
-int	scan_file(void);
-int	has_mail(long recipient);
-void	store_mail(long to, long from, char *message_pointer);
-char	*read_delete(long recipient, char **from);
-void clear_free_list(void);
-void free_mail_index(void);
+extern int scan_file(void);
+extern int has_mail(long recipient);
+extern void store_mail(long to, long from, char *message_pointer);
+extern char *read_delete(long recipient, char **from);
+extern void clear_free_list(void);
+extern void free_mail_index(void);
 
 #define HEADER_BLOCK  (-1)
 #define LAST_BLOCK    (-2)
@@ -112,8 +112,8 @@ struct mail_index_type_d {
 };
 
 typedef struct mail_index_type_d mail_index_type;
-void notify_if_playing(struct char_data *from, int recipient_id);
+extern void notify_if_playing(struct char_data *from, int recipient_id);
 
-SPECIAL(postmaster);
+extern SPECIAL(postmaster);
 
 #endif

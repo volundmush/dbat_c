@@ -7,6 +7,6 @@
 
 #include "structs.h"
 
-int save_config( IDXTYPE nowhere );        /* Exported from cedit.c */
+extern int save_config( IDXTYPE nowhere );        /* Exported from cedit.c */
 
 #endif //CIRCLE_CEDIT_H

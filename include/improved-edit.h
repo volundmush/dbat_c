@@ -13,11 +13,11 @@
 
 #define using_improved_editor	CONFIG_IMPROVED_EDITOR
 
-void parse_edit_action(int command, char *string, struct descriptor_data *d);
-int improved_editor_execute(struct descriptor_data *d, char *string);
-int format_text(char **ptr_string, int mode, struct descriptor_data *d, unsigned int maxlen, int low, int high);
-int replace_str(char **string, char *pattern, char *replacement, int rep_all, unsigned int max_size);
-void send_editor_help(struct descriptor_data *d);
+extern void parse_edit_action(int command, char *string, struct descriptor_data *d);
+extern int improved_editor_execute(struct descriptor_data *d, char *string);
+extern int format_text(char **ptr_string, int mode, struct descriptor_data *d, unsigned int maxlen, int low, int high);
+extern int replace_str(char **string, char *pattern, char *replacement, int rep_all, unsigned int max_size);
+extern void send_editor_help(struct descriptor_data *d);
 
 /*
  * Action modes for parse_edit_action().

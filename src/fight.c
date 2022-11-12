@@ -22,6 +22,9 @@
 #include "races.h"
 #include "handler.h"
 #include "combat.h"
+#include "dg_scripts.h"
+#include "objsave.h"
+#include "class.h"
 
 /* Structures */
 struct char_data *combat_list = NULL;	/* head of l-list of fighting chars */

@@ -8,8 +8,8 @@
 #include "structs.h"
 
 
-void assign_mobiles(void);
-void assign_objects(void);
-void assign_rooms(void);
+extern void assign_mobiles(void);
+extern void assign_objects(void);
+extern void assign_rooms(void);
 
 #endif //CIRCLE_SPEC_ASSIGN_H

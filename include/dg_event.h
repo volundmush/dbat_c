@@ -57,21 +57,21 @@ struct q_element {
 /****** End of Queue related info ********/
 
 /* - events - function protos need by other modules */
-void event_init(void);
-struct event *event_create(EVENTFUNC(*func), void *event_obj, long when);
-void event_cancel(struct event *event);
-void event_process(void);
-long event_time(struct event *event);
-void event_free_all(void);
+extern void event_init(void);
+extern struct event *event_create(EVENTFUNC(*func), void *event_obj, long when);
+extern void event_cancel(struct event *event);
+extern void event_process(void);
+extern long event_time(struct event *event);
+extern void event_free_all(void);
 
 /* - queues - function protos need by other modules */
-struct queue *queue_init(void);
-struct q_element *queue_enq(struct queue *q, void *data, long key);
-void queue_deq(struct queue *q, struct q_element *qe);
-void *queue_head(struct queue *q);
-long queue_key(struct queue *q);
-long queue_elmt_key(struct q_element *qe);
-void queue_free(struct queue *q);
-int  event_is_queued(struct event *event);
+extern struct queue *queue_init(void);
+extern struct q_element *queue_enq(struct queue *q, void *data, long key);
+extern void queue_deq(struct queue *q, struct q_element *qe);
+extern void *queue_head(struct queue *q);
+extern long queue_key(struct queue *q);
+extern long queue_elmt_key(struct q_element *qe);
+extern void queue_free(struct queue *q);
+extern int  event_is_queued(struct event *event);
 
 #endif

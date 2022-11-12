@@ -18,6 +18,7 @@
 #include "screen.h"
 #include "spells.h"
 #include "constants.h"
+#include "fight.h"
 
 /* copied from spell_parser.c: */
 #define SINFO spell_info[spellnum]
@@ -31,7 +32,7 @@
 /* LIMITATION: a target MUST exist for the spell unless the spell is   */
 /* set to TAR_IGNORE. Also, group spells are not permitted             */
 /* code borrowed from do_cast() */
-void do_dg_cast(void *go, struct script_data *sc, trig_data *trig,
+void do_dg_cast(void *gohere, struct script_data *sc, struct trig_data *trig,
 		 int type, char *cmd)
 {
   struct char_data *caster = NULL;
@@ -45,13 +46,13 @@ void do_dg_cast(void *go, struct script_data *sc, trig_data *trig,
   /* need to get the caster or the room of the temporary caster */
   switch (type) {
     case MOB_TRIGGER:
-      caster = (struct char_data *)go;
+      caster = (struct char_data *)gohere;
       break;
     case WLD_TRIGGER:
-      caster_room = (struct room_data *)go;
+      caster_room = (struct room_data *)gohere;
       break;
     case OBJ_TRIGGER:
-      caster_room = dg_room_of_obj((struct obj_data *)go);
+      caster_room = dg_room_of_obj((struct obj_data *)gohere);
       if (!caster_room) {
         script_log("dg_do_cast: unknown room for object-caster!");
         return;
@@ -132,7 +133,7 @@ void do_dg_cast(void *go, struct script_data *sc, trig_data *trig,
     /* set the caster's name to that of the object, or the gods.... */
     if (type==OBJ_TRIGGER)
       caster->short_descr =
-        strdup(((struct obj_data *)go)->short_description);
+        strdup(((struct obj_data *)gohere)->short_description);
     else if (type==WLD_TRIGGER)
       caster->short_descr = strdup("The gods");
     caster->next_in_room = caster_room->people;
@@ -152,7 +153,7 @@ void do_dg_cast(void *go, struct script_data *sc, trig_data *trig,
 /* usage:  apply <target> <property> <value> <duration>               */
 #define APPLY_TYPE	1
 #define AFFECT_TYPE	2
-void do_dg_affect(void *go, struct script_data *sc, trig_data *trig, int script_type, char *cmd)
+void do_dg_affect(void *gohere, struct script_data *sc, struct trig_data *trig, int script_type, char *cmd)
 {
   struct char_data *ch = NULL;
   int value=0, duration=0;

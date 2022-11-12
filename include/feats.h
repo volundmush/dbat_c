@@ -12,13 +12,13 @@
 #include "structs.h"
 
 /* Functions defined in feats.c */
-int is_proficient_with_armor(const struct char_data *ch, int armor_type);
-int is_proficient_with_weapon(const struct char_data *ch, int weapon_type);
-int find_feat_num(char *name);
-int feat_to_subfeat(int feat);
-void assign_feats(void);
-void sort_feats(void);
-int feat_is_available(struct char_data *ch, int featnum, int iarg, char *sarg);
+extern int is_proficient_with_armor(const struct char_data *ch, int armor_type);
+extern int is_proficient_with_weapon(const struct char_data *ch, int weapon_type);
+extern int find_feat_num(char *name);
+extern int feat_to_subfeat(int feat);
+extern void assign_feats(void);
+extern void sort_feats(void);
+extern int feat_is_available(struct char_data *ch, int featnum, int iarg, char *sarg);
 
 extern int feat_sort_info[MAX_FEATS + 1];
 

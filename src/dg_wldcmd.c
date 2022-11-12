@@ -22,10 +22,10 @@
  */
 
 #define WCMD(name)  \
-    void (name)(room_data *room, char *argument, int cmd, int subcmd)
+    void (name)(struct room_data *room, char *argument, int cmd, int subcmd)
 
-void wld_log(room_data *room, const char *format, ...);
-void act_to_room(char *str, room_data *room);
+void wld_log(struct room_data *room, const char *format, ...);
+void act_to_room(char *str, struct room_data *room);
 WCMD(do_wasound);
 WCMD(do_wecho);
 WCMD(do_wsend);
@@ -39,13 +39,13 @@ WCMD(do_wload);
 WCMD(do_wdamage);
 WCMD(do_wat);
 WCMD(do_weffect);
-void wld_command_interpreter(room_data *room, char *argument);
+void wld_command_interpreter(struct room_data *room, char *argument);
 
 
 struct wld_command_info {
     char *command;
     void (*command_pointer)
-           (room_data *room, char *argument, int cmd, int subcmd);
+           (struct room_data *room, char *argument, int cmd, int subcmd);
     int        subcmd;
 };
 
@@ -57,7 +57,7 @@ struct wld_command_info {
 
 
 /* attaches room vnum to msg and sends it to script_log */
-void wld_log(room_data *room, const char *format, ...)
+void wld_log(struct room_data *room, const char *format, ...)
 {
   va_list args;
   char output[MAX_STRING_LENGTH];
@@ -70,7 +70,7 @@ void wld_log(room_data *room, const char *format, ...)
 }
 
 /* sends str to room */
-void act_to_room(char *str, room_data *room)
+void act_to_room(char *str, struct room_data *room)
 {
     /* no one is in the room */
     if (!room->people)
@@ -184,7 +184,7 @@ WCMD(do_wecho)
 WCMD(do_wsend)
 {
     char buf[MAX_INPUT_LENGTH], *msg;
-    char_data *ch;
+    struct char_data *ch;
 
     msg = any_one_arg(argument, buf);
 
@@ -255,7 +255,7 @@ WCMD(do_wdoor)
 {
     char target[MAX_INPUT_LENGTH], direction[MAX_INPUT_LENGTH];
     char field[MAX_INPUT_LENGTH], *value;
-    room_data *rm;
+    struct room_data *rm;
     struct room_direction_data *newexit;
     int dir, fd, to_room;
 
@@ -352,7 +352,7 @@ WCMD(do_wdoor)
 
 WCMD(do_wteleport)
 {
-    char_data *ch, *next_ch;
+    struct char_data *ch, *next_ch;
     room_rnum target, nr;
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
 
@@ -404,7 +404,7 @@ WCMD(do_wteleport)
 
 WCMD(do_wforce)
 {
-    char_data *ch, *next_ch;
+    struct char_data *ch, *next_ch;
     char arg1[MAX_INPUT_LENGTH], *line;
 
     line = one_argument(argument, arg1);
@@ -447,8 +447,8 @@ WCMD(do_wforce)
 WCMD(do_wpurge)
 {
   char arg[MAX_INPUT_LENGTH];
-  char_data *ch, *next_ch;
-  obj_data *obj, *next_obj;
+    struct char_data *ch, *next_ch;
+    struct obj_data *obj, *next_obj;
 
   one_argument(argument, arg);
 
@@ -501,11 +501,11 @@ WCMD(do_wload)
 {
     char arg1[MAX_INPUT_LENGTH], arg2[MAX_INPUT_LENGTH];
     int number = 0;
-    char_data *mob;
-    obj_data *object;
+    struct char_data *mob;
+    struct obj_data *object;
     char *target;
-    char_data *tch;
-    obj_data *cnt;
+    struct char_data *tch;
+    struct obj_data *cnt;
     int pos;
 
     target = two_arguments(argument, arg1, arg2);
@@ -592,7 +592,7 @@ WCMD(do_wload)
 WCMD(do_wdamage) {
   char name[MAX_INPUT_LENGTH], amount[MAX_INPUT_LENGTH];
   int dam = 0;
-  char_data *ch;
+    struct char_data *ch;
 
   two_arguments(argument, name, amount);
 
@@ -671,7 +671,7 @@ const struct wld_command_info wld_cmd_info[] = {
 /*
  *  This is the command interpreter used by rooms, called by script_driver.
  */
-void wld_command_interpreter(room_data *room, char *argument)
+void wld_command_interpreter(struct room_data *room, char *argument)
 {
     int cmd, length;
     char *line, arg[MAX_INPUT_LENGTH];

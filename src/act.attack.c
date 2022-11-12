@@ -23,6 +23,7 @@
 #include "comm.h"
 #include "constants.h"
 #include "combat.h"
+#include "class.h"
 
 ACMD(do_lightgrenade)
 {

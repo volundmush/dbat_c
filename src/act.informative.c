@@ -4431,7 +4431,7 @@ ACMD(do_autoexit)
 void look_at_room(room_rnum target_room, struct char_data *ch, int ignore_brief)
 {
   struct room_data *rm = &world[IN_ROOM(ch)];
-  trig_data *t;
+    struct trig_data *t;
 
   if (!ch->desc)
     return;

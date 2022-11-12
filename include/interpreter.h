@@ -19,31 +19,31 @@
 
 extern const char *list_bonus[];
 
-void userLoad(struct descriptor_data *d, char *name);
-int perform_alias(struct descriptor_data *d, char *orig, size_t maxlen);
-void topLoad(void);
-void topWrite(struct char_data *ch);
-char *rIntro(struct char_data *ch, char *arg);
-int special(struct char_data *ch, int cmd, char *arg);
-void fingerUser(struct char_data *ch, char *name);
-int readUserIndex(char *name);
-void userWrite(struct descriptor_data *d, int setTot, int setRpp, int setRBank, char *name);
-void	command_interpreter(struct char_data *ch, char *argument);
-int	search_block(char *arg, const char **list, int exact);
-char	lower( char c );
-char	*one_argument(char *argument, char *first_arg);
-char	*one_word(char *argument, char *first_arg);
-char	*any_one_arg(char *argument, char *first_arg);
-char	*two_arguments(char *argument, char *first_arg, char *second_arg);
-char    *three_arguments(char *argument, char *first_arg, char *second_arg, char *third_arg);
-int	fill_word(char *argument);
-void	half_chop(char *string, char *arg1, char *arg2);
-void	nanny(struct descriptor_data *d, char *arg);
-int	is_abbrev(const char *arg1, const char *arg2);
-int	is_number(const char *str);
-int	find_command(const char *command);
-void	skip_spaces(char **string);
-char	*delete_doubledollar(char *string);
+extern void userLoad(struct descriptor_data *d, char *name);
+extern int perform_alias(struct descriptor_data *d, char *orig, size_t maxlen);
+extern void topLoad(void);
+extern void topWrite(struct char_data *ch);
+extern char *rIntro(struct char_data *ch, char *arg);
+extern int special(struct char_data *ch, int cmd, char *arg);
+extern void fingerUser(struct char_data *ch, char *name);
+extern int readUserIndex(char *name);
+extern void userWrite(struct descriptor_data *d, int setTot, int setRpp, int setRBank, char *name);
+extern void command_interpreter(struct char_data *ch, char *argument);
+extern int search_block(char *arg, const char **list, int exact);
+extern char lower( char c );
+extern char *one_argument(char *argument, char *first_arg);
+extern char *one_word(char *argument, char *first_arg);
+extern char *any_one_arg(char *argument, char *first_arg);
+extern char *two_arguments(char *argument, char *first_arg, char *second_arg);
+extern char *three_arguments(char *argument, char *first_arg, char *second_arg, char *third_arg);
+extern int fill_word(char *argument);
+extern void half_chop(char *string, char *arg1, char *arg2);
+extern void nanny(struct descriptor_data *d, char *arg);
+extern int is_abbrev(const char *arg1, const char *arg2);
+extern int is_number(const char *str);
+extern int find_command(const char *command);
+extern void skip_spaces(char **string);
+extern char *delete_doubledollar(char *string);
 
 /* WARNING: if you have added diagonal directions and have them at the
  * beginning of the command list.. change this value to 11 or 15 (depending) */

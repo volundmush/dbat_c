@@ -9,41 +9,41 @@
 
 
 // functions
-void npc_steal(struct char_data *ch, struct char_data *victim);
-int num_players_in_room(room_vnum room);
-bool check_mob_in_room(mob_vnum mob, room_vnum room);
-bool check_obj_in_room(obj_vnum obj, room_vnum room);
+extern void npc_steal(struct char_data *ch, struct char_data *victim);
+extern int num_players_in_room(room_vnum room);
+extern bool check_mob_in_room(mob_vnum mob, room_vnum room);
+extern bool check_obj_in_room(obj_vnum obj, room_vnum room);
 
 
 // specials
-SPECIAL(guild);
-SPECIAL(dump);
-SPECIAL(mayor);
-SPECIAL(snake);
-SPECIAL(thief);
-SPECIAL(magic_user);
-SPECIAL(guild_guard);
-SPECIAL(puff);
-SPECIAL(fido);
-SPECIAL(janitor);
-SPECIAL(cityguard);
-SPECIAL(pet_shops);
-SPECIAL(auction);
-SPECIAL(bank);
-SPECIAL(gravity);
-SPECIAL(augmenter);
-SPECIAL(gauntlet_room);
-SPECIAL(gauntlet_end);
-SPECIAL(gauntlet_rest);
-SPECIAL(magic_user_orig);
-SPECIAL(healtank);
-SPECIAL(augmenter);
-SPECIAL(gravity);
-SPECIAL(bank);
-SPECIAL(cleric_marduk);
-SPECIAL(cleric_ao);
-SPECIAL(dziak);
-SPECIAL(azimer);
-SPECIAL(lyrzaxyn);
+extern SPECIAL(guild);
+extern SPECIAL(dump);
+extern SPECIAL(mayor);
+extern SPECIAL(snake);
+extern SPECIAL(thief);
+extern SPECIAL(magic_user);
+extern SPECIAL(guild_guard);
+extern SPECIAL(puff);
+extern SPECIAL(fido);
+extern SPECIAL(janitor);
+extern SPECIAL(cityguard);
+extern SPECIAL(pet_shops);
+extern SPECIAL(auction);
+extern SPECIAL(bank);
+extern SPECIAL(gravity);
+extern SPECIAL(augmenter);
+extern SPECIAL(gauntlet_room);
+extern SPECIAL(gauntlet_end);
+extern SPECIAL(gauntlet_rest);
+extern SPECIAL(magic_user_orig);
+extern SPECIAL(healtank);
+extern SPECIAL(augmenter);
+extern SPECIAL(gravity);
+extern SPECIAL(bank);
+extern SPECIAL(cleric_marduk);
+extern SPECIAL(cleric_ao);
+extern SPECIAL(dziak);
+extern SPECIAL(azimer);
+extern SPECIAL(lyrzaxyn);
 
 #endif //CIRCLE_SPEC_PROCS_H

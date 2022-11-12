@@ -5,13 +5,13 @@
 #define OLC_SET		0
 #define OLC_SHOW	1
 #define OLC_REPEAT	2
-#define OLC_ROOM	3
-#define OLC_MOB		4
-#define OLC_OBJ		5
+#define OLC_ROOM_TYPE	3
+#define OLC_MOB_TYPE		4
+#define OLC_OBJ_TYPE		5
 
 #define OLC_COPY	0
 #define OLC_NAME	1
-#define OLC_DESC	2
+#define OLC_DESC_TYPE	2
 #define OLC_ALIASES	3
 
 

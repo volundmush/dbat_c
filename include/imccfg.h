@@ -8,16 +8,12 @@
 #define SMAUGSOCIAL
 
 extern struct social_messg *soc_mess_list;
-struct social_messg *find_social( const char *name );
-
-typedef struct social_messg SOCIAL_DATA;
-typedef struct char_data CHAR_DATA;
-typedef struct descriptor_data DESCRIPTOR_DATA;
+extern struct social_messg *find_social( const char *name );
 
 extern const char *class_abbrevs[];
 
-const char *title_female( int chclass, int level );
-const char *title_male( int chclass, int level );
+extern const char *title_female( int chclass, int level );
+extern const char *title_male( int chclass, int level );
 
 #define first_descriptor         descriptor_list
 #define URANGE(a, b, c)          ((b) < (a) ? (a) : ((b) > (c) ? (c) : (b)))

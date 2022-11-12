@@ -35,13 +35,13 @@ extern struct htree_node *HTREE_NULL;
 extern int htree_total_nodes;
 extern int htree_depth_used;
 
-void htree_shutdown();
-struct htree_node *htree_init();
-void htree_free(struct htree_node *root);
-void htree_add(struct htree_node *root, IDXTYPE index, IDXTYPE content);
-void htree_del(struct htree_node *root, IDXTYPE index);
-IDXTYPE htree_find(struct htree_node *root, IDXTYPE index);
-void htree_test();
+extern void htree_shutdown();
+extern struct htree_node *htree_init();
+extern void htree_free(struct htree_node *root);
+extern void htree_add(struct htree_node *root, IDXTYPE index, IDXTYPE content);
+extern void htree_del(struct htree_node *root, IDXTYPE index);
+extern IDXTYPE htree_find(struct htree_node *root, IDXTYPE index);
+extern void htree_test();
 
 
 #endif
