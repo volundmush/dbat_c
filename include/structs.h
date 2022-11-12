@@ -560,13 +560,13 @@
 #define RACE_MAJIN		11
 #define RACE_KAI		12
 #define RACE_TRUFFLE		13
-#define RACE_GOBLIN		14
+#define RACE_HOSHIJIN		14
 #define RACE_ANIMAL		15
 #define RACE_ORC		16
 #define RACE_SNAKE		17
 #define RACE_TROLL		18
 #define RACE_MINOTAUR		19
-#define RACE_KOBOLD		20
+#define RACE_ARLIAN		20
 #define RACE_LIZARDFOLK		21
 #define RACE_WARHOST		22
 #define RACE_FAERIE		23

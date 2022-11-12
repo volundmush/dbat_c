@@ -83,6 +83,7 @@ extern int no_specials, scheck;
 extern const char compress_offer[4];
 extern bool fCopyOver;
 extern char *last_act_message;
+extern int to_sleeping;
 
 // functions
 extern void free_user(struct descriptor_data *d);

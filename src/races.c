@@ -215,13 +215,13 @@ int parse_race(struct char_data *ch, int arg)
    break;
   case 13: race = RACE_KAI        ; break;
   case 14: race = RACE_TRUFFLE    ; break;
-  case 15: race = RACE_GOBLIN     ; 
+  case 15: race = RACE_HOSHIJIN     ;
    if (ch->desc->rpp >= 30) {
-    race = RACE_GOBLIN;
+    race = RACE_HOSHIJIN;
     //ch->desc->rpp -= 30;
     userWrite(ch->desc, 0, 0, 0, "index");
    } else if (ch->desc->rbank >= 30) {
-    race = RACE_GOBLIN;
+    race = RACE_HOSHIJIN;
     //ch->desc->rbank -= 30;
     userWrite(ch->desc, 0, 0, 0, "index");
    }
@@ -229,7 +229,7 @@ int parse_race(struct char_data *ch, int arg)
     race = RACE_UNDEFINED;
    }
    break;
-  case 16: race = RACE_KOBOLD     ; break;
+  case 16: race = RACE_ARLIAN     ; break;
   case 17: race = RACE_ANIMAL     ; break;
   case 18: race = RACE_ORC        ; break;
   case 19: race = RACE_SNAKE      ; break;

@@ -22,6 +22,7 @@
 #include "genzon.h"
 #include "constants.h"
 #include "act.informative.h"
+#include "dg_scripts.h"
 
 /* local functions */
 char commastring[MAX_STRING_LENGTH];
@@ -5016,4 +5017,460 @@ char *GET_USER(struct char_data *ch) {
 
 char *GET_NAME(struct char_data *ch) {
     return IS_NPC(ch) ? ch->short_descr : ch->name;
+}
+
+int GET_LEVEL(struct char_data *ch) {
+    return GET_CLASS_LEVEL(ch) + GET_LEVEL_ADJ(ch) + GET_HITDICE(ch);
+}
+
+int GET_PC_HEIGHT(struct char_data *ch) {
+    return !IS_NPC(ch) ? age(ch)->year <= 10 ? (int)(ch->height * 0.68) : age(ch)->year <= 12 ? (int)(ch->height * 0.72) : age(ch)->year <= 14 ? (int)(ch->height * 0.85) : age(ch)->year <= 16 ? (int)(ch->height * 0.92) : ch->height : ch->height;
+}
+
+int GET_PC_WEIGHT(struct char_data *ch) {
+    return !IS_NPC(ch) ? age(ch)->year <= 10 ? (int)(ch->weight * 0.48) : age(ch)->year <= 12 ? (int)(ch->weight * 0.55) : age(ch)->year <= 14 ? (int)(ch->weight * 0.7) : age(ch)->year <= 16 ? (int)(ch->weight * 0.85) : ch->weight : ch->weight;
+}
+
+int GET_MUTBOOST(struct char_data *ch) {
+    return IS_MUTANT(ch) ? ((GET_GENOME(ch, 0) == 1 || GET_GENOME(ch, 1) == 1) ? (GET_SPEEDCALC(ch) + GET_SPEEDBONUS(ch) + GET_SPEEDBOOST(ch)) * 0.3 : 0) : 0;
+}
+
+int GET_SPEEDI(struct char_data *ch) {
+ return GET_SPEEDCALC(ch) + GET_SPEEDBONUS(ch) + GET_SPEEDBOOST(ch) + GET_MUTBOOST(ch);
+}
+
+int GET_SPEEDCALC(struct char_data *ch) {
+    return IS_GRAP(ch) ? GET_CHA(ch) : (IS_INFERIOR(ch) ? (AFF_FLAGGED(ch, AFF_FLYING) ? (GET_SPEEDVAR(ch) * 1.25) : GET_SPEEDVAR(ch)) : GET_SPEEDVAR(ch));
+}
+
+int GET_SPEEDBONUS(struct char_data *ch) {
+    return IS_ARLIAN(ch) ? AFF_FLAGGED(ch, AFF_SHELL) ? GET_SPEEDVAR(ch) * -0.5 : (IS_MALE(ch) ? (AFF_FLAGGED(ch, AFF_FLYING) ? (GET_SPEEDVAR(ch) * 0.5) : 0) : 0) : 0;
+}
+
+int GET_SPEEDVAR(struct char_data *ch) {
+    return GET_SPEEDVEM(ch) > GET_CHA(ch) ? GET_SPEEDVEM(ch) : GET_CHA(ch);
+}
+
+int GET_SPEEDVEM(struct char_data *ch) {
+    return GET_SPEEDINT(ch) - (GET_SPEEDINT(ch) * speednar(ch));
+}
+
+bool IS_GRAP(struct char_data *ch) {
+    return (GRAPPLING(ch) || GRAPPLED(ch));
+}
+
+int GET_SPEEDINT(struct char_data *ch) {
+    return IS_BIO(ch) ? ((GET_CHA(ch) * GET_DEX(ch)) * (GET_MAX_HIT(ch) / 1200) / 1200) + (GET_CHA(ch) * (GET_KAIOKEN(ch) * 100)) : ((GET_CHA(ch) * GET_DEX(ch)) * (GET_MAX_HIT(ch) / 1000) / 1000) + (GET_CHA(ch) * (GET_KAIOKEN(ch) * 100));
+}
+
+bool IS_INFERIOR(struct char_data *ch) {
+    return IS_KONATSU(ch) || IS_DEMON(ch);
+}
+
+bool IS_WEIGHTED(struct char_data *ch) {
+    return gear_pl(ch) < GET_MAX_HIT(ch);
+}
+
+bool SPOILED(struct char_data *ch) {
+    return ch->time.played > 86400;
+}
+
+int GET_BLESSBONUS(struct char_data *ch) {
+    return AFF_FLAGGED(ch, AFF_BLESS) ? (GET_BLESSLVL(ch) >= 100 ? ((GET_MAX_MANA(ch) * 0.5) + (GET_MAX_MOVE(ch) * 0.5)) * 0.1 : GET_BLESSLVL(ch) >= 60 ? ((GET_MAX_MANA(ch) * 0.5) + (GET_MAX_MOVE(ch) * 0.5)) * 0.05 : GET_BLESSLVL(ch) >= 40 ? ((GET_MAX_MANA(ch) * 0.5) + (GET_MAX_MOVE(ch) * 0.5)) * 0.02 : 0) : 0;
+}
+
+double GET_POSELF(struct char_data *ch) {
+    return !IS_NPC(ch) ? PLR_FLAGGED(ch, PLR_POSE) ? GET_SKILL(ch, SKILL_POSE) >= 100 ? 0.15 : GET_SKILL(ch, SKILL_POSE) >= 60 ? 0.1 : GET_SKILL(ch, SKILL_POSE) >= 40 ? 0.05 : 0 : 0 : 0;
+}
+
+double GET_POSEBONUS(struct char_data *ch) {
+    return ((GET_MAX_MANA(ch) * 0.5) + (GET_MAX_MOVE(ch) * 0.5)) * GET_POSELF(ch);
+}
+
+int GET_LIFEBONUS(struct char_data *ch) {
+    return IS_ARLIAN(ch) ? ((GET_MAX_MANA(ch) * 0.01) * (GET_MOLT_LEVEL(ch) / 100)) + ((GET_MAX_MOVE(ch) * 0.01) * (GET_MOLT_LEVEL(ch) / 100)) : 0;
+}
+
+double GET_LIFEBONUSES(struct char_data *ch) {
+    return ch->lifebonus > 0 ? (GET_LIFEBONUS(ch) + GET_BLESSBONUS(ch) + GET_POSEBONUS(ch)) * (((ch)->lifebonus + 100) * 0.01) : (GET_LIFEBONUS(ch) + GET_BLESSBONUS(ch) + GET_POSEBONUS(ch));
+}
+
+int GET_LIFEMAX(struct char_data *ch) {
+    return IS_DEMON(ch) ? (((GET_MAX_MANA(ch) * 0.5) + (GET_MAX_MOVE(ch) * 0.5)) * 0.75) + GET_LIFEBONUSES(ch) : (IS_KONATSU(ch) ? (((GET_MAX_MANA(ch) * 0.5) + (GET_MAX_MOVE(ch) * 0.5)) * 0.85) + GET_LIFEBONUSES(ch) : (GET_MAX_MANA(ch) * 0.5) + (GET_MAX_MOVE(ch) * 0.5) + GET_LIFEBONUSES(ch));
+}
+
+int GET_SAVE(struct char_data *ch, int i) {
+    return GET_SAVE_BASE(ch, i) + GET_SAVE_MOD(ch, i);
+}
+
+int GET_SKILL(struct char_data *ch, int i) {
+    return ch->skills[i] + GET_SKILL_BONUS(ch, i);
+}
+
+SpecialFunc GET_MOB_SPEC(struct char_data *ch) {
+    return IS_MOB(ch) ? mob_index[ch->nr].func : NULL;
+}
+
+mob_vnum GET_MOB_VNUM(struct char_data *ch) {
+    return IS_MOB(ch) ? mob_index[ch->nr].vnum : NOBODY;
+}
+
+bool AWAKE(struct char_data *ch) {
+    return ch->position > POS_SLEEPING;
+}
+
+bool CAN_SEE_IN_DARK(struct char_data *ch) {
+    return AFF_FLAGGED(ch, AFF_INFRAVISION) || (!IS_NPC(ch) && PRF_FLAGGED(ch, PRF_HOLYLIGHT)) || (IS_MUTANT(ch) && (GET_GENOME(ch, 0) == 4 || GET_GENOME(ch, 1) == 4)) || PLR_FLAGGED(ch, PLR_AURALIGHT);
+}
+
+bool IS_GOOD(struct char_data *ch) {
+    return ch->alignment >= 50;
+}
+
+bool IS_EVIL(struct char_data *ch) {
+    return ch->alignment <= -50;
+}
+
+bool IS_LAWFUL(struct char_data *ch) {
+    return ch->alignment_ethic >= 350;
+}
+
+bool IS_CHAOTIC(struct char_data *ch) {
+    return ch->alignment_ethic <= -350;
+}
+
+bool IS_NEUTRAL(struct char_data *ch) {
+    return !IS_GOOD(ch) && !IS_EVIL(ch);
+}
+
+bool IS_ENEUTRAL(struct char_data *ch) {
+    return !IS_LAWFUL(ch) && !IS_CHAOTIC(ch);
+}
+
+uint8_t ALIGN_TYPE(struct char_data *ch) {
+    return (IS_GOOD(ch) ? 0 : (IS_EVIL(ch) ? 6 : 3)) + (IS_LAWFUL(ch) ? 0 : (IS_CHAOTIC(ch) ? 2 : 1));
+}
+
+bool IN_ARENA(struct char_data *ch) {
+    return GET_ROOM_VNUM(IN_ROOM(ch)) >= 17800 && GET_ROOM_VNUM(IN_ROOM(ch)) <= 17874;
+}
+
+void WAIT_STATE(struct char_data *ch, int cycle) {
+    ch->wait = cycle;
+}
+
+bool IS_PLAYING(struct descriptor_data *d) {
+    switch(d->connected) {
+        case CON_TEDIT:
+        case CON_REDIT:
+        case CON_MEDIT:
+        case CON_OEDIT:
+        case CON_ZEDIT:
+        case CON_SEDIT:
+        case CON_CEDIT:
+        case CON_PLAYING:
+        case CON_TRIGEDIT:
+        case CON_AEDIT:
+        case CON_GEDIT:
+        case CON_IEDIT:
+        case CON_HEDIT:
+        case CON_NEWSEDIT:
+        case CON_POBJ:
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool SENDOK(struct char_data *ch) {
+    return ((ch)->desc || SCRIPT_CHECK((ch), MTRIG_ACT)) && \
+                      (to_sleeping || AWAKE(ch)) && \
+                      !PLR_FLAGGED((ch), PLR_WRITING);
+}
+
+bool VALID_OBJ_RNUM(struct obj_data *obj) {
+    obj_rnum r = GET_OBJ_RNUM(obj);
+    return r <= top_of_objt && r != NOTHING;
+}
+
+obj_vnum GET_OBJ_VNUM(struct obj_data *obj) {
+    return VALID_OBJ_RNUM(obj) ? obj_index[obj->item_number].vnum : NOTHING;
+}
+
+SpecialFunc GET_OBJ_SPEC(struct obj_data *obj) {
+    return VALID_OBJ_RNUM(obj) ? obj_index[obj->item_number].func : NULL;
+}
+
+bool IS_CORPSE(struct obj_data *obj) {
+    return GET_OBJ_TYPE(obj) == ITEM_CONTAINER && GET_OBJ_VAL((obj), VAL_CONTAINER_CORPSE) == 1;
+}
+
+char *HSHR(struct char_data *ch) {
+    return ch->sex ? (ch->sex==SEX_MALE ? "his":"her") :"its";
+}
+
+char *HSSH(struct char_data *ch) {
+    return ch->sex ? (ch->sex==SEX_MALE ? "he":"she") :"it";
+}
+
+char *HMHR(struct char_data *ch) {
+    return ch->sex ? (ch->sex==SEX_MALE ? "him":"her") :"it";
+}
+
+char *MAFE(struct char_data *ch) {
+    return ch->sex ? (ch->sex==SEX_MALE ? "male":"female") :"questionably gendered";
+}
+
+char *ANA(struct obj_data *obj) {
+    return strchr("aeiouAEIOU", *obj->name) ? "An" : "A";
+}
+
+char *SANA(struct obj_data *obj) {
+    return strchr("aeiouAEIOU", *(obj)->name) ? "an" : "a";
+}
+
+bool LIGHT_OK(struct char_data *ch) {
+    return !AFF_FLAGGED(ch, AFF_BLIND) && !PLR_FLAGGED(ch, PLR_EYEC) && \
+   (IS_LIGHT(IN_ROOM(ch)) || AFF_FLAGGED((ch), AFF_INFRAVISION) || (IS_MUTANT(ch) && (GET_GENOME(ch, 0) == 4 || GET_GENOME(ch, 1) == 4)) || PLR_FLAGGED(ch, PLR_AURALIGHT));
+}
+
+bool INVIS_OK(struct char_data *sub, struct char_data *obj) {
+    return !AFF_FLAGGED((obj),AFF_INVISIBLE) || AFF_FLAGGED(sub,AFF_DETECT_INVIS);
+}
+
+bool MORT_CAN_SEE(struct char_data *sub, struct char_data *obj) {
+    return LIGHT_OK(sub) && INVIS_OK(sub, obj);
+}
+
+bool IMM_CAN_SEE(struct char_data *sub, struct char_data *obj) {
+    return MORT_CAN_SEE(sub, obj) || (!IS_NPC(sub) && PRF_FLAGGED(sub, PRF_HOLYLIGHT));
+}
+
+bool CAN_SEE(struct char_data *sub, struct char_data *obj) {
+    return SELF(sub, obj) || \
+   ((GET_ADMLEVEL(sub) >= (IS_NPC(obj) ? 0 : GET_INVIS_LEV(obj))) && \
+   IMM_CAN_SEE(sub, obj) && (NOT_HIDDEN(obj) || GET_ADMLEVEL(sub) > 0));
+}
+
+bool INVIS_OK_OBJ(struct char_data *sub, struct obj_data *obj) {
+    return !OBJ_FLAGGED(obj, ITEM_INVISIBLE) || AFF_FLAGGED(sub, AFF_DETECT_INVIS);
+}
+
+bool CAN_SEE_OBJ_CARRIER(struct char_data *sub, struct obj_data *obj) {
+    return (!obj->carried_by || CAN_SEE(sub, obj->carried_by)) &&	\
+   (!obj->worn_by || CAN_SEE(sub, obj->worn_by));
+}
+
+bool MORT_CAN_SEE_OBJ(struct char_data *sub, struct obj_data *obj) {
+    return (LIGHT_OK(sub) || obj->carried_by == sub || obj->worn_by) && INVIS_OK_OBJ(sub, obj) && CAN_SEE_OBJ_CARRIER(sub, obj);
+}
+
+bool CAN_SEE_OBJ(struct char_data *sub, struct obj_data *obj) {
+    return MORT_CAN_SEE_OBJ(sub, obj) || (!IS_NPC(sub) && PRF_FLAGGED((sub), PRF_HOLYLIGHT));
+}
+
+bool CAN_CARRY_OBJ(struct char_data *ch, struct obj_data *obj) {
+    return ((IS_CARRYING_W(ch) + GET_OBJ_WEIGHT(obj)) <= CAN_CARRY_W(ch)) &&   \
+    ((IS_CARRYING_N(ch) + 1) <= CAN_CARRY_N(ch));
+}
+
+bool CAN_GET_OBJ(struct char_data *ch, struct obj_data *obj) {
+    return CAN_WEAR((obj), ITEM_WEAR_TAKE) && !SITTING(obj) && CAN_CARRY_OBJ((ch),(obj)) && \
+    CAN_SEE_OBJ((ch),(obj));
+}
+
+bool DISG(struct char_data *ch, struct char_data *vict) {
+    return (!PLR_FLAGGED(ch, PLR_DISGUISED)) || \
+   (PLR_FLAGGED(ch, PLR_DISGUISED) && (GET_ADMLEVEL(vict) > 0 || IS_NPC(vict)));
+}
+
+bool INTROD(struct char_data *ch, struct char_data *vict) {
+    return ch == vict || readIntro(ch, vict) == 1 || (IS_NPC(vict) || IS_NPC(ch) || (GET_ADMLEVEL(ch) > 0 || GET_ADMLEVEL(vict) > 0));
+}
+
+bool ISWIZ(struct char_data *ch, struct char_data *vict) {
+    return ch == vict || GET_ADMLEVEL(ch) > 0 || GET_ADMLEVEL(vict) > 0 || IS_NPC(vict) || IS_NPC(ch);
+}
+
+const char *PERS(struct char_data *ch, struct char_data *vict) {
+    return DISG(ch, vict) ? (CAN_SEE(vict, ch) ? (INTROD(vict, ch) ? (ISWIZ(ch, vict) ? GET_NAME(ch) :\
+                        get_i_name(vict, ch)) : introd_calc(ch)) : "Someone") :\
+                        d_race_types[(int)GET_RACE(ch)];
+}
+
+const char *OBJS(struct obj_data *obj, struct char_data *vict) {
+    return CAN_SEE_OBJ((vict), (obj)) ? \
+	(obj)->short_description  : "something";
+}
+
+const char *OBJN(struct obj_data *obj, struct char_data *vict) {
+    return CAN_SEE_OBJ((vict), (obj)) ? \
+	fname((obj)->name) : "something";
+}
+
+bool CAN_GO(struct char_data *ch, int direction) {
+    return EXIT(ch,direction) && \
+			 (EXIT(ch,direction)->to_room != NOWHERE) && \
+			 !IS_SET(EXIT(ch, direction)->exit_info, EX_CLOSED);
+}
+
+const char *JUGGLERACE(struct char_data *ch) {
+    return IS_HOSHIJIN(ch) ? (ch->mimic > 0 ? pc_race_types[ch->mimic - 1] : pc_race_types[ch->race]) : handle_racial(ch, 1);
+}
+
+const char *JUGGLERACELOWER(struct char_data *ch) {
+    return IS_HOSHIJIN(ch) ? (ch->mimic > 0 ? race_names[ch->mimic - 1] : race_names[ch->race]) : handle_racial(ch, 0);
+}
+
+int GOLD_CARRY(struct char_data *ch) {
+    return GET_LEVEL(ch) < 100 ? (GET_LEVEL(ch) < 50 ? GET_LEVEL(ch) * 10000 : 500000) : 50000000;
+}
+
+bool CAN_GRAND_MASTER(struct char_data *ch) {
+    return IS_HUMAN(ch);
+}
+
+bool IS_HUMANOID(struct char_data *ch) {
+    return !(IS_SNAKE(ch) || IS_ANIMAL(ch));
+}
+
+bool RESTRICTED_RACE(struct char_data *ch) {
+    switch(ch->race) {
+        case RACE_MAJIN:
+        case RACE_SAIYAN:
+        case RACE_BIO:
+        case RACE_HOSHIJIN:
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool CHEAP_RACE(struct char_data *ch) {
+    switch(ch->race) {
+        case RACE_TRUFFLE:
+        case RACE_MUTANT:
+        case RACE_KONATSU:
+        case RACE_DEMON:
+        case RACE_KANASSAN:
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool SPAR_TRAIN(struct char_data *ch) {
+    return (FIGHTING(ch) && !IS_NPC(ch) && PLR_FLAGGED(ch, PLR_SPAR) &&\
+                                 !IS_NPC(FIGHTING(ch)) && PLR_FLAGGED(FIGHTING(ch), PLR_SPAR));
+}
+
+bool IS_NONPTRANS(struct char_data *ch) {
+    switch(ch->race) {
+        case RACE_SAIYAN:
+        case RACE_HALFBREED:
+            return !IS_FULLPSSJ(ch) && !PLR_FLAGGED(ch, PLR_LSSJ) && !PLR_FLAGGED(ch, PLR_OOZARU);
+        case RACE_HUMAN:
+        case RACE_NAMEK:
+        case RACE_MUTANT:
+        case RACE_ICER:
+        case RACE_KAI:
+        case RACE_KONATSU:
+        case RACE_DEMON:
+        case RACE_KANASSAN:
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool IS_FULLPSSJ(struct char_data *ch) {
+    return (IS_SAIYAN(ch) || IS_HALFBREED(ch)) && (PLR_FLAGGED(ch, PLR_FPSSJ) && PLR_FLAGGED(ch, PLR_TRANS1));
+}
+
+bool IS_TRANSFORMED(struct char_data *ch) {
+    return PLR_FLAGGED(ch, PLR_TRANS1) || PLR_FLAGGED(ch, PLR_TRANS2) ||\
+                                 PLR_FLAGGED(ch, PLR_TRANS3) || PLR_FLAGGED(ch, PLR_TRANS4) ||\
+                                 PLR_FLAGGED(ch, PLR_TRANS5) || PLR_FLAGGED(ch, PLR_TRANS6) ||\
+                                 PLR_FLAGGED(ch, PLR_OOZARU);
+}
+
+bool BIRTH_PHASE() {
+    return time_info.day <= 15;
+}
+
+bool LIFE_PHASE() {
+    return !BIRTH_PHASE() && time_info.day <= 22;
+}
+
+bool DEATH_PHASE() {
+    return !BIRTH_PHASE() && !LIFE_PHASE();
+}
+
+bool MOON_DATE() {
+    return time_info.day == 19 || time_info.day == 20 || time_info.day == 21;
+}
+
+bool MOON_OK(struct char_data *ch) {
+    return HAS_MOON(ch) && MOON_DATE() && OOZARU_OK(ch);
+}
+
+bool OOZARU_OK(struct char_data *ch) {
+    return OOZARU_RACE(ch) && PLR_FLAGGED(ch, PLR_STAIL) && !IS_TRANSFORMED(ch);
+}
+
+bool OOZARU_RACE(struct char_data *ch) {
+    return IS_SAIYAN(ch) || IS_HALFBREED(ch);
+}
+
+bool ETHER_STREAM(struct char_data *ch) {
+    return ROOM_FLAGGED(IN_ROOM(ch), ROOM_EARTH) || ROOM_FLAGGED(IN_ROOM(ch), ROOM_AETHER) || ROOM_FLAGGED(IN_ROOM(ch), ROOM_NAMEK) || PLANET_ZENITH(IN_ROOM(ch));
+}
+
+bool HAS_MOON(struct char_data *ch) {
+    return ROOM_FLAGGED(IN_ROOM(ch), ROOM_VEGETA) || ROOM_FLAGGED(IN_ROOM(ch), ROOM_EARTH) ||\
+                                 ROOM_FLAGGED(IN_ROOM(ch), ROOM_FRIGID) || ROOM_FLAGGED(IN_ROOM(ch), ROOM_AETHER);
+}
+
+bool HAS_ARMS(struct char_data *ch) {
+    return ((IS_NPC(ch) && (MOB_FLAGGED(ch, MOB_LARM) || \
+                                 MOB_FLAGGED(ch, MOB_RARM))) || GET_LIMBCOND(ch, 1) > 0 || \
+                                 GET_LIMBCOND(ch, 2) > 0 || \
+                                 PLR_FLAGGED(ch, PLR_CRARM) || \
+                                 PLR_FLAGGED(ch, PLR_CLARM)) && \
+                                 ((!GRAPPLING(ch) && !GRAPPLED(ch)) || \
+                                 (GRAPPLING(ch) && GRAPTYPE(ch) == 3) || \
+                                 (GRAPPLED(ch) && GRAPTYPE(ch) != 1 && GRAPTYPE(ch) != 4));
+}
+
+bool HAS_LEGS(struct char_data *ch) {
+    return ((IS_NPC(ch) && (MOB_FLAGGED(ch, MOB_LLEG) || \
+                                 MOB_FLAGGED(ch, MOB_RLEG))) || GET_LIMBCOND(ch, 3) > 0 || \
+                                 GET_LIMBCOND(ch, 4) > 0 || \
+                                 PLR_FLAGGED(ch, PLR_CRLEG) || \
+                                 PLR_FLAGGED(ch, PLR_CLLEG)) && \
+                                 ((!GRAPPLING(ch) && !GRAPPLED(ch)) || \
+                                 (GRAPPLING(ch) && GRAPTYPE(ch) == 3) || \
+                                 (GRAPPLED(ch) && GRAPTYPE(ch) != 1));
+}
+
+bool OUTSIDE(struct char_data *ch) {
+    return OUTSIDE_ROOMFLAG(ch) && OUTSIDE_SECTTYPE(ch);
+}
+
+bool OUTSIDE_ROOMFLAG(struct char_data *ch) {
+    return !ROOM_FLAGGED(IN_ROOM(ch), ROOM_INDOORS) && \
+			 !ROOM_FLAGGED(IN_ROOM(ch), ROOM_UNDERGROUND) && \
+                          !ROOM_FLAGGED(IN_ROOM(ch), ROOM_SPACE);
+}
+
+bool OUTSIDE_SECTTYPE(struct char_data *ch) {
+    return (SECT(IN_ROOM(ch)) != SECT_INSIDE) && \
+                         (SECT(IN_ROOM(ch)) != SECT_UNDERWATER) && \
+                          (SECT(IN_ROOM(ch)) != SECT_IMPORTANT) && \
+                           (SECT(IN_ROOM(ch)) != SECT_SHOP) && \
+                            (SECT(IN_ROOM(ch)) != SECT_SPACE);
+}
+
+bool IS_COLOR_CHAR(char c) {
+    return strchr("nbcgmrywkoeul0234567", tolower(c)) != NULL;
 }

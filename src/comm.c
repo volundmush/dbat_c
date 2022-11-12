@@ -3289,11 +3289,14 @@ void perform_act(const char *orig, struct char_data *ch, struct obj_data *obj, c
 
 }
 
+int to_sleeping = 0;
+
 char *act(const char *str, int hide_invisible, struct char_data *ch,
 	 struct obj_data *obj, const void *vict_obj, int type)
 {
   struct char_data *to;
-  int to_sleeping, res_sneak, res_hide, dcval = 0, resskill = 0;
+  int res_sneak, res_hide, dcval = 0, resskill = 0;
+  to_sleeping = 0;
 
   if (!str || !*str)
     return NULL;
