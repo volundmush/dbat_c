@@ -1945,12 +1945,12 @@ struct obj_data {
    int8_t type_flag;      /* Type of item                        */
    int  level;           /* Minimum level of object.            */
    int  wear_flags[TW_ARRAY_MAX]; /* Where you can wear it     */
-   int  extra_flags[EF_ARRAY_MAX]; /* If it hums, glows, etc.  */
+   bitvector_t  extra_flags[EF_ARRAY_MAX]; /* If it hums, glows, etc.  */
    int64_t  weight;         /* Weigt what else                     */
    int  cost;           /* Value when sold (gp.)               */
    int  cost_per_day;   /* Cost to keep pr. real day           */
    int  timer;          /* Timer for object                    */
-   int  bitvector[AF_ARRAY_MAX]; /* To set chars bits          */
+    bitvector_t  bitvector[AF_ARRAY_MAX]; /* To set chars bits          */
    int  size;           /* Size class of object                */
 
    struct obj_affected_type affected[MAX_OBJ_AFFECT];  /* affects */
@@ -2009,7 +2009,7 @@ struct room_direction_data {
 
    char	*keyword;		/* for open/close			*/
 
-   int16_t exit_info;		/* Exit info			*/
+    bitvector_t exit_info;		/* Exit info			*/
    obj_vnum key;		/* Key's number (-1 for no key)		*/
    room_rnum to_room;		/* Where direction leads (NOWHERE)	*/
    int dclock;			/* DC to pick the lock			*/
@@ -2032,7 +2032,7 @@ struct room_data {
    char	*description;           /* Shown when entered                 */
    struct extra_descr_data *ex_description; /* for examine/look       */
    struct room_direction_data *dir_option[NUM_OF_DIRS]; /* Directions */
-   int room_flags[RF_ARRAY_MAX];   /* DEATH,DARK ... etc */
+    bitvector_t room_flags[RF_ARRAY_MAX];   /* DEATH,DARK ... etc */
 
    struct trig_proto_list *proto_script; /* list of default triggers  */
    struct script_data *script;  /* script info for the object         */
@@ -2124,7 +2124,7 @@ struct player_special_data {
   int8_t freeze_level;		/* Level of god who froze char, if any	*/
   int16_t invis_level;		/* level of invisibility		*/
   room_vnum load_room;		/* Which room to place char in		*/
-  int pref[PR_ARRAY_MAX];	/* preference flags for PC's.		*/
+    bitvector_t pref[PR_ARRAY_MAX];	/* preference flags for PC's.		*/
   uint8_t bad_pws;		/* number of bad password attemps	*/
   int8_t conditions[NUM_CONDITIONS];		/* Drunk, full, thirsty			*/
   int skill_points;		/* Skill points earned from race HD	*/
@@ -2282,7 +2282,7 @@ struct char_data {
 				/* Info on gained levels */
   int level;			/* PC / NPC's level                     */
   int admlevel;			/* PC / NPC's admin level               */
-  int admflags[AD_ARRAY_MAX];	/* Bitvector for admin privs		*/
+    bitvector_t admflags[AD_ARRAY_MAX];	/* Bitvector for admin privs		*/
   room_vnum hometown;		/* PC Hometown / NPC spawn room         */
   struct time_data time;	/* PC's AGE in days			*/
   uint8_t weight;		/* PC / NPC's weight                    */
@@ -2358,7 +2358,7 @@ struct char_data {
   int alignment;		/* +-1000 for alignment good vs. evil	*/
   int alignment_ethic;		/* +-1000 for alignment law vs. chaos	*/
   int32_t idnum;			/* player's idnum; -1 for mobiles	*/
-  int act[PM_ARRAY_MAX];	/* act flag for NPC's; player flag for PC's */
+    bitvector_t act[PM_ARRAY_MAX];	/* act flag for NPC's; player flag for PC's */
 
   int affected_by[AF_ARRAY_MAX];/* Bitvector for current affects	*/
   int bodyparts[AF_ARRAY_MAX];  /* Bitvector for current bodyparts      */

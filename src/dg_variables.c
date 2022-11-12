@@ -963,7 +963,7 @@ in the vault (vnum: 453) now and then. you can just use
           }
 #ifdef GET_RACE
           else if (!strcasecmp(field, "race")) {
-            if IS_NPC(c) {
+            if (IS_NPC(c)) {
               sprinttype(GET_RACE(c), race_names, str, slen);
              /* *str='\0';*/
             } else {

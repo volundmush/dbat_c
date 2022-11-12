@@ -4228,7 +4228,7 @@ size_t sprinttype(int type, const char *names[], char *result, size_t reslen)
 }
 
 
-void sprintbitarray(int bitvector[], const char *names[], int maxar, char *result)
+void sprintbitarray(bitvector_t bitvector[], const char *names[], int maxar, char *result)
 {
   int nr, teller, found = FALSE;
 
@@ -4999,7 +4999,9 @@ int get_flag_by_name(const char *flag_list[], char *flag_name)
    return (NOFLAG); 
 }
 
-
+bool IS_SET_AR(const bitvector_t var[], bitvector_t bit) {
+    return (var)[Q_FIELD(bit)] & Q_BIT(bit);
+}
 
 bool ISNEWL(char ch) {
     return ch == '\n' || ch == '\r';
@@ -5018,7 +5020,7 @@ bool MOB_FLAGGED(struct char_data *ch, bitvector_t flag) {
     return IS_NPC(ch) && IS_SET_AR(MOB_FLAGS(ch), flag);
 }
 
-bool MLR_FLAGGED(struct char_data *ch, bitvector_t flag) {
+bool PLR_FLAGGED(struct char_data *ch, bitvector_t flag) {
     return !IS_NPC(ch) && IS_SET_AR(PLR_FLAGS(ch), flag);
 }
 

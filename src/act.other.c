@@ -14791,7 +14791,7 @@ ACMD(do_visible)
     return;
   }
 
-  if AFF_FLAGGED(ch, AFF_INVISIBLE) {
+  if(AFF_FLAGGED(ch, AFF_INVISIBLE)) {
     appear(ch);
     appeared = 1;
     send_to_char(ch, "You break the spell of invisibility.\r\n");

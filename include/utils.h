@@ -87,7 +87,7 @@ extern int64_t large_rand(int64_t from, int64_t to);
 extern int dice(int number, int size);
 extern size_t sprintbit(bitvector_t vektor, const char *names[], char *result, size_t reslen);
 extern size_t sprinttype(int type, const char *names[], char *result, size_t reslen);
-extern void sprintbitarray(int bitvector[], const char *names[], int maxar, char *result);
+extern void sprintbitarray(bitvector_t bitvector[], const char *names[], int maxar, char *result);
 extern int	get_line(FILE *fl, char *buf);
 extern int	get_filename(char *filename, size_t fbufsize, int mode, const char *orig_name);
 extern time_t mud_time_to_secs(struct time_info_data *now);
@@ -274,8 +274,8 @@ extern char *AN(const char *str);
 
 #define Q_FIELD(x)  ((int) (x) / 32)
 #define Q_BIT(x)    (1 << ((x) % 32))
- 
-#define IS_SET_AR(var, bit)       ((var)[Q_FIELD(bit)] & Q_BIT(bit))
+extern bool IS_SET_AR(const bitvector_t var[], bitvector_t bit);
+
 #define SET_BIT_AR(var, bit)      ((var)[Q_FIELD(bit)] |= Q_BIT(bit))
 #define REMOVE_BIT_AR(var, bit)   ((var)[Q_FIELD(bit)] &= ~Q_BIT(bit))
 #define TOGGLE_BIT_AR(var, bit)   ((var)[Q_FIELD(bit)] = \
@@ -320,7 +320,7 @@ extern char *AN(const char *str);
 extern bool IS_NPC(struct char_data *ch);
 extern bool IS_MOB(struct char_data *ch);
 extern bool MOB_FLAGGED(struct char_data *ch, bitvector_t flag);
-extern bool MLR_FLAGGED(struct char_data *ch, bitvector_t flag);
+extern bool PLR_FLAGGED(struct char_data *ch, bitvector_t flag);
 extern bool AFF_FLAGGED(struct char_data *ch, bitvector_t flag);
 extern bool PRF_FLAGGED(struct char_data *ch, bitvector_t flag);
 extern bool ADM_FLAGGED(struct char_data *ch, bitvector_t flag);
@@ -381,6 +381,7 @@ extern bool ZONE_FLAGGED(zone_rnum rnum, bitvector_t flag);
 #define GET_AGE(ch)     (age(ch)->year)
 
 #define GET_PC_NAME(ch)	((ch)->name)
+extern char *GET_TITLE(struct char_data *ch);
 extern char *GET_NAME(struct char_data *ch);
 extern char *GET_USER(struct char_data *ch);
 
@@ -614,7 +615,7 @@ extern int GET_SAVE(struct char_data *ch, int i);
 #define GET_LAST_TELL(ch)	CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->last_tell))
 #define GET_HOST(ch)		CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->host))
 #define GET_HISTORY(ch, i)      CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->comm_hist[i]))
-
+extern int GET_SKILL(struct char_data *ch, int i);
 #define GET_SKILL_BONUS(ch, i)		(ch->skillmods[i])
 #define GET_SKILL_PERF(ch, i)           (ch->skillperfs[i])
 #define SET_SKILL_BONUS(ch, i, value)	do { (ch)->skillmods[i] = value; } while (0)
