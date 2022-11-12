@@ -4196,7 +4196,7 @@ size_t sprintbit(bitvector_t bitvector, const char *names[], char *result, size_
   *result = '\0';
 
   for (nr = 0; bitvector && len < reslen; bitvector >>= 1) {
-    if (IS_SET(bitvector, 1)) {
+    if (IS_SET(&bitvector, 1)) {
       nlen = snprintf(result + len, reslen - len, "%s ", *names[nr] != '\n' ? names[nr] : "UNDEFINED");
       if (len + nlen >= reslen || nlen < 0)
         break;
@@ -5014,4 +5014,52 @@ bool ISNEWL(char c) {
 
 const char* AN(const char *str) {
     return strchr("aeiouAEIOU", *str) ? "an" : "a";
+}
+
+bitvector_t Q_FIELD(bitvector_t x) {
+    return x / 32;
+}
+
+bitvector_t Q_BIT(bitvector_t x) {
+    return 1 << (x % 32);
+}
+
+bool IS_SET_AR(bitvector_t *bits, bitvector_t bit) {
+    return bits[Q_FIELD(bit)] & Q_BIT(bit);
+}
+
+void SET_BIT_AR(bitvector_t *bits, bitvector_t bit) {
+    bits[Q_FIELD(bit)] |= Q_BIT(bit);
+}
+
+void REMOVE_BIT_AR(bitvector_t *bits, bitvector_t bit) {
+    bits[Q_FIELD(bit)] &= ~Q_BIT(bit);
+}
+
+void TOGGLE_BIT_AR(bitvector_t *bits, bitvector_t bit) {
+    bits[Q_FIELD(bit)] = !IS_SET_AR(bits, bit);
+}
+
+bool IS_SET(const bitvector_t *bits, bitvector_t bit) {
+    return (*bits & bit);
+}
+
+void SET_BIT(bitvector_t *bits, bitvector_t bit) {
+    *bits |= bit;
+}
+
+void REMOVE_BIT(bitvector_t *bits, bitvector_t bit) {
+    *bits &= ~bit;
+}
+
+void TOGGLE_BIT(bitvector_t *bits, bitvector_t bit) {
+    *bits ^= bit;
+}
+
+bitvector_t *MOB_FLAGS(struct char_data *ch) {
+    return (bitvector_t*)&(ch->act);
+}
+
+bitvector_t *PLR_FLAGS(struct char_data *ch) {
+    return MOB_FLAGS(ch);
 }

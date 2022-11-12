@@ -1574,13 +1574,13 @@ void clean_pfiles(void)
      * We only want to go further if the player isn't protected
      * from deletion and hasn't already been deleted.
      */
-    if (!IS_SET(player_table[i].flags, PINDEX_NODELETE) &&
+    if (!IS_SET(&player_table[i].flags, PINDEX_NODELETE) &&
         *player_table[i].name) {
       /*
        * If the player is already flagged for deletion, then go
        * ahead and get rid of him.
        */
-      if (IS_SET(player_table[i].flags, PINDEX_DELETED)) {
+      if (IS_SET(&player_table[i].flags, PINDEX_DELETED)) {
 	remove_player(i);
       } else {
         /*

@@ -595,7 +595,7 @@ int roll_skill(const struct char_data *ch, int snum)
   }
   if (snum < 0 || snum >= SKILL_TABLE_SIZE)
     return 0;
-  if (IS_SET(spell_info[snum].skilltype, SKTYPE_SPELL)) {
+  if (IS_SET(&spell_info[snum].skilltype, SKTYPE_SPELL)) {
     /*
      * There's no real roll for a spell to succeed, so instead we will
      * return the spell resistance roll; the defender must have resistance
@@ -607,26 +607,26 @@ int roll_skill(const struct char_data *ch, int snum)
             (spell_info[snum].min_level[i] < GET_CLASS_RANKS(ch, i)))
           roll += GET_CLASS_RANKS(ch, i); /* Caster level for eligable classes */
       return roll + rand_number(1, 20);
-  } else if (IS_SET(spell_info[snum].skilltype, SKTYPE_SKILL)) {
-      if (!skval && IS_SET(spell_info[snum].flags, SKFLAG_NEEDTRAIN)) {
+  } else if (IS_SET(&spell_info[snum].skilltype, SKTYPE_SKILL)) {
+      if (!skval && IS_SET(&spell_info[snum].flags, SKFLAG_NEEDTRAIN)) {
         return -1;
       } else {
         roll = skval;
-        if (IS_SET(spell_info[snum].flags, SKFLAG_STRMOD))
+        if (IS_SET(&spell_info[snum].flags, SKFLAG_STRMOD))
           roll += ability_mod_value(GET_STR(ch));
-        if (IS_SET(spell_info[snum].flags, SKFLAG_DEXMOD))
+        if (IS_SET(&spell_info[snum].flags, SKFLAG_DEXMOD))
           roll += dex_mod_capped(ch);
-        if (IS_SET(spell_info[snum].flags, SKFLAG_CONMOD))
+        if (IS_SET(&spell_info[snum].flags, SKFLAG_CONMOD))
           roll += ability_mod_value(GET_CON(ch));
-        if (IS_SET(spell_info[snum].flags, SKFLAG_INTMOD))
+        if (IS_SET(&spell_info[snum].flags, SKFLAG_INTMOD))
           roll += ability_mod_value(GET_INT(ch));
-        if (IS_SET(spell_info[snum].flags, SKFLAG_WISMOD))
+        if (IS_SET(&spell_info[snum].flags, SKFLAG_WISMOD))
           roll += ability_mod_value(GET_WIS(ch));
-        if (IS_SET(spell_info[snum].flags, SKFLAG_CHAMOD))
+        if (IS_SET(&spell_info[snum].flags, SKFLAG_CHAMOD))
           roll += ability_mod_value(GET_CHA(ch));
-        if (IS_SET(spell_info[snum].flags, SKFLAG_ARMORALL))
+        if (IS_SET(&spell_info[snum].flags, SKFLAG_ARMORALL))
           roll -= GET_ARMORCHECKALL(ch);
-        else if (IS_SET(spell_info[snum].flags, SKFLAG_ARMORBAD))
+        else if (IS_SET(&spell_info[snum].flags, SKFLAG_ARMORBAD))
           roll -= GET_ARMORCHECK(ch);
         return roll + rand_number(1, 20);
       }

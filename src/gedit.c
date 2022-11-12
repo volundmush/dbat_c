@@ -276,7 +276,7 @@ void gedit_select_spells_menu(struct descriptor_data *d)
   write_to_output(d, "Spells known:\r\n");
 
   for (i = 0; i <= SKILL_TABLE_SIZE; i++) {
-    if (IS_SET(spell_info[i].skilltype, SKTYPE_SPELL) &&
+    if (IS_SET(&spell_info[i].skilltype, SKTYPE_SPELL) &&
         strcmp(spell_info[i].name, "!UNUSED!")) {
       write_to_output(d, "@n[@c%-3s@n] %-3d %-20.20s  ",
                       YESNO(G_SK_AND_SP(guilddata, i)), i, spell_info[i].name);
@@ -335,7 +335,7 @@ void gedit_select_lang_menu(struct descriptor_data *d)
   write_to_output(d, "Skills known:\r\n");
 
   for (i = 0; i < SKILL_TABLE_SIZE ; i++) {
-    if (IS_SET(spell_info[i].skilltype, SKTYPE_LANG) &&
+    if (IS_SET(&spell_info[i].skilltype, SKTYPE_LANG) &&
         strcmp(spell_info[i].name, "!UNUSED!")) {
       write_to_output(d, "@n[@c%-3s@n] %-3d %-20.20s  ",
                       YESNO(G_SK_AND_SP(guilddata, i)), i, spell_info[i].name);
@@ -365,7 +365,7 @@ void gedit_select_wp_menu(struct descriptor_data *d)
   write_to_output(d, "Skills known:\r\n");
 
   for (i = 0; i < SKILL_TABLE_SIZE; i++) {
-    if (IS_SET(spell_info[i].skilltype, SKTYPE_WEAPON) &&
+    if (IS_SET(&spell_info[i].skilltype, SKTYPE_WEAPON) &&
         strcmp(spell_info[i].name, "!UNUSED!")) {
       write_to_output(d, "@n[@c%-3s@n] %-3d %-20.20s  ",
                       YESNO(G_SK_AND_SP(guilddata, i)), i, spell_info[i].name);

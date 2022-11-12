@@ -81,7 +81,7 @@ void do_dg_cast(void *gohere, struct script_data *sc, struct trig_data *trig,
 
   /* spellnum = search_block(s, spells, 0); */
   spellnum = find_skill_num(s, SKTYPE_SPELL);
-  if ((spellnum < 1) || (spellnum >= SKILL_TABLE_SIZE || (!IS_SET(skill_type(spellnum), SKTYPE_SPELL)))) {
+  if ((spellnum < 1) || (spellnum >= SKILL_TABLE_SIZE || (!IS_SET(&skill_type(spellnum), SKTYPE_SPELL)))) {
     script_log("Trigger: %s, VNum %d. dg_cast: invalid spell name (%s)",
       GET_TRIG_NAME(trig), GET_TRIG_VNUM(trig), orig_cmd);
     return;
@@ -92,21 +92,21 @@ void do_dg_cast(void *gohere, struct script_data *sc, struct trig_data *trig,
     one_argument(strcpy(buf2, t), t);
     skip_spaces(&t);
   }
-  if (IS_SET(SINFO.targets, TAR_IGNORE)) {
+  if (IS_SET(&SINFO.targets, TAR_IGNORE)) {
     target = TRUE;
   } else if (t != NULL && *t) {
     if (!target &&
-          (IS_SET(SINFO.targets, TAR_CHAR_ROOM) ||
-           IS_SET(SINFO.targets, TAR_CHAR_WORLD))) {
+          (IS_SET(&SINFO.targets, TAR_CHAR_ROOM) ||
+           IS_SET(&SINFO.targets, TAR_CHAR_WORLD))) {
       if ((tch = get_char(t)) != NULL)
         target = TRUE;
     }
 
     if (!target &&
-          (IS_SET(SINFO.targets, TAR_OBJ_INV) ||
-           IS_SET(SINFO.targets, TAR_OBJ_EQUIP) ||
-           IS_SET(SINFO.targets, TAR_OBJ_ROOM) ||
-           IS_SET(SINFO.targets, TAR_OBJ_WORLD))) {
+          (IS_SET(&SINFO.targets, TAR_OBJ_INV) ||
+           IS_SET(&SINFO.targets, TAR_OBJ_EQUIP) ||
+           IS_SET(&SINFO.targets, TAR_OBJ_ROOM) ||
+           IS_SET(&SINFO.targets, TAR_OBJ_WORLD))) {
       if ((tobj = get_obj(t)) != NULL)
         target = TRUE;
     }
@@ -118,7 +118,7 @@ void do_dg_cast(void *gohere, struct script_data *sc, struct trig_data *trig,
     }
   }
 
-  if (IS_SET(SINFO.routines, MAG_GROUPS)) {
+  if (IS_SET(&SINFO.routines, MAG_GROUPS)) {
     script_log("Trigger: %s, VNum %d. dg_cast: group spells not permitted (%s)",
       GET_TRIG_NAME(trig), GET_TRIG_VNUM(trig), orig_cmd);
     return;
@@ -283,7 +283,7 @@ int valid_dg_target(struct char_data *ch, int bitvector)
     return TRUE;  /* all npcs are allowed as targets */
   else if (GET_ADMLEVEL(ch) < ADMLVL_IMMORT)
     return TRUE;  /* as well as all mortals */
-  else if (!IS_SET(bitvector, DG_ALLOW_GODS) &&
+  else if (!IS_SET(&bitvector, DG_ALLOW_GODS) &&
      (GET_ADMLEVEL(ch) >= 2 && !PRF_FLAGGED(ch, PRF_TEST))) /* LVL_GOD has the advance command. Can't allow them to be forced. */
     return FALSE; /* but not always the highest gods */
   else if (!PRF_FLAGGED(ch, PRF_NOHASSLE) || PRF_FLAGGED(ch, PRF_TEST))

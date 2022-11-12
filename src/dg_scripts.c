@@ -583,9 +583,9 @@ void script_trigger_check(void)
     if (SCRIPT(ch)) {
       sc = SCRIPT(ch);
 
-      if (IS_SET(SCRIPT_TYPES(sc), WTRIG_RANDOM) &&
+      if (IS_SET(&SCRIPT_TYPES(sc), WTRIG_RANDOM) &&
           (!is_empty(world[IN_ROOM(ch)].zone) ||
-           IS_SET(SCRIPT_TYPES(sc), WTRIG_GLOBAL)))
+           IS_SET(&SCRIPT_TYPES(sc), WTRIG_GLOBAL)))
         random_mtrigger(ch);
     }
   }
@@ -594,7 +594,7 @@ void script_trigger_check(void)
     if (SCRIPT(obj)) {
       sc = SCRIPT(obj);
 
-      if (IS_SET(SCRIPT_TYPES(sc), OTRIG_RANDOM))
+      if (IS_SET(&SCRIPT_TYPES(sc), OTRIG_RANDOM))
         random_otrigger(obj);
     }
   }
@@ -604,9 +604,9 @@ void script_trigger_check(void)
       room = &world[nr];
       sc = SCRIPT(room);
 
-      if (IS_SET(SCRIPT_TYPES(sc), WTRIG_RANDOM) &&
+      if (IS_SET(&SCRIPT_TYPES(sc), WTRIG_RANDOM) &&
           (!is_empty(room->zone) ||
-           IS_SET(SCRIPT_TYPES(sc), WTRIG_GLOBAL)))
+           IS_SET(&SCRIPT_TYPES(sc), WTRIG_GLOBAL)))
         random_wtrigger(room);
     }
   }
@@ -624,9 +624,9 @@ void check_timed_triggers(void)
     if (SCRIPT(ch)) {
       sc = SCRIPT(ch);
 
-      if (IS_SET(SCRIPT_TYPES(sc), WTRIG_TIME) &&
+      if (IS_SET(&SCRIPT_TYPES(sc), WTRIG_TIME) &&
           (!is_empty(world[IN_ROOM(ch)].zone) ||
-           IS_SET(SCRIPT_TYPES(sc), WTRIG_GLOBAL)))
+           IS_SET(&SCRIPT_TYPES(sc), WTRIG_GLOBAL)))
         time_mtrigger(ch);
     }
   }
@@ -635,7 +635,7 @@ void check_timed_triggers(void)
     if (SCRIPT(obj)) {
       sc = SCRIPT(obj);
 
-      if (IS_SET(SCRIPT_TYPES(sc), OTRIG_TIME))
+      if (IS_SET(&SCRIPT_TYPES(sc), OTRIG_TIME))
         time_otrigger(obj);
     }
   }
@@ -645,9 +645,9 @@ void check_timed_triggers(void)
       room = &world[nr];
       sc = SCRIPT(room);
 
-      if (IS_SET(SCRIPT_TYPES(sc), WTRIG_TIME) &&
+      if (IS_SET(&SCRIPT_TYPES(sc), WTRIG_TIME) &&
           (!is_empty(room->zone) ||
-           IS_SET(SCRIPT_TYPES(sc), WTRIG_GLOBAL)))
+           IS_SET(&SCRIPT_TYPES(sc), WTRIG_GLOBAL)))
         time_wtrigger(room);
     }
   }

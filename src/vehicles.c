@@ -462,7 +462,7 @@ void drive_in_direction(struct char_data *ch, struct obj_data *vehicle, int dir)
 
      if (!EXIT(vehicle, dir) || EXIT(vehicle, dir)->to_room == NOWHERE) {
         send_to_char(ch, "@wApparently %s doesn't exist there.\r\n", dirs[dir]);
-      } else if (IS_SET(EXIT(vehicle, dir)->exit_info, EX_CLOSED)) {
+      } else if (IS_SET(&EXIT(vehicle, dir)->exit_info, EX_CLOSED)) {
         /* But the door is closed */
         if (EXIT(vehicle, dir)->keyword)
           send_to_char(ch, "@wThe %s seems to be closed.\r\n", fname(EXIT(vehicle,           dir)->keyword));

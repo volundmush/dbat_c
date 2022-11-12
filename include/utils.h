@@ -226,17 +226,8 @@ extern bool ISNEWL(char c);
 extern const char* AN(const char *str);
 
 /* memory utils **********************************************************/
-
-
-#define CREATE(result, type, number)  do {\
-	if ((number) * sizeof(type) <= 0)	\
-		log("SYSERR: Zero bytes or less requested at %s:%d.", __FILE__, __LINE__);	\
-	if (!((result) = (type *) calloc ((number), sizeof(type))))	\
-		{ perror("SYSERR: malloc failure"); abort(); } } while(0)
-
-#define RECREATE(result,type,number) do {\
-  if (!((result) = (type *) realloc ((result), sizeof(type) * (number))))\
-		{ perror("SYSERR: realloc failure"); abort(); } } while(0)
+#define CREATE(result, type, number) result = (type*)calloc(number, sizeof(type))
+#define RECREATE(result,type,number) result = (type*)realloc(sizeof(type) * number)
 
 /*
  * the source previously used the same code in many places to remove an item
@@ -279,19 +270,17 @@ extern const char* AN(const char *str);
 
 /* basic bitvector utils *************************************************/
 
+extern bitvector_t Q_FIELD(bitvector_t x);
+extern bitvector_t Q_BIT(bitvector_t x);
+extern bool IS_SET_AR(bitvector_t *bits, bitvector_t bit);
+extern void SET_BIT_AR(bitvector_t *bits, bitvector_t bit);
+extern void REMOVE_BIT_AR(bitvector_t *bits, bitvector_t bit);
+extern void TOGGLE_BIT_AR(bitvector_t *bits, bitvector_t bit);
+extern bool IS_SET(const bitvector_t *bits, bitvector_t bit);
+extern void SET_BIT(bitvector_t *bits, bitvector_t bit);
+extern void REMOVE_BIT(bitvector_t *bits, bitvector_t bit);
+extern void TOGGLE_BIT(bitvector_t *bits, bitvector_t bit);
 
-#define Q_FIELD(x)  ((int) (x) / 32)
-#define Q_BIT(x)    (1 << ((x) % 32))
- 
-#define IS_SET_AR(var, bit)       ((var)[Q_FIELD(bit)] & Q_BIT(bit))
-#define SET_BIT_AR(var, bit)      ((var)[Q_FIELD(bit)] |= Q_BIT(bit))
-#define REMOVE_BIT_AR(var, bit)   ((var)[Q_FIELD(bit)] &= ~Q_BIT(bit))
-#define TOGGLE_BIT_AR(var, bit)   ((var)[Q_FIELD(bit)] = \
-                                   (var)[Q_FIELD(bit)] ^ Q_BIT(bit))
-#define IS_SET(flag,bit)  ((flag) & (bit))
-#define SET_BIT(var,bit)  ((var) |= (bit))
-#define REMOVE_BIT(var,bit)  ((var) &= ~(bit))
-#define TOGGLE_BIT(var,bit) ((var) ^= (bit))
 
 /*
  * Accessing player specific data structures on a mobile is a very bad thing
@@ -300,7 +289,7 @@ extern const char* AN(const char *str);
  * for it, 'wimpy' would be an extremely bad thing for a mob to do, as an
  * example.  If you really couldn't care less, change this to a '#if 0'.
  */
-#if 1
+#if 0
 /* Subtle bug in the '#var', but works well for now. */
 #define CHECK_PLAYER_SPECIAL(ch, var) \
 	(*(((ch)->player_specials == &dummy_mob) ? (log("OHNO: Mob using '"#var"' at %s:%d.", __FILE__, __LINE__), &(var)) : &(var)))
@@ -308,8 +297,9 @@ extern const char* AN(const char *str);
 #define CHECK_PLAYER_SPECIAL(ch, var)	(var)
 #endif
 
-#define MOB_FLAGS(ch)	((ch)->act)
-#define PLR_FLAGS(ch)	((ch)->act)
+extern bitvector_t *MOB_FLAGS(struct char_data *ch);
+extern bitvector_t *PLR_FLAGS(struct char_data *ch);
+
 #define PRF_FLAGS(ch) CHECK_PLAYER_SPECIAL((ch), ((ch)->player_specials->pref))
 #define AFF_FLAGS(ch)	((ch)->affected_by)
 #define ADM_FLAGS(ch)	((ch)->admflags)

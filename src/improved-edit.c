@@ -555,7 +555,7 @@ int format_text(char **ptr_string, int mode, struct descriptor_data *d, unsigned
     strcpy(str, ++flow); 
   } 
 
-  if (IS_SET(mode, FORMAT_INDENT)) { 
+  if (IS_SET(&mode, FORMAT_INDENT)) {
     strcat(formatted, "   "); 
     line_chars = 3; 
   } else { 

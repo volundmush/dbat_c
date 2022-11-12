@@ -2069,17 +2069,17 @@ int generic_find(char *arg, bitvector_t bitvector, struct char_data *ch,
   if (!(number = get_number(&name)))
     return (0);
 
-  if (IS_SET(bitvector, FIND_CHAR_ROOM)) {	/* Find person in room */
+  if (IS_SET(&bitvector, FIND_CHAR_ROOM)) {	/* Find person in room */
     if ((*tar_ch = get_char_room_vis(ch, name, &number)) != NULL)
       return (FIND_CHAR_ROOM);
   }
 
-  if (IS_SET(bitvector, FIND_CHAR_WORLD)) {
+  if (IS_SET(&bitvector, FIND_CHAR_WORLD)) {
     if ((*tar_ch = get_char_world_vis(ch, name, &number)) != NULL)
       return (FIND_CHAR_WORLD);
   }
 
-  if (IS_SET(bitvector, FIND_OBJ_EQUIP)) {
+  if (IS_SET(&bitvector, FIND_OBJ_EQUIP)) {
     for (found = FALSE, i = 0; i < NUM_WEARS && !found; i++)
       if (GET_EQ(ch, i) && isname(name, GET_EQ(ch, i)->name) && --number == 0) {
 	*tar_obj = GET_EQ(ch, i);
@@ -2089,17 +2089,17 @@ int generic_find(char *arg, bitvector_t bitvector, struct char_data *ch,
       return (FIND_OBJ_EQUIP);
   }
 
-  if (IS_SET(bitvector, FIND_OBJ_INV)) {
+  if (IS_SET(&bitvector, FIND_OBJ_INV)) {
     if ((*tar_obj = get_obj_in_list_vis(ch, name, &number, ch->carrying)) != NULL)
       return (FIND_OBJ_INV);
   }
 
-  if (IS_SET(bitvector, FIND_OBJ_ROOM)) {
+  if (IS_SET(&bitvector, FIND_OBJ_ROOM)) {
     if ((*tar_obj = get_obj_in_list_vis(ch, name, &number, world[IN_ROOM(ch)].contents)) != NULL)
       return (FIND_OBJ_ROOM);
   }
 
-  if (IS_SET(bitvector, FIND_OBJ_WORLD)) {
+  if (IS_SET(&bitvector, FIND_OBJ_WORLD)) {
     if ((*tar_obj = get_obj_vis(ch, name, &number)))
       return (FIND_OBJ_WORLD);
   }

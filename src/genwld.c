@@ -353,13 +353,13 @@ int save_rooms(zone_rnum zone_num)
 	  /*
 	   * Figure out door flag.
 	   */
-	  if (IS_SET(R_EXIT(room, j)->exit_info, EX_ISDOOR)) {
-            if (IS_SET(R_EXIT(room, j)->exit_info, EX_SECRET) &&
-                IS_SET(R_EXIT(room, j)->exit_info, EX_PICKPROOF))
+	  if (IS_SET(&R_EXIT(room, j)->exit_info, EX_ISDOOR)) {
+            if (IS_SET(&R_EXIT(room, j)->exit_info, EX_SECRET) &&
+                IS_SET(&R_EXIT(room, j)->exit_info, EX_PICKPROOF))
               dflag = 4;
-	    else if (IS_SET(R_EXIT(room, j)->exit_info, EX_SECRET))
+	    else if (IS_SET(&R_EXIT(room, j)->exit_info, EX_SECRET))
               dflag = 3;
-	    else if (IS_SET(R_EXIT(room, j)->exit_info, EX_PICKPROOF)) 
+	    else if (IS_SET(&R_EXIT(room, j)->exit_info, EX_PICKPROOF))
 	      dflag = 2;
 	    else
 	      dflag = 1;

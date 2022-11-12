@@ -4591,7 +4591,7 @@ ACMD(do_plist)
                   CCNRM(ch, C_NRM)); 
  
   for (i = 0; i <= top_of_p_table; i++) { 
-    if (IS_SET(player_table[i].flags, PINDEX_DELETED)) {
+    if (IS_SET(&player_table[i].flags, PINDEX_DELETED)) {
      len += snprintf(buf + len, sizeof(buf) - len, "[%3ld] <DELETED> --Will be removed next boot.\r\n", player_table[i].id); 
       continue;
     }

@@ -553,7 +553,7 @@ void oedit_disp_spells_menu(struct descriptor_data *d)
   clear_screen(d);
 
   for (counter = 0; counter < SKILL_TABLE_SIZE; counter++) {
-    if (IS_SET(skill_type(counter), SKTYPE_SPELL))
+    if (IS_SET(&skill_type(counter), SKTYPE_SPELL))
       write_to_output(d, "@g%2d@n) @y%-20.20s@n%s", counter,
 		      spell_info[counter].name, !(++columns % 3) ? "\r\n" : "");
   }

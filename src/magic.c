@@ -122,11 +122,11 @@ int mag_newsaves(struct char_data *ch, struct char_data *victim, int spellnum, i
   int stype;
   int dc;
   int total;
-  if (IS_SET(spell_info[spellnum].save_flags, MAGSAVE_FORT))
+  if (IS_SET(&spell_info[spellnum].save_flags, MAGSAVE_FORT))
     stype = SAVING_FORTITUDE;
-  else if (IS_SET(spell_info[spellnum].save_flags, MAGSAVE_REFLEX))
+  else if (IS_SET(&spell_info[spellnum].save_flags, MAGSAVE_REFLEX))
     stype = SAVING_REFLEX;
-  else if (IS_SET(spell_info[spellnum].save_flags, MAGSAVE_WILL))
+  else if (IS_SET(&spell_info[spellnum].save_flags, MAGSAVE_WILL))
     stype = SAVING_WILL;
   else
     return FALSE;
@@ -262,11 +262,11 @@ int mag_damage(int level, struct char_data *ch, struct char_data *victim,
   } /* switch(spellnum) */
 
   if (mag_newsaves(ch, victim, spellnum, level, GET_INT(ch))) {
-    if (IS_SET(spell_info[spellnum].save_flags, MAGSAVE_NONE)) {
+    if (IS_SET(&spell_info[spellnum].save_flags, MAGSAVE_NONE)) {
       send_to_char(victim, "@g*save*@y You avoid any injury.@n\r\n");
       dam = 0;
-    } else if (IS_SET(spell_info[spellnum].save_flags, MAGSAVE_HALF)) {
-      if (IS_SET(spell_info[spellnum].save_flags, MAGSAVE_REFLEX) &&
+    } else if (IS_SET(&spell_info[spellnum].save_flags, MAGSAVE_HALF)) {
+      if (IS_SET(&spell_info[spellnum].save_flags, MAGSAVE_REFLEX) &&
           HAS_FEAT(victim, FEAT_EVASION) && 
           (!GET_EQ(victim, WEAR_BODY) ||
           GET_OBJ_TYPE(GET_EQ(victim, WEAR_BODY)) != ITEM_ARMOR ||
@@ -278,8 +278,8 @@ int mag_damage(int level, struct char_data *ch, struct char_data *victim,
         dam /= 2;
       }
     }
-  } else if (IS_SET(spell_info[spellnum].save_flags, MAGSAVE_HALF) &&
-             IS_SET(spell_info[spellnum].save_flags, MAGSAVE_REFLEX) &&
+  } else if (IS_SET(&spell_info[spellnum].save_flags, MAGSAVE_HALF) &&
+             IS_SET(&spell_info[spellnum].save_flags, MAGSAVE_REFLEX) &&
              HAS_FEAT(victim, FEAT_IMPROVED_EVASION) && 
              (!GET_EQ(victim, WEAR_BODY) ||
               GET_OBJ_TYPE(GET_EQ(victim, WEAR_BODY)) != ITEM_ARMOR ||
@@ -323,7 +323,7 @@ void mag_affects(int level, struct char_data *ch, struct char_data *victim,
   }
 
   if (mag_newsaves(ch, victim, spellnum, level, GET_INT(ch))) {
-    if (IS_SET(spell_info[spellnum].save_flags, MAGSAVE_PARTIAL | MAGSAVE_NONE)) {
+    if (IS_SET(&spell_info[spellnum].save_flags, MAGSAVE_PARTIAL | MAGSAVE_NONE)) {
       send_to_char(victim, "@g*save*@y You avoid any lasting affects.@n\r\n");
       return;
     }
@@ -1309,7 +1309,7 @@ void mag_affectsv(int level, struct char_data *ch, struct char_data *victim,
   }
 
   if (mag_newsaves(ch, victim, spellnum, level, GET_INT(ch))) {
-    if (IS_SET(spell_info[spellnum].save_flags, MAGSAVE_PARTIAL | MAGSAVE_NONE)) {
+    if (IS_SET(&spell_info[spellnum].save_flags, MAGSAVE_PARTIAL | MAGSAVE_NONE)) {
       send_to_char(victim, "@g*save*@y You avoid any lasting affects.@n\r\n");
       return;
     } 

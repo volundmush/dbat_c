@@ -279,49 +279,49 @@ int call_magic(struct char_data *caster, struct char_data *cvict,
     return 0;
 
   if (ROOM_FLAGGED(IN_ROOM(caster), ROOM_PEACEFUL) && GET_ADMLEVEL(caster) < ADMLVL_IMPL && 
-      (SINFO.violent || IS_SET(SINFO.routines, MAG_DAMAGE))) {
+      (SINFO.violent || IS_SET(&SINFO.routines, MAG_DAMAGE))) {
     send_to_char(caster, "A flash of white light fills the room, dispelling your violent magic!\r\n");
     act("White light from no particular source suddenly fills the room, then vanishes.", FALSE, caster, 0, 0, TO_ROOM);
     return (0);
   }
 
-  if (IS_SET(SINFO.routines, MAG_NEXTSTRIKE) && casttype != CAST_STRIKE) {
+  if (IS_SET(&SINFO.routines, MAG_NEXTSTRIKE) && casttype != CAST_STRIKE) {
     mag_nextstrike(level, caster, spellnum);
     return 1;
   }
     
-  if (IS_SET(SINFO.routines, MAG_DAMAGE))
+  if (IS_SET(&SINFO.routines, MAG_DAMAGE))
     if (mag_damage(level, caster, cvict, spellnum) == -1)
       return (-1);	/* Successful and target died, don't cast again. */
 
-  if (IS_SET(SINFO.routines, MAG_AFFECTS))
+  if (IS_SET(&SINFO.routines, MAG_AFFECTS))
     mag_affects(level, caster, cvict, spellnum);
 
-  if (IS_SET(SINFO.routines, MAG_UNAFFECTS))
+  if (IS_SET(&SINFO.routines, MAG_UNAFFECTS))
     mag_unaffects(level, caster, cvict, spellnum);
 
-  if (IS_SET(SINFO.routines, MAG_POINTS))
+  if (IS_SET(&SINFO.routines, MAG_POINTS))
     mag_points(level, caster, cvict, spellnum);
 
-  if (IS_SET(SINFO.routines, MAG_ALTER_OBJS))
+  if (IS_SET(&SINFO.routines, MAG_ALTER_OBJS))
     mag_alter_objs(level, caster, ovict, spellnum);
 
-  if (IS_SET(SINFO.routines, MAG_GROUPS))
+  if (IS_SET(&SINFO.routines, MAG_GROUPS))
     mag_groups(level, caster, spellnum);
 
-  if (IS_SET(SINFO.routines, MAG_MASSES))
+  if (IS_SET(&SINFO.routines, MAG_MASSES))
     mag_masses(level, caster, spellnum);
 
-  if (IS_SET(SINFO.routines, MAG_AREAS))
+  if (IS_SET(&SINFO.routines, MAG_AREAS))
     mag_areas(level, caster, spellnum);
 
-  if (IS_SET(SINFO.routines, MAG_SUMMONS))
+  if (IS_SET(&SINFO.routines, MAG_SUMMONS))
     mag_summons(level, caster, ovict, spellnum, arg);
 
-  if (IS_SET(SINFO.routines, MAG_CREATIONS))
+  if (IS_SET(&SINFO.routines, MAG_CREATIONS))
     mag_creations(level, caster, spellnum);
 
-  if (IS_SET(SINFO.routines, MAG_MANUAL))
+  if (IS_SET(&SINFO.routines, MAG_MANUAL))
     switch (spellnum) {
     case SPELL_CHARM:		MANUAL_SPELL(spell_charm); break;
     case SPELL_CREATE_WATER:	MANUAL_SPELL(spell_create_water); break;
@@ -336,7 +336,7 @@ int call_magic(struct char_data *caster, struct char_data *cvict,
     case ART_ABUNDANT_STEP:	MANUAL_SPELL(art_abundant_step); break;
     }
 
-  if (IS_SET(SINFO.routines, MAG_AFFECTSV))
+  if (IS_SET(&SINFO.routines, MAG_AFFECTSV))
     mag_affectsv(level, caster, cvict, spellnum);
 
 
@@ -425,7 +425,7 @@ void mag_objectmagic(struct char_data *ch, struct obj_data *obj,
 	act(obj->action_description, FALSE, ch, obj, tobj, TO_ROOM);
       else
 	act("$n points $p at $P.", TRUE, ch, obj, tobj, TO_ROOM);
-    } else if (IS_SET(spell_info[GET_OBJ_VAL(obj, VAL_WAND_SPELL)].routines, MAG_AREAS | MAG_MASSES)) {
+    } else if (IS_SET(&spell_info[GET_OBJ_VAL(obj, VAL_WAND_SPELL)].routines, MAG_AREAS | MAG_MASSES)) {
       /* Wands with area spells don't need to be pointed. */
       act("You point $p outward.", FALSE, ch, obj, NULL, TO_CHAR);
       act("$n points $p outward.", TRUE, ch, obj, NULL, TO_ROOM);
@@ -521,7 +521,7 @@ int cast_spell(struct char_data *ch, struct char_data *tch,
     return (0);
   }
 
-  if (!IS_SET(SINFO.skilltype, SKTYPE_SPELL | SKTYPE_ART)) {
+  if (!IS_SET(&SINFO.skilltype, SKTYPE_SPELL | SKTYPE_ART)) {
     log("SYSERR: cast_spell trying to call nonspell spellnum %d/%d.", spellnum,
 	SKILL_TABLE_SIZE);
     return (0);
@@ -551,20 +551,20 @@ int cast_spell(struct char_data *ch, struct char_data *tch,
     send_to_char(ch, "You are afraid you might hurt your master!\r\n");
     return (0);
   }
-  if ((tch != ch) && IS_SET(SINFO.targets, TAR_SELF_ONLY)) {
+  if ((tch != ch) && IS_SET(&SINFO.targets, TAR_SELF_ONLY)) {
     send_to_char(ch, "You can only cast this spell upon yourself!\r\n");
     return (0);
   }
-  if ((tch == ch) && IS_SET(SINFO.targets, TAR_NOT_SELF)) {
+  if ((tch == ch) && IS_SET(&SINFO.targets, TAR_NOT_SELF)) {
     send_to_char(ch, "You cannot cast this spell upon yourself!\r\n");
     return (0);
   }
-  if (IS_SET(SINFO.routines, MAG_GROUPS) && !AFF_FLAGGED(ch, AFF_GROUP)) {
+  if (IS_SET(&SINFO.routines, MAG_GROUPS) && !AFF_FLAGGED(ch, AFF_GROUP)) {
     send_to_char(ch, "You can't cast this spell if you're not in a group!\r\n");
     return (0);
   }
 
-  if (IS_SET(SINFO.skilltype, SKTYPE_SPELL)) {
+  if (IS_SET(&SINFO.skilltype, SKTYPE_SPELL)) {
     for (i = 0; i < NUM_CLASSES; i++) {
       j = GET_CLASS_RANKS(ch, i) - spell_info[spellnum].min_level[i];
       if (j > diff) {
@@ -573,13 +573,13 @@ int cast_spell(struct char_data *ch, struct char_data *tch,
         lvl = GET_CLASS_RANKS(ch, i);
       }
     }
-  } else if (IS_SET(SINFO.skilltype, SKTYPE_ART))
+  } else if (IS_SET(&SINFO.skilltype, SKTYPE_ART))
     lvl = GET_CLASS_RANKS(ch, CLASS_KABITO) / 2;
   else
     lvl = GET_LEVEL(ch);
 
   send_to_char(ch, "%s", CONFIG_OK);
-  if (IS_SET(SINFO.skilltype, SKTYPE_SPELL)) {
+  if (IS_SET(&SINFO.skilltype, SKTYPE_SPELL)) {
     say_spell(ch, spellnum, tch, tobj);
   }
 
@@ -674,56 +674,56 @@ ACMD(do_cast)
     one_argument(arg, t);
     skip_spaces(&t);
   }
-  if (IS_SET(SINFO.targets, TAR_IGNORE)) {
+  if (IS_SET(&SINFO.targets, TAR_IGNORE)) {
     target = TRUE;
   } else if (t != NULL && *t) {
-    if (!target && (IS_SET(SINFO.targets, TAR_CHAR_ROOM))) {
+    if (!target && (IS_SET(&SINFO.targets, TAR_CHAR_ROOM))) {
       if ((tch = get_char_vis(ch, t, NULL, FIND_CHAR_ROOM)) != NULL)
 	target = TRUE;
     }
-    if (!target && IS_SET(SINFO.targets, TAR_CHAR_WORLD))
+    if (!target && IS_SET(&SINFO.targets, TAR_CHAR_WORLD))
       if ((tch = get_char_vis(ch, t, NULL, FIND_CHAR_WORLD)) != NULL)
 	target = TRUE;
 
-    if (!target && IS_SET(SINFO.targets, TAR_OBJ_INV))
+    if (!target && IS_SET(&SINFO.targets, TAR_OBJ_INV))
       if ((tobj = get_obj_in_list_vis(ch, t, NULL, ch->carrying)) != NULL)
 	target = TRUE;
 
-    if (!target && IS_SET(SINFO.targets, TAR_OBJ_EQUIP)) {
+    if (!target && IS_SET(&SINFO.targets, TAR_OBJ_EQUIP)) {
       for (i = 0; !target && i < NUM_WEARS; i++)
 	if (GET_EQ(ch, i) && isname(t, GET_EQ(ch, i)->name)) {
 	  tobj = GET_EQ(ch, i);
 	  target = TRUE;
 	}
     }
-    if (!target && IS_SET(SINFO.targets, TAR_OBJ_ROOM))
+    if (!target && IS_SET(&SINFO.targets, TAR_OBJ_ROOM))
       if ((tobj = get_obj_in_list_vis(ch, t, NULL, world[IN_ROOM(ch)].contents)) != NULL)
 	target = TRUE;
 
-    if (!target && IS_SET(SINFO.targets, TAR_OBJ_WORLD))
+    if (!target && IS_SET(&SINFO.targets, TAR_OBJ_WORLD))
       if ((tobj = get_obj_vis(ch, t, NULL)) != NULL)
 	target = TRUE;
 
   } else {			/* if target string is empty */
-    if (!target && IS_SET(SINFO.targets, TAR_FIGHT_SELF))
+    if (!target && IS_SET(&SINFO.targets, TAR_FIGHT_SELF))
       if (FIGHTING(ch) != NULL) {
 	tch = ch;
 	target = TRUE;
       }
-    if (!target && IS_SET(SINFO.targets, TAR_FIGHT_VICT))
+    if (!target && IS_SET(&SINFO.targets, TAR_FIGHT_VICT))
       if (FIGHTING(ch) != NULL) {
 	tch = FIGHTING(ch);
 	target = TRUE;
       }
     /* if no target specified, and the spell isn't violent, default to self */
-    if (!target && IS_SET(SINFO.targets, TAR_CHAR_ROOM) &&
+    if (!target && IS_SET(&SINFO.targets, TAR_CHAR_ROOM) &&
 	!SINFO.violent) {
       tch = ch;
       target = TRUE;
     }
     if (!target) {
       send_to_char(ch, "Upon %s should the spell be cast?\r\n",
-		IS_SET(SINFO.targets, TAR_OBJ_ROOM | TAR_OBJ_INV | TAR_OBJ_WORLD | TAR_OBJ_EQUIP) ? "what" : "who");
+		IS_SET(&SINFO.targets, TAR_OBJ_ROOM | TAR_OBJ_INV | TAR_OBJ_WORLD | TAR_OBJ_EQUIP) ? "what" : "who");
       return;
     }
   }
@@ -748,19 +748,19 @@ ACMD(do_cast)
       set_fighting(ch, tch);
   }
 
-  if (IS_SET(SINFO.comp_flags, MAGCOMP_SOMATIC) && rand_number(1, 100) <= GET_SPELLFAIL(ch)) {
-    if (IS_SET(SINFO.routines, MAG_ACTION_FULL | MAG_ACTION_PARTIAL))
+  if (IS_SET(&SINFO.comp_flags, MAGCOMP_SOMATIC) && rand_number(1, 100) <= GET_SPELLFAIL(ch)) {
+    if (IS_SET(&SINFO.routines, MAG_ACTION_FULL | MAG_ACTION_PARTIAL))
       SET_BIT_AR(AFF_FLAGS(ch), AFF_NEXTPARTIAL);
-    else if (IS_SET(SINFO.routines, MAG_ACTION_FULL | MAG_ACTION_FULL))
+    else if (IS_SET(&SINFO.routines, MAG_ACTION_FULL | MAG_ACTION_FULL))
       SET_BIT_AR(AFF_FLAGS(ch), AFF_NEXTNOACTION);
     send_to_char(ch, "Your armor interferes with your casting, and you fail!\r\n");
   } else {
     if (ki > 0)
       GET_KI(ch) = MAX(0, MIN(GET_MAX_KI(ch), GET_KI(ch) - ki));
     if (cast_spell(ch, tch, tobj, spellnum, t) && GET_ADMLEVEL(ch) < ADMLVL_IMMORT) {
-      if (IS_SET(SINFO.routines, MAG_ACTION_FULL | MAG_ACTION_PARTIAL))
+      if (IS_SET(&SINFO.routines, MAG_ACTION_FULL | MAG_ACTION_PARTIAL))
         SET_BIT_AR(AFF_FLAGS(ch), AFF_NEXTPARTIAL);
-      else if (IS_SET(SINFO.routines, MAG_ACTION_FULL | MAG_ACTION_FULL))
+      else if (IS_SET(&SINFO.routines, MAG_ACTION_FULL | MAG_ACTION_FULL))
         SET_BIT_AR(AFF_FLAGS(ch), AFF_NEXTNOACTION);
       if (subcmd == SCMD_CAST) {
         send_to_char(ch, "The magical energy from the spell leaves your mind.\r\n");

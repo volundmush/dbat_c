@@ -34,17 +34,17 @@ int calculate_skill_cost(struct char_data *ch, int skill)
 {
  int cost = 0;
 
- if (IS_SET(spell_info[skill].flags, SKFLAG_TIER2)) {
+ if (IS_SET(&spell_info[skill].flags, SKFLAG_TIER2)) {
   cost = 8;
- } else if (IS_SET(spell_info[skill].flags, SKFLAG_TIER3)) {
+ } else if (IS_SET(&spell_info[skill].flags, SKFLAG_TIER3)) {
   cost = 15;
- } else if (IS_SET(spell_info[skill].flags, SKFLAG_TIER4)) {
+ } else if (IS_SET(&spell_info[skill].flags, SKFLAG_TIER4)) {
   if (GET_SKILL_BASE(ch, skill) == 0) {
    cost = 200;
   } else {
    cost = 25;
   }
- } else if (IS_SET(spell_info[skill].flags, SKFLAG_TIER5)) {
+ } else if (IS_SET(&spell_info[skill].flags, SKFLAG_TIER5)) {
   if (GET_SKILL_BASE(ch, skill) == 0) {
    cost = 300;
   } else {
@@ -673,7 +673,7 @@ void what_does_guild_know(int guild_nr, struct char_data * ch)
 
   for (sortpos = 0; sortpos < SKILL_TABLE_SIZE; sortpos++) {
     i = sortpos; /* spell_sort_info[sortpos]; */
-    if (does_guild_know(guild_nr, i) && IS_SET(skill_type(i), SKTYPE_LANG)) {
+    if (does_guild_know(guild_nr, i) && IS_SET(&skill_type(i), SKTYPE_LANG)) {
       //if (GET_LEVEL(ch) >= spell_info[i].min_level[(int) GET_CLASS(ch)]) {
         for (canknow = 0, j = 0; j < NUM_CLASSES; j++)
 	  if (spell_info[i].can_learn_skill[j] > canknow)
@@ -732,14 +732,14 @@ int prereq_pass(struct char_data *ch, int snum)
    send_to_char(ch, "You can not train that skill until you at least have trained focus to Skill LVL 30.");
    return 0;
   }
- } else if (IS_SET(spell_info[snum].flags, SKFLAG_TIER2) || IS_SET(spell_info[snum].flags, SKFLAG_TIER3)) {
+ } else if (IS_SET(&spell_info[snum].flags, SKFLAG_TIER2) || IS_SET(&spell_info[snum].flags, SKFLAG_TIER3)) {
   if (snum != 530 && snum != 531) {
    if (GET_SKILL_BASE(ch, SKILL_TSUIHIDAN) < 40 || GET_SKILL_BASE(ch, SKILL_RENZO) < 40 || GET_SKILL_BASE(ch, SKILL_SHOGEKIHA) < 40) {
     send_to_char(ch, "You can not train that skill until you at least have trained Tsuihidan, Renzokou Energy Dan, and Shogekiha to Skill LVL 40.");
     return 0;
    }
   }
- } else if (IS_SET(spell_info[snum].flags, SKFLAG_TIER4)) {
+ } else if (IS_SET(&spell_info[snum].flags, SKFLAG_TIER4)) {
   if (IS_ROSHI(ch) && (GET_SKILL_BASE(ch, SKILL_KAMEHAMEHA) < 40 || GET_SKILL_BASE(ch, SKILL_KIENZAN) < 40)) {
    send_to_char(ch, "You can not train that skill until you at least have trained Kamehameha and Kienzan to Skill LVL 40.");
    return 0;
@@ -780,7 +780,7 @@ int prereq_pass(struct char_data *ch, int snum)
    send_to_char(ch, "You can not train that skill until you at least have trained Star Breaker to Skill LVL 40.");
    return 0;
   }
- } else if (IS_SET(spell_info[snum].flags, SKFLAG_TIER5)) {
+ } else if (IS_SET(&spell_info[snum].flags, SKFLAG_TIER5)) {
   if (GET_SKILL_BASE(ch, SKILL_FOCUS) < 60 || GET_SKILL_BASE(ch, SKILL_CONCENTRATION) < 80 ) {
    send_to_char(ch, "You can not train that skill until you at least have trained focus to Skill LVL 60 and concentration to Skill LVL 80.");
    return 0;
@@ -922,7 +922,7 @@ void handle_practice(struct char_data *keeper, int guild_nr, struct char_data *c
   }
 
   /**** Can the player learn the skill if the GM knows it?  ****/ 
-  if (IS_SET(spell_info[skill_num].skilltype, SKTYPE_SKILL)) {
+  if (IS_SET(&spell_info[skill_num].skilltype, SKTYPE_SKILL)) {
     for (learntype = 0, i = 0; i < NUM_CLASSES; i++)
       if (spell_info[skill_num].can_learn_skill[i] > learntype)
         learntype = spell_info[skill_num].can_learn_skill[i];

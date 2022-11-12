@@ -186,10 +186,10 @@ void sub_write(char *arg, struct char_data *ch, int8_t find_invis, int targets)
     *s = '\0';
     tokens[++i] = NULL;
 
-    if (IS_SET(targets, TO_CHAR) && SENDOK(ch))
+    if (IS_SET(&targets, TO_CHAR) && SENDOK(ch))
 	sub_write_to_char(ch, tokens, otokens, type);
 
-    if (IS_SET(targets, TO_ROOM))
+    if (IS_SET(&targets, TO_ROOM))
 	for (to = world[IN_ROOM(ch)].people;
 	     to; to = to->next_in_room)
 	    if (to != ch && SENDOK(to))

@@ -1436,7 +1436,7 @@ const char *cmd_door[NUM_DOOR_CMD] =
   "pick"
 };
 
-static const int flags_door[] =
+static const bitvector_t flags_door[] =
 {
   NEED_CLOSED | NEED_UNLOCKED,
   NEED_OPEN,
@@ -1819,16 +1819,16 @@ ACMD(do_gen_door)
     if (!(DOOR_IS_OPENABLE(ch, obj, door)))
       act("You can't $F that!", FALSE, ch, 0, cmd_door[subcmd], TO_CHAR);
     else if (!DOOR_IS_OPEN(ch, obj, door) &&
-	     IS_SET(flags_door[subcmd], NEED_OPEN))
+	     IS_SET(&flags_door[subcmd], NEED_OPEN))
       send_to_char(ch, "But it's already closed!\r\n");
     else if (!DOOR_IS_CLOSED(ch, obj, door) &&
-	     IS_SET(flags_door[subcmd], NEED_CLOSED))
+	     IS_SET(&flags_door[subcmd], NEED_CLOSED))
       send_to_char(ch, "But it's currently open!\r\n");
     else if (!(DOOR_IS_LOCKED(ch, obj, door)) &&
-	     IS_SET(flags_door[subcmd], NEED_LOCKED))
+	     IS_SET(&flags_door[subcmd], NEED_LOCKED))
       send_to_char(ch, "Oh.. it wasn't locked, after all..\r\n");
     else if (!(DOOR_IS_UNLOCKED(ch, obj, door)) &&
-	     IS_SET(flags_door[subcmd], NEED_UNLOCKED))
+	     IS_SET(&flags_door[subcmd], NEED_UNLOCKED))
       send_to_char(ch, "It seems to be locked.\r\n");
     else if (!has_key(ch, keynum) && !ADM_FLAGGED(ch, ADM_NOKEYS) &&
 	     ((subcmd == SCMD_LOCK) || (subcmd == SCMD_UNLOCK)))

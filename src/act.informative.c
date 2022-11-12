@@ -3862,8 +3862,8 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
           *blam = toupper(*blam);
           if (door == 6) {
            sprintf(dlist1, "@c%-9s @D- [@Y%5d@D]@w %s.\r\n", blam, world[W_EXIT(target_room, door)->to_room].number, world[W_EXIT(target_room, door)->to_room].name);
-          if (IS_SET(W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
-              IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
+          if (IS_SET(&W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
+              IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
             /* This exit has a door - tell all about it */
             char argh[100];
             if (fname(W_EXIT(target_room, door)->keyword) == NULL) {
@@ -3873,24 +3873,24 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
             }
             sprintf(argh, "%s ", strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined") ? fname(W_EXIT(target_room, door)->keyword) : "opening");
             sprintf(dlist1+strlen(dlist1), "                    The %s%s %s %s %s%s.\r\n",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
                     "@rsecret@w " : "",
                 (W_EXIT(target_room, door)->keyword &&
                  strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined")) ?
                     fname(W_EXIT(target_room, door)->keyword) : "opening",
                  strstr(argh, "s ") != NULL ? "are" : "is",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
                     "closed" : "open",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
                     "and locked" : "and unlocked",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
                     " (pickproof)" : "");
           }
           }
           if (door == 0) {
            sprintf(dlist2, "@c%-9s @D- [@Y%5d@D]@w %s.\r\n", blam, world[W_EXIT(target_room, door)->to_room].number, world[W_EXIT(target_room, door)->to_room].name);
-          if (IS_SET(W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
-              IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
+          if (IS_SET(&W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
+              IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
             /* This exit has a door - tell all about it */
             if (fname(W_EXIT(target_room, door)->keyword) == NULL) {
              send_to_char(ch, "@RREPORT THIS ERROR IMMEADIATLY FOR DIRECTION NORTH@n\r\n");
@@ -3900,24 +3900,24 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
             char argh[200];
             sprintf(argh, "%s ", strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined") ? fname(W_EXIT(target_room, door)->keyword) : "opening");
             sprintf(dlist2+strlen(dlist2), "                    The %s%s %s %s %s%s.\r\n",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
                     "@rsecret@w " : "",
                 (W_EXIT(target_room, door)->keyword &&
                  strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined")) ?
                     fname(W_EXIT(target_room, door)->keyword) : "opening",
                 strstr(argh, "s ") != NULL ? "are" : "is",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
                     "closed" : "open",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
                     "and locked" : "and unlocked",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
                     " (pickproof)" : "");
           }
           }
           if (door == 7) {
            sprintf(dlist3, "@c%-9s @D- [@Y%5d@D]@w %s.\r\n", blam, world[W_EXIT(target_room, door)->to_room].number, world[W_EXIT(target_room, door)->to_room].name);
-          if (IS_SET(W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
-              IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
+          if (IS_SET(&W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
+              IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
             /* This exit has a door - tell all about it */
             if (fname(W_EXIT(target_room, door)->keyword) == NULL) {
              send_to_char(ch, "@RREPORT THIS ERROR IMMEADIATLY FOR DIRECTION NORTHEAST@n\r\n");
@@ -3927,24 +3927,24 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
             char argh[100];
             sprintf(argh, "%s ", strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined") ? fname(W_EXIT(target_room, door)->keyword) : "opening");
             sprintf(dlist3+strlen(dlist3), "                    The %s%s %s %s %s%s.\r\n",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
                     "@rsecret@w " : "",
                 (W_EXIT(target_room, door)->keyword &&
                  strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined")) ?
                     fname(W_EXIT(target_room, door)->keyword) : "opening",
                  strstr(argh, "s ") != NULL ? "are" : "is",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
                     "closed" : "open",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
                     "and locked" : "and unlocked",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
                     " (pickproof)" : "");
           }
           }
           if (door == 1) {
            sprintf(dlist4, "@c%-9s @D- [@Y%5d@D]@w %s.\r\n", blam, world[W_EXIT(target_room, door)->to_room].number, world[W_EXIT(target_room, door)->to_room].name);
-          if (IS_SET(W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
-              IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
+          if (IS_SET(&W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
+              IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
             /* This exit has a door - tell all about it */
             if (fname(W_EXIT(target_room, door)->keyword) == NULL) {
              send_to_char(ch, "@RREPORT THIS ERROR IMMEADIATLY FOR DIRECTION EAST@n\r\n");
@@ -3954,24 +3954,24 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
             char argh[100];
             sprintf(argh, "%s ", strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined") ? fname(W_EXIT(target_room, door)->keyword) : "opening");
             sprintf(dlist4+strlen(dlist4), "                    The %s%s %s %s %s%s.\r\n",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
                     "@rsecret@w " : "",
                 (W_EXIT(target_room, door)->keyword &&
                  strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined")) ?
                     fname(W_EXIT(target_room, door)->keyword) : "opening",
                 strstr(argh, "s ") != NULL ? "are" : "is",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
                     "closed" : "open",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
                     "and locked" : "and unlocked",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
                     " (pickproof)" : "");
           }
           }
           if (door == 8) {
            sprintf(dlist5, "@c%-9s @D- [@Y%5d@D]@w %s.\r\n", blam, world[W_EXIT(target_room, door)->to_room].number, world[W_EXIT(target_room, door)->to_room].name);
-          if (IS_SET(W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
-              IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
+          if (IS_SET(&W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
+              IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
             /* This exit has a door - tell all about it */
             if (fname(W_EXIT(target_room, door)->keyword) == NULL) {
              send_to_char(ch, "@RREPORT THIS ERROR IMMEADIATLY FOR DIRECTION SOUTHEAST@n\r\n");
@@ -3981,24 +3981,24 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
             char argh[100];
             sprintf(argh, "%s ", strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined") ? fname(W_EXIT(target_room, door)->keyword) : "opening");
             sprintf(dlist5+strlen(dlist5), "                    The %s%s %s %s %s%s.\r\n",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
                     "@rsecret@w " : "",
                 (W_EXIT(target_room, door)->keyword &&
                  strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined")) ?
                     fname(W_EXIT(target_room, door)->keyword) : "opening",
                   strstr(argh, "s ") != NULL ? "are" : "is",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
                     "closed" : "open",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
                     "and locked" : "and unlocked",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
                     " (pickproof)" : "");
           }
           }
           if (door == 2) {
            sprintf(dlist6, "@c%-9s @D- [@Y%5d@D]@w %s.\r\n", blam, world[W_EXIT(target_room, door)->to_room].number, world[W_EXIT(target_room, door)->to_room].name);
-          if (IS_SET(W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
-              IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
+          if (IS_SET(&W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
+              IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
             /* This exit has a door - tell all about it */
             if (fname(W_EXIT(target_room, door)->keyword) == NULL) {
              send_to_char(ch, "@RREPORT THIS ERROR IMMEADIATLY FOR DIRECTION SOUTH@n\r\n");
@@ -4008,24 +4008,24 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
             char argh[100];
             sprintf(argh, "%s ", strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined") ? fname(W_EXIT(target_room, door)->keyword) : "opening");
             sprintf(dlist6+strlen(dlist6), "                    The %s%s %s %s %s%s.\r\n",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
                     "@rsecret@w " : "",
                 (W_EXIT(target_room, door)->keyword &&
                  strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined")) ?
                     fname(W_EXIT(target_room, door)->keyword) : "opening",
                  strstr(argh, "s ") != NULL ? "are" : "is",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
                     "closed" : "open",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
                     "and locked" : "and unlocked",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
                     " (pickproof)" : "");
           }
           }
           if (door == 9) {
            sprintf(dlist7, "@c%-9s @D- [@Y%5d@D]@w %s.\r\n", blam, world[W_EXIT(target_room, door)->to_room].number, world[W_EXIT(target_room, door)->to_room].name);
-          if (IS_SET(W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
-              IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
+          if (IS_SET(&W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
+              IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
             /* This exit has a door - tell all about it */
             if (fname(W_EXIT(target_room, door)->keyword) == NULL) {
              send_to_char(ch, "@RREPORT THIS ERROR IMMEADIATLY FOR DIRECTION SOUTHWEST@n\r\n");
@@ -4035,24 +4035,24 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
             char argh[100];
             sprintf(argh, "%s ", strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined") ? fname(W_EXIT(target_room, door)->keyword) : "opening");
             sprintf(dlist7+strlen(dlist7), "                    The %s%s %s %s %s%s.\r\n",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
                     "@rsecret@w " : "",
                 (W_EXIT(target_room, door)->keyword &&
                  strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined")) ?
                     fname(W_EXIT(target_room, door)->keyword) : "opening",
                 strstr(argh, "s ") != NULL ? "are" : "is",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
                     "closed" : "open",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
                     "and locked" : "and unlocked",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
                     " (pickproof)" : "");
           }
           }
           if (door == 3) {
            sprintf(dlist8, "@c%-9s @D- [@Y%5d@D]@w %s.\r\n", blam, world[W_EXIT(target_room, door)->to_room].number, world[W_EXIT(target_room, door)->to_room].name);
-          if (IS_SET(W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
-              IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
+          if (IS_SET(&W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
+              IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
             /* This exit has a door - tell all about it */
             if (fname(W_EXIT(target_room, door)->keyword) == NULL) {
              send_to_char(ch, "@RREPORT THIS ERROR IMMEADIATLY FOR DIRECTION WEST@n\r\n");
@@ -4062,24 +4062,24 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
             char argh[100];
             sprintf(argh, "%s ", strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined") ? fname(W_EXIT(target_room, door)->keyword) : "opening");
             sprintf(dlist8+strlen(dlist8), "                    The %s%s %s %s %s%s.\r\n",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
                     "@rsecret@w " : "",
                 (W_EXIT(target_room, door)->keyword &&
                  strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined")) ?
                     fname(W_EXIT(target_room, door)->keyword) : "opening",
                 strstr(argh, "s ") != NULL ? "are" : "is",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
                     "closed" : "open",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
                     "and locked" : "and unlocked",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
                     " (pickproof)" : "");
           }
           }
           if (door == 4) {
            sprintf(dlist9, "@c%-9s @D- [@Y%5d@D]@w %s.\r\n", blam, world[W_EXIT(target_room, door)->to_room].number, world[W_EXIT(target_room, door)->to_room].name);
-          if (IS_SET(W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
-              IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
+          if (IS_SET(&W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
+              IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
             /* This exit has a door - tell all about it */
             if (fname(W_EXIT(target_room, door)->keyword) == NULL) {
              send_to_char(ch, "@RREPORT THIS ERROR IMMEADIATLY FOR DIRECTION UP@n\r\n");
@@ -4089,24 +4089,24 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
             char argh[100];
             sprintf(argh, "%s ", strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined") ? fname(W_EXIT(target_room, door)->keyword) : "opening");
             sprintf(dlist9+strlen(dlist9), "                    The %s%s %s %s %s%s.\r\n",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
                     "@rsecret@w " : "",
                 (W_EXIT(target_room, door)->keyword &&
                  strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined")) ?
                     fname(W_EXIT(target_room, door)->keyword) : "opening",
                  strstr(argh, "s ") != NULL ? "are" : "is",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
                     "closed" : "open",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
                     "and locked" : "and unlocked",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
                     " (pickproof)" : "");
           }
           }
           if (door == 5) {
            sprintf(dlist10, "@c%-9s @D- [@Y%5d@D]@w %s.\r\n", blam, world[W_EXIT(target_room, door)->to_room].number, world[W_EXIT(target_room, door)->to_room].name);
-          if (IS_SET(W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
-              IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
+          if (IS_SET(&W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
+              IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
             /* This exit has a door - tell all about it */
             if (fname(W_EXIT(target_room, door)->keyword) == NULL) {
              send_to_char(ch, "@RREPORT THIS ERROR IMMEADIATLY FOR DIRECTION DOWN@n\r\n");
@@ -4116,24 +4116,24 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
             char argh[100];
             sprintf(argh, "%s ", strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined") ? fname(W_EXIT(target_room, door)->keyword) : "opening");
             sprintf(dlist10+strlen(dlist10), "                    The %s%s %s %s %s%s.\r\n",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
                     "@rsecret@w " : "",
                 (W_EXIT(target_room, door)->keyword &&
                  strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined")) ?
                     fname(W_EXIT(target_room, door)->keyword) : "opening",
                  strstr(argh, "s ") != NULL ? "are" : "is",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
                     "closed" : "open",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
                     "and locked" : "and unlocked",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
                     " (pickproof)" : "");
           }
           }
           if (door == 10) {
            sprintf(dlist11, "@c%-9s @D- [@Y%5d@D]@w %s.\r\n", blam, world[W_EXIT(target_room, door)->to_room].number, world[W_EXIT(target_room, door)->to_room].name);
-          if (IS_SET(W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
-              IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
+          if (IS_SET(&W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
+              IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
             /* This exit has a door - tell all about it */
             if (fname(W_EXIT(target_room, door)->keyword) == NULL) {
              send_to_char(ch, "@RREPORT THIS ERROR IMMEADIATLY FOR DIRECTION INSIDE@n\r\n");
@@ -4143,24 +4143,24 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
             char argh[100];
             sprintf(argh, "%s ", strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined") ? fname(W_EXIT(target_room, door)->keyword) : "opening");
             sprintf(dlist11+strlen(dlist11), "                    The %s%s %s %s %s%s.\r\n",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
                     "@rsecret@w " : "",
                 (W_EXIT(target_room, door)->keyword &&
                  strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined")) ?
                     fname(W_EXIT(target_room, door)->keyword) : "opening",
                  strstr(argh, "s ") != NULL ? "are" : "is",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
                     "closed" : "open",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
                     "and locked" : "and unlocked",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
                     " (pickproof)" : "");
           }
           }
           if (door == 11) {
            sprintf(dlist12, "@c%-9s @D- [@Y%5d@D]@w %s.\r\n", blam, world[W_EXIT(target_room, door)->to_room].number, world[W_EXIT(target_room, door)->to_room].name);
-          if (IS_SET(W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
-              IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
+          if (IS_SET(&W_EXIT(target_room, door)->exit_info, EX_ISDOOR) ||
+              IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET)   ) {
             /* This exit has a door - tell all about it */
             if (fname(W_EXIT(target_room, door)->keyword) == NULL) {
              send_to_char(ch, "@RREPORT THIS ERROR IMMEADIATLY FOR DIRECTION OUTSIDE@n\r\n");
@@ -4170,23 +4170,23 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
             char argh[100];
             sprintf(argh, "%s ", strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined") ? fname(W_EXIT(target_room, door)->keyword) : "opening");
             sprintf(dlist12+strlen(dlist12), "                    The %s%s %s %s %s%s.\r\n",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET) ?
                     "@rsecret@w " : "",
                 (W_EXIT(target_room, door)->keyword &&
                  strcasecmp(fname(W_EXIT(target_room, door)->keyword), "undefined")) ?
                     fname(W_EXIT(target_room, door)->keyword) : "opening",
                  strstr(argh, "s ") != NULL ? "are" : "is",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_CLOSED) ?
                     "closed" : "open",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_LOCKED) ?
                     "and locked" : "and unlocked",
-                IS_SET(W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
+                IS_SET(&W_EXIT(target_room, door)->exit_info, EX_PICKPROOF) ?
                     " (pickproof)" : "");
           }
           }
         }
         else { /* This is what mortal characters see */
-          if (!IS_SET(W_EXIT(target_room, door)->exit_info, EX_CLOSED)) {
+          if (!IS_SET(&W_EXIT(target_room, door)->exit_info, EX_CLOSED)) {
             /* And the door is open */
             door_found++;
             char blam[9];
@@ -4230,7 +4230,7 @@ static void do_auto_exits(room_rnum target_room, struct char_data *ch, int exit_
           }
 
           } else if (CONFIG_DISP_CLOSED_DOORS &&
-              !IS_SET(W_EXIT(target_room, door)->exit_info, EX_SECRET)) {
+              !IS_SET(&W_EXIT(target_room, door)->exit_info, EX_SECRET)) {
               /* But we tell them the door is closed */
               door_found++;
               char blam[9];
@@ -8303,7 +8303,7 @@ ACMD(do_scan)
         if(_2ND_EXIT(ch, i) && _2ND_EXIT(ch, i)->to_room) { 
           newroom = _2ND_EXIT(ch, i)->to_room; 
 
-          if ((newroom != NOWHERE) && (!IS_SET(_2ND_EXIT(ch, i)->exit_info, EX_CLOSED)) ) { 
+          if ((newroom != NOWHERE) && (!IS_SET(&_2ND_EXIT(ch, i)->exit_info, EX_CLOSED)) ) {
             if (!IS_DARK(_2ND_EXIT(ch, i)->to_room)) { 
               send_to_char(ch, "@w-----------------------------------------@n\r\n");
               send_to_char(ch,"          %sFar %s: %s %s\n\r", CCCYN(ch, C_NRM), dirnames[i], world[newroom].name ? world[newroom].name : "You don't think you saw what you just saw.", CCNRM(ch, C_NRM) ); 

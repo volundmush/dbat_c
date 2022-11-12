@@ -186,7 +186,7 @@ void greet_memory_mtrigger(struct char_data *actor)
       /* if a command was not performed execute the memory script */
       if (mem && !command_performed) {
         for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
-          if (IS_SET(GET_TRIG_TYPE(t), MTRIG_MEMORY) &&
+          if (IS_SET(&GET_TRIG_TYPE(t), MTRIG_MEMORY) &&
               CAN_SEE(ch, actor) &&
               !GET_TRIG_DEPTH(t) &&
               rand_number(1, 100) <= GET_TRIG_NARG(t)) {
@@ -233,8 +233,8 @@ int greet_mtrigger(struct char_data *actor, int dir)
       continue;
 
     for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
-      if (((IS_SET(GET_TRIG_TYPE(t), MTRIG_GREET) && CAN_SEE(ch, actor)) ||
-           IS_SET(GET_TRIG_TYPE(t), MTRIG_GREET_ALL)) &&
+      if (((IS_SET(&GET_TRIG_TYPE(t), MTRIG_GREET) && CAN_SEE(ch, actor)) ||
+           IS_SET(&GET_TRIG_TYPE(t), MTRIG_GREET_ALL)) &&
           !GET_TRIG_DEPTH(t) && (rand_number(1, 100) <= GET_TRIG_NARG(t))) {
         if (dir>=0 && dir < NUM_OF_DIRS)
           add_var(&GET_TRIG_VARS(t), "direction", (const char *)dirs[rev_dir[dir]], 0);
@@ -592,7 +592,7 @@ int leave_mtrigger(struct char_data *actor, int dir)
       continue;
 
     for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
-      if ((IS_SET(GET_TRIG_TYPE(t), MTRIG_LEAVE)) &&
+      if ((IS_SET(&GET_TRIG_TYPE(t), MTRIG_LEAVE)) &&
           !GET_TRIG_DEPTH(t) && (rand_number(1, 100) <= GET_TRIG_NARG(t))) {
         if (dir>=0 && dir < NUM_OF_DIRS)
           add_var(&GET_TRIG_VARS(t), "direction", (const char *)dirs[dir], 0);
@@ -619,7 +619,7 @@ int door_mtrigger(struct char_data *actor, int subcmd, int dir)
       continue;
 
     for (t = TRIGGERS(SCRIPT(ch)); t; t = t->next) {
-      if (IS_SET(GET_TRIG_TYPE(t), MTRIG_DOOR) && CAN_SEE(ch, actor) &&
+      if (IS_SET(&GET_TRIG_TYPE(t), MTRIG_DOOR) && CAN_SEE(ch, actor) &&
           !GET_TRIG_DEPTH(t) && (rand_number(1, 100) <= GET_TRIG_NARG(t))) {
         add_var(&GET_TRIG_VARS(t), "cmd", (const char *)cmd_door[subcmd], 0);
         if (dir>=0 && dir < NUM_OF_DIRS)
@@ -734,14 +734,14 @@ int cmd_otrig(struct obj_data *obj, struct char_data *actor, char *cmd,
       if (!TRIGGER_CHECK(t, OTRIG_COMMAND))
         continue;
 
-      if (IS_SET(GET_TRIG_NARG(t), type) &&
+      if (IS_SET(&GET_TRIG_NARG(t), type) &&
           (!GET_TRIG_ARG(t) || !*GET_TRIG_ARG(t))) {
         mudlog(NRM, ADMLVL_BUILDER, TRUE, "SYSERR: O-Command Trigger #%d has no text argument!",
           GET_TRIG_VNUM(t));
         continue;
       }
 
-      if (IS_SET(GET_TRIG_NARG(t), type) &&
+      if (IS_SET(&GET_TRIG_NARG(t), type) &&
           (*GET_TRIG_ARG(t)=='*' ||
           !strncasecmp(GET_TRIG_ARG(t), cmd, strlen(GET_TRIG_ARG(t))))) {
 

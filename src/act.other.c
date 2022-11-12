@@ -7902,7 +7902,7 @@ ACMD(do_eavesdrop) {
     return;
   }
   if (EXIT(ch, dir)) {
-    if (IS_SET(EXIT(ch, dir)->exit_info, EX_CLOSED) && EXIT(ch, dir)->keyword) {
+    if (IS_SET(&EXIT(ch, dir)->exit_info, EX_CLOSED) && EXIT(ch, dir)->keyword) {
       sprintf(buf, "The %s is closed.\r\n", fname(EXIT(ch, dir)->keyword));
       send_to_char(ch, buf);
     } else {
