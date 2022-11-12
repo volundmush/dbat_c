@@ -4481,7 +4481,7 @@ int get_line(FILE *fl, char *buf)
 int get_filename(char *filename, size_t fbufsize, int mode, const char *orig_name)
 {
   const char *prefix, *middle, *suffix;
-  char name[PATH_MAX], *ptr;
+  char name[260], *ptr;
 
   if (orig_name == NULL || *orig_name == '\0' || filename == NULL) {
     log("SYSERR: NULL pointer or empty string passed to get_filename(), %p or %p.",

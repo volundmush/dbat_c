@@ -17,9 +17,6 @@ if(${LIBBSD})
     add_compile_definitions(HAVE_LIBBSD)
 endif()
 
-find_library(ZLIB NAMES z libz REQUIRED)
-link_libraries(${ZLIB})
-
 # this is the core library we're making.
 add_library(circlemud ${CIRCLE_INCLUDE} ${CIRCLE_SRC})
 # everything we make will link to it.

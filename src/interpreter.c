@@ -4198,7 +4198,7 @@ void nanny(struct descriptor_data *d, char *arg)
       }
       d->idle_tics = 0;
       write_to_output(d, "@MNew character.@n\r\nGive me a @gpassword@n for @C%s@n: ", GET_PC_NAME(d->character));
-      echo_off(d);
+
       STATE(d) = CON_NEWPASSWD;
     } else if (*arg == 'n' || *arg == 'N') {
       write_to_output(d, "Okay, what IS it, then? ");
@@ -4281,7 +4281,7 @@ void nanny(struct descriptor_data *d, char *arg)
      else {
       write_to_output(d, "Password: \r\n");
       send_to_imm("Username, %s, logging in.", CAP(arg));
-      echo_off(d);
+
       STATE(d) = CON_PASSWORD;
      }
     }
@@ -4293,7 +4293,7 @@ void nanny(struct descriptor_data *d, char *arg)
      userLoad(d, arg);
      write_to_output(d, "Password: \r\n");
      send_to_imm("Username, %s, logging in.", CAP(arg));
-          echo_off(d);
+
      STATE(d) = CON_PASSWORD;
     }
    }
@@ -4370,7 +4370,7 @@ void nanny(struct descriptor_data *d, char *arg)
    }
    d->email = strdup(arg);
    write_to_output(d, "Password: \r\n");
-          echo_off(d);
+
    STATE(d) = CON_NEWPASSWD;
   }
   break;
@@ -4405,7 +4405,6 @@ void nanny(struct descriptor_data *d, char *arg)
    d->pass = strdup(arg);
    userWrite(d, 0, 0, 0, "index");
    userRead(d);
-   echo_on(d);
    STATE(d) = CON_UMENU;
   }
   else {
@@ -4417,7 +4416,6 @@ void nanny(struct descriptor_data *d, char *arg)
    d->pass = strdup(arg);
    userCreate(d);
    userRead(d);
-   echo_on(d);
    STATE(d) = CON_UMENU;
   }
   break;
@@ -4457,7 +4455,6 @@ void nanny(struct descriptor_data *d, char *arg)
      }
    }
    userRead(d);
-   echo_on(d);
    STATE(d) = CON_UMENU;   
   }
   else {

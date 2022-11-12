@@ -29,7 +29,6 @@
  */
 #include "dg_event.h"
 #include "utils.h"
-#include <limits.h>
 #include "comm.h"
 
 static struct queue *event_q;          /* the event queue */
@@ -253,7 +252,7 @@ long queue_key(struct queue *q)
   if (q->head[i])
     return q->head[i]->key;
   else
-    return LONG_MAX;
+    return 2147483647;
 }
 
 

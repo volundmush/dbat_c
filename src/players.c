@@ -71,7 +71,7 @@ void save_imc_pfile(struct char_data *ch);
 void save_imc_pfile(struct char_data *ch)
 {
   FILE *fl;
-  char filename[PATH_MAX];
+  char filename[260];
 
   if (!CH_IMCDATA(ch))
     return;
@@ -93,7 +93,7 @@ void save_imc_pfile(struct char_data *ch)
 void load_imc_pfile(struct char_data *ch)
 {
   FILE *fl;
-  char filename[PATH_MAX];
+  char filename[260];
   char *word;
 
   if (!get_filename(filename, sizeof(filename), IMC_FILE, GET_PC_NAME(ch)))

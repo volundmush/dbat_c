@@ -308,46 +308,7 @@ socklen_t init_socket(uint16_t cmport)
 
 int get_max_players(void)
 {
-
-    int max_descs = 0;
-    const char *method;
-
-/*
- * First, we'll try using getrlimit/setrlimit.  This will probably work
- * on most systems.  HAS_RLIMIT is defined in sysdep.h.
- */
-    {
-        struct rlimit limit;
-
-        /* find the limit of file descs */
-        method = "rlimit";
-        if (getrlimit(RLIMIT_NOFILE, &limit) < 0) {
-            perror("SYSERR: calling getrlimit");
-            exit(1);
-        }
-
-        /* set the current to the maximum */
-        limit.rlim_cur = limit.rlim_max;
-        if (setrlimit(RLIMIT_NOFILE, &limit) < 0) {
-            perror("SYSERR: calling setrlimit");
-            exit(1);
-        }
-        if (limit.rlim_max == RLIM_INFINITY)
-            max_descs = CONFIG_MAX_PLAYING + NUM_RESERVED_DESCS;
-        else
-            max_descs = MIN(CONFIG_MAX_PLAYING + NUM_RESERVED_DESCS, limit.rlim_max);
-    }
-
-    /* now calculate max _players_ based on max descs */
-    max_descs = MIN(CONFIG_MAX_PLAYING, max_descs - NUM_RESERVED_DESCS);
-
-    if (max_descs <= 0) {
-        log("SYSERR: Non-positive max player limit!  (Set at %d using %s).",
-            max_descs, method);
-        exit(1);
-    }
-    log("   Setting player limit to %d using %s.", max_descs, method);
-    return (max_descs);
+    return 1000;
 }
 
 
@@ -774,42 +735,6 @@ void record_usage(void)
   log("nusage: %-3d sockets connected, %-3d sockets playing",
 	  sockets_connected, sockets_playing);
 }
-
-
-
-/*
- * Turn off echoing (specific to telnet client)
- */
-void echo_off(struct descriptor_data *d)
-{
-  char off_string[] =
-  {
-    (char) IAC,
-    (char) WILL,
-    (char) TELOPT_ECHO,
-    (char) 0,
-  };
-
-  write_to_output(d, "%s", off_string);
-}
-
-
-/*
- * Turn on echoing (specific to telnet client)
- */
-void echo_on(struct descriptor_data *d)
-{
-  char on_string[] =
-  {
-    (char) IAC,
-    (char) WONT,
-    (char) TELOPT_ECHO,
-    (char) 0
-  };
-
-  write_to_output(d, "%s", on_string);
-}
-
 
 char *make_prompt(struct descriptor_data *d)
 {
@@ -2309,16 +2234,6 @@ int process_input(struct descriptor_data *t)
   char *ptr, *read_point, *write_point, *nl_pos = NULL;
   char tmp[MAX_INPUT_LENGTH];
 
-const char compress_start[] =
-        {
-                (char) IAC,
-                (char) SB,
-                (char) COMPRESS2,
-                (char) IAC,
-                (char) SE,
-                (char) 0
-        };
-
   /* first, find the point where we left off reading data */
   buf_length = strlen(t->inbuf);
   read_point = t->inbuf + buf_length;
@@ -2669,7 +2584,6 @@ void check_idle_passwords(void)
       d->idle_tics++;
       continue;
     } else {
-      echo_on(d);
       write_to_output(d, "\r\nTimed out... goodbye.\r\n");
       STATE(d) = CON_CLOSE;
     }
@@ -2689,7 +2603,6 @@ void check_idle_menu(void)
       write_to_output(d, "\r\nYou are about to be disconnected due to inactivity in 60 seconds.\r\n");
       continue;
     } else {
-      echo_on(d);
       write_to_output(d, "\r\nTimed out... goodbye.\r\n");
       STATE(d) = CON_CLOSE;
     }

@@ -270,7 +270,7 @@ void copy_proto_script(void *source, void *dest, int type)
 
 void delete_variables(const char *charname)
 {
-  char filename[PATH_MAX];
+  char filename[260];
 
   if (!get_filename(filename, sizeof(filename), SCRIPT_VARS_FILE, charname))
     return;

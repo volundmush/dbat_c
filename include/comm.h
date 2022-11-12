@@ -93,8 +93,6 @@ extern void checkpointing(int sig);
 extern void hupsig(int sig);
 extern ssize_t perform_socket_read(socklen_t desc, char *read_point, size_t space_left);
 extern ssize_t perform_socket_write(socklen_t desc, const char *txt, size_t length);
-extern void echo_off(struct descriptor_data *d);
-extern void echo_on(struct descriptor_data *d);
 extern void circle_sleep(struct timeval *timeout);
 extern int get_from_q(struct txt_q *queue, char *dest, int *aliased);
 extern void init_game(uint16_t port);

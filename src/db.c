@@ -1201,7 +1201,7 @@ void index_boot(int mode)
   const char *index_filename, *prefix = NULL;	/* NULL or egcs 1.1 complains */
   FILE *db_index, *db_file;
   int rec_count = 0, size[2];
-  char buf2[PATH_MAX], buf1[MAX_STRING_LENGTH];
+  char buf2[260], buf1[MAX_STRING_LENGTH];
 
   switch (mode) {
   case DB_BOOT_WLD:

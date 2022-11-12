@@ -120,7 +120,7 @@ read_alias_error:
 
 void delete_aliases(const char *charname)
 {
-  char filename[PATH_MAX];
+  char filename[260];
 
   if (!get_filename(filename, sizeof(filename), ALIAS_FILE, charname))
     return;
