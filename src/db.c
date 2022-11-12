@@ -3661,7 +3661,7 @@ void add_unique_id(struct obj_data *obj)
       obj->unique_id = circle_random();
   }
   if (CONFIG_ALL_ITEMS_UNIQUE) {
-    if (!IS_SET_AR(GET_OBJ_EXTRA(obj), ITEM_UNIQUE_SAVE))
+    if (!OBJ_FLAGGED(obj, ITEM_UNIQUE_SAVE))
       SET_BIT_AR(GET_OBJ_EXTRA(obj), ITEM_UNIQUE_SAVE);
   }
   CREATE(elem, struct obj_unique_hash_elem, 1);

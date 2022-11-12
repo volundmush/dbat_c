@@ -4999,8 +4999,71 @@ int get_flag_by_name(const char *flag_list[], char *flag_name)
    return (NOFLAG); 
 }
 
+
+
 bool ISNEWL(char ch) {
     return ch == '\n' || ch == '\r';
+}
+
+bool IS_NPC(struct char_data *ch) {
+    return IS_SET_AR(MOB_FLAGS(ch), MOB_ISNPC);
+}
+
+bool IS_MOB(struct char_data *ch) {
+    return IS_NPC(ch) && GET_MOB_RNUM(ch) <= top_of_mobt && \
+				GET_MOB_RNUM(ch) != NOBODY;
+}
+
+bool MOB_FLAGGED(struct char_data *ch, bitvector_t flag) {
+    return IS_NPC(ch) && IS_SET_AR(MOB_FLAGS(ch), flag);
+}
+
+bool MLR_FLAGGED(struct char_data *ch, bitvector_t flag) {
+    return !IS_NPC(ch) && IS_SET_AR(PLR_FLAGS(ch), flag);
+}
+
+bool AFF_FLAGGED(struct char_data *ch, bitvector_t flag) {
+    return IS_SET_AR(AFF_FLAGS(ch), flag);
+}
+
+bool PRF_FLAGGED(struct char_data *ch, bitvector_t flag) {
+    return IS_SET_AR(PRF_FLAGS(ch), flag);
+}
+
+bool ADM_FLAGGED(struct char_data *ch, bitvector_t flag) {
+    return IS_SET_AR(ADM_FLAGS(ch), flag);
+}
+
+bool ROOM_FLAGGED(room_rnum loc, bitvector_t flag) {
+    return IS_SET_AR(ROOM_FLAGS(loc), flag);
+}
+
+bool EXIT_FLAGGED(struct room_direction_data *exit, bitvector_t flag) {
+    return IS_SET(exit->exit_info, flag);
+}
+
+bool OBJAFF_FLAGGED(struct obj_data *obj, bitvector_t flag) {
+    return IS_SET_AR(GET_OBJ_PERM(obj), flag);
+}
+
+bool OBJVAL_FLAGGED(struct obj_data *obj, bitvector_t flag) {
+    return IS_SET(GET_OBJ_VAL(obj, VAL_CONTAINER_FLAGS), flag);
+}
+
+bool OBJWEAR_FLAGGED(struct obj_data *obj, bitvector_t flag) {
+    return IS_SET_AR(GET_OBJ_WEAR(obj), flag);
+}
+
+bool OBJ_FLAGGED(struct obj_data *obj, bitvector_t flag) {
+    return IS_SET_AR(GET_OBJ_EXTRA(obj), flag);
+}
+
+bool BODY_FLAGGED(struct char_data *ch, bitvector_t flag) {
+    return IS_SET_AR(BODY_PARTS(ch), flag);
+}
+
+bool ZONE_FLAGGED(zone_rnum rnum, bitvector_t flag) {
+    return IS_SET_AR(zone_table[(rnum)].zone_flags, flag);
 }
 
 char *AN(const char *str) {

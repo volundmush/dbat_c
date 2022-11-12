@@ -317,23 +317,25 @@ extern char *AN(const char *str);
  * See http://www.circlemud.org/~greerga/todo/todo.009 to eliminate MOB_ISNPC.
  * IS_MOB() acts as a VALID_MOB_RNUM()-like function.
  */
-#define IS_NPC(ch)	(IS_SET_AR(MOB_FLAGS(ch), MOB_ISNPC))
-#define IS_MOB(ch)	(IS_NPC(ch) && GET_MOB_RNUM(ch) <= top_of_mobt && \
-				GET_MOB_RNUM(ch) != NOBODY)
+extern bool IS_NPC(struct char_data *ch);
+extern bool IS_MOB(struct char_data *ch);
+extern bool MOB_FLAGGED(struct char_data *ch, bitvector_t flag);
+extern bool MLR_FLAGGED(struct char_data *ch, bitvector_t flag);
+extern bool AFF_FLAGGED(struct char_data *ch, bitvector_t flag);
+extern bool PRF_FLAGGED(struct char_data *ch, bitvector_t flag);
+extern bool ADM_FLAGGED(struct char_data *ch, bitvector_t flag);
+extern bool ROOM_FLAGGED(room_rnum loc, bitvector_t flag);
+extern bool EXIT_FLAGGED(struct room_direction_data *exit, bitvector_t flag);
 
-#define MOB_FLAGGED(ch, flag) (IS_NPC(ch) && IS_SET_AR(MOB_FLAGS(ch), (flag)))
-#define PLR_FLAGGED(ch, flag) (!IS_NPC(ch) && IS_SET_AR(PLR_FLAGS(ch), (flag)))
-#define AFF_FLAGGED(ch, flag) (IS_SET_AR(AFF_FLAGS(ch), (flag)))
-#define PRF_FLAGGED(ch, flag) (IS_SET_AR(PRF_FLAGS(ch), (flag)))
-#define ADM_FLAGGED(ch, flag) (IS_SET_AR(ADM_FLAGS(ch), (flag)))
-#define ROOM_FLAGGED(loc, flag) (IS_SET_AR(ROOM_FLAGS(loc), (flag)))
-#define EXIT_FLAGGED(exit, flag) (IS_SET((exit)->exit_info, (flag)))
-#define OBJAFF_FLAGGED(obj, flag) (IS_SET_AR(GET_OBJ_PERM(obj), (flag)))
-#define OBJVAL_FLAGGED(obj, flag) (IS_SET(GET_OBJ_VAL((obj), VAL_CONTAINER_FLAGS), (flag)))
-#define OBJWEAR_FLAGGED(obj, flag) (IS_SET_AR(GET_OBJ_WEAR(obj), (flag)))
-#define OBJ_FLAGGED(obj, flag) (IS_SET_AR(GET_OBJ_EXTRA(obj), (flag)))
-#define BODY_FLAGGED(ch, flag) (IS_SET_AR(BODY_PARTS(ch), (flag)))
-#define ZONE_FLAGGED(rnum, flag)   (IS_SET_AR(zone_table[(rnum)].zone_flags, flag))
+extern bool OBJAFF_FLAGGED(struct obj_data *obj, bitvector_t flag);
+extern bool OBJVAL_FLAGGED(struct obj_data *obj, bitvector_t flag);
+extern bool OBJWEAR_FLAGGED(struct obj_data *obj, bitvector_t flag);
+extern bool OBJ_FLAGGED(struct obj_data *obj, bitvector_t flag);
+
+extern bool BODY_FLAGGED(struct char_data *ch, bitvector_t flag);
+
+extern bool ZONE_FLAGGED(zone_rnum rnum, bitvector_t flag);
+
 #define HAS_SPELL_ROUTINE(spl, flag) (IS_SET(SPELL_ROUTINES(spl), (flag)))
 
 /* IS_AFFECTED for backwards compatibility */
