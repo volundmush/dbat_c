@@ -362,8 +362,8 @@ OCMD(do_dupe)
 OCMD(do_opurge)
 {
     char arg[MAX_INPUT_LENGTH];
-    struct char_data *ch, *next_ch;
-    struct obj_data *o, *next_obj;
+    struct char_data *ch;
+    struct obj_data *o;
     int rm;
 
     one_argument(argument, arg);
@@ -371,14 +371,12 @@ OCMD(do_opurge)
     if (!*arg) {
       /* purge all */
       if ((rm = obj_room(obj)) != NOWHERE) {
-        for (ch = world[rm].people; ch; ch = next_ch ) {
-           next_ch = ch->next_in_room;
+        for (ch = world[rm].people; ch; ch = ch->next_in_room) {
            if (IS_NPC(ch))
              extract_char(ch);
         }
 
-        for (o = world[rm].contents; o; o = next_obj ) {
-           next_obj = o->next_content;
+        for (o = world[rm].contents; o; o = o->next_content) {
            if (o != obj)
              extract_obj(o);
         }

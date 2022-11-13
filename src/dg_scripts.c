@@ -16,6 +16,7 @@
 #include "handler.h"
 #include "constants.h"
 #include "comm.h"
+#include "item_search.h"
 
 #define PULSES_PER_MUD_HOUR     (SECS_PER_MUD_HOUR*PASSES_PER_SEC)
 
@@ -535,17 +536,10 @@ struct obj_data *get_obj_in_room(struct room_data *room, char *name)
   long id;
 
   if (*name == UID_CHAR) {
-      id = atoi(name + 1);
-      for (obj = room->contents; obj; obj = obj->next_content)
-          if (id == GET_ID(obj))
-              return obj;
+      return find_obj_in_list_id(room->contents, atoi(name+1));
   } else {
-      for (obj = room->contents; obj; obj = obj->next_content)
-          if (isname(name, obj->name))
-              return obj;
+      return find_obj_in_list_name(room->contents, name);
   }
-
-  return NULL;
 }
 
 /* returns obj with name - searches room, then world */
@@ -556,15 +550,9 @@ struct obj_data *get_obj_by_room(struct room_data *room, char *name)
   if (*name == UID_CHAR)
     return find_obj(atoi(name+1));
 
-  for (obj = room->contents; obj; obj = obj->next_content)
-    if (isname(name, obj->name))
-      return obj;
-
-  for (obj = object_list; obj; obj = obj->next)
-    if (isname(name, obj->name))
-      return obj;
-
-  return NULL;
+  obj = find_obj_in_list_name(room->contents, name);
+  if(obj) return obj;
+  return find_obj_in_list_name(object_list, name);
 }
 
 /* checks every PULSE_SCRIPT for random triggers */
@@ -948,15 +936,11 @@ ACMD(do_attach)
   else if (is_abbrev(arg, "object") || is_abbrev(arg, "otr")) {
     object = get_obj_vis(ch, targ_name, NULL);
     if (!object) { /* search room for one with this vnum */
-      for (object = world[IN_ROOM(ch)].contents;object;object=object->next_content)
-        if (GET_OBJ_VNUM(object) == num_arg)
-          break;
+        object = find_obj_in_list_vnum(world[IN_ROOM(ch)].contents, num_arg);
 
-      if (!object) { /* search inventory for one with this vnum */
-        for (object = ch->carrying;object;object=object->next_content)
-          if (GET_OBJ_VNUM(object) == num_arg)
-            break;
-
+      if (!object)
+      {
+          object = find_obj_in_list_vnum(ch->carrying, num_arg);
         if (!object) {
           send_to_char(ch, "That object does not exist.\r\n");
           return;
@@ -1155,14 +1139,10 @@ ACMD(do_detach)
     else if (is_abbrev(arg1, "object") || !strcasecmp(arg1, "otr")) {
       object = get_obj_vis(ch, arg2, NULL);
       if (!object) { /* search room for one with this vnum */
-        for (object = world[IN_ROOM(ch)].contents;object;object=object->next_content)
-          if (GET_OBJ_VNUM(object) == num_arg)
-            break;
+          object = find_obj_in_list_vnum(world[IN_ROOM(ch)].contents, num_arg);
 
         if (!object) { /* search inventory for one with this vnum */
-          for (object = ch->carrying;object;object=object->next_content)
-            if (GET_OBJ_VNUM(object) == num_arg)
-              break;
+            object = find_obj_in_list_vnum(ch->carrying, num_arg);
 
           if (!object) { /* give up */
             send_to_char(ch, "No such object around.\r\n");

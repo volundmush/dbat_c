@@ -23,6 +23,7 @@
 #include "races.h"
 #include "act.wizard.h"
 #include "act.informative.h"
+#include "item_search.h"
 
 /*------------------------------------------------------------------------*/
 
@@ -54,20 +55,11 @@ ACMD(do_oasis_redit)
    send_to_char(ch, "You can not remodel this room.\r\n");
    return;
   }
+    int remodeling = FALSE;
+  struct obj_data *remove = find_obj_in_list_vnum(ch->carrying, 19094);
 
-  struct obj_data *capsule = NULL, *next_obj = NULL, *remove = NULL;
-  int remodeling = FALSE;
 
-  for (capsule = ch->carrying; capsule; capsule = next_obj) {
-       next_obj = capsule->next_content;
-    if (remove != NULL) {
-     continue;
-    } else if (GET_OBJ_VNUM(capsule) == 19094) {
-     remove = capsule;    
-    }
-  }
-
-  if (remove == NULL && GET_ADMLEVEL(ch) < 1) {
+  if (!remove && GET_ADMLEVEL(ch) < 1) {
    send_to_char(ch, "You do not have a R.A.D. Remodeling Assistance Droid.\r\n");
    return;
   } else if (GET_ADMLEVEL(ch) < 1) {

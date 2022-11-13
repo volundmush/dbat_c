@@ -23,6 +23,7 @@
 #include "local_limits.h"
 #include "house.h"
 #include "constants.h"
+#include "item_search.h"
 
 /* local functions */
 static void handle_fall(struct char_data *ch);
@@ -1168,8 +1169,7 @@ ACMD(do_move)
   if (!IS_NPC(ch)) {
      int fail = FALSE;
      struct obj_data *obj, *next_obj;
-    for (obj = world[IN_ROOM(ch)].contents; obj; obj = next_obj) {
-      next_obj = obj->next_content;
+    for (obj = world[IN_ROOM(ch)].contents; obj; obj = obj->next_content) {
       if (KICHARGE(obj) > 0 && USER(obj) == ch) {
        fail = TRUE;
       }
@@ -1410,9 +1410,8 @@ static int has_key(struct char_data *ch, obj_vnum key)
    return (1);
   }
 
-  for (o = ch->carrying; o; o = o->next_content)
-    if (GET_OBJ_VNUM(o) == key)
-      return (1);
+  o = find_obj_in_list_vnum(ch->carrying, key);
+  if(o) return true;
 
   for (i = 0; i < NUM_WEARS; i++)
     if (GET_EQ(ch, i))
@@ -1481,12 +1480,7 @@ static void do_doorcmd(struct char_data *ch, struct obj_data *obj, int door, int
       char_from_room(ch);
       char_to_room(ch, real_room(GET_OBJ_VAL(obj, VAL_PORTAL_DEST)));
       }
-      for (obj2 = world[IN_ROOM(ch)].contents; obj2; obj2 = next_obj) {
-       next_obj = obj2->next_content;
-       if (GET_OBJ_TYPE(obj2) == ITEM_HATCH) {
-        hatch = obj2;
-       }
-      }
+      hatch = find_obj_in_list_type(world[IN_ROOM(ch)].contents, ITEM_HATCH);
       obj2 = NULL;
   }
 
@@ -1683,24 +1677,18 @@ static void do_doorcmd(struct char_data *ch, struct obj_data *obj, int door, int
 static int ok_pick(struct char_data *ch, obj_vnum keynum, int pickproof, int dclock, int scmd, struct obj_data *hatch)
 {
   int skill_lvl, found = FALSE;
-  struct obj_data *obj, *next_obj;
-
-  for (obj = ch->carrying; obj; obj = next_obj) {
-       next_obj = obj->next_content;
-   if (GET_OBJ_VNUM(obj) == 18 && (!OBJ_FLAGGED(obj, ITEM_BROKEN) && !OBJ_FLAGGED(obj, ITEM_FORGED))) {
-    found = TRUE;
-   }
-  }
+  struct obj_data *obj = find_obj_in_list_vnum_good(ch->carrying, 18);
 
   if (scmd != SCMD_PICK)
     return (1);
 
-  /* PICKING_LOCKS is not an untrained skill */
-  if (!GET_SKILL(ch, SKILL_OPEN_LOCK)) {
-    send_to_char(ch, "You have no idea how!\r\n");
-    return (0);
-  }
-  if (found == FALSE) {
+    /* PICKING_LOCKS is not an untrained skill */
+    if (!GET_SKILL(ch, SKILL_OPEN_LOCK)) {
+        send_to_char(ch, "You have no idea how!\r\n");
+        return (0);
+    }
+
+  if (!obj) {
     send_to_char(ch, "You need a lock picking kit.\r\n");
     return (0);
   }

@@ -27,6 +27,7 @@
 #include "mail.h"
 #include "guild.h"
 #include "clan.h"
+#include "item_search.h"
 
 /* local functions */
 static void gen_map(struct char_data *ch, int num);
@@ -546,8 +547,7 @@ ACMD(do_shuffle)
   return;
  }
 
- for (obj2 = obj->contains; obj2; obj2 = next_obj) {
-  next_obj = obj2->next_content;
+ for (obj2 = obj->contains; obj2; obj2 = obj2->next_content) {
   if (!OBJ_FLAGGED(obj2, ITEM_ANTI_HIEROPHANT)) {
    continue;
   }
@@ -558,14 +558,12 @@ ACMD(do_shuffle)
   return;
  }
  int total = count;
- for (obj2 = obj->contains; obj2; obj2 = next_obj) {
-  next_obj = obj2->next_content;
+ for (obj2 = obj->contains; obj2; obj2 = obj2->next_content) {
   obj_from_obj(obj2);
   obj_to_room(obj2, real_room(48));
  }
  while (count > 0) {
- for (obj2 = world[real_room(48)].contents; obj2; obj2 = next_obj) {
-    next_obj = obj2->next_content;
+ for (obj2 = world[real_room(48)].contents; obj2; obj2 = obj2->next_content) {
    if (!OBJ_FLAGGED(obj2, ITEM_ANTI_HIEROPHANT)) {
     continue;
    }
@@ -601,8 +599,7 @@ ACMD(do_hand)
 
  if (!strcasecmp("look", arg)) {
    send_to_char(ch, "@CYour hand contains:\r\n@D---------------------------@n\r\n");
-   for (obj = ch->carrying; obj; obj = next_obj) {
-       next_obj = obj->next_content;
+   for (obj = ch->carrying; obj; obj = obj->next_content) {
      if (obj && !OBJ_FLAGGED(obj, ITEM_ANTI_HIEROPHANT)) {
       continue;
      }
@@ -628,8 +625,7 @@ ACMD(do_hand)
  else if (!strcasecmp("show", arg)) {
    send_to_char(ch, "You show off your hand to the room.\r\n");
    act("@C$n's hand contains:\r\n@D---------------------------@n", TRUE, ch, 0, 0, TO_ROOM);
-   for (obj = ch->carrying; obj; obj = next_obj) {
-       next_obj = obj->next_content;
+   for (obj = ch->carrying; obj; obj = obj->next_content) {
      if (obj && !OBJ_FLAGGED(obj, ITEM_ANTI_HIEROPHANT)) {
       continue;
      }
@@ -751,10 +747,11 @@ ACMD(do_play)
   return;
  }
 
- for (obj3 = world[IN_ROOM(ch)].contents; obj3; obj3 = next_obj) {
-     next_obj = obj3->next_content;
+
+ for (obj3 = world[IN_ROOM(ch)].contents; obj3; obj3 = obj3->next_content) {
   if (GET_OBJ_VNUM(obj3) == GET_OBJ_VNUM(SITS(ch)) - 4) {
    obj2 = obj3;
+   break;
   }
  }
 
@@ -767,6 +764,10 @@ ACMD(do_play)
  act("$n plays $p on $s table.", TRUE, ch, obj, 0, TO_ROOM);
  obj_from_char(obj);
  obj_to_obj(obj, obj2);
+}
+
+static bool obj_is_ship(struct obj_data *obj) {
+    return GET_OBJ_VNUM(obj) >= 45000 && GET_OBJ_VNUM(obj) <= 45999;
 }
 
 /* Nickname an object */
@@ -795,16 +796,8 @@ ACMD(do_nickname)
   }
 
   if (!strcasecmp(arg, "ship")) {
-   struct obj_data *ship = NULL, *next_obj = NULL, *ship2 = NULL; 
-   int found = FALSE;
-   for (ship = world[IN_ROOM(ch)].contents; ship; ship = next_obj) {
-    next_obj = ship->next_content;
-    if (GET_OBJ_VNUM(ship) >= 45000 && GET_OBJ_VNUM(ship) <= 45999 && found == FALSE) {
-     found = TRUE;
-     ship2 = ship;
-    }
-   }
-   if (found == TRUE) {
+      struct obj_data *ship2 = find_obj_in_list_lambda(world[IN_ROOM(ch)].contents, &obj_is_ship);
+   if (ship2) {
     if (strstr(arg2, "@")) {
      send_to_char(ch, "You can't nickname a ship and use color codes. Sorry.\r\n");
      return;
@@ -3141,8 +3134,7 @@ static void look_at_char(struct char_data *i, struct char_data *ch)
 				show_obj_to_char(GET_EQ(i, j), ch, SHOW_OBJ_SHORT);
 				if (OBJ_FLAGGED(GET_EQ(i, j), ITEM_SHEATH)) {
 					struct obj_data *obj2 = NULL, *next_obj = NULL, *sheath = GET_EQ(i, j);
-					for (obj2 = sheath->contains; obj2; obj2 = next_obj) {
-						next_obj = obj2->next_content;
+					for (obj2 = sheath->contains; obj2; obj2 = obj2->next_content) {
 						if (obj2) {
 							send_to_char(ch, "@D  ---- @YSheathed@D ----@c> @n");
 							show_obj_to_char(obj2, ch, SHOW_OBJ_SHORT);
@@ -3156,8 +3148,7 @@ static void look_at_char(struct char_data *i, struct char_data *ch)
 				show_obj_to_char(GET_EQ(i, j), ch, SHOW_OBJ_SHORT);
 				if (OBJ_FLAGGED(GET_EQ(i, j), ITEM_SHEATH)) {
 					struct obj_data *obj2 = NULL, *next_obj = NULL, *sheath = GET_EQ(i, j);
-					for (obj2 = sheath->contains; obj2; obj2 = next_obj) {
-						next_obj = obj2->next_content;
+					for (obj2 = sheath->contains; obj2; obj2 = obj2->next_content) {
 						if (obj2) {
 							send_to_char(ch, "@D  ---- @YSheathed@D ----@c> @n");
 							show_obj_to_char(obj2, ch, SHOW_OBJ_SHORT);
@@ -4760,17 +4751,9 @@ static void look_in_direction(struct char_data *ch, int dir)
     if (EXIT(ch, dir)->general_description)
       send_to_char(ch, "%s", EXIT(ch, dir)->general_description);
     else {
-     struct obj_data *obj, *next_obj;
-     int founded = FALSE;
-     for (obj = ch->carrying; obj; obj = next_obj) {
-       next_obj = obj->next_content;
-       if (GET_OBJ_VNUM(obj) == 17) {
-        founded = TRUE;
-       }
-     }
-     if (founded == FALSE) {
+     struct obj_data *obj = find_obj_in_list_vnum(ch->carrying, 17);
+     if (!obj) {
       send_to_char(ch, "You were unable to discern anything about that direction. Try looking again...\r\n");
-      struct obj_data *obj;
       obj = read_object(17, VIRTUAL);
       obj_to_char(obj, ch);
      }
@@ -4940,20 +4923,9 @@ static void look_at_target(struct char_data *ch, char *arg, int cmread)
   }
 
   if (cmread) {
-    for (obj = ch->carrying; obj;obj=obj->next_content) {
-      if(GET_OBJ_TYPE(obj) == ITEM_BOARD) {
-	found = TRUE;
-	break;
-      }
-    }
-    if(!obj) {
-      for (obj = world[IN_ROOM(ch)].contents; obj;obj=obj->next_content) {
-	if(GET_OBJ_TYPE(obj) == ITEM_BOARD) {
-	  found = TRUE;
-	  break;
-	}
-      }
-    }
+      obj = find_obj_in_list_type(ch->carrying, ITEM_BOARD);
+    if(!obj) obj = find_obj_in_list_type(world[IN_ROOM(ch)].contents, ITEM_BOARD);
+
     if (obj) {
       arg = one_argument(arg, number);
       if (!*number) {
@@ -6785,8 +6757,7 @@ ACMD(do_equipment)
 
        if (OBJ_FLAGGED(GET_EQ(ch, i), ITEM_SHEATH)) {
          struct obj_data *obj2 = NULL, *next_obj = NULL, *sheath = GET_EQ(ch, i);
-         for (obj2 = sheath->contains; obj2; obj2 = next_obj) {
-         next_obj = obj2->next_content;
+         for (obj2 = sheath->contains; obj2; obj2 = obj2->next_content) {
          if (obj2) {
           send_to_char(ch, "@D  ---- @YSheathed@D ----@c> @n");
           show_obj_to_char(obj2, ch, SHOW_OBJ_SHORT);
@@ -6800,8 +6771,7 @@ ACMD(do_equipment)
         show_obj_to_char(GET_EQ(ch, i), ch, SHOW_OBJ_SHORT);
         if (OBJ_FLAGGED(GET_EQ(ch, i), ITEM_SHEATH)) {
          struct obj_data *obj2 = NULL, *next_obj = NULL, *sheath = GET_EQ(ch, i);
-         for (obj2 = sheath->contains; obj2; obj2 = next_obj) {
-         next_obj = obj2->next_content;
+         for (obj2 = sheath->contains; obj2; obj2 = obj2->next_content) {
          if (obj2) {
           send_to_char(ch, "@D  ---- @YSheathed@D ----> @n");
           show_obj_to_char(obj2, ch, SHOW_OBJ_SHORT);

@@ -25,6 +25,7 @@
 #include "obj_edit.h"
 #include "fight.h"
 #include "class.h"
+#include "item_search.h"
 
 /* local functions  */
 static void generate_multiform(struct char_data *ch, struct char_data *multi1, struct char_data *multi2, struct char_data *multi3);
@@ -35,6 +36,9 @@ static int has_pole(struct char_data *ch);
 static void catch_fish(struct char_data *ch, int quality);
 static int valid_silk(struct obj_data *obj);
 
+static bool is_instrument(struct obj_data *obj) {
+    return GET_OBJ_VNUM(obj) == 8802 || GET_OBJ_VNUM(obj) == 8807;
+}
 
 ACMD(do_spiritcontrol)
 {
@@ -496,7 +500,6 @@ static void resolve_song(struct char_data *ch)
    struct obj_data *obj2 = NULL, *next_obj;
    int diceroll = axion_dice(0);
    int skill = GET_SKILL(ch, SKILL_MYSTICMUSIC);
-   int instrument = 0;
 
    int stopplaying = FALSE;
    char buf[MAX_INPUT_LENGTH];
@@ -504,21 +507,16 @@ static void resolve_song(struct char_data *ch)
  if (GET_SONG(ch) <= 0) {
   return;
  }
+ vnum instrument = 0;
+ obj2 = find_obj_in_list_lambda(ch->carrying, &is_instrument);
 
- for (obj2 = ch->carrying; obj2; obj2 = next_obj) {
-  next_obj = obj2->next_content;
-  if (GET_OBJ_VNUM(obj2) == 8802 || GET_OBJ_VNUM(obj2) == 8807) {
-   instrument = GET_OBJ_VNUM(obj2);
-  }
- }
-
- if (instrument == 0) {
+ if (!obj2) {
   send_to_char(ch, "You do not have an instrument.\r\n");
        act("@c$n@C stops playing $s song.@n", TRUE, ch, 0, 0, TO_ROOM);
        GET_SONG(ch) = 0;
   return;
  }
-
+ instrument = GET_OBJ_VNUM(obj2);
  if (skill > diceroll) {
   sprintf(buf, "@c$n@C continues playing @y'@Y%s@y'@C.@n", GET_SONG(ch) == SONG_SAFETY ? "Song of Safety" : (GET_SONG(ch) == SONG_SHIELDING ? "Song of Shielding" : (GET_SONG(ch) == SONG_SHADOW_STITCH ? "Shadow Stitch Minuet" : "Teleportation Melody")));
   act("@CYou continue playing your song.@n", TRUE, ch, 0, 0, TO_CHAR);
@@ -860,6 +858,8 @@ static void resolve_song(struct char_data *ch)
  }
 }
 
+
+
 ACMD(do_song)
 {
 
@@ -868,20 +868,13 @@ ACMD(do_song)
   return;
  }
  
- struct obj_data *obj2 = NULL, *next_obj;
- int instrument = 0;
+ struct obj_data *obj2 = find_obj_in_list_lambda(ch->carrying, &is_instrument);
 
- for (obj2 = ch->carrying; obj2; obj2 = next_obj) {
-  next_obj = obj2->next_content;
-  if (GET_OBJ_VNUM(obj2) == 8802 || GET_OBJ_VNUM(obj2) == 8807) {
-   instrument = GET_OBJ_VNUM(obj2);
-  }
- }
-
- if (instrument == 0) {
+ if (!obj2) {
   send_to_char(ch, "You do not have an instrument.\r\n");
   return;
  }
+ vnum instrument = GET_OBJ_VNUM(obj2);
 
  if (GET_SONG(ch)) {
   act("@cYou stop playing your ocarina.@n", TRUE, ch, 0, 0, TO_CHAR);
@@ -1820,20 +1813,11 @@ ACMD(do_extract)
     send_to_char(ch, "It's not mature enough to extract from!\r\n");
     return;
    }
-   struct obj_data *bottle = NULL, *next_obj, *obj2;
-   int found = FALSE;
-
-   for (obj2 = ch->carrying; obj2; obj2 = next_obj) {
-    next_obj = obj2->next_content;
-    if (GET_OBJ_VNUM(obj2) == 3423) {
-     bottle = obj2;
-     found = TRUE;
-    }
-   }
+   struct obj_data *bottle = find_obj_in_list_vnum_good(ch->carrying, 3423);
 
    int64_t cost = ((GET_MAX_MANA(ch) * 0.35) + 500);
 
-   if (found == FALSE) {
+   if (!bottle) {
     send_to_char(ch, "You do not have an empty bottle to put the extracted ink in.\r\n");
     return;
    }
@@ -1907,32 +1891,14 @@ ACMD(do_runic)
   send_to_char(ch, "@Rkenaz\n%s\n%s\n%s\n%s\n%s\n%s@n\n", skill >= 40 ? "@Galgiz" : "", skill >= 40 ? "@moagaz" : "", skill >= 50 ? "@CLaguz" : "",  skill >= 60 ? "@Ywunjo" : "", skill >= 80 ? "@rpurisaz" : "", skill >= 100 ? "@mgebo" : "");
   return;
  } 
+ struct obj_data *bottle = find_obj_in_list_vnum_good(ch->carrying, 3424);
+    if (!bottle) {
+        send_to_char(ch, "You do not have a bottle with enough ink in it.\r\n");
+        return;
+    }
 
- struct obj_data *obj, *next_obj, *bottle = NULL;
- int found = FALSE, amount = 0, brush = FALSE;
-
- for (obj = ch->carrying; obj; obj = next_obj) {
-  next_obj = obj->next_content;
-  if (GET_OBJ_VNUM(obj) == 3424) {
-   if (GET_OBJ_VAL(obj, 6) > amount) {
-    bottle = obj;
-    found = TRUE;
-    amount = GET_OBJ_VAL(bottle, 6);
-   }
-  }
- }
-
- for (obj = ch->carrying; obj; obj = next_obj) {
-  next_obj = obj->next_content;
-  if (GET_OBJ_VNUM(obj) == 3427) {
-   brush = TRUE;
-  }
- }
-
- if (found == FALSE) {
-  send_to_char(ch, "You do not have a bottle with enough ink in it.\r\n");
-  return;
- } else if (brush == FALSE) {
+ struct obj_data *brush = find_obj_in_list_vnum_good(ch->carrying, 3427);
+ if (!brush) {
   send_to_char(ch, "You do not have a brush!\r\n");
   return;
  }
@@ -2012,7 +1978,7 @@ ACMD(do_runic)
   return;
  } else if (!strcasecmp(arg2, "algiz") || !strcasecmp(arg2, "Algiz")) {
   inkcost += 2;
-  if (amount < inkcost) {
+  if (GET_OBJ_VAL(bottle, 6) < inkcost) {
    send_to_char(ch, "You do not have a bottle with enough ink. @D[@bInkcost@D: @R%d@D]@n\r\n", inkcost);
    return;
   } else if (vict == ch) {
@@ -2054,7 +2020,7 @@ ACMD(do_runic)
   return;
  } else if (!strcasecmp(arg2, "oagaz") || !strcasecmp(arg2, "Oagaz")) {
   inkcost += 3;
-  if (amount < inkcost) {
+  if (GET_OBJ_VAL(bottle, 6) < inkcost) {
    send_to_char(ch, "You do not have a bottle with enough ink. @D[@bInkcost@D: @R%d@D]@n\r\n", inkcost);
    return;
   } else if (vict == ch) {
@@ -2076,7 +2042,7 @@ ACMD(do_runic)
   }
  } else if (!strcasecmp(arg2, "laguz") || !strcasecmp(arg2, "Laguz")) {
   inkcost += 4;
-  if (amount < inkcost) {
+  if (GET_OBJ_VAL(bottle, 6) < inkcost) {
    send_to_char(ch, "You do not have a bottle with enough ink. @D[@bInkcost@D: @R%d@D]@n\r\n", inkcost);
    return;
   } else if (vict == ch) {
@@ -2118,7 +2084,7 @@ ACMD(do_runic)
   return;
  } else if (!strcasecmp(arg2, "wunjo") || !strcasecmp(arg2, "Wunjo")) {
   inkcost += 4;
-  if (amount < inkcost) {
+  if (GET_OBJ_VAL(bottle, 6) < inkcost) {
    send_to_char(ch, "You do not have a bottle with enough ink. @D[@bInkcost@D: @R%d@D]@n\r\n", inkcost);
    return;
   } else if (vict == ch) {
@@ -2160,7 +2126,7 @@ ACMD(do_runic)
   return;
  } else if (!strcasecmp(arg2, "purisaz") || !strcasecmp(arg2, "Purisaz")) {
   inkcost += 4;
-  if (amount < inkcost) {
+  if (GET_OBJ_VAL(bottle, 6) < inkcost) {
    send_to_char(ch, "You do not have a bottle with enough ink. @D[@bInkcost@D: @R%d@D]@n\r\n", inkcost);
    return;
   } else if (vict == ch) {
@@ -2202,7 +2168,7 @@ ACMD(do_runic)
   return;
  } else if (!strcasecmp(arg2, "gebo") || !strcasecmp(arg2, "Gebo")) {
   inkcost += 10;
-  if (amount < inkcost) {
+  if (GET_OBJ_VAL(bottle, 6) < inkcost) {
    send_to_char(ch, "You do not have a bottle with enough ink. @D[@bInkcost@D: @R%d@D]@n\r\n", inkcost);
    return;
   } else if (vict == ch) {
@@ -2396,24 +2362,10 @@ ACMD(do_ashcloud)
   return;
  }
 
- struct obj_data *ash = NULL, *obj, *next_obj;
- int there = FALSE;
+ struct obj_data *ash = find_obj_in_list_vnum(ch->carrying, 1305);
+ struct obj_data *there = find_obj_in_list_vnum(world[IN_ROOM(ch)].contents, 1306);
 
- for (obj = ch->carrying; obj; obj = next_obj) {
-   next_obj = obj->next_content;
-   if (GET_OBJ_VNUM(obj) == 1305) {
-    ash = obj;
-   }
- }
-
- for (obj = world[IN_ROOM(ch)].contents; obj; obj = next_obj) {
-     next_obj = obj->next_content;
-  if (GET_OBJ_VNUM(obj) == 1306) {
-   there = TRUE;
-  }
- }
-
- if (there == TRUE) {
+ if (there) {
   send_to_char(ch, "You can not pile more ash into the air without causing it to clump together and settle.\r\n");
   return;
  }
@@ -2860,6 +2812,10 @@ ACMD(do_shimmer)
 
 }
 
+static bool is_cold_ruby(struct obj_data *obj) {
+    return GET_OBJ_VNUM(obj) == 6600 && !OBJ_FLAGGED(obj, ITEM_HOT);
+}
+
 ACMD(do_channel)
 {
 
@@ -2877,20 +2833,9 @@ ACMD(do_channel)
   return;
  }
 
- struct obj_data *obj, *next_obj = NULL, *ruby = NULL;
- int found = FALSE;
+ struct obj_data *ruby = find_obj_in_list_lambda(ch->carrying, &is_cold_ruby);
 
- for (obj = ch->carrying; obj; obj = next_obj) {
-    next_obj = obj->next_content;
-  if (found == FALSE && GET_OBJ_VNUM(obj) == 6600) {
-   if (!OBJ_FLAGGED(obj, ITEM_HOT)) {
-    found = TRUE;
-    ruby = obj;
-   }
-  }
- }
-
- if (found == FALSE) {
+ if (!ruby) {
   send_to_char(ch, "You do not have any uncharged blood rubies.\r\n");
   return;
  }
@@ -3422,14 +3367,9 @@ ACMD(do_bury)
   return;
  }
 
- struct obj_data *obj = NULL, *buried = NULL, *fobj = NULL, *next_obj;
+ struct obj_data *obj = NULL, *buried = NULL;
+ struct obj_data *fobj = find_obj_in_list_flag(world[IN_ROOM(ch)].contents, ITEM_BURIED);
 
- for (buried = world[IN_ROOM(ch)].contents; buried; buried = next_obj) {
-  next_obj = buried->next_content;
-  if (OBJ_FLAGGED(buried, ITEM_BURIED)) {
-   fobj = buried;
-  }
- }
 
  if (!strcasecmp(arg, "bury")) {
   if (!*arg2) {
@@ -3473,6 +3413,8 @@ ACMD(do_bury)
  }
 
 }
+
+
 
 ACMD(do_arena)
 {
@@ -3564,25 +3506,20 @@ ACMD(do_arena)
  } /* Main Else end */
 } /* End of Arena Function */
 
+
+static bool is_good_silk(struct obj_data *obj) {
+    return valid_silk(obj) && !OBJ_FLAGGED(obj, ITEM_FORGED);
+}
+
 ACMD(do_ensnare)
 {
 
  if (!know_skill(ch, SKILL_ENSNARE)) {
   return;
  }
+  struct obj_data *weave = find_obj_in_list_lambda(ch->carrying, &is_good_silk);
 
-  struct obj_data *weave, *obj = NULL, *next_obj;
-  int found = FALSE;
-
-  for (weave = ch->carrying; weave; weave = next_obj) {
-   next_obj = weave->next_content;
-   if (found == FALSE && valid_silk(weave) && !OBJ_FLAGGED(weave, ITEM_FORGED)) {
-    found = TRUE;
-    obj = weave;
-   }
-  }
-
- if (found == FALSE) {
+ if (!weave) {
   send_to_char(ch, "You do not have a bundle of silk to ensnare an opponent with!\r\n");
   return;
  } else {
@@ -3610,35 +3547,23 @@ ACMD(do_ensnare)
    act("@WYou unwind your bundle of silk and grab a loose end of it. Splitting that end to reveal the sticky innards of the strand you swing the strand at @c$N@W! Unfortunately you miss and lose the bundle...@n", TRUE, ch, 0, vict, TO_CHAR);
    act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at YOU! Fortunately $e misses and loses the bundle...@n", TRUE, ch, 0, vict, TO_VICT);
    act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at @c$N@W! Fortunately $e misses and loses the bundle...@n", TRUE, ch, 0, vict, TO_NOTVICT);
-   extract_obj(obj);
-   WAIT_STATE(ch, PULSE_3SEC);
-   improve_skill(ch, SKILL_ENSNARE, 0);
   } else if (AFF_FLAGGED(vict, AFF_ZANZOKEN) && !AFF_FLAGGED(ch, AFF_ZANZOKEN)) {
    act("@WYou unwind your bundle of silk and grab a loose end of it. Splitting that end to reveal the sticky innards of the strand you swing the strand at @c$N@W! Unfortunately @c$N@W zanzokens away avoiding it and you lose the bundle...@n", TRUE, ch, 0, vict, TO_CHAR);
    act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at YOU! Fortunately you zanzoken away avoiding it and @C$n@W loses the bundle...@n", TRUE, ch, 0, vict, TO_VICT);
    act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at @c$N@W! Fortunately @c$N@W zanzokens away avoiding it and @C$n@W loses the bundle...@n", TRUE, ch, 0, vict, TO_NOTVICT);
-   extract_obj(obj);
-   WAIT_STATE(ch, PULSE_3SEC);
-   improve_skill(ch, SKILL_ENSNARE, 0);
    REMOVE_BIT_AR(AFF_FLAGS(vict), AFF_ZANZOKEN);
   } else if (AFF_FLAGGED(vict, AFF_ZANZOKEN) && AFF_FLAGGED(ch, AFF_ZANZOKEN)) {
    if (GET_SPEEDI(ch) + rand_number(1, 100) < GET_SPEEDI(vict) + rand_number(1, 100)) {
     act("@WYou unwind your bundle of silk and grab a loose end of it. Splitting that end to reveal the sticky innards of the strand you swing the strand at @c$N@W! You both zanzoken! Unfortunately @c$N@W manages to avoid it and you lose the bundle...@n", TRUE, ch, 0, vict, TO_CHAR);
     act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at YOU! You both zanzoken! Fortunately you manage to avoid it and @C$n@W loses the bundle...@n", TRUE, ch, 0, vict, TO_VICT);
     act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at @c$N@W! They both zanzoken! Fortunately @c$N@W manages to avoid it and @C$n@W loses the bundle...@n", TRUE, ch, 0, vict, TO_NOTVICT);
-    extract_obj(obj);
-    WAIT_STATE(ch, PULSE_3SEC);
-    improve_skill(ch, SKILL_ENSNARE, 0);
     REMOVE_BIT_AR(AFF_FLAGS(vict), AFF_ZANZOKEN);
     REMOVE_BIT_AR(AFF_FLAGS(ch), AFF_ZANZOKEN);
    } else {
     act("@WYou unwind your bundle of silk and grab a loose end of it. Splitting that end to reveal the sticky innards of the strand you swing the strand at @c$N@W! Fortunately you manage to hit $M! You both zanzoken! Quickly you spin around $M and ensnare $S arms with the silk!@n", TRUE, ch, 0, vict, TO_CHAR);
     act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at YOU! Unfortunately $e manages to hit YOU! You both zanzoken! Quickly $e spins around you and ensnares your arms with the silk!@n", TRUE, ch, 0, vict, TO_VICT);
     act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at @c$N@W! Unfortunately $e manages to hit $M! They both zanzoken! Quickly $e spins around @c$N@W and ensnares $S arms with the silk!@n", TRUE, ch, 0, vict, TO_NOTVICT);
-    extract_obj(obj);
     SET_BIT_AR(AFF_FLAGS(vict), AFF_ENSNARED);
-    WAIT_STATE(ch, PULSE_3SEC);
-    improve_skill(ch, SKILL_ENSNARE, 0);
     REMOVE_BIT_AR(AFF_FLAGS(vict), AFF_ZANZOKEN);
     REMOVE_BIT_AR(AFF_FLAGS(ch), AFF_ZANZOKEN);
    } 
@@ -3646,27 +3571,21 @@ ACMD(do_ensnare)
     act("@WYou unwind your bundle of silk and grab a loose end of it. Splitting that end to reveal the sticky innards of the strand you swing the strand at @c$N@W! Fortunately you manage to hit $M! Quickly you zanzoken and spin around $M and ensnare $S arms with the silk!@n", TRUE, ch, 0, vict, TO_CHAR);
     act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at YOU! Unfortunately $e manages to hit YOU! Quickly $e zanzokens and spins around you and ensnares your arms with the silk!@n", TRUE, ch, 0, vict, TO_VICT);
     act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at @c$N@W! Unfortunately $e manages to hit $M! Quickly $e zanzokens and spins around @c$N@W and ensnares $S arms with the silk!@n", TRUE, ch, 0, vict, TO_NOTVICT);
-    extract_obj(obj);
-    SET_BIT_AR(AFF_FLAGS(vict), AFF_ENSNARED);
-    WAIT_STATE(ch, PULSE_3SEC);
     improve_skill(ch, SKILL_ENSNARE, 0);
     REMOVE_BIT_AR(AFF_FLAGS(ch), AFF_ZANZOKEN);
   } else if (GET_SPEEDI(ch) + rand_number(1, 100) < GET_SPEEDI(vict) + rand_number(1, 100)) {
    act("@WYou unwind your bundle of silk and grab a loose end of it. Splitting that end to reveal the sticky innards of the strand you swing the strand at @c$N@W! Unfortunately @c$N@W manages to avoid it and you lose the bundle...@n", TRUE, ch, 0, vict, TO_CHAR);
    act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at YOU! Fortunately you manage to avoid it and @C$n@W loses the bundle...@n", TRUE, ch, 0, vict, TO_VICT);
-   act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at @c$N@W! Fortunately @c$N@W manages to avoid it and @C$n@W loses the bundle...@n", TRUE, ch, 0, vict, TO_NOTVICT);   
-   extract_obj(obj);
-   WAIT_STATE(ch, PULSE_3SEC);
-   improve_skill(ch, SKILL_ENSNARE, 0);
+   act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at @c$N@W! Fortunately @c$N@W manages to avoid it and @C$n@W loses the bundle...@n", TRUE, ch, 0, vict, TO_NOTVICT);
   } else {
    act("@WYou unwind your bundle of silk and grab a loose end of it. Splitting that end to reveal the sticky innards of the strand you swing the strand at @c$N@W! Fortunately you manage to hit $M! Quickly you spin around $M and ensnare $S arms with the silk!@n", TRUE, ch, 0, vict, TO_CHAR);
    act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at YOU! Unfortunately $e manages to hit YOU! Quickly $e spins around you and ensnares your arms with the silk!@n", TRUE, ch, 0, vict, TO_VICT);
    act("@C$n@W unwinds a bundle of silk and grabs a loose end of it. Splitting that end to reveal the sticky innards of the strand $e swings the strand at @c$N@W! Unfortunately $e manages to hit $M! Quickly $e spins around @c$N@W and ensnares $S arms with the silk!@n", TRUE, ch, 0, vict, TO_NOTVICT);
-   extract_obj(obj);
    SET_BIT_AR(AFF_FLAGS(vict), AFF_ENSNARED);
-   WAIT_STATE(ch, PULSE_3SEC);
-   improve_skill(ch, SKILL_ENSNARE, 0);
   }
+ extract_obj(weave);
+ WAIT_STATE(ch, PULSE_3SEC);
+ improve_skill(ch, SKILL_ENSNARE, 0);
  } /* Main else function */
 }
 
@@ -3689,6 +3608,8 @@ static int valid_silk(struct obj_data *obj)
 
  return (value);
 }
+
+
 
 ACMD(do_silk)
 {
@@ -3714,19 +3635,11 @@ ACMD(do_silk)
    send_to_char(ch, "Syntax: silk weave (head | wrist | belt)\r\n");
    return;
   }
-
+  obj = find_obj_in_list_lambda(ch->carrying, &is_good_silk);
   int found = FALSE, armor = 500, str = 0, intel = 0, olevel = 0;
   double price = 1;
 
-  for (weave = ch->carrying; weave; weave = next_obj) {
-   next_obj = weave->next_content;
-   if (found == FALSE && valid_silk(weave) && !OBJ_FLAGGED(weave, ITEM_FORGED)) {
-    found = TRUE;
-    obj = weave;
-   }
-  }
-
-  if (found == FALSE) {
+  if (!obj) {
    send_to_char(ch, "You do not have an acceptable bundle of silk in your inventory!\r\n");
    return;
   } else {
@@ -4383,8 +4296,7 @@ static int valid_recipe(struct char_data *ch, int recipe, int type)
 
  if (type == 0) {
  /* Check for ingredients in inventory */
-  for (obj2 = ch->carrying; obj2; obj2 = next_obj) {
-   next_obj = obj2->next_content;
+  for (obj2 = ch->carrying; obj2; obj2 = obj2->next_content) {
    switch (GET_OBJ_VNUM(obj2)) {
     case RCP_TOMATO:
      if (tomato > 0) {
@@ -4501,8 +4413,7 @@ static int valid_recipe(struct char_data *ch, int recipe, int type)
    }
   }
  } else { /* We know the ingredients are there, remove and exit. */
-  for (obj2 = ch->carrying; obj2; obj2 = next_obj) {
-   next_obj = obj2->next_content;
+  for (obj2 = ch->carrying; obj2; obj2 = obj2->next_content) {
    switch (GET_OBJ_VNUM(obj2)) {
     case RCP_TOMATO:
      if (tomato > 0) {

@@ -21,6 +21,7 @@
 #include "dg_scripts.h"
 #include "boards.h"
 #include "improved-edit.h"
+#include "item_search.h"
 
 /* local functions */
 static void perform_tell(struct char_data *ch, struct char_data *vict, char *arg);
@@ -1177,19 +1178,8 @@ ACMD(do_write)
   char buf1[MAX_STRING_LENGTH], buf2[MAX_STRING_LENGTH];
 
   /* before we do anything, lets see if there's a board involved. */
-  for (obj = ch->carrying; obj;obj=obj->next_content) {
-    if(GET_OBJ_TYPE(obj) == ITEM_BOARD) {
-      break;
-    }
-  }
-  
-  if(!obj) {
-    for (obj = world[IN_ROOM(ch)].contents; obj;obj=obj->next_content) {
-      if(GET_OBJ_TYPE(obj) == ITEM_BOARD) {
-	break;
-      }
-    }
-  }
+  obj = find_obj_in_list_type(ch->carrying, ITEM_BOARD);
+  if(!obj) obj = find_obj_in_list_type(world[IN_ROOM(ch)].contents, ITEM_BOARD);
   
   if(obj) {                /* then there IS a board! */
     write_board_message(GET_OBJ_VNUM(obj),ch,argument);
@@ -1526,21 +1516,8 @@ ACMD(do_respond) {
     send_to_char(ch,"As a mob, you never bothered to learn to read or write.\r\n");
     return;
   }
-  
-  for (obj = ch->carrying; obj;obj=obj->next_content) {
-    if(GET_OBJ_TYPE(obj) == ITEM_BOARD) {
-      found=1;
-      break;
-    }
-  }
-  if(!obj) {
-    for (obj = world[IN_ROOM(ch)].contents; obj;obj=obj->next_content) {
-      if(GET_OBJ_TYPE(obj) == ITEM_BOARD) {
-	found=1;
-	break;
-      }
-    }
-  }
+  obj = find_obj_in_list_type(ch->carrying, ITEM_BOARD);
+  if(!obj) obj = find_obj_in_list_type(world[IN_ROOM(ch)].contents, ITEM_BOARD);
   if (obj) {
     argument = one_argument(argument, number);
     if (!*number) {

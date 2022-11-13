@@ -1555,8 +1555,7 @@ static void make_pcorpse(struct char_data *ch)
 
   struct obj_data *obj, *next_obj;
 
-   for (obj = ch->carrying; obj; obj = next_obj) {
-    next_obj = obj->next_content;
+   for (obj = ch->carrying; obj; obj = obj->next_content) {
 
     if (obj && GET_OBJ_VNUM(obj) < 19900 && GET_OBJ_VNUM(obj) != 17998) {
      if ((GET_OBJ_VNUM(obj) >= 18800 && GET_OBJ_VNUM(obj) <= 18999) || (GET_OBJ_VNUM(obj) >= 19100 && GET_OBJ_VNUM(obj) <= 19199)) {
@@ -1781,8 +1780,7 @@ static void make_corpse(struct char_data *ch, struct char_data *tch)
   SET_BIT_AR(GET_OBJ_EXTRA(corpse), ITEM_UNIQUE_SAVE);
 
   if (MOB_FLAGGED(ch, MOB_HUSK)) {
-   for (obj = ch->carrying; obj; obj = next_obj) {
-    next_obj = obj->next_content;
+   for (obj = ch->carrying; obj; obj = obj->next_content) {
     obj_from_char(obj);
     extract_obj(obj);
    }

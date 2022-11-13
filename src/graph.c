@@ -19,6 +19,7 @@
 #include "maputils.h"
 #include "vehicles.h"
 #include "act.informative.h"
+#include "item_search.h"
 
 /* local functions */
 int VALID_EDGE(room_rnum x, int y);
@@ -315,15 +316,10 @@ ACMD(do_radar)
 {
   int room = 0, dir, num = 0, found = FALSE, found2 = FALSE, fcount = 0 ;
   struct char_data *tch;
-  struct obj_data *obj, *obj2, *next_obj;
+  struct obj_data *obj;
+  struct obj_data *radar = find_obj_in_list_vnum_good(ch->carrying, 12);
 
-  for (obj2 = ch->carrying; obj2; obj2 = next_obj) {
-       next_obj = obj2->next_content;
-   if (GET_OBJ_VNUM(obj2) == 12 && (!OBJ_FLAGGED(obj2, ITEM_BROKEN)) && (!OBJ_FLAGGED(obj2, ITEM_FORGED))) {
-    found2 = TRUE;
-   }
-  }
-  if (found2 == FALSE) {
+  if (!radar) {
    send_to_char(ch, "You do not even have a dragon radar!\r\n");
    return;
   }
@@ -338,8 +334,7 @@ ACMD(do_radar)
  act("$n holds up a dragon radar and pushes its button.", FALSE, ch, 0, 0, TO_ROOM);
  while (num < 20000) {
  if (real_room(room) != NOWHERE) {
- for (obj = world[real_room(room)].contents; obj; obj = next_obj) {
-      next_obj = obj->next_content;
+ for (obj = world[real_room(room)].contents; obj; obj = obj->next_content) {
   if (OBJ_FLAGGED(obj, ITEM_FORGED)) {
    continue;
   } else if (GET_OBJ_VNUM(obj) == 20 || GET_OBJ_VNUM(obj) == 21 || GET_OBJ_VNUM(obj) == 22 || GET_OBJ_VNUM(obj) == 23 || GET_OBJ_VNUM(obj) == 24 || GET_OBJ_VNUM(obj) == 25 || GET_OBJ_VNUM(obj) == 26) {
@@ -366,8 +361,7 @@ ACMD(do_radar)
   if (tch == ch) {
    continue;
   }
-  for (obj = tch->carrying; obj; obj = next_obj) {
-       next_obj = obj->next_content;
+  for (obj = tch->carrying; obj; obj = obj->next_content) {
    if (OBJ_FLAGGED(obj, ITEM_FORGED)) {
     continue;
    } else if (GET_OBJ_VNUM(obj) == 20 || GET_OBJ_VNUM(obj) == 21 || GET_OBJ_VNUM(obj) == 22 || GET_OBJ_VNUM(obj) == 23 || GET_OBJ_VNUM(obj) == 24 || GET_OBJ_VNUM(obj) == 25 || GET_OBJ_VNUM(obj) == 26) {

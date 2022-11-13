@@ -372,9 +372,7 @@ struct obj_data *find_control(struct char_data *ch)
 
   controls = get_obj_in_list_type(ITEM_CONTROL, world[IN_ROOM(ch)].contents);
   if (!controls)
-    for (obj = ch->carrying; obj && !controls; obj = obj->next_content)
-      if (CAN_SEE_OBJ(ch, obj) && GET_OBJ_TYPE(obj) == ITEM_CONTROL)
-        controls = obj;
+      controls = get_obj_in_list_type(ITEM_CONTROL, ch->carrying);
   if (!controls)
     for (j = 0; j < NUM_WEARS && !controls; j++)
         if (GET_EQ(ch, j) && CAN_SEE_OBJ(ch, GET_EQ(ch, j)) && 
@@ -500,6 +498,7 @@ void drive_in_direction(struct char_data *ch, struct obj_data *vehicle, int dir)
           for (hatch = world[real_room(GET_OBJ_VAL(vehicle, 0))].contents; hatch;hatch=hatch->next_content) {
            if (GET_OBJ_TYPE(hatch) == ITEM_HATCH) {
             GET_OBJ_VAL(hatch, 3) = GET_ROOM_VNUM(IN_ROOM(vehicle));
+            break;
            }
           }
 
@@ -1469,18 +1468,4 @@ ACMD(do_ship_fire)
    return;
   }
 
-  struct obj_data *obj = NULL, *obj2 = NULL, *next_obj = NULL;
-  int shot = FALSE;
-
-  for (obj = world[IN_ROOM(ch)].contents; obj; obj = next_obj) {
-     next_obj = obj->next_content;
-   if (shot == FALSE) {
-    if (GET_OBJ_TYPE(obj) == ITEM_VEHICLE && obj != vehicle) {
-     if (!strcasecmp(arg1, obj->name)) {
-      obj2 = obj;
-      shot = TRUE;
-     }
-    }
-   }
-  }
 }

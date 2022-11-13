@@ -22,6 +22,7 @@
 #include "guild.h"
 #include "races.h"
 #include "act.comm.h"
+#include "item_search.h"
 
 /* local functions */
 
@@ -199,19 +200,7 @@ bool check_mob_in_room(mob_vnum mob, room_vnum room)
 
 bool check_obj_in_room(obj_vnum obj, room_vnum room) 
 { 
-
-  struct obj_data *i, *list; 
-  bool found=FALSE; 
-  room_rnum r_room; 
-
-  r_room   = real_room(room); 
-  list = world[r_room].contents; 
-
-  for (i = list; i; i = i->next_content) 
-  { 
-    if (GET_OBJ_VNUM(i) == obj) found = TRUE; 
-  } 
-  return found; 
+  return find_obj_in_list_vnum(world[real_room(room)].contents, obj);
 } 
 
 static const int gauntlet_info[][3] = {  /* --mystic 26 Oct 2005 */
@@ -740,8 +729,7 @@ SPECIAL(fido)
       continue;
 
     act("$n savagely devours a corpse.", FALSE, ch, 0, 0, TO_ROOM);
-    for (temp = i->contains; temp; temp = next_obj) {
-      next_obj = temp->next_content;
+    for (temp = i->contains; temp; temp = temp->next_content) {
       obj_from_obj(temp);
       obj_to_room(temp, IN_ROOM(ch));
     }
@@ -913,8 +901,7 @@ SPECIAL(auction)
 
   if (CMD_IS("cancel")) {
 
-    for (obj = world[auct_room].contents; obj; obj = next_obj) {
-     next_obj = obj->next_content;
+    for (obj = world[auct_room].contents; obj; obj = obj->next_content) {
      if (obj && GET_AUCTER(obj) == GET_ID(ch)) {
       obj2 = obj;
       found = TRUE;
@@ -957,8 +944,7 @@ SPECIAL(auction)
     struct descriptor_data *d;
     int founded = FALSE;
 
-    for (obj = world[auct_room].contents; obj; obj = next_obj) {
-     next_obj = obj->next_content;
+    for (obj = world[auct_room].contents; obj; obj = obj->next_content) {
      if (obj && GET_CURBID(obj) == GET_ID(ch)) {
       obj2 = obj;
       found = TRUE;
@@ -1110,15 +1096,7 @@ SPECIAL(healtank)
    struct obj_data *htank = NULL, *i;
    char arg[MAX_INPUT_LENGTH];
    one_argument(argument, arg);
-
-   for (i = world[IN_ROOM(ch)].contents; i; i = i->next_content) {
-    if (GET_OBJ_VNUM(i) == 65) {
-     htank = i;
-    }
-    else {
-    continue;
-    }
-   }
+   htank = find_obj_in_list_vnum(world[IN_ROOM(ch)].contents, 64);
    
   if (CMD_IS("htank")) {
    if (!htank) {
@@ -1331,14 +1309,8 @@ SPECIAL(gravity)
    int match = FALSE;
 
    one_argument(argument, arg);
-   for (i = world[IN_ROOM(ch)].contents; i; i = i->next_content) {
-    if (GET_OBJ_VNUM(i) == 11) {
-     obj = i;
-    }
-    else {
-    continue;
-    }
-   }
+   obj = find_obj_in_list_vnum(world[IN_ROOM(ch)].contents, 11);
+
    if (CMD_IS("gravity") || CMD_IS("generator")) {
    if (!*arg) {
    send_to_char(ch, "@WGravity Commands:@n\r\n");
@@ -1591,16 +1563,7 @@ SPECIAL(bank)
 {
   int amount, num = 0;
 
-   struct obj_data *i, *obj = NULL;
-
-   for (i = world[IN_ROOM(ch)].contents; i; i = i->next_content) {
-    if (GET_OBJ_VNUM(i) == 3034) {
-     obj = i;
-    }
-    else {
-     continue;
-    }
-   }
+   struct obj_data *obj = find_obj_in_list_vnum(world[IN_ROOM(ch)].contents, 3034);
 
   if (CMD_IS("balance")) {
     if (OBJ_FLAGGED(obj, ITEM_BROKEN)) {

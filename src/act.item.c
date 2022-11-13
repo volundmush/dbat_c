@@ -28,6 +28,7 @@
 #include "genzon.h"
 #include "dg_scripts.h"
 #include "boards.h"
+#include "item_search.h"
 
 /* global variables */
 struct obj_data *obj_selling = NULL;	/* current object for sale */
@@ -93,16 +94,8 @@ ACMD(do_refuel)
   return;
  }
 
- struct obj_data *rep = NULL, *next_obj = NULL, *fuel = NULL;
-
-  for (rep = ch->carrying; rep; rep = next_obj) {
-       next_obj = rep->next_content;
-    if (GET_OBJ_VNUM(rep) == 17290) {
-     fuel = rep;
-    }
-  }
-
- if (fuel == NULL) {
+ struct obj_data *fuel = find_obj_in_list_vnum(ch->carrying, 17290);
+ if (!fuel) {
   send_to_char(ch, "You do not have any fuel canisters on you.\r\n");
   return;
  }
@@ -370,17 +363,8 @@ ACMD(do_garden)
 
  if (*arg) {
   if (!strcasecmp(arg, "collect")) {
-   struct obj_data *obj2, *shovel = NULL, *next_obj;
-   int found = FALSE;
-
-   for (obj2 = ch->carrying; obj2; obj2 = next_obj) {
-          next_obj = obj2->next_content;
-     if (GET_OBJ_VNUM(obj2) == 254 && !OBJ_FLAGGED(obj2, ITEM_BROKEN) && !OBJ_FLAGGED(obj2, ITEM_FORGED)) {
-      found = TRUE;
-      shovel = obj2;
-     }
-   }
-   if (found == FALSE) {
+      struct obj_data *shovel = find_obj_in_list_vnum_good(ch->carrying, 254);
+   if (!shovel) {
     send_to_char(ch, "You need a shovel in order to collect soil.\r\n");
     return;
    }
@@ -453,17 +437,8 @@ ACMD(do_garden)
   return;
  } else {
   if (!strcasecmp(arg2, "water")) {
-   struct obj_data *obj2, *water = NULL, *next_obj;
-   int found = FALSE;
-
-   for (obj2 = ch->carrying; obj2; obj2 = next_obj) {
-          next_obj = obj2->next_content;
-     if (GET_OBJ_VNUM(obj2) == 251 && !OBJ_FLAGGED(obj2, ITEM_FORGED)) {
-      found = TRUE;
-      water = obj2;
-     }
-   }
-   if (found == FALSE) {
+      struct obj_data *water = find_obj_in_list_vnum_good(ch->carrying, 251);
+   if (!water) {
     send_to_char(ch, "You do not have any grow water!\r\n");
     return;
    } else if (GET_OBJ_VAL(obj, VAL_WATERLEVEL) >= 500) {
@@ -500,17 +475,8 @@ ACMD(do_garden)
     return;
    }
   } else if (!strcasecmp(arg2, "harvest")) {
-   struct obj_data *obj2, *clippers = NULL, *next_obj;
-   int found = FALSE;
-
-   for (obj2 = ch->carrying; obj2; obj2 = next_obj) {
-          next_obj = obj2->next_content;
-     if (GET_OBJ_VNUM(obj2) == 253 && !OBJ_FLAGGED(obj2, ITEM_BROKEN) && !OBJ_FLAGGED(obj2, ITEM_FORGED)) {
-      found = TRUE;
-      clippers = obj2;
-     }
-   }
-   if (found == FALSE) {
+      struct obj_data *clippers = find_obj_in_list_vnum_good(ch->carrying, 253);
+   if (!clippers) {
     send_to_char(ch, "You do not have any working gardening clippers!\r\n");
     return;
    } else if (can_harvest(obj) == FALSE) {
@@ -545,17 +511,8 @@ ACMD(do_garden)
     return;
    }
   } else if (!strcasecmp(arg2, "dig")) {
-   struct obj_data *obj2, *shovel = NULL, *next_obj;
-   int found = FALSE;
-
-   for (obj2 = ch->carrying; obj2; obj2 = next_obj) {
-          next_obj = obj2->next_content;
-     if (GET_OBJ_VNUM(obj2) == 254 && !OBJ_FLAGGED(obj2, ITEM_BROKEN) && !OBJ_FLAGGED(obj2, ITEM_FORGED)) {
-      found = TRUE;
-      shovel = obj2;
-     }
-   }
-   if (found == FALSE) {
+      struct obj_data *shovel = find_obj_in_list_vnum_good(ch->carrying, 254);
+   if (!shovel) {
     send_to_char(ch, "You do not have any working gardening shovels!\r\n");
     return;
    } else {
@@ -570,31 +527,14 @@ ACMD(do_garden)
     return;
    }
   } else if (!strcasecmp(arg2, "plant")) {
-   struct obj_data *obj2, *shovel, *next_obj;
-   int found = FALSE;
-
-   for (obj2 = ch->carrying; obj2; obj2 = next_obj) {
-          next_obj = obj2->next_content;
-     if (GET_OBJ_VNUM(obj2) == 254 && !OBJ_FLAGGED(obj2, ITEM_BROKEN) && !OBJ_FLAGGED(obj2, ITEM_FORGED)) {
-      found = TRUE;
-      shovel = obj2;
-     }
-   }
-   if (found == FALSE) {
+      struct obj_data *shovel = find_obj_in_list_vnum_good(ch->carrying, 254);
+   if (!shovel) {
     send_to_char(ch, "You do not have any working gardening shovels!\r\n");
     return;
    }
-   found = FALSE;
-   struct obj_data *soil = NULL;
+   struct obj_data *soil = find_obj_in_list_vnum_good(ch->carrying, 255);
 
-   for (obj2 = ch->carrying; obj2; obj2 = next_obj) {
-          next_obj = obj2->next_content;
-     if (GET_OBJ_VNUM(obj2) == 255 && !OBJ_FLAGGED(obj2, ITEM_FORGED)) {
-      found = TRUE;
-      soil = obj2;
-     }
-   }    
-   if (found == FALSE) {
+   if (!soil) {
     send_to_char(ch, "You don't have any real soil.\r\n");
    } else if (check_saveroom_count(ch, NULL) > 7 && ROOM_FLAGGED(IN_ROOM(ch), ROOM_GARDEN1)) {
     send_to_char(ch, "This room already has all its planters full. Try digging up some plants.\r\n");
@@ -779,8 +719,7 @@ ACMD(do_pack)
      }
     }
     struct obj_data *obj2 = NULL, *next_obj;
-    for (obj2 = ch->carrying; obj2; obj2 = next_obj) {
-          next_obj = obj2->next_content;
+    for (obj2 = ch->carrying; obj2; obj2 = obj2->next_content) {
       if (GET_OBJ_VNUM(obj) == 18802) {
        if (GET_OBJ_VNUM(obj2) == 18800) {
         extract_obj(obj2);
@@ -949,13 +888,8 @@ ACMD(do_deploy)
  int final = rnum + 99;
 
  while (giveup == FALSE && cont == FALSE) {
-   for (obj3 = world[real_room(rnum)].contents; obj3; obj3 = next_obj) {
-     next_obj = obj3->next_content;
-      if (GET_OBJ_VNUM(obj3) == 18801) {
-       found = TRUE;
-      }
-   }
-   if (found == TRUE && rnum < final) {
+     obj3 = find_obj_in_list_vnum(world[real_room(rnum)].contents, 18801);
+   if (obj3 && rnum < final) {
     if (type == 0) {
      rnum += 4;
     } else {
@@ -2039,6 +1973,9 @@ static void auc_send_to_all(char *messg, bool buyer)
   }
 }
 
+static bool lambda_toolsearch(struct obj_data *obj) {
+    return GET_OBJ_VNUM(obj) == 386 && GET_OBJ_VAL(obj, VAL_ALL_HEALTH) > 0;
+}
 
 ACMD(do_assemble)
 {
@@ -2049,17 +1986,6 @@ ACMD(do_assemble)
   int roll = 0; 
 
   skip_spaces(&argument);
-
-  struct obj_data *tools = NULL, *tool = NULL, *next_obj;
-
-  for (tools = ch->carrying; tools; tools = next_obj) {
-    next_obj = tools->next_content;
-    if (GET_OBJ_VNUM(tools) == 386 && GET_OBJ_VAL(tools, VAL_ALL_HEALTH) > 0) {
-     tool = tools;
-     act("@WYou open up your toolkit and take out the necessary tools.@n", TRUE, ch, 0, 0, TO_CHAR);
-     act("@C$n@W opens up $s toolkit and takes out the necessary tools.@n", TRUE, ch, 0, 0, TO_ROOM);
-    }
-  }
 
   if (*argument == '\0') {
     send_to_char(ch, "What would you like to %s?\r\n", CMD_NAME);
@@ -2088,21 +2014,26 @@ ACMD(do_assemble)
    }
   }
 
-  if (tool == NULL) {
-   send_to_char(ch, "You wish you had tools, but make the best out of what you do have anyway...\r\n");
-   roll = 20;
+    struct obj_data *tool = find_obj_in_list_lambda(ch->carrying, &lambda_toolsearch);
+  if(tool) {
+      act("@WYou open up your toolkit and take out the necessary tools.@n", TRUE, ch, 0, 0, TO_CHAR);
+      act("@C$n@W opens up $s toolkit and takes out the necessary tools.@n", TRUE, ch, 0, 0, TO_ROOM);
+  } else {
+      send_to_char(ch, "You wish you had tools, but make the best out of what you do have anyway...\r\n");
+      roll = 20;
   }
-
+    int survival = GET_SKILL(ch, SKILL_SURVIVAL);
   if (strcasecmp(argument, "campfire")) {
    if (ROOM_FLAGGED(IN_ROOM(ch), ROOM_SPACE) || SECT(IN_ROOM(ch)) == SECT_WATER_NOSWIM || SUNKEN(IN_ROOM(ch))) {
     send_to_char(ch, "This area will not allow a fire to burn properly.\r\n");
     return;
    }
 
-   if (GET_SKILL(ch, SKILL_SURVIVAL) >= 90) {
+
+   if (survival >= 90) {
     roll += axion_dice(0);
    }
-   else if (GET_SKILL(ch, SKILL_SURVIVAL) < 90) {
+   else if (survival < 90) {
     roll += axion_dice(0);
    }
    improve_skill(ch, SKILL_BUILD, 1);
@@ -2121,14 +2052,14 @@ ACMD(do_assemble)
     return;
    }
   } else {
-   if (GET_SKILL(ch, SKILL_SURVIVAL) >= 90) {
+   if (survival >= 90) {
     roll += axion_dice(0);
    }
-   else if (GET_SKILL(ch, SKILL_SURVIVAL) < 90) {
+   else if (survival < 90) {
     roll += axion_dice(-10);
    }
    improve_skill(ch, SKILL_BUILD, 1);
-   if (GET_SKILL(ch, SKILL_SURVIVAL) <= roll) {
+   if (survival <= roll) {
     if ((pObject = read_object(lVnum, VIRTUAL)) == NULL ) {
       send_to_char(ch, "You can't %s %s %s.\r\n", CMD_NAME, AN(argument), argument);
       return;
@@ -2278,8 +2209,7 @@ static void perform_put(struct char_data *ch, struct obj_data *obj,
   if (OBJ_FLAGGED(cont, ITEM_SHEATH)) {
     struct obj_data *obj2 = NULL, *next_obj = NULL;
     int count = 0, minus = 0;
-    for (obj2 = cont->contains; obj2; obj2 = next_obj) {
-      next_obj = obj2->next_content;
+    for (obj2 = cont->contains; obj2; obj2 = obj2->next_content) {
       minus += GET_OBJ_WEIGHT(obj2);
       count++;
     }
@@ -2665,8 +2595,7 @@ static void get_from_room(struct char_data *ch, char *arg, int howmany)
     }
     for (obj = world[IN_ROOM(ch)].contents; obj; obj = next_obj) {
       next_obj = obj->next_content;
-      if (CAN_SEE_OBJ(ch, obj) &&
-	  (dotmode == FIND_ALL || isname(arg, obj->name))) {
+      if (CAN_SEE_OBJ(ch, obj) && (dotmode == FIND_ALL || isname(arg, obj->name))) {
 	found = 1;
 	perform_get_from_room(ch, obj);
       }
@@ -4683,20 +4612,8 @@ ACMD(do_remove)
     return;
   }
   /* lemme check for a board FIRST */
-  for (obj = ch->carrying; obj; obj = obj->next_content) {
-    if (GET_OBJ_TYPE (obj) == ITEM_BOARD) {
-      found = 1;
-      break;
-    }
-  }
-  if (!obj) {
-    for (obj = world[IN_ROOM(ch)].contents; obj; obj = obj->next_content) {
-      if (GET_OBJ_TYPE (obj) == ITEM_BOARD) {
-	found = 1;
-	break;
-      }
-    }
-  }
+  obj = find_obj_in_list_type(ch->carrying, ITEM_BOARD);
+  if (!obj) obj = find_obj_in_list_type(world[IN_ROOM(ch)].contents, ITEM_BOARD);
 
   if (found) {
     if (!isdigit (*arg) || (!(msg = atoi (arg)))) {

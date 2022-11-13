@@ -25,6 +25,7 @@
 #include "genzon.h"
 #include "dg_scripts.h"
 #include "class.h"
+#include "item_search.h"
 
 /* local functions */
 void damage_weapon(struct char_data *ch, struct obj_data *obj, struct char_data *vict)
@@ -569,23 +570,15 @@ void combine_attacks(struct char_data *ch, struct char_data *vict)
    }
 }
 
+static bool is_hot_ruby(struct obj_data *obj) {
+    return GET_OBJ_VNUM(obj) == 6600 && OBJ_FLAGGED(obj, ITEM_HOT);
+}
+
 int check_ruby(struct char_data *ch)
 {
+ struct obj_data *ruby = find_obj_in_list_lambda(ch->carrying, &is_hot_ruby);
 
- struct obj_data *obj, *next_obj = NULL, *ruby = NULL;
- int found = 0;
-
- for (obj = ch->carrying; obj; obj = next_obj) {
-    next_obj = obj->next_content;
-  if (found == 0 && GET_OBJ_VNUM(obj) == 6600) {
-   if (OBJ_FLAGGED(obj, ITEM_HOT)) {
-    found = 1;
-    ruby = obj;
-   }
-  }
- }
-
- if (found > 0) {
+ if (ruby) {
   act("@RYour $p@R flares up and disappears. Your fire attack has been aided!@n", TRUE, ch, ruby, 0, TO_CHAR);
   act("@R$n's@R $p@R flares up and disappears!@n", TRUE, ch, ruby, 0, TO_ROOM);
   extract_obj(ruby);

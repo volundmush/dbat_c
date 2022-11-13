@@ -23,6 +23,7 @@
 #include "constants.h"
 #include "act.informative.h"
 #include "dg_scripts.h"
+#include "item_search.h"
 
 /* local functions */
 char commastring[MAX_STRING_LENGTH];
@@ -31,15 +32,7 @@ char commastring[MAX_STRING_LENGTH];
 void dispel_ash(struct char_data *ch)
 {
  struct obj_data *obj, *next_obj, *ash = NULL;
- int there = FALSE;
-
- for (obj = world[IN_ROOM(ch)].contents; obj; obj = next_obj) {
-     next_obj = obj->next_content;
-  if (GET_OBJ_VNUM(obj) == 1306) {
-   there = TRUE;
-   ash = obj;
-  }
- }
+ ash = find_obj_in_list_vnum(world[IN_ROOM(ch)].contents, 1306);
 
  if (ash) {
   int roll = axion_dice(0);
@@ -4592,14 +4585,13 @@ void core_dump_real(const char *who, int line)
 /* Is there a campfire in the room? */
 int cook_element(room_rnum room) {
  struct obj_data *obj, *next_obj;
- int found = FALSE;
+ int found = 0;
 
- for (obj = world[room].contents; obj; obj = next_obj) {
-  next_obj = obj->next_content;
+ for (obj = world[room].contents; obj; obj = obj->next_content) {
   if (GET_OBJ_TYPE(obj) == ITEM_CAMPFIRE) {
    found = 1;
   } else if (GET_OBJ_VNUM(obj) == 19093) {
-   found = 2;
+   return 2;
   }
  }
  return (found);
