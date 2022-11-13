@@ -74,7 +74,7 @@ static void another_hour(int mode)
   if (mode) {
     switch (time_info.hours) {
     case 4:
-      if (MOON_DATE) {
+      if (MOON_DATE()) {
        send_to_moon("The full moon disappears.\r\n");
        MOON_UP = FALSE;
        oozaru_drop(NULL);
@@ -109,7 +109,7 @@ static void another_hour(int mode)
       send_to_outdoor("The night has begun.\r\n");
       break;
     case 21:
-      if (MOON_DATE) {
+      if (MOON_DATE()) {
        send_to_moon("The full moon has risen.\r\n");
        MOON_UP = TRUE;
        oozaru_add(NULL);

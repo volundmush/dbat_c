@@ -14,6 +14,8 @@ replace:
 idents:
   - name: select
     rename: netpoll_select
+  - name: perror
+    rename: fmt.Println
 
 
 files:

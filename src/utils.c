@@ -5502,3 +5502,19 @@ int64_t MIN(int64_t x, int64_t y) {
 int64_t MAX(int64_t x, int64_t y) {
     return x > y ? x : y;
 }
+
+bitvector_t PLR_TOG_CHK(struct char_data *ch, bitvector_t flag) {
+    return (TOGGLE_BIT_AR(PLR_FLAGS(ch), (flag))) & Q_BIT(flag);
+}
+
+bitvector_t PRF_TOG_CHK(struct char_data *ch, bitvector_t flag) {
+    return (TOGGLE_BIT_AR(PRF_FLAGS(ch), (flag))) & Q_BIT(flag);
+}
+
+bitvector_t ADM_TOG_CHK(struct char_data *ch, bitvector_t flag) {
+    return (TOGGLE_BIT_AR(ADM_FLAGS(ch), (flag))) & Q_BIT(flag);
+}
+
+bitvector_t AFF_TOG_CHK(struct char_data *ch, bitvector_t flag) {
+    return (TOGGLE_BIT_AR(AFF_FLAGS(ch), (flag))) & Q_BIT(flag);
+}

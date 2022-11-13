@@ -335,10 +335,10 @@ extern bool ZONE_FLAGGED(zone_rnum rnum, bitvector_t flag);
 /* IS_AFFECTED for backwards compatibility */
 #define IS_AFFECTED(ch, skill) (AFF_FLAGGED((ch), (skill)))
 
-#define PLR_TOG_CHK(ch,flag) ((TOGGLE_BIT_AR(PLR_FLAGS(ch), (flag))) & Q_BIT(flag))
-#define PRF_TOG_CHK(ch,flag) ((TOGGLE_BIT_AR(PRF_FLAGS(ch), (flag))) & Q_BIT(flag))
-#define ADM_TOG_CHK(ch,flag) ((TOGGLE_BIT_AR(ADM_FLAGS(ch), (flag))) & Q_BIT(flag))
-#define AFF_TOG_CHK(ch,flag) ((TOGGLE_BIT_AR(AFF_FLAGS(ch), (flag))) & Q_BIT(flag))
+extern bitvector_t PLR_TOG_CHK(struct char_data *ch, bitvector_t flag);
+extern bitvector_t PRF_TOG_CHK(struct char_data *ch, bitvector_t flag);
+extern bitvector_t ADM_TOG_CHK(struct char_data *ch, bitvector_t flag);
+extern bitvector_t AFF_TOG_CHK(struct char_data *ch, bitvector_t flag);
 
 /* new define for quick check */
 #define DEAD(ch) (PLR_FLAGGED((ch), PLR_NOTDEADYET) || MOB_FLAGGED((ch), MOB_NOTDEADYET))

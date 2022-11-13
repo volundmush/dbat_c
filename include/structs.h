@@ -2359,7 +2359,7 @@ struct char_data {
   int32_t idnum;			/* player's idnum; -1 for mobiles	*/
     bitvector_t act[PM_ARRAY_MAX];	/* act flag for NPC's; player flag for PC's */
 
-  int affected_by[AF_ARRAY_MAX];/* Bitvector for current affects	*/
+  bitvector_t affected_by[AF_ARRAY_MAX];/* Bitvector for current affects	*/
   int bodyparts[AF_ARRAY_MAX];  /* Bitvector for current bodyparts      */
   int16_t saving_throw[3];	/* Saving throw				*/
   int16_t apply_saving_throw[3];	/* Saving throw bonuses			*/
