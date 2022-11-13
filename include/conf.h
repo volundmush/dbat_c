@@ -45,7 +45,7 @@
 #define HAVE_STRUCT_IN_ADDR 1
 
 /* Define to `int' if <sys/socket.h> doesn't define.  */
-/* #undef socklen_t */
+/* #undef int */
 
 /* Define to `int' if <sys/types.h> doesn't define.  */
 /* #undef ssize_t */

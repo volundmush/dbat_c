@@ -176,50 +176,47 @@ const char *class_display[NUM_CLASSES] = {
   "Soldier NPC\r\n",
 };
 
-#define Y   TRUE
-#define N   FALSE
-
 /* Some races copied from the SRD under OGL, see ../doc/srd.txt for information */
-const int class_ok_race[NUM_RACES][NUM_CLASSES] = {
+const bool class_ok_race[NUM_RACES][NUM_CLASSES] = {
   /*                Wi,Cl,Ro,Fi,Mo,Pa,So,Dr,Ba,Ra,Bn,Aa,At,Am,As,Bg,Dd,Du,Dw,Ek,Ht,Hw,Lr,Mt,Sd,Th,Ad,Ma,No,Nl,So,   */
-  /* Human      */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Saiyan     */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Icer       */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Konatsu    */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Namek      */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Mutant     */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Kanassan   */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Halfbreed  */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Bio        */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Android    */ { N, N, N, N, N, N, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Demon      */ { Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Majin      */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Kai        */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Truffle    */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Hoshijin   */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Animal     */ { N, N, N, N, N, N, Y, Y, Y, Y, Y, N, Y, N, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Orc        */ { N, N, N, N, N, N, Y, Y, Y, Y, Y, N, Y, N, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Snake      */ { N, N, N, N, N, N, Y, Y, Y, Y, Y, N, Y, N, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Troll      */ { N, N, N, N, N, N, Y, Y, Y, Y, Y, N, Y, N, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Minotaur   */ { N, N, N, N, N, N, Y, Y, Y, Y, Y, N, Y, N, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Arlian     */ { Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Mindflayer */ { N, N, N, N, N, N, Y, Y, Y, Y, Y, N, Y, N, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Warhost    */ { N, N, N, N, N, N, Y, Y, Y, Y, Y, N, Y, N, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N },
-  /* Faerie     */ { N, N, N, N, N, N, Y, Y, Y, Y, Y, N, Y, N, N, N, Y, N, N, N, N, N, N, N, N, N, N, N, N }
+  /* Human      */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Saiyan     */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Icer       */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Konatsu    */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Namek      */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Mutant     */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Kanassan   */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Halfbreed  */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Bio        */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Android    */ { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Demon      */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Majin      */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Kai        */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Truffle    */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Hoshijin   */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Animal     */ { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Orc        */ { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Snake      */ { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Troll      */ { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Minotaur   */ { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Arlian     */ { 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Mindflayer */ { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Warhost    */ { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+  /* Faerie     */ { 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 };
 
 /* Adapted from the SRD under OGL, see ../doc/srd.txt for information */
-int class_ok_align[NUM_ALIGNS][NUM_CLASSES] = {
+const bool class_ok_align[NUM_ALIGNS][NUM_CLASSES] = {
 /*         Wi,Cl,Ro,Fi,Mo,Pa,So,Dr,Ba,Ra,Bn,Aa,At,Am,As,Bg,Dd,Du,Dw,Ek,He,Hw,Lm,Mt,Sd,Th*/
-/* LG */ { Y, Y, Y, Y, Y, Y, Y, N, N, Y, N, Y, N, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y },
-/* NG */ { Y, Y, Y, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y },
-/* CG */ { Y, Y, Y, Y, N, N, Y, N, Y, Y, Y, Y, Y, Y, N, N, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y },
-/* LN */ { Y, Y, Y, Y, Y, N, Y, Y, N, Y, N, Y, N, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y },
-/* NN */ { Y, Y, Y, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y },
-/* CN */ { Y, Y, Y, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, N, N, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y },
-/* LE */ { Y, Y, Y, Y, Y, N, Y, N, N, Y, N, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y },
-/* NE */ { Y, Y, Y, Y, N, N, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y },
-/* CE */ { Y, Y, Y, Y, N, N, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y }
+/* LG */ { 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+/* NG */ { 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+/* CG */ { 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+/* LN */ { 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+/* NN */ { 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+/* CN */ { 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+/* LE */ { 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+/* NE */ { 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+/* CE */ { 1, 1, 1, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 };
 
 /* Adapted from the SRD under OGL, see ../doc/srd.txt for information */
@@ -252,38 +249,38 @@ int favored_class[NUM_RACES] = {
 };
 
 /* Adapted from the SRD under OGL, see ../doc/srd.txt for information */
-int prestige_classes[NUM_CLASSES] = {
-/* WIZARD	*/ N,
-/* CLERIC	*/ N,
-/* ROGUE	*/ N,
-/* FIGHTER	*/ N,
-/* MONK		*/ N,
-/* PALADIN	*/ N,
-/* SORCERER	*/ N,
-/* DRUID	*/ N,
-/* BARD 	*/ N,
-/* RANGER	*/ N,
-/* BARBARIAN	*/ N,
-/* Arcane ARCHER    */ N,
-/* ARCANE TRICKSTER */ N,
-/* ARCHMAGE         */ N,
-/* ASSASSIN         */ Y,
-/* BLACKGUARD       */ Y,
-/* DRAGON DISCIPLE  */ Y,
-/* DUELIST          */ Y,
-/* DWARVEN DEFENDER */ Y,
-/* ELDRITCH KNIGHT  */ Y,
-/* HIEROPHANT       */ Y,
-/* HORIZON WALKER   */ Y,
-/* LOREMASTER       */ Y,
-/* MYSTIC THEURGE   */ Y,
-/* SHADOWDANCER     */ Y,
-/* THAUMATURGIST    */ Y,
-/* ARTISAN	*/ N,
-/* MAGI		*/ N,
-/* NORMAL	*/ N,
-/* NOBLE	*/ N,
-/* SOLDIER	*/ N
+const bool prestige_classes[NUM_CLASSES] = {
+/* WIZARD	*/ 0,
+/* CLERIC	*/ 0,
+/* ROGUE	*/ 0,
+/* FIGHTER	*/ 0,
+/* MONK		*/ 0,
+/* PALADIN	*/ 0,
+/* SORCERER	*/ 0,
+/* DRUID	*/ 0,
+/* BARD 	*/ 0,
+/* RANGER	*/ 0,
+/* BARBARIAN	*/ 0,
+/* Arcane ARCHER    */ 0,
+/* ARCANE TRICKSTER */ 0,
+/* ARCHMAGE         */ 0,
+/* ASSASSIN         */ 1,
+/* BLACKGUARD       */ 1,
+/* DRAGON DISCIPLE  */ 1,
+/* DUELIST          */ 1,
+/* DWARVEN DEFENDER */ 1,
+/* ELDRITCH KNIGHT  */ 1,
+/* HIEROPHANT       */ 1,
+/* HORIZON WALKER   */ 1,
+/* LOREMASTER       */ 1,
+/* MYSTIC THEURGE   */ 1,
+/* SHADOWDANCER     */ 1,
+/* THAUMATURGIST    */ 1,
+/* ARTISAN	*/ 0,
+/* MAGI		*/ 0,
+/* NORMAL	*/ 0,
+/* NOBLE	*/ 0,
+/* SOLDIER	*/ 0
 };
 
 /* Adapted from the SRD under OGL, see ../doc/srd.txt for information */

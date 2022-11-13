@@ -28,6 +28,7 @@ extern void add_innate_affects(struct char_data *ch);
 extern void update_innate(struct char_data *ch);
 
 // commands
+extern ACMD(do_skills);
 extern ACMD(do_gen_comm);
 extern ACMD(do_charge);
 extern ACMD(do_wear);

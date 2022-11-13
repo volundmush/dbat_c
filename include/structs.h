@@ -2116,7 +2116,6 @@ struct player_special_data {
   void *last_olc_targ;		/* olc control                          */
   int last_olc_mode;		/* olc control                          */
   char *host;			/* host of last logon                   */
-  struct imcchar_data *imcchardata;  /**< IMC2 Data */
   int spell_level[MAX_SPELL_LEVEL];
 				/* bonus to number of spells memorized */
   int memcursor;		/* points to the next free slot in spellmem */
@@ -2537,7 +2536,7 @@ struct txt_q {
 };
 
 struct descriptor_data {
-   socklen_t	descriptor;	/* file descriptor for socket		*/
+   int	descriptor;	/* file descriptor for socket		*/
    char	host[HOST_LENGTH+1];	/* hostname				*/
    int8_t	bad_pws;	/* number of bad pw attemps this login	*/
    int8_t idle_tics;		/* tics idle at password prompt		*/

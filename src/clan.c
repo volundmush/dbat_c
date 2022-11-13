@@ -78,14 +78,6 @@ struct clan_data {
   struct clan_member *moderators;
   struct clan_member *members;
   struct clan_member *applicants;
-  struct clan_rank *rank1;
-  struct clan_rank *rank2;
-  struct clan_rank *rank3;
-  struct clan_rank *rank4;
-  struct clan_rank *rank5;
-  struct clan_rank *rank6;
-  struct clan_rank *rank7;
-  struct clan_rank *rank8;
 
   int  open_join;
   int  open_leave;

@@ -194,7 +194,6 @@ extern int feat_sort_info[MAX_FEATS + 1];
 #define WEAPON_TYPE_AXE			25
 #define WEAPON_TYPE_WHIP		26
 
-#define MAX_WEAPON_TYPES		26
 
 /* Below are the various armor type defines */
 
@@ -204,7 +203,6 @@ extern int feat_sort_info[MAX_FEATS + 1];
 #define	ARMOR_TYPE_HEAVY		3
 #define	ARMOR_TYPE_SHIELD		4
 
-#define MAX_ARMOR_TYPES			5
 
 /* Below is the structure for a feat */
 

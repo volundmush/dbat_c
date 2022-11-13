@@ -363,6 +363,12 @@ extern int check_flags_by_name_ar(int *array, int numflags, char *search, const 
 /* from dg_objcmd.c */
 extern room_rnum  obj_room(struct obj_data *obj);
 
+// commands
+extern ACMD(do_attach);
+extern ACMD(do_detach);
+extern ACMD(do_vdelete);
+extern ACMD(do_tstat);
+
 /* defines for valid_dg_target */
 #define DG_ALLOW_GODS (1<<0)
 

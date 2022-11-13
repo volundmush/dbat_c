@@ -112,16 +112,7 @@ extern void reveal_hiding(struct char_data *ch, int type);
 
 
 /* undefine MAX and MIN so that our functions are used instead */
-#ifdef MAX
-#undef MAX
-#endif
 
-#ifdef MIN
-#undef MIN
-#endif
-
-extern int MAX(int a, int b);
-extern int MIN(int a, int b);
 extern char *CAP(char *txt);
 
 /* Followers */
@@ -271,16 +262,19 @@ extern char *AN(const char *str);
 
 /* basic bitvector utils *************************************************/
 
+extern int64_t MIN(int64_t x, int64_t y);
+extern int64_t MAX(int64_t x, int64_t y);
 
 #define Q_FIELD(x)  ((int) (x) / 32)
 #define Q_BIT(x)    (1 << ((x) % 32))
 extern bool IS_SET_AR(const bitvector_t var[], bitvector_t bit);
 
-#define SET_BIT_AR(var, bit)      ((var)[Q_FIELD(bit)] |= Q_BIT(bit))
-#define REMOVE_BIT_AR(var, bit)   ((var)[Q_FIELD(bit)] &= ~Q_BIT(bit))
-#define TOGGLE_BIT_AR(var, bit)   ((var)[Q_FIELD(bit)] = \
-                                   (var)[Q_FIELD(bit)] ^ Q_BIT(bit))
-#define IS_SET(flag,bit)  ((flag) & (bit))
+extern void SET_BIT_AR(bitvector_t var[], bitvector_t bit);
+extern void REMOVE_BIT_AR(bitvector_t var[], bitvector_t bit);
+extern bitvector_t TOGGLE_BIT_AR(bitvector_t var[], bitvector_t bit);
+//#define TOGGLE_BIT_AR(var, bit)   ((var)[Q_FIELD(bit)] = (var)[Q_FIELD(bit)] ^ Q_BIT(bit))
+extern bool IS_SET(bitvector_t flag, bitvector_t bit);
+extern void SET_BIT(bitvector_t var, bitvector_t bit);
 #define SET_BIT(var,bit)  ((var) |= (bit))
 #define REMOVE_BIT(var,bit)  ((var) &= ~(bit))
 #define TOGGLE_BIT(var,bit) ((var) ^= (bit))
@@ -351,32 +345,27 @@ extern bool ZONE_FLAGGED(zone_rnum rnum, bitvector_t flag);
 
 /* room utils ************************************************************/
 
-
-#define SECT(room)	(VALID_ROOM_RNUM(room) ? \
-				world[(room)].sector_type : SECT_INSIDE)
+extern int SECT(room_rnum room);
 #define ROOM_DAMAGE(room)   (world[(room)].dmg)
 #define ROOM_EFFECT(room)   (world[(room)].geffect)
 #define ROOM_GRAVITY(room)  (world[(room)].gravity)
-#define SUNKEN(room)    (ROOM_EFFECT(room) < 0 || SECT(room) == SECT_UNDERWATER)
+extern bool SUNKEN(room_rnum room);
 
 #define IS_DARK(room)	room_is_dark((room))
 #define IS_LIGHT(room)  (!IS_DARK(room))
 
-#define VALID_ROOM_RNUM(rnum)	((rnum) != NOWHERE && (rnum) <= top_of_world)
-#define GET_ROOM_VNUM(rnum) \
-	((room_vnum)(VALID_ROOM_RNUM(rnum) ? world[(rnum)].number : NOWHERE))
-#define GET_ROOM_SPEC(room) \
-	(VALID_ROOM_RNUM(room) ? world[(room)].func : NULL)
+extern bool VALID_ROOM_RNUM(room_rnum rnum);
+extern bool GET_ROOM_VNUM(room_rnum rnum);
+extern SpecialFunc GET_ROOM_SPEC(room_rnum rnum);
 
 /* Minor Planet Defines */
-#define PLANET_ZENITH(room) ((GET_ROOM_VNUM(room) >= 3400 && GET_ROOM_VNUM(room) <= 3599) || (GET_ROOM_VNUM(room) >= 62900 && GET_ROOM_VNUM(room) <= 62999) || \
-				(GET_ROOM_VNUM(room) == 19600))
+extern bool PLANET_ZENITH(room_rnum rnum);
 
 /* char utils ************************************************************/
 
 
 #define IN_ROOM(ch)	((ch)->in_room)
-#define IN_ZONE(ch)   (zone_table[(world[(IN_ROOM(ch))].zone)].number)
+extern zone_vnum IN_ZONE(struct char_data *ch);
 #define GET_WAS_IN(ch)	((ch)->was_in_room)
 #define GET_AGE(ch)     (age(ch)->year)
 

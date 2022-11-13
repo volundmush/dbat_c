@@ -11,7 +11,6 @@
 #include "db.h"
 #include "interpreter.h"
 #include "genolc.h"
-#include "imc.h"
 #include "improved-edit.h"
 #include "constants.h"
 
@@ -23,8 +22,6 @@ void free_config(struct config_data *data);
 /******************************************************************************/
 /** Internal Macros                                                          **/
 /******************************************************************************/
-#define NO 0
-#define YES 1
 
 #define CHECK_VAR(var)  ((var == YES) ? "Yes" : "No")
 #define TOGGLE_VAR(var)	if (var == YES) { var = NO; } else { var = YES; }
@@ -303,13 +300,6 @@ void cedit_save_internally(struct descriptor_data *d)
   /** Autowiz                                                                **/
   /****************************************************************************/
   /* IMC - if turning on or off, deal with IMC, and recommend a copyover */
-  if (CONFIG_IMC_ENABLED != OLC_CONFIG(d)->operation.imc_enabled) {
-    copyover_needed = TRUE;
-    if (OLC_CONFIG(d)->operation.imc_enabled)  /* If turning on  */
-      imc_startup(FALSE, -1, FALSE);           /* FALSE arg, so the autoconnect setting can govern it. */
-    else                                       /* If turning off */
-      imc_shutdown(FALSE);
-  }
   CONFIG_IMC_ENABLED        = OLC_CONFIG(d)->operation.imc_enabled;
   CONFIG_USE_AUTOWIZ          = OLC_CONFIG(d)->autowiz.use_autowiz;
   CONFIG_MIN_WIZLIST_LEV      = OLC_CONFIG(d)->autowiz.min_wizlist_lev;

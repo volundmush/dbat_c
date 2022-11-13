@@ -59,7 +59,7 @@ extern void close_socket(struct descriptor_data *d);
 
 /* I/O functions */
 extern void write_to_q(const char *txt, struct txt_q *queue, int aliased);
-extern int write_to_descriptor(socklen_t desc, const char *txt);
+extern int write_to_descriptor(int desc, const char *txt);
 extern size_t write_to_output(struct descriptor_data *d, const char *txt, ...) __attribute__ ((format (printf, 2, 3)));
 extern size_t vwrite_to_output(struct descriptor_data *d, const char *format, va_list args);
 extern void string_add(struct descriptor_data *d, char *str);
@@ -76,7 +76,6 @@ extern void show_help(struct descriptor_data *t, const char *entry);
 extern unsigned long pulse;
 extern FILE *logfile;
 extern int circle_shutdown, circle_reboot;
-extern socklen_t mother_desc;
 extern uint16_t port;
 extern int buf_switches, buf_largecount, buf_overflows;
 extern int no_specials, scheck;
@@ -86,36 +85,24 @@ extern int to_sleeping;
 
 // functions
 extern void free_user(struct descriptor_data *d);
-extern void reread_wizlists(int sig);
-extern void unrestrict_game(int sig);
-extern void reap(int sig);
-extern void checkpointing(int sig);
-extern void hupsig(int sig);
-extern ssize_t perform_socket_read(socklen_t desc, char *read_point, size_t space_left);
-extern ssize_t perform_socket_write(socklen_t desc, const char *txt, size_t length);
-extern void circle_sleep(struct timeval *timeout);
-extern int get_from_q(struct txt_q *queue, char *dest, int *aliased);
+extern ssize_t perform_socket_read(int desc, char *read_point, size_t space_left);
+extern ssize_t perform_socket_write(int desc, const char *txt, size_t length);
 extern void init_game(uint16_t port);
 extern void signal_setup(void);
-extern void game_loop(socklen_t mother_desc);
-extern socklen_t init_socket(uint16_t port);
-extern int new_descriptor(socklen_t s);
+
 extern int get_max_players(void);
 extern int process_output(struct descriptor_data *t);
 extern int process_input(struct descriptor_data *t);
 extern void timediff(struct timeval *diff, struct timeval *a, struct timeval *b);
 extern void timeadd(struct timeval *sum, struct timeval *a, struct timeval *b);
 extern void flush_queues(struct descriptor_data *d);
-extern void nonblock(socklen_t s);
+
 extern int perform_subst(struct descriptor_data *t, char *orig, char *subst);
 extern void record_usage(void);
 extern char *make_prompt(struct descriptor_data *point);
 extern void check_idle_passwords(void);
 extern void check_idle_menu(void);
-extern void heartbeat(int heart_pulse);
-extern struct in_addr *get_bind_addr(void);
 
-extern int set_sendbuf(socklen_t s);
 extern void free_bufpool(void);
 extern void setup_log(const char *filename, int fd);
 extern int open_logfile(const char *filename, FILE *stderr_fp);

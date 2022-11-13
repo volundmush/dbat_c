@@ -56,4 +56,6 @@ extern room_vnum genolc_zone_bottom(zone_rnum rznum);
 extern room_vnum genolc_zonep_bottom(struct zone_data *zone);
 extern void create_world_index(int znum, const char *type);
 extern void free_save_list(void);
+
+extern ACMD(do_show_save_list);
 #endif

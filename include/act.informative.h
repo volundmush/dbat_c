@@ -33,6 +33,7 @@ extern int search_help(const char *argument, int level);
 
 
 // commands
+extern ACMD(do_rbanktrans);
 extern ACMD(do_look);
 extern ACMD(do_examine);
 extern ACMD(do_gold);

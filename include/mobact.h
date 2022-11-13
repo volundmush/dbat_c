@@ -9,6 +9,7 @@
 
 
 // functions
+extern void clearMemory(struct char_data *ch);
 extern void remember(struct char_data *ch, struct char_data *victim);
 extern void mobile_activity(void);
 extern void forget(struct char_data *ch, struct char_data *victim);

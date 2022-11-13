@@ -132,6 +132,7 @@ extern room_rnum r_immort_start_room;	/* rnum of immort start room	 */
 extern room_rnum r_frozen_start_room;	/* rnum of frozen start room	 */
 
 /* public procedures in db.c */
+extern void auc_load(struct obj_data *obj);
 extern void boot_world(void);
 extern int is_empty(zone_rnum zone_nr);
 extern void index_boot(int mode);

@@ -24,7 +24,6 @@
 #include "constants.h"
 #include "shop.h"
 #include "guild.h"
-#include "imc.h"
 #include "clan.h"
 #include "class.h"
 #include "races.h"
@@ -38,10 +37,34 @@
 #include "act.wizard.h"
 #include "alias.h"
 #include "dg_comm.h"
-#include "ban.h"
-#include "assedit.h"
+
 #include "obj_edit.h"
 #include "utils.h"
+
+#include "act.attack.h"
+#include "act.comm.h"
+#include "act.informative.h"
+#include "act.item.h"
+#include "act.offensive.h"
+#include "act.other.h"
+#include "act.social.h"
+#include "act.misc.h"
+#include "aedit.h"
+#include "assedit.h"
+#include "ban.h"
+#include "dg_olc.h"
+#include "fight.h"
+#include "graph.h"
+#include "hedit.h"
+#include "house.h"
+#include "medit.h"
+#include "modify.h"
+#include "oasis_copy.h"
+#include "sedit.h"
+#include "spell_parser.h"
+#include "tedit.h"
+#include "vehicles.h"
+#include "dg_mobcmd.h"
 
 /* local global variables */
 DISABLED_DATA *disabled_first = NULL;
@@ -63,416 +86,6 @@ void payout(int num);
 
 
 /* prototypes for all do_x functions. */
-ACMD(do_lag);
-ACMD(do_runic);
-ACMD(do_refuel);
-ACMD(do_extract);
-ACMD(do_combine);
-ACMD(do_channel);
-ACMD(do_teach);
-ACMD(do_action);
-ACMD(do_scry);
-ACMD(do_spiritcontrol);
-ACMD(do_song);
-ACMD(do_shell);
-ACMD(do_moondust);
-ACMD(do_multiform);
-ACMD(do_amnisiac);
-ACMD(do_arena);
-ACMD(do_approve);
-ACMD(do_ensnare);
-ACMD(do_absorb);
-ACMD(do_ingest);
-ACMD(do_instill);
-ACMD(do_infuse);
-ACMD(do_implant);
-ACMD(do_interest);
-ACMD(do_appraise);
-ACMD(do_forgery);
-ACMD(do_fish);
-ACMD(do_fireshield);
-ACMD(do_feed);
-ACMD(do_future);
-ACMD(do_fury);
-ACMD(do_aid);
-ACMD(do_advance);
-ACMD(do_adrenaline);
-ACMD(do_aedit);
-ACMD(do_alias);
-ACMD(do_assemble);
-ACMD(do_ashcloud);
-ACMD(do_assedit);
-ACMD(do_assist);
-ACMD(do_rescue);
-ACMD(do_resize);
-ACMD(do_rpp);
-ACMD(do_rip);
-ACMD(do_intro);
-ACMD(do_astat);
-ACMD(do_at);
-ACMD(do_hydromancy);
-ACMD(do_liquefy);
-ACMD(do_lightgrenade);
-ACMD(do_attack);
-ACMD(do_attack2);
-ACMD(do_auction);
-ACMD(do_autoexit);
-ACMD(do_ban);
-ACMD(do_bash);
-ACMD(do_head);
-ACMD(do_healglow);
-ACMD(do_hayasa);
-ACMD(do_nova);
-ACMD(do_beacon);
-ACMD(do_breaker);
-ACMD(do_block);
-ACMD(do_barrier);
-ACMD(do_beam);
-ACMD(do_tsuihidan);
-ACMD(do_table);
-ACMD(do_play);
-ACMD(do_preference);
-ACMD(do_energize);
-ACMD(do_evolve);
-ACMD(do_post);
-ACMD(do_hand);
-ACMD(do_trip);
-ACMD(do_train);
-ACMD(do_taisha);
-ACMD(do_twohand);
-ACMD(do_tailwhip);
-ACMD(do_shogekiha);
-ACMD(do_shimmer);
-ACMD(do_sunder);
-ACMD(do_seishou);
-ACMD(do_spiral);
-ACMD(do_spoil);
-ACMD(do_selfd);
-ACMD(do_shuffle);
-ACMD(do_bid);
-ACMD(do_boom);
-ACMD(do_break);
-ACMD(do_disguise);
-ACMD(do_defend);
-ACMD(do_deploy);
-ACMD(do_pack);
-ACMD(do_dimizu);
-ACMD(do_obstruct);
-ACMD(do_draw);
-ACMD(do_diagnose);
-ACMD(do_drag);
-ACMD(do_carry);
-ACMD(do_cook);
-ACMD(do_stop);
-ACMD(do_silk);
-ACMD(do_focus);
-ACMD(do_charge);
-ACMD(do_candy);
-ACMD(do_form);
-ACMD(do_checkloadstatus);
-ACMD(do_finger);
-ACMD(do_chown);
-ACMD(do_clan);
-ACMD(do_color);
-ACMD(do_compare);
-ACMD(do_copyover);
-ACMD(do_commands);
-ACMD(do_consider);
-ACMD(do_credits);
-ACMD(do_date);
-ACMD(do_dc);
-ACMD(do_disable);
-ACMD(do_dig);
-ACMD(do_bury);
-ACMD(do_disarm);
-ACMD(do_display);
-ACMD(do_drink);
-ACMD(do_drive);
-ACMD(do_drop);
-ACMD(do_eat);
-ACMD(do_commune);
-ACMD(do_rptrans);
-ACMD(do_rpbank);
-ACMD(do_aura);
-ACMD(do_escape);
-ACMD(do_eavesdrop);
-ACMD(do_eyec);
-ACMD(do_solar);
-ACMD(do_spit);
-ACMD(do_echo);
-ACMD(do_enter);
-ACMD(do_equipment);
-ACMD(do_examine);
-ACMD(do_exit);
-ACMD(do_exits);
-ACMD(do_feats);
-ACMD(do_file);
-ACMD(do_finddoor);
-ACMD(do_findkey);
-ACMD(do_fix);
-ACMD(do_srepair);
-ACMD(do_recharge);
-ACMD(do_renzo);
-ACMD(do_flee);
-ACMD(do_follow);
-ACMD(do_force);
-ACMD(do_gecho);
-ACMD(do_garden);
-ACMD(do_grapple);
-ACMD(do_ginfo);
-ACMD(do_gen_comm);
-ACMD(do_gen_door);
-ACMD(do_gen_ps);
-ACMD(do_gen_tog);
-ACMD(do_gen_write);
-ACMD(do_get);
-ACMD(do_give);
-ACMD(do_gold);
-ACMD(do_goto);
-ACMD(do_grab);
-ACMD(do_group);
-ACMD(do_gsay);
-ACMD(do_hcontrol);
-ACMD(do_hell);
-ACMD(do_hspiral);
-ACMD(do_heal);
-ACMD(do_help);
-ACMD(do_hindex);
-ACMD(do_history);
-ACMD(do_helpcheck);
-ACMD(do_hide);
-ACMD(do_pushup);
-ACMD(do_paralyze);
-ACMD(do_perf);
-ACMD(do_permission);
-ACMD(do_rbank);
-ACMD(do_reward);
-ACMD(do_plant);
-ACMD(do_meditate);
-ACMD(do_metamorph);
-ACMD(do_malice);
-ACMD(do_mimic);
-ACMD(do_masenko);
-ACMD(do_dodonpa);
-ACMD(do_deathball);
-ACMD(do_spiritball);
-ACMD(do_genki);
-ACMD(do_geno);
-ACMD(do_deathbeam);
-ACMD(do_dualbeam);
-ACMD(do_pose);
-ACMD(do_rogafufuken);
-ACMD(do_baku);
-ACMD(do_kienzan);
-ACMD(do_kanso);
-ACMD(do_koteiru);
-ACMD(do_kyodaika);
-ACMD(do_kousengan);
-ACMD(do_kura);
-ACMD(do_tribeam);
-ACMD(do_sbc);
-ACMD(do_final);
-ACMD(do_crusher);
-ACMD(do_ddslash);
-ACMD(do_pbarrage);
-ACMD(do_hellflash);
-ACMD(do_hellspear);
-ACMD(do_scatter);
-ACMD(do_bigbang);
-ACMD(do_pslash);
-ACMD(do_kakusanha);
-ACMD(do_hass);
-ACMD(do_handout);
-ACMD(do_eraser);
-ACMD(do_tslash);
-ACMD(do_psyblast);
-ACMD(do_honoo);
-ACMD(do_galikgun);
-ACMD(do_majinize);
-ACMD(do_potential);
-ACMD(do_map);
-ACMD(do_situp);
-ACMD(do_house);
-ACMD(do_iedit);
-ACMD(do_instant);
-ACMD(do_insult);
-ACMD(do_inventory);
-ACMD(do_invis);
-ACMD(do_kill);
-ACMD(do_kamehameha);
-ACMD(do_kaioken);
-ACMD(do_kiball);
-ACMD(do_kiblast);
-ACMD(do_kick);
-ACMD(do_elbow);
-ACMD(do_knee);
-ACMD(do_languages);
-ACMD(do_lifeforce);
-ACMD(do_land);
-ACMD(do_last);
-ACMD(do_leave);
-ACMD(do_levels);
-ACMD(do_load);
-ACMD(do_look);
-ACMD(do_balefire);
-ACMD(do_blessedhammer);
-ACMD(do_rbanktrans);
-/* ACMD(do_move); -- interpreter.h */
-ACMD(do_not_here);
-ACMD(do_news);
-ACMD(do_newsedit);
-ACMD(do_nickname);
-ACMD(do_oasis_copy);
-ACMD(do_oasis);
-//ACMD(do_olc);
-ACMD(do_page);
-ACMD(do_powerup);
-ACMD(do_suppress);
-ACMD(do_punch);
-ACMD(do_bite);
-ACMD(do_roundhouse);
-ACMD(do_regenerate);
-ACMD(do_uppercut);
-ACMD(do_upgrade);
-ACMD(do_pagelength);
-ACMD(do_peace);
-ACMD(do_plist);
-ACMD(do_poofset);
-ACMD(do_pour);
-ACMD(do_practice);
-ACMD(do_purge);
-ACMD(do_put);
-ACMD(do_qcomm);
-ACMD(do_quit);
-ACMD(do_raise);
-ACMD(do_radar);
-ACMD(do_sradar);
-ACMD(do_recall);
-ACMD(do_reboot);
-ACMD(do_remove);
-ACMD(do_reply);
-ACMD(do_report);
-ACMD(do_respond);
-ACMD(do_rest);
-ACMD(do_restore);
-ACMD(do_resurrect);
-ACMD(do_return);
-ACMD(do_room_copy);
-ACMD(do_sac);
-ACMD(do_spar);
-ACMD(do_slam);
-ACMD(do_heeldrop);
-ACMD(do_scouter);
-ACMD(do_snet);
-ACMD(do_save);
-ACMD(do_skills);
-ACMD(do_saveall);
-ACMD(do_say);
-ACMD(do_osay);
-ACMD(do_scan);
-ACMD(do_score);
-ACMD(do_status);
-ACMD(do_scribe);
-ACMD(do_send);
-ACMD(do_set);
-ACMD(do_show);
-ACMD(do_showoff);
-ACMD(do_show_save_list);
-ACMD(do_shutdown);
-ACMD(do_sit);
-ACMD(do_rcopy);
-ACMD(do_skillset);
-ACMD(do_sleep);
-ACMD(do_sneak);
-ACMD(do_snoop);
-ACMD(do_spec_comm);
-ACMD(do_spells);
-ACMD(do_split);
-ACMD(do_stand);
-ACMD(do_fly);
-ACMD(do_stat);
-ACMD(do_steal);
-ACMD(do_switch);
-ACMD(do_syslog);
-ACMD(do_telepathy);
-ACMD(do_think);
-ACMD(do_transform);
-ACMD(do_transobj);
-ACMD(do_throw);
-ACMD(do_teleport);
-ACMD(do_tell);
-ACMD(do_time);
-ACMD(do_title);
-ACMD(do_toggle);
-ACMD(do_toplist);
-ACMD(do_track);
-ACMD(do_trans);
-ACMD(do_unban);
-ACMD(do_ungroup);
-ACMD(do_use);
-ACMD(do_users);
-ACMD(do_visible);
-ACMD(do_varstat);
-ACMD(do_voice);
-ACMD(do_vnum);
-ACMD(do_vstat);
-ACMD(do_wake);
-ACMD(do_warp);
-ACMD(do_warppool);
-ACMD(do_razor);
-ACMD(do_spike);
-ACMD(do_willpower);
-ACMD(do_summon);
-ACMD(do_wear);
-ACMD(do_weather);
-ACMD(do_where);
-ACMD(do_who);
-ACMD(do_whois);
-ACMD(do_wield);
-ACMD(do_value);
-ACMD(do_wizlock);
-ACMD(do_wiznet);
-ACMD(do_wizupdate);
-ACMD(do_wizutil);
-ACMD(do_write);
-ACMD(do_zcheck);
-ACMD(do_zen);
-ACMD(do_zanzoken);
-ACMD(do_zreset);
-ACMD(do_zpurge);
-ACMD(do_tailhide);
-ACMD(do_nogrow);
-ACMD(do_restring);
-
-/* DG Script ACMD's */
-ACMD(do_attach);
-ACMD(do_detach);
-ACMD(do_tlist);
-ACMD(do_tstat);
-ACMD(do_masound);
-ACMD(do_mkill);
-ACMD(do_mheal);
-ACMD(do_mjunk);
-ACMD(do_mdoor);
-ACMD(do_mechoaround);
-ACMD(do_msend);
-ACMD(do_mecho);
-ACMD(do_mload);
-ACMD(do_mpurge);
-ACMD(do_mgoto);
-ACMD(do_mat);
-ACMD(do_mdamage);
-ACMD(do_mteleport);
-ACMD(do_mforce);
-ACMD(do_mremember);
-ACMD(do_mforget);
-ACMD(do_mtransform);
-ACMD(do_mzoneecho);
-ACMD(do_vdelete);
-ACMD(do_mfollow);
-ACMD(do_dig);
-ACMD(do_rdisplay);
-
 struct command_info *complete_cmd_info;
 
 /* This is the Master Command List(tm).
@@ -481,7 +94,7 @@ struct command_info *complete_cmd_info;
  * they appear in, etc.  You can adjust the "priority" of commands
  * simply by changing the order they appear in the command list.
  * (For example, if you want "as" to mean "assist" instead of "ask",
- * just put "assist" above "ask" in the Master Command List(tm).
+ * just put "assist" above "ask" in the Master Command List(tm).)
  *
  * In general, utility commands such as "at" should have high priority;
  * infrequently used and dangerously destructive commands should have low
@@ -1141,7 +754,7 @@ void command_interpreter(struct char_data *ch, char *argument)
 
   /*
    * special case to handle one-character, non-alphanumeric commands;
-   * requested by many people so "'hi" or ";godnet test" is possible.
+   * requested by many people so "'hi'" or ";godnet test" is possible.
    * Patch sent by Eric Green and Stefan Wasilewski.
    */
   if (!isalpha(*argument)) {
@@ -1181,16 +794,8 @@ void command_interpreter(struct char_data *ch, char *argument)
 
 
   if (*complete_cmd_info[cmd].command == '\n') {
-     if (CONFIG_IMC_ENABLED && !IS_NPC(ch)) {
-       if(!IS_NPC(ch) && !imc_command_hook(ch, arg, line)) {
-         send_to_char(ch, "Huh!?!\r\n");
-       } else {
-         skip_ld = 1;
-       }
-     } else {
       send_to_char(ch, "Huh!?!\r\n");
       return;
-     }
   }
 
   else if (!command_pass(blah, ch) && GET_ADMLEVEL(ch) < 1)
@@ -2489,9 +2094,6 @@ int enter_player_game (struct descriptor_data *d)
 
     if (PLR_FLAGGED(d->character, PLR_HEALT)) {
      REMOVE_BIT_AR(PLR_FLAGS(d->character), PLR_HEALT);
-    }
-    if (CONFIG_IMC_ENABLED) {
-     load_imc_pfile(d->character);
     }
     if (readIntro(d->character, d->character) == 2) {
      introCreate(d->character);
@@ -6609,10 +6211,6 @@ void nanny(struct descriptor_data *d, char *arg)
       GET_PFILEPOS(d->character) = create_entry(GET_PC_NAME(d->character));
     /* Now GET_NAME() will work properly. */
     init_char(d->character);
-    if (CONFIG_IMC_ENABLED) {
-      imc_initchar(d->character);
-      load_imc_pfile(d->character);
-    }
     save_char(d->character);
     save_player_index();
     write_to_output(d, "%s\r\n*** PRESS RETURN: ", motd);
@@ -6801,7 +6399,7 @@ void nanny(struct descriptor_data *d, char *arg)
 	write_to_output(d, "Current description:\r\n%s", d->character->description);
 	/*
 	 * Don't free this now... so that the old description gets loaded
-	 * as the current buffer in the editor.  Do setup the ABORT buffer
+	 * as the current buffer in the editor.  Do set up the ABORT buffer
 	 * here, however.
 	 *
 	 * free(d->character->description);

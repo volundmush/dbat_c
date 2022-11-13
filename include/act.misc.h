@@ -15,6 +15,10 @@ extern void rpp_feature(struct char_data *ch, const char *arg);
 extern void ash_burn(struct char_data *ch);
 
 // commands
+extern ACMD(do_tailhide);
+extern ACMD(do_restring);
+extern ACMD(do_nogrow);
+extern ACMD(do_adrenaline);
 extern ACMD(do_transform);
 extern ACMD(do_follow);
 extern ACMD(do_spoil);

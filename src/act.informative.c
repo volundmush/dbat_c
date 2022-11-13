@@ -3672,16 +3672,17 @@ static void list_one_char(struct char_data *i, struct char_data *ch)
 		act(rdis, FALSE, i, 0, ch, TO_VICT);
 	}
   }
-
 }
+
+struct hide_node {
+    struct hide_node *next;
+    struct char_data *hidden;
+};
 
 static void list_char_to_char(struct char_data *list, struct char_data *ch)
 {
   struct char_data *i, *j;
-  struct hide_node {
-    struct hide_node *next;
-    struct char_data *hidden;
-  } *hideinfo, *lasthide, *tmphide;
+  struct hide_node *hideinfo, *lasthide, *tmphide;
   int num;
   
   hideinfo = lasthide = NULL;

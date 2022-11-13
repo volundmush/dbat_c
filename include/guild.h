@@ -140,5 +140,5 @@ extern int count_guilds(guild_vnum low, guild_vnum high);
 
 /*. External . */
 extern SPECIAL(guild);
-
+extern ACMD(do_teach);
 #endif

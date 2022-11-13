@@ -114,15 +114,13 @@ const char *d_race_types[NUM_RACES+1] = {
   "\n"
 };
 
-#define Y   TRUE
-#define N   FALSE
 
 /* Original Race/Gender Breakout */
-const int race_ok_gender[NUM_SEX][NUM_RACES] = {
-/*        H, S, I, K, N, M, Ka, HB, B, A, D, Ma, Kai, TR, G, I, O, S, T, M, Ar, L, W, F */
-/* N */ { Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, N, N, N, N, N, Y, N, N, N },
-/* M */ { Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, N, N, N, N, N, Y, N, N, N },
-/* F */ { Y, Y, Y, Y, N, Y, Y, Y, Y, Y, Y, Y, Y, Y, Y, N, N, N, N, N, Y, N, N, N }
+const bool race_ok_gender[NUM_SEX][NUM_RACES] = {
+/*        H, S, I, K, 0, M, Ka, HB, B, A, D, Ma, Kai, TR, G, I, O, S, T, M, Ar, L, W, F */
+/* 0 */ { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0 },
+/* M */ { 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0 },
+/* F */ { 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0 }
 
 };
 

@@ -23,7 +23,7 @@ add_library(circlemud ${CIRCLE_INCLUDE} ${CIRCLE_SRC})
 link_libraries(circlemud)
 
 # the various binaries
-add_executable(circle apps/circle.c amalgam.h)
+add_executable(circle apps/circle.c amalgam.h include/dg_mobcmd.h)
 #add_executable(asciipasswd apps/circle.c)
 #add_executable(autowiz apps/autowiz.c)
 #add_executable(delobjs apps/delobjs.c)

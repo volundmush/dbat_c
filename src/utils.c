@@ -4041,19 +4041,6 @@ int dice(int num, int size)
   return (sum);
 }
 
-
-/* Be wary of sign issues with this. */
-int MIN(int a, int b)
-{
-  return (a < b ? a : b);
-}
-
-/* Be wary of sign issues with this. */
-int MAX(int a, int b)
-{
-  return (a > b ? a : b);
-}
-
 char *CAP(char *txt)
 {
   int i;
@@ -4698,94 +4685,15 @@ int count_metamagic_feats(struct char_data *ch)
 
 
 int xdir_scan(char *dir_name, struct xap_dir *xapdirp) {
-  xapdirp->total = scandir(dir_name,&(xapdirp->namelist),0,alphasort);
-  xapdirp->current = 0;
 
-  return(xapdirp->total);
 }
 
 char *xdir_get_name(struct xap_dir *xd,int i) {
   return xd->namelist[i]->d_name;
 }
 
-char *xdir_get_next(struct xap_dir *xd) {
-  if(++(xd->current) >= xd->total) {
-    return NULL;
-  }
-  return xd->namelist[xd->current-1]->d_name;
-}
-
-
-void xdir_close(struct xap_dir *xd) {
-  int i;
-  for(i=0;i < xd->total;i++) {
-    free(xd->namelist[i]);
-  }
-  free(xd->namelist);
-  xd->namelist = NULL;
-  xd->current = xd->total = -1;
-}
-
-int xdir_get_total(struct xap_dir *xd) {
-  return xd->total;
-}
-
 int insure_directory(char *path, int isfile) {
-  char *chopsuey = strdup(path);
-  char *p;
-  char *temp;
-  struct stat st;
 
-  extern int errno;
-
-  /* if it's a file, remove that, we're only checking dirs; */
-  if(isfile) {
-    if(!(p=strrchr(path,'/'))) {
-      free(chopsuey);
-      return 1;
-    }
-    *p = '\0';
-  }
-
-
-  /* remove any trailing /'s */
-
-  while(chopsuey[strlen(chopsuey)-1] == '/') {
-    chopsuey[strlen(chopsuey) -1 ] = '\0';
-  }
-
-  /* check and see if it's already a dir */
-
-
-    if(!stat(chopsuey,&st) && S_ISDIR(st.st_mode)) {
-    free(chopsuey);
-    return 1;
-  }
-
-  temp = strdup(chopsuey);
-  if((p = strrchr(temp,'/')) != NULL) {
-    *p = '\0';
-  }
-  if(insure_directory(temp,0) &&
-
-          !mkdir(chopsuey, S_IRUSR | S_IWRITE | S_IEXEC | S_IRGRP | S_IXGRP |
-                           S_IROTH | S_IXOTH)) {
-    free(temp);
-    free(chopsuey);
-    return 1;
-  }
-
-  if(errno == EEXIST &&
-          !stat(temp,&st)
-     && S_ISDIR(st.st_mode)) {
-    free(temp);
-    free(chopsuey);
-    return 1;
-  } else {
-    free(temp);
-    free(chopsuey);
-    return 1;
-  }
 }
 
 
@@ -5538,4 +5446,59 @@ bool OUTSIDE_SECTTYPE(struct char_data *ch) {
 
 bool IS_COLOR_CHAR(char c) {
     return strchr("nbcgmrywkoeul0234567", tolower(c)) != NULL;
+}
+
+int SECT(room_rnum room) {
+    return VALID_ROOM_RNUM(room) ? \
+				world[room].sector_type : SECT_INSIDE;
+}
+
+bool SUNKEN(room_rnum room) {
+    return ROOM_EFFECT(room) < 0 || SECT(room) == SECT_UNDERWATER;
+}
+
+bool VALID_ROOM_RNUM(room_rnum rnum) {
+    return rnum != NOWHERE && rnum <= top_of_world;
+}
+
+bool GET_ROOM_VNUM(room_rnum rnum) {
+    return (room_vnum)(VALID_ROOM_RNUM(rnum) ? world[rnum].number : NOWHERE);
+}
+
+SpecialFunc GET_ROOM_SPEC(room_rnum rnum) {
+    return VALID_ROOM_RNUM(rnum) ? world[rnum].func : NULL;
+}
+
+bool PLANET_ZENITH(room_rnum rnum) {
+    room_vnum r = GET_ROOM_VNUM(rnum);
+    return (r >= 3400 && r <= 3599) || (r >= 62900 && r <= 62999) || \
+				(r == 19600);
+}
+
+zone_vnum IN_ZONE(struct char_data *ch) {
+    return zone_table[world[IN_ROOM(ch)].zone].number;
+}
+
+void SET_BIT_AR(bitvector_t var[], bitvector_t bit) {
+    (var)[Q_FIELD(bit)] |= Q_BIT(bit);
+}
+
+void REMOVE_BIT_AR(bitvector_t var[], bitvector_t bit) {
+    (var)[Q_FIELD(bit)] &= ~Q_BIT(bit);
+}
+
+bitvector_t TOGGLE_BIT_AR(bitvector_t var[], bitvector_t bit) {
+    return (var)[Q_FIELD(bit)] = (var)[Q_FIELD(bit)] ^ Q_BIT(bit);
+}
+
+bool IS_SET(bitvector_t flag, bitvector_t bit) {
+    return (flag) & (bit);
+}
+
+int64_t MIN(int64_t x, int64_t y) {
+    return x > y ? y : x;
+}
+
+int64_t MAX(int64_t x, int64_t y) {
+    return x > y ? x : y;
 }

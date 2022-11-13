@@ -9,13 +9,14 @@
 
 
 // global variables
-extern int prestige_classes[NUM_CLASSES];
-extern const int class_ok_race[NUM_RACES][NUM_CLASSES];
+extern const bool prestige_classes[NUM_CLASSES];
+extern const bool class_ok_race[NUM_RACES][NUM_CLASSES];
 extern const char *config_sect[NUM_CONFIG_SECTIONS+1];
 extern const int class_hit_die_size[NUM_CLASSES];
 extern const char *pc_class_types[NUM_CLASSES+1];
 extern const char *class_names[NUM_CLASSES+1];
 extern const char *class_abbrevs[NUM_CLASSES+1];
+extern const bool class_ok_align[NUM_ALIGNS][NUM_CLASSES];
 
 // functions
 extern void do_start(struct char_data *ch);

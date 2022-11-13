@@ -65,10 +65,7 @@ int fgetline(FILE *file, char *p);
 struct char_data *find_char_by_uid_in_lookup_table(long uid);
 struct obj_data *find_obj_by_uid_in_lookup_table(long uid);
 EVENTFUNC(trig_wait_event);
-ACMD(do_attach) ;
-ACMD(do_detach);
-ACMD(do_vdelete);
-ACMD(do_tstat);
+
 
 /* Return pointer to first occurrence of string ct in */
 /* cs, or NULL if not present.  Case insensitive */

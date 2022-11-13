@@ -276,11 +276,6 @@
 },
 {
   "directory": "/home/volund/dbat_c",
-  "command": "/usr/bin/cc  -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/src/imc.c.o -c /home/volund/dbat_c/src/imc.c",
-  "file": "/home/volund/dbat_c/src/imc.c"
-},
-{
-  "directory": "/home/volund/dbat_c",
   "command": "/usr/bin/cc  -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/src/improved-edit.c.o -c /home/volund/dbat_c/src/improved-edit.c",
   "file": "/home/volund/dbat_c/src/improved-edit.c"
 },
@@ -396,11 +391,6 @@
 },
 {
   "directory": "/home/volund/dbat_c",
-  "command": "/usr/bin/cc  -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/src/sha256.c.o -c /home/volund/dbat_c/src/sha256.c",
-  "file": "/home/volund/dbat_c/src/sha256.c"
-},
-{
-  "directory": "/home/volund/dbat_c",
   "command": "/usr/bin/cc  -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/src/shop.c.o -c /home/volund/dbat_c/src/shop.c",
   "file": "/home/volund/dbat_c/src/shop.c"
 },
@@ -458,11 +448,6 @@
   "directory": "/home/volund/dbat_c",
   "command": "/usr/bin/cc  -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/src/zedit.c.o -c /home/volund/dbat_c/src/zedit.c",
   "file": "/home/volund/dbat_c/src/zedit.c"
-},
-{
-  "directory": "/home/volund/dbat_c",
-  "command": "/usr/bin/cc  -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/src/zmalloc.c.o -c /home/volund/dbat_c/src/zmalloc.c",
-  "file": "/home/volund/dbat_c/src/zmalloc.c"
 },
 {
   "directory": "/home/volund/dbat_c",

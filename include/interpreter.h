@@ -54,6 +54,8 @@ extern char *delete_doubledollar(char *string);
 /* for compatibility with 2.20: */
 #define argument_interpreter(a, b, c) two_arguments(a, b, c)
 
+extern ACMD(do_alias);
+extern ACMD(do_disable);
 
 struct command_info {
    const char *command;

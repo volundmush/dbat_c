@@ -1486,30 +1486,6 @@ src/htree.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/htree.c.s
 .PHONY : src/htree.c.s
 
-src/imc.o: src/imc.c.o
-.PHONY : src/imc.o
-
-# target to build an object file
-src/imc.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/imc.c.o
-.PHONY : src/imc.c.o
-
-src/imc.i: src/imc.c.i
-.PHONY : src/imc.i
-
-# target to preprocess a source file
-src/imc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/imc.c.i
-.PHONY : src/imc.c.i
-
-src/imc.s: src/imc.c.s
-.PHONY : src/imc.s
-
-# target to generate assembly for a file
-src/imc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/imc.c.s
-.PHONY : src/imc.c.s
-
 src/improved-edit.o: src/improved-edit.c.o
 .PHONY : src/improved-edit.o
 
@@ -2062,30 +2038,6 @@ src/sedit.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/sedit.c.s
 .PHONY : src/sedit.c.s
 
-src/sha256.o: src/sha256.c.o
-.PHONY : src/sha256.o
-
-# target to build an object file
-src/sha256.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/sha256.c.o
-.PHONY : src/sha256.c.o
-
-src/sha256.i: src/sha256.c.i
-.PHONY : src/sha256.i
-
-# target to preprocess a source file
-src/sha256.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/sha256.c.i
-.PHONY : src/sha256.c.i
-
-src/sha256.s: src/sha256.c.s
-.PHONY : src/sha256.s
-
-# target to generate assembly for a file
-src/sha256.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/sha256.c.s
-.PHONY : src/sha256.c.s
-
 src/shop.o: src/shop.c.o
 .PHONY : src/shop.o
 
@@ -2374,30 +2326,6 @@ src/zedit.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/zedit.c.s
 .PHONY : src/zedit.c.s
 
-src/zmalloc.o: src/zmalloc.c.o
-.PHONY : src/zmalloc.o
-
-# target to build an object file
-src/zmalloc.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/zmalloc.c.o
-.PHONY : src/zmalloc.c.o
-
-src/zmalloc.i: src/zmalloc.c.i
-.PHONY : src/zmalloc.i
-
-# target to preprocess a source file
-src/zmalloc.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/zmalloc.c.i
-.PHONY : src/zmalloc.c.i
-
-src/zmalloc.s: src/zmalloc.c.s
-.PHONY : src/zmalloc.s
-
-# target to generate assembly for a file
-src/zmalloc.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/zmalloc.c.s
-.PHONY : src/zmalloc.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -2576,9 +2504,6 @@ help:
 	@echo "... src/htree.o"
 	@echo "... src/htree.i"
 	@echo "... src/htree.s"
-	@echo "... src/imc.o"
-	@echo "... src/imc.i"
-	@echo "... src/imc.s"
 	@echo "... src/improved-edit.o"
 	@echo "... src/improved-edit.i"
 	@echo "... src/improved-edit.s"
@@ -2648,9 +2573,6 @@ help:
 	@echo "... src/sedit.o"
 	@echo "... src/sedit.i"
 	@echo "... src/sedit.s"
-	@echo "... src/sha256.o"
-	@echo "... src/sha256.i"
-	@echo "... src/sha256.s"
 	@echo "... src/shop.o"
 	@echo "... src/shop.i"
 	@echo "... src/shop.s"
@@ -2687,9 +2609,6 @@ help:
 	@echo "... src/zedit.o"
 	@echo "... src/zedit.i"
 	@echo "... src/zedit.s"
-	@echo "... src/zmalloc.o"
-	@echo "... src/zmalloc.i"
-	@echo "... src/zmalloc.s"
 .PHONY : help
 
 

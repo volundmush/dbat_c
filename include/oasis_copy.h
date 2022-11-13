@@ -12,5 +12,6 @@ extern int buildwalk(struct char_data *ch, int dir);
 
 // commands
 extern ACMD(do_dig);
+extern ACMD(do_rcopy);
 
 #endif //CIRCLE_OASIS_COPY_H

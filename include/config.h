@@ -8,13 +8,6 @@
 #include "structs.h"
 
 /* GAME PLAY OPTIONS */
-#if !defined(NO)
-#define NO 0
-#endif
-
-#if !defined(YES)
-#define YES 1
-#endif
 
 #if !defined(FALSE)
 #define FALSE 0

@@ -26,7 +26,7 @@
 
 /* local functions */
 int player_present(struct char_data *ch);
-void clearMemory(struct char_data *ch);
+
 bool aggressive_mob_on_a_leash(struct char_data *slave, struct char_data *master, struct char_data *attack);
 void mob_absorb(struct char_data *ch, struct char_data *vict);
 
@@ -185,7 +185,7 @@ void mobile_activity(void)
 	!ROOM_FLAGGED(EXIT(ch, door)->to_room, ROOM_DEATH) &&
 	(!MOB_FLAGGED(ch, MOB_STAY_ZONE) ||
 	 (world[EXIT(ch, door)->to_room].zone == world[IN_ROOM(ch)].zone))) {
-     if (rand_number(1, 2) == 2 && !IS_AFFECTED(ch, AFF_PARALYZE) && block_calc(ch)) {
+     if (rand_number(1, 2) == 2 && !AFF_FLAGGED(ch, 18) && block_calc(ch)) {
       perform_move(ch, door, 1);
      }
     }
@@ -218,7 +218,7 @@ void mobile_activity(void)
      }
 
     /* Aggressive Mobs */
-    if (MOB_FLAGGED(ch, MOB_AGGRESSIVE) && !IS_AFFECTED(ch, AFF_PARALYZE)) {
+    if (MOB_FLAGGED(ch, MOB_AGGRESSIVE) && !AFF_FLAGGED(ch, 18)) {
       int spot_roll = rand_number(1, GET_LEVEL(ch) + 10);
       found = FALSE;
       for (vict = world[IN_ROOM(ch)].people; vict && !found; vict = vict->next_in_room) {
@@ -405,7 +405,7 @@ void mobile_activity(void)
 
 
     /* Mob Memory */
-    if (IS_HUMANOID(ch) && MEMORY(ch) && !MOB_FLAGGED(ch, MOB_DUMMY) && !IS_AFFECTED(ch, AFF_PARALYZE)) {
+    if (IS_HUMANOID(ch) && MEMORY(ch) && !MOB_FLAGGED(ch, MOB_DUMMY) && !AFF_FLAGGED(ch, 18)) {
       found = FALSE;
       for (vict = world[IN_ROOM(ch)].people; vict && !found; vict = vict->next_in_room) {
 	if (IS_NPC(vict) || !CAN_SEE(ch, vict) || PRF_FLAGGED(vict, PRF_NOHASSLE))

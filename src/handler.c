@@ -22,6 +22,13 @@
 #include "fight.h"
 #include "races.h"
 #include "act.informative.h"
+#include "vehicles.h"
+#include "shop.h"
+#include "act.item.h"
+#include "act.movement.h"
+#include "act.wizard.h"
+#include "act.misc.h"
+#include "mobact.h"
 
 /* local vars */
 static int extractions_pending = 0;
@@ -31,20 +38,6 @@ static int extractions_pending = 0;
 /* local functions */
 static int apply_ac(struct char_data *ch, int eq_pos);
 static void update_object(struct obj_data *obj, int use);
-
-
-/* external functions */
-extern void handle_multi_merge(struct char_data *form);
-extern void carry_drop(struct char_data *ch, int type);
-extern void auc_load(struct obj_data *obj);
-struct obj_data *find_vehicle_by_vnum(int vnum);
-void remove_follower(struct char_data *ch);
-void clearMemory(struct char_data *ch);
-ACMD(do_return);
-void perform_wear(struct char_data * ch, struct obj_data * obj, int where);
-void perform_remove(struct char_data * ch, int pos);
-int find_eq_pos(struct char_data *ch, struct obj_data *obj, char *arg);
-SPECIAL(shop_keeper);
 
 /* For Getting An Intro Name */
 const char *get_i_name(struct char_data *ch, struct char_data *vict) {
@@ -139,32 +132,8 @@ int is_name(const char *str, const char *namelist)
 #define WHITESPACE " \t"
 int isname(const char *str, const char *namelist)
 {
-  char *newlist;
-  register char *curtok;
-  static char newlistbuf[MAX_STRING_LENGTH];
-
-  if (!str || !*str || !namelist || !*namelist) {
-     return 0;
-  }
-
-  if (!strcasecmp(str, namelist)) { /* the easy way */
-     return 1;
-  }
-
-  strlcpy(newlistbuf, namelist, sizeof(newlistbuf));
-  newlist = newlistbuf;
-  for (curtok = strsep(&newlist, WHITESPACE); curtok; curtok = strsep(&newlist, WHITESPACE)) {
-    if (curtok && is_abbrev(str, curtok)) {
-      /* Don't allow abbreviated numbers, only alpha names need abbreviation */
-      /* This, I just consider a bug fix, because abbreviating numbers is just*/
-      /* asking for trouble. IE: 100 would return true on 1000 --Sryth*/
-      if (isdigit(*str) && (atoi(str) != atoi(curtok))) {
-        return 0;
-      }
-    return 1;
-    }
-  }
-  return 0;
+    log("PANIC! REIMPLEMENT THIS!");
+    exit(-1);
 }
 
 void aff_apply_modify(struct char_data *ch, int loc, int mod, int spec, char *msg)

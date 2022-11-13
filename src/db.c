@@ -38,7 +38,6 @@
 #include "genmob.h"
 #include "spells.h"
 #include "races.h"
-#include "imc.h"
 #include "spell_parser.h"
 #include "genobj.h"
 
@@ -4410,10 +4409,6 @@ void free_char(struct char_data *ch)
   struct level_learn_entry *learn, *next_learn;
 
   if (ch->player_specials != NULL && ch->player_specials != &dummy_mob) {
-
-    if (CONFIG_IMC_ENABLED) {
-      imc_freechardata(ch);
-    }
 
     while ((a = GET_ALIASES(ch)) != NULL) {
       GET_ALIASES(ch) = (GET_ALIASES(ch))->next;

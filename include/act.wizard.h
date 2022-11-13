@@ -19,6 +19,8 @@ extern void snoop_check(struct char_data *ch);
 extern void copyover_check(void);
 
 // commands
+extern ACMD(do_findkey);
+extern ACMD(do_copyover);
 extern ACMD(do_echo);
 extern ACMD(do_send);
 extern ACMD(do_at);

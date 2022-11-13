@@ -27,7 +27,6 @@
 #include "dg_event.h"
 #include "mobact.h"
 #include "magic.h"
-#include "imc.h"
 #include "objsave.h"
 #include "genolc.h"
 #include "class.h"
@@ -68,7 +67,7 @@ int dg_act_check;               /* toggle for act_trigger */
 unsigned long pulse = 0;        /* number of pulses since game start */
 bool fCopyOver;          /* Are we booting in copyover mode? */
 uint16_t port;
-socklen_t mother_desc;
+
 char *last_act_message = NULL;
 
 /***********************************************************************
@@ -179,7 +178,7 @@ void init_game(uint16_t cmport)
 
   if (!fCopyOver) { /* If copyover mother_desc is already set up */
   log("Opening mother connection.");
-  mother_desc = init_socket(cmport);
+  // mother_desc = init_socket(cmport);
   }
 
 
@@ -189,10 +188,6 @@ void init_game(uint16_t cmport)
   init_lookup_table();
 
   boot_db();
-
-  if (CONFIG_IMC_ENABLED) {
-    imc_startup(FALSE, -1, FALSE); // FALSE arg, so the autoconnect setting can govern it.
-  }
 
        FILE *mapfile;
        int rowcounter, colcounter;
@@ -226,7 +221,7 @@ void init_game(uint16_t cmport)
 
   log("Entering game loop.");
 
-  game_loop(mother_desc);
+  //game_loop(mother_desc);
 
   Crash_save_all();
 
@@ -234,11 +229,7 @@ void init_game(uint16_t cmport)
   while (descriptor_list)
     close_socket(descriptor_list);
 
-  close(mother_desc);
-
-  if (CONFIG_IMC_ENABLED) {
-    imc_shutdown(FALSE);
-  }
+  //close(mother_desc);
 
   if (circle_reboot != 2)
     save_all();
@@ -260,49 +251,9 @@ void init_game(uint16_t cmport)
  * init_socket sets up the mother descriptor - creates the socket, sets
  * its options up, binds it, and listens.
  */
-socklen_t init_socket(uint16_t cmport)
+int init_socket(uint16_t cmport)
 {
-  socklen_t s;
-  struct sockaddr_in sa;
-  int opt;
 
-    if ((s = socket(PF_INET, SOCK_STREAM, 0)) < 0) {
-        perror("SYSERR: Error creating socket");
-        exit(1);
-    }
-
-    opt = 1;
-    if (setsockopt(s, SOL_SOCKET, SO_REUSEADDR, (char *) &opt, sizeof(opt)) < 0){
-        perror("SYSERR: setsockopt REUSEADDR");
-        exit(1);
-    }
-
-  set_sendbuf(s);
-
-    {
-        struct linger ld;
-
-        ld.l_onoff = 0;
-        ld.l_linger = 0;
-        if (setsockopt(s, SOL_SOCKET, SO_LINGER, (char *) &ld, sizeof(ld)) < 0)
-            perror("SYSERR: setsockopt SO_LINGER");	/* Not fatal I suppose. */
-    }
-
-  /* Clear the structure */
-  memset((char *)&sa, 0, sizeof(sa));
-
-  sa.sin_family = AF_INET;
-  sa.sin_port = htons(cmport);
-  sa.sin_addr = *(get_bind_addr());
-
-  if (bind(s, (struct sockaddr *) &sa, sizeof(sa)) < 0) {
-    perror("SYSERR: bind");
-    close(s);
-    exit(1);
-  }
-  nonblock(s);
-  listen(s, 5);
-  return (s);
 }
 
 
@@ -320,260 +271,9 @@ int get_max_players(void)
  * output and sending it out to players, and calling "heartbeat" functions
  * such as mobile_activity().
  */
-void game_loop(socklen_t cmmother_desc)
+void game_loop(int cmmother_desc)
 {
-  fd_set input_set, output_set, exc_set, null_set;
-  struct timeval last_time, opt_time, process_time, temp_time;
-  struct timeval before_sleep, now, timeout;
-  char comm[MAX_INPUT_LENGTH];
-  struct descriptor_data *d, *next_d;
-  int missed_pulses, maxdesc, aliased, top_desc;
 
-  /* initialize various time values */
-  null_time.tv_sec = 0;
-  null_time.tv_usec = 0;
-  opt_time.tv_usec = OPT_USEC;
-  opt_time.tv_sec = 0;
-  FD_ZERO(&null_set);
-
-  gettimeofday(&last_time, (struct timezone *) 0);
-
-  /* The Main Loop.  The Big Cheese.  The Top Dog.  The Head Honcho.  The.. */
-  while (!circle_shutdown) {
-
-    /* Sleep if we don't have any connections */
-    if (descriptor_list == NULL) {
-       if (CONFIG_IMC_ENABLED) {
-         top_desc = this_imcmud != NULL ? MAX( cmmother_desc, this_imcmud->desc ) : cmmother_desc;
-       } else {
-         top_desc = cmmother_desc;
-       }
-      if (!CONFIG_IMC_ENABLED) {
-       log("No connections.  Going to sleep.");
-      }
-      FD_ZERO(&input_set);
-      FD_SET(cmmother_desc, &input_set);
-
-       if (CONFIG_IMC_ENABLED) {
-         if ( this_imcmud != NULL && this_imcmud->desc != -1 )
-            FD_SET(this_imcmud->desc, &input_set);
-       }
-        if (select(top_desc + 1, &input_set, (fd_set *) 0, (fd_set *) 0, NULL) < 0) {
-            if (errno == EINTR)
-                log("Waking up to process signal.");
-            else
-                perror("SYSERR: Select coma");
-        } else
-        if (!CONFIG_IMC_ENABLED) {
-            log("New connection.  Waking up.");
-        }
-      gettimeofday(&last_time, (struct timezone *) 0);
-    }
-    /* Set up the input, output, and exception sets for select(). */
-    FD_ZERO(&input_set);
-    FD_ZERO(&output_set);
-    FD_ZERO(&exc_set);
-    FD_SET(cmmother_desc, &input_set);
-
-    maxdesc = cmmother_desc;
-    for (d = descriptor_list; d; d = d->next) {
-        if (d->descriptor > maxdesc)
-            maxdesc = d->descriptor;
-      FD_SET(d->descriptor, &input_set);
-      FD_SET(d->descriptor, &output_set);
-      FD_SET(d->descriptor, &exc_set);
-    }
-
-    /*
-     * At this point, we have completed all input, output and heartbeat
-     * activity from the previous iteration, so we have to put ourselves
-     * to sleep until the next 0.1 second tick.  The first step is to
-     * calculate how long we took processing the previous iteration.
-     */
-    
-    gettimeofday(&before_sleep, (struct timezone *) 0); /* current time */
-    timediff(&process_time, &before_sleep, &last_time);
-
-    /*
-     * If we were asleep for more than one pass, count missed pulses and sleep
-     * until we're resynchronized with the next upcoming pulse.
-     */
-    if (process_time.tv_sec == 0 && process_time.tv_usec < OPT_USEC) {
-      missed_pulses = 0;
-    } else {
-      missed_pulses = process_time.tv_sec * PASSES_PER_SEC;
-      missed_pulses += process_time.tv_usec / OPT_USEC;
-      process_time.tv_sec = 0;
-      process_time.tv_usec = process_time.tv_usec % OPT_USEC;
-    }
-
-    /* Calculate the time we should wake up */
-    timediff(&temp_time, &opt_time, &process_time);
-    timeadd(&last_time, &before_sleep, &temp_time);
-
-    /* Now keep sleeping until that time has come */
-    gettimeofday(&now, (struct timezone *) 0);
-    timediff(&timeout, &last_time, &now);
-
-    /* Go to sleep */
-    do {
-      circle_sleep(&timeout);
-      gettimeofday(&now, (struct timezone *) 0);
-      timediff(&timeout, &last_time, &now);
-    } while (timeout.tv_usec || timeout.tv_sec);
-
-    /* Poll (without blocking) for new input, output, and exceptions */
-      if (select(maxdesc + 1, &input_set, &output_set, &exc_set, &null_time) < 0) {
-          perror("SYSERR: Select poll");
-          return;
-      }
-
-    /* If there are new connections waiting, accept them. */
-    if (FD_ISSET(cmmother_desc, &input_set))
-      new_descriptor(cmmother_desc);
-
-    /* Kick out the freaky folks in the exception set and marked for close */
-    for (d = descriptor_list; d; d = next_d) {
-      next_d = d->next;
-      if (FD_ISSET(d->descriptor, &exc_set)) {
-	FD_CLR(d->descriptor, &input_set);
-	FD_CLR(d->descriptor, &output_set);
-	close_socket(d);
-      }
-    }
-
-    /* Process descriptors with input pending */
-    for (d = descriptor_list; d; d = next_d) {
-      next_d = d->next;
-      if (FD_ISSET(d->descriptor, &input_set))
-	if (process_input(d) < 0)
-        close_socket(d);
-    }
-
-    /* Process commands we just read from process_input */
-    for (d = descriptor_list; d; d = next_d) {
-      next_d = d->next;
-
-      /*
-       * Not combined to retain --(d->wait) behavior. -gg 2/20/98
-       * If no wait state, no subtraction.  If there is a wait
-       * state then 1 is subtracted. Therefore we don't go less
-       * than 0 ever and don't require an 'if' bracket. -gg 2/27/99
-       */
-
-      if (d->character) {
-        GET_WAIT_STATE(d->character) -= (GET_WAIT_STATE(d->character) > 0);
-
-        if (GET_WAIT_STATE(d->character)) {
-          continue;
-        }
-      }
-
-      if (!get_from_q(&d->input, comm, &aliased))
-           continue;
-
-      if (d->character) {
-	/* Reset the idle timer & pull char back from void if necessary */
-	d->character->timer = 0;
-	if (STATE(d) == CON_PLAYING && GET_WAS_IN(d->character) != NOWHERE) {
-	  if (IN_ROOM(d->character) != NOWHERE)
-	    char_from_room(d->character);
-	  char_to_room(d->character, GET_WAS_IN(d->character));
-	  GET_WAS_IN(d->character) = NOWHERE;
-	  act("$n has returned.", TRUE, d->character, 0, 0, TO_ROOM);
-	}
-        GET_WAIT_STATE(d->character) = 1;
-      }
-      d->has_prompt = FALSE;
-
-      if (d->showstr_count) /* Reading something w/ pager */
-	show_string(d, comm);
-      else if (d->str)		/* Writing boards, mail, etc. */
-	string_add(d, comm);
-      else if (STATE(d) != CON_PLAYING) /* In menus, etc. */
-	nanny(d, comm);
-      else {			/* else: we're playing normally. */
-	if (aliased)		/* To prevent recursive aliases. */
-	  d->has_prompt = TRUE;	/* To get newline before next cmd output. */
-	else if (perform_alias(d, comm, sizeof(comm)))    /* Run it through aliasing system */
-	  get_from_q(&d->input, comm, &aliased);
-	command_interpreter(d->character, comm); /* Send it to interpreter */
-      }
-    }
-
-    /* Send queued output out to the operating system (ultimately to user). */
-    for (d = descriptor_list; d; d = next_d) {
-      next_d = d->next;
-      if (*(d->output) && FD_ISSET(d->descriptor, &output_set)) {
-	/* Output for this player is ready */
-	if (process_output(d) < 0) {
-        close_socket(d);
-	  log("ERROR: Tried to send output to dead socket!");
-        }
-	else
-	  d->has_prompt = 1;
-      }
-    }
-
-    /* Print prompts for other descriptors who had no other output */
-    for (d = descriptor_list; d; d = d->next) {
-      if (!d->has_prompt) {
-        write_to_output(d, "@n");
-        /*write_to_descriptor(d->descriptor, make_prompt(d), d->comp);*/
-        d->has_prompt = TRUE;
-      }
-    }
-
-    /* Kick out folks in the CON_CLOSE or CON_DISCONNECT state */
-    for (d = descriptor_list; d; d = next_d) {
-      next_d = d->next;
-      if (STATE(d) == CON_CLOSE || STATE(d) == CON_DISCONNECT)
-          close_socket(d);
-    }
-
-    /*
-     * Now, we execute as many pulses as necessary--just one if we haven't
-     * missed any pulses, or make up for lost time if we missed a few
-     * pulses by sleeping for too long.
-     */
-    missed_pulses++;
-
-    if (missed_pulses <= 0) {
-      log("SYSERR: **BAD** MISSED_PULSES NONPOSITIVE (%d), TIME GOING BACKWARDS!!", missed_pulses);
-      missed_pulses = 1;
-    }
-
-    /* If we missed more than 30 seconds worth of pulses, just do 30 secs */
-    if (missed_pulses > 30 RL_SEC) {
-      log("SYSERR: Missed %d seconds worth of pulses.", missed_pulses / PASSES_PER_SEC);
-      missed_pulses = 30 RL_SEC;
-    }
-
-    if (CONFIG_IMC_ENABLED) {
-      imc_loop();
-    }
-
-    /* Now execute the heartbeat functions */
-    while (missed_pulses--)
-      heartbeat(++pulse);
-
-    /* Check for any signals we may have received. */
-    if (reread_wizlist) {
-      reread_wizlist = FALSE;
-      mudlog(CMP, ADMLVL_IMMORT, TRUE, "Signal received - rereading wizlists.");
-      reboot_wizlists();
-    }
-    if (emergency_unban) {
-      emergency_unban = FALSE;
-      mudlog(BRF, ADMLVL_IMMORT, TRUE, "Received SIGUSR2 - completely unrestricting game (emergent)");
-      ban_list = NULL;
-      circle_restrict = 0;
-      num_invalid = 0;
-    }
-
-      /* Update tics for deadlock protection */
-      tics_passed++;
-  }
 }
 
 
@@ -1829,43 +1529,13 @@ void free_bufpool(void)
 
 struct in_addr *get_bind_addr()
 {
-  static struct in_addr bind_addr;
 
-  /* Clear the structure */
-  memset((char *) &bind_addr, 0, sizeof(bind_addr));
-
-  /* If DLFT_IP is unspecified, use INADDR_ANY */
-  if (CONFIG_DFLT_IP == NULL) {
-    bind_addr.s_addr = htonl(INADDR_ANY);
-  } else {
-    /* If the parsing fails, use INADDR_ANY */
-    if (!inet_aton(CONFIG_DFLT_IP, &bind_addr)) {
-      log("SYSERR: DFLT_IP of %s appears to be an invalid IP address",
-          CONFIG_DFLT_IP);
-      bind_addr.s_addr = htonl(INADDR_ANY);
-    }
-  }
-
-  /* Put the address that we've finally decided on into the logs */
-  if (bind_addr.s_addr == htonl(INADDR_ANY))
-    log("Binding to all IP interfaces on this host.");
-  else
-    log("Binding only to IP address %s", inet_ntoa(bind_addr));
-
-  return (&bind_addr);
 }
 
 /* Sets the kernel's send buffer size for the descriptor */
-int set_sendbuf(socklen_t s)
+int set_sendbuf(int s)
 {
-    int opt = MAX_SOCK_BUF;
 
-    if (setsockopt(s, SOL_SOCKET, SO_SNDBUF, (char *) &opt, sizeof(opt)) < 0) {
-        perror("SYSERR: setsockopt SNDBUF");
-        return (-1);
-    }
-
-  return (0);
 }
 
 /* Initialize a descriptor */
@@ -1915,75 +1585,9 @@ void set_color(struct descriptor_data *d)
   return;
 }
 
-int new_descriptor(socklen_t s)
+int new_descriptor(int s)
 {
-  socklen_t desc;
-  int sockets_connected = 0;
-  socklen_t i;
-  struct descriptor_data *newd;
-  struct sockaddr_in peer;
-  struct hostent *from = NULL;
 
-  /* accept the new connection */
-  i = sizeof(peer);
-  if ((desc = accept(s, (struct sockaddr *) &peer, &i)) == INVALID_SOCKET) {
-    perror("SYSERR: accept");
-    return (-1);
-  }
-  /* keep it from blocking */
-  nonblock(desc);
-
-  /* set the send buffer size */
-  if (set_sendbuf(desc) < 0) {
-      close(desc);
-    return (0);
-  }
-
-  /* make sure we have room for it */
-  for (newd = descriptor_list; newd; newd = newd->next)
-    sockets_connected++;
-
-  if (sockets_connected >= CONFIG_MAX_PLAYING) {
-    write_to_descriptor(desc, "Sorry, CircleMUD is full right now... please try again later!\r\n");
-      close(desc);
-    return (0);
-  }
-  /* create a new descriptor */
-  CREATE(newd, struct descriptor_data, 1);
-
-  /* find the sitename */
-  if (CONFIG_NS_IS_SLOW ||
-      !(from = gethostbyaddr((char *) &peer.sin_addr,
-				      sizeof(peer.sin_addr), AF_INET))) {
-
-    /* resolution failed */
-
-    /* find the numeric site address */
-    strncpy(newd->host, (char *)inet_ntoa(peer.sin_addr), HOST_LENGTH);	/* strncpy: OK (n->host:HOST_LENGTH+1) */
-    newd->host[HOST_LENGTH] = '\0';
-  } else {
-    strncpy(newd->host, from->h_name, HOST_LENGTH);	/* strncpy: OK (n->host:HOST_LENGTH+1) */
-    newd->host[HOST_LENGTH] = '\0';
-  }
-
-  /* determine if the site is banned */
-  if (isbanned(newd->host) == BAN_ALL) {
-      close(desc);
-    mudlog(CMP, ADMLVL_GOD, TRUE, "Connection attempt denied from [%s]", newd->host);
-    free(newd);
-    return (0);
-  }
-
-  /* initialize descriptor data */
-  init_descriptor(newd, desc);
-
-  /* prepend to list */
-  newd->next = descriptor_list;
-  descriptor_list = newd;
-
-  set_color(newd);
-
-  return (0);
 }
 
 
@@ -2104,7 +1708,7 @@ int process_output(struct descriptor_data *t)
  */
 
 /* perform_socket_write for all Non-Windows platforms */
-ssize_t perform_socket_write(socklen_t desc, const char *txt, size_t length)
+ssize_t perform_socket_write(int desc, const char *txt, size_t length)
 {
   ssize_t result = 0;
 
@@ -2147,7 +1751,7 @@ ssize_t perform_socket_write(socklen_t desc, const char *txt, size_t length)
  * >=0  If all is well and good.
  *  -1  If an error was encountered, so that the player should be cut off.
  */
-int write_to_descriptor(socklen_t desc, const char *txt)
+int write_to_descriptor(int desc, const char *txt)
 {
   ssize_t bytes_written;
   size_t total = strlen(txt), write_total = 0;
@@ -2177,7 +1781,7 @@ int write_to_descriptor(socklen_t desc, const char *txt)
  * Same information about perform_socket_write applies here. I like
  * standards, there are so many of them. -gg 6/30/98
  */
-ssize_t perform_socket_read(socklen_t desc, char *read_point, size_t space_left)
+ssize_t perform_socket_read(int desc, char *read_point, size_t space_left)
 {
   ssize_t ret;
 
@@ -2617,16 +2221,9 @@ void check_idle_menu(void)
  * this and various other NeXT fixes.)
  */
 
-void nonblock(socklen_t s)
+void nonblock(int s)
 {
-    int flags;
 
-    flags = fcntl(s, F_GETFL, 0);
-    flags |= O_NONBLOCK;
-    if (fcntl(s, F_SETFL, flags) < 0) {
-        perror("SYSERR: Fatal error executing nonblock (comm.c)");
-        exit(1);
-    }
 }
 
 
@@ -2648,9 +2245,7 @@ void unrestrict_game(int sig)
 /* clean up our zombie kids to avoid defunct processes */
 void reap(int sig)
 {
-  while (waitpid(-1, NULL, WNOHANG) > 0);
 
-  signal(SIGCHLD, reap);
 }
 
 /* Dying anyway... */
@@ -2690,36 +2285,7 @@ void hupsig(int sig)
 
 void signal_setup(void)
 {
-  struct itimerval itime;
-  struct timeval interval;
 
-  /* user signal 1: reread wizlists.  Used by autowiz system. */
-  signal(SIGUSR1, reread_wizlists);
-
-  /*
-   * user signal 2: unrestrict game.  Used for emergencies if you lock
-   * yourself out of the MUD somehow.  (Duh...)
-   */
-  signal(SIGUSR2, unrestrict_game);
-
-  /*
-   * set up the deadlock-protection so that the MUD aborts itself if it gets
-   * caught in an infinite loop for more than 3 minutes.
-   */
-  interval.tv_sec = 180;
-  interval.tv_usec = 0;
-  itime.it_interval = interval;
-  itime.it_value = interval;
-  setitimer(ITIMER_VIRTUAL, &itime, NULL);
-  signal(SIGVTALRM, checkpointing);
-
-  /* just to be on the safe side: */
-  signal(SIGHUP, hupsig);
-  signal(SIGCHLD, reap);
-  signal(SIGINT, hupsig);
-  signal(SIGTERM, hupsig);
-  signal(SIGPIPE, SIG_IGN);
-  signal(SIGALRM, SIG_IGN);
 }
 
 /* ****************************************************************
@@ -3266,12 +2832,7 @@ int open_logfile(const char *filename, FILE *stderr_fp)
 
 void circle_sleep(struct timeval *timeout)
 {
-    if (select(0, (fd_set *) 0, (fd_set *) 0, (fd_set *) 0, timeout) < 0) {
-        if (errno != EINTR) {
-            perror("SYSERR: Select sleep");
-            exit(1);
-        }
-    }
+
 }
 
 void show_help(struct descriptor_data *t, const char *entry)

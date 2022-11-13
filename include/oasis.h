@@ -10,6 +10,7 @@
 
 #include "structs.h"
 
+extern ACMD(do_iedit);
 
 #define _OASISOLC	0x206   /* 2.0.6 */
 /*
@@ -26,10 +27,8 @@
  * Macros, defines, structs and globals for the OLC suite.  You will need
  * to adjust these numbers if you ever add more.
  */
-#define NUM_ZONE_FLAGS          36
 
 #define NUM_GENDERS		3
-#define NUM_SHOP_FLAGS 		3
 
 /* -------------------------------------------------------------------------- */
 
@@ -94,8 +93,6 @@ extern void send_cannot_edit(struct char_data *ch, zone_vnum zone);
 /*
  * The following defines used to be in config.c.
  */
-#define NO	0
-#define YES	1
 
 struct oasis_olc_data {
   int mode;                      /* how to parse input       */
@@ -498,10 +495,7 @@ struct oasis_olc_data {
 /*
  * Prototypes to keep.
  */
-#ifndef ACMD
-#define ACMD(name)  \
-   void name(struct char_data *ch, char *argument, int cmd, int subcmd)
-#endif
+
 extern void clear_screen(struct descriptor_data *);
 extern ACMD(do_oasis);
 
@@ -794,8 +788,8 @@ extern int can_edit_zone(struct char_data *ch, zone_rnum rnum);
 #define CONTEXT_SCRIPT_DEL_TRIGGER		123
 #define CONTEXT_ZEDIT_ARG4			124
 #define CONTEXT_GEDIT_MAIN_MENU             	125
-#define CONTEXT_GEDIT_CONFIRM_SAVESTRING        126
-#define CONTEXT_GEDIT_NO_CASH                   127
+#define CONTEXT_GEDIT_CONFIRM_SAVESTRING 126
+#define CONTEXT_GEDIT_NO_CASH 127
 #define CONTEXT_GEDIT_NO_SKILL                  128
 #define CONTEXT_GEDIT_NUMERICAL_RESPONSE        129
 #define CONTEXT_GEDIT_CHARGE                    130

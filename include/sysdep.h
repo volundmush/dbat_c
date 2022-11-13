@@ -92,6 +92,8 @@ typedef uint32_t bitvector_t;
 #define FALSE 0
 #define TRUE 1
 
+#define NO 0
+#define YES 1
 
 #define ACMD(name) void (name)(struct char_data *ch, char *argument, int cmd, int subcmd)
 typedef int(*SpecialFunc)(struct char_data *ch, void *me, int cmd, char *argument);

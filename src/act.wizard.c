@@ -2552,7 +2552,7 @@ static void execute_copyover(void)
   /* exec - descriptors are inherited */
 
   sprintf (buf, "%d", port);
-  sprintf (buf2, "-C%d", mother_desc);
+  //sprintf (buf2, "-C%d", mother_desc);
   chdir ("..");
   execl (EXE_FILE, "circle", buf2, buf, (char *) NULL);
   /* Failed - sucessful exec will not return */

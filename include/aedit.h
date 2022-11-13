@@ -17,5 +17,5 @@ extern int aedit_find_command(const char *txt);
 
 // commands
 extern ACMD(do_oasis_aedit);
-
+extern ACMD(do_astat);
 #endif //CIRCLE_AEDIT_H

@@ -70,7 +70,6 @@
 #include "reset.h"
 #include "screen.h"
 #include "sedit.h"
-#include "sha256.h"
 #include "ship.h"
 #include "shop.h"
 #include "spec_assign.h"
