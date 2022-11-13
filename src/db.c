@@ -47,29 +47,29 @@
 
 struct config_data config_info; /* Game configuration list.    */
 
-struct room_data *world = NULL;	/* array of rooms		 */
+room_data *world = NULL;	/* array of rooms		 */
 room_rnum top_of_world = 0;	/* ref to top element of world	 */
 struct htree_node *room_htree = NULL;	/* hash tree for fast room lookup */
 
 struct char_data *character_list = NULL; /* global linked list of chars	 */
 struct char_data *affect_list = NULL; /* global linked list of chars with affects */
 struct char_data *affectv_list = NULL; /* global linked list of chars with round-based affects */
-struct index_data *mob_index;	/* index table for mobile file	 */
-struct char_data *mob_proto;	/* prototypes for mobs		 */
+index_data *mob_index;	/* index table for mobile file	 */
+char_data *mob_proto;	/* prototypes for mobs		 */
 mob_rnum top_of_mobt = 0;	/* top of mobile index table	 */
 struct htree_node *mob_htree = NULL;	/* hash tree for fast mob lookup */
 
 struct obj_data *object_list = NULL;	/* global linked list of objs	 */
-struct index_data *obj_index;	/* index table for object file	 */
-struct obj_data *obj_proto;	/* prototypes for objs		 */
+index_data *obj_index;	/* index table for object file	 */
+obj_data *obj_proto;	/* prototypes for objs		 */
 obj_rnum top_of_objt = 0;	/* top of object index table	 */
 struct htree_node *obj_htree = NULL;	/* hash tree for fast obj lookup */
 
-struct zone_data *zone_table;	/* zone table			 */
+zone_data *zone_table;	/* zone table			 */
 zone_rnum top_of_zone_table = 0;/* top element of zone tab	 */
 struct message_list fight_messages[MAX_MESSAGES];	/* fighting messages	 */
 
-struct index_data **trig_index; /* index table for triggers      */
+index_data *trig_index; /* index table for triggers      */
 struct trig_data *trigger_list = NULL;  /* all attached triggers */
 int top_of_trigt = 0;           /* top of trigger index table    */
 long max_mob_id = MOB_ID_BASE;  /* for unique mob id's       */

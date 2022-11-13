@@ -270,8 +270,7 @@ void boot_social_messages(void)
 void create_command_list(void) 
 { 
   int i, j, k; 
-  struct social_messg temp; 
-  extern struct command_info cmd_info[]; 
+  struct social_messg temp;
 
   /* free up old command list */ 
   if (complete_cmd_info) 

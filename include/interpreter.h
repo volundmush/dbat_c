@@ -19,6 +19,7 @@
 
 extern const char *list_bonus[];
 
+
 extern void userLoad(struct descriptor_data *d, char *name);
 extern int perform_alias(struct descriptor_data *d, char *orig, size_t maxlen);
 extern void topLoad(void);
@@ -68,6 +69,7 @@ struct command_info {
    int	subcmd;
 };
 
+extern const struct command_info cmd_info[];
 /*
  * Necessary for CMD_IS macro.  Borland needs the structure defined first
  * so it has been moved down here.

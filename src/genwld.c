@@ -9,10 +9,7 @@
 #include "utils.h"
 #include "db.h"
 #include "handler.h"
-#include "comm.h"
 #include "genolc.h"
-#include "genwld.h"
-#include "genzon.h"
 #include "shop.h"
 #include "dg_olc.h"
 #include "htree.h"
@@ -24,109 +21,7 @@
  */
 room_rnum add_room(struct room_data *room)
 {
-  struct char_data *tch;
-  struct obj_data *tobj;
-  int j, found = FALSE;
-  room_rnum i;
 
-  if (room == NULL)
-    return NOWHERE;
-
-  if ((i = real_room(room->number)) != NOWHERE) {
-    if (SCRIPT(&world[i]))
-      extract_script(&world[i], WLD_TRIGGER);
-    tch = world[i].people; 
-    tobj = world[i].contents;
-    copy_room(&world[i], room);
-    world[i].people = tch;
-    world[i].contents = tobj;
-    add_to_save_list(zone_table[room->zone].number, SL_WLD);
-    log("GenOLC: add_room: Updated existing room #%d.", room->number);
-    return i;
-  }
-
-  RECREATE(world, struct room_data, top_of_world + 2);
-  top_of_world++;
-
-  for (i = top_of_world; i > 0; i--) {
-    if (room->number > world[i - 1].number) {
-      world[i] = *room;
-      copy_room_strings(&world[i], room);
-      found = i;
-      break;
-    } else {
-      /* Copy the room over now. */
-      world[i] = world[i - 1];
-      update_wait_events(&world[i], &world[i-1]);
-
-      /* People in this room must have their in_rooms moved up one. */
-      for (tch = world[i].people; tch; tch = tch->next_in_room)
-	IN_ROOM(tch) += (IN_ROOM(tch) != NOWHERE);
-
-      /* Move objects too. */
-      for (tobj = world[i].contents; tobj; tobj = tobj->next_content)
-	IN_ROOM(tobj) += (IN_ROOM(tobj) != NOWHERE);
-    }
-    htree_add(room_htree, world[i].number, i);
-  }
-  if (!found) {
-    world[0] = *room;	/* Last place, in front. */
-    copy_room_strings(&world[0], room);
-  }
-
-  log("GenOLC: add_room: Added room %d at index #%d.", room->number, found);
-
-  /* found is equal to the array index where we added the room. */
-
-  /*
-   * Find what zone that room was in so we can update the loading table.
-   */
-  for (i = room->zone; i <= top_of_zone_table; i++)
-    for (j = 0; ZCMD(i, j).command != 'S'; j++)
-      switch (ZCMD(i, j).command) {
-      case 'M':
-      case 'O':
-      case 'T':
-      case 'V':
-        ZCMD(i, j).arg3 += (ZCMD(i, j).arg3 != NOWHERE && ZCMD(i, j).arg3 >= found);
-	break;
-      case 'D':
-      case 'R':
-        ZCMD(i, j).arg1 += (ZCMD(i, j).arg1 != NOWHERE && ZCMD(i, j).arg1 >= found);
-      case 'G':
-      case 'P':
-      case 'E':
-      case '*':
-	/* Known zone entries we don't care about. */
-        break;
-      default:
-        mudlog(BRF, ADMLVL_GOD, TRUE, "SYSERR: GenOLC: add_room: Unknown zone entry found!");
-      }
-      
-  /*
-   * Update the loadroom table. Adds 1 or 0.
-   */
-  r_mortal_start_room += (r_mortal_start_room >= found);
-  r_immort_start_room += (r_immort_start_room >= found);
-  r_frozen_start_room += (r_frozen_start_room >= found);
-
-  /*
-   * Update world exits.
-   */
-  i = top_of_world + 1;
-  do {
-    i--;
-    for (j = 0; j < NUM_OF_DIRS; j++)
-      if (W_EXIT(i, j) && W_EXIT(i, j)->to_room != NOWHERE)
-	W_EXIT(i, j)->to_room += (W_EXIT(i, j)->to_room >= found);
-  } while (i > 0);
-
-  add_to_save_list(zone_table[room->zone].number, SL_WLD);
-
-  /*
-   * Return what array entry we placed the new room in.
-   */
-  return found;
 }
 
 /* -------------------------------------------------------------------------- */

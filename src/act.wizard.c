@@ -1272,7 +1272,6 @@ ACMD(do_vnum)
  
 void list_zone_commands_room(struct char_data *ch, room_vnum rvnum)
 {
-  extern struct index_data **trig_index;
   zone_rnum zrnum = real_zone_by_thing(rvnum);
   room_rnum rrnum = real_room(rvnum), cmd_room = NOWHERE;
   int subcmd = 0, count = 0;
@@ -3363,8 +3362,6 @@ static size_t print_zone_to_buf(char *bufptr, size_t left, zone_rnum zone, int l
   
   if (listall) {
     int i, j, k, l, m, n, o;
-    extern int top_of_trigt;
-    extern struct index_data **trig_index;
     int count_shops(shop_vnum low, shop_vnum high);
     int count_guilds(guild_vnum low, guild_vnum high);
 
@@ -3430,7 +3427,6 @@ ACMD(do_show)
   struct affected_type *aff;
   char field[MAX_INPUT_LENGTH], value[MAX_INPUT_LENGTH], *strp,
 	arg[MAX_INPUT_LENGTH], buf[MAX_STRING_LENGTH];
-  extern int top_of_trigt;
 
   struct show_struct {
     const char *cmd;

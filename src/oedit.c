@@ -1802,7 +1802,6 @@ void iedit_setup_existing(struct descriptor_data *d, struct obj_data *real_num)
 ACMD(do_iedit) {
   struct obj_data *k;
   int found=0;
-  extern struct room_data *world;
   char arg[MAX_INPUT_LENGTH];
 
   one_argument(argument, arg);

@@ -13,7 +13,6 @@
 #include "db.h"
 
 
-extern struct room_data *world;  
 extern struct obj_data *find_control(struct char_data *ch);
 int mapnums[MAP_ROWS+1][MAP_COLS+1];  
 

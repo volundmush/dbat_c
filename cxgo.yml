@@ -16,7 +16,28 @@ idents:
     rename: netpoll_select
   - name: perror
     rename: fmt.Println
-
+  - name: world
+    type: slice
+  - name: zone_table
+    type: slice
+  - name: obj_proto
+    type: slice
+  - name: obj_index
+    type: slice
+  - name: mob_proto
+    type: slice
+  - name: mob_index
+    type: slice
+  - name: zone_data
+    fields:
+      - name: cmd
+        type: slice
+  - name: trig_index
+    type: slice
+  - name: basic_mud_log
+    fields:
+      - name: format
+        type: string
 
 files:
   - name: "include/*.h"

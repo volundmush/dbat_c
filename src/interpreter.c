@@ -101,7 +101,7 @@ struct command_info *complete_cmd_info;
  * priority.
  */
 
-cpp_extern const struct command_info cmd_info[] = {
+const struct command_info cmd_info[] = {
   { "RESERVED", "", 0, 0, 0, ADMLVL_NONE	, 0 },     /* this must be first -- for specprocs */
 
   /* directions must come before other commands but after RESERVED */

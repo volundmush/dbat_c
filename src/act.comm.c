@@ -1172,7 +1172,6 @@ static char *overhear(char *buf, int type)
  */
 ACMD(do_write)
 {
-  extern struct index_data *obj_index;
   struct obj_data *paper, *pen = NULL, *obj;
   char *papername, *penname;
   char buf1[MAX_STRING_LENGTH], buf2[MAX_STRING_LENGTH];
