@@ -1534,6 +1534,30 @@ src/interpreter.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/interpreter.c.s
 .PHONY : src/interpreter.c.s
 
+src/item_search.o: src/item_search.c.o
+.PHONY : src/item_search.o
+
+# target to build an object file
+src/item_search.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/item_search.c.o
+.PHONY : src/item_search.c.o
+
+src/item_search.i: src/item_search.c.i
+.PHONY : src/item_search.i
+
+# target to preprocess a source file
+src/item_search.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/item_search.c.i
+.PHONY : src/item_search.c.i
+
+src/item_search.s: src/item_search.c.s
+.PHONY : src/item_search.s
+
+# target to generate assembly for a file
+src/item_search.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/circlemud.dir/build.make CMakeFiles/circlemud.dir/src/item_search.c.s
+.PHONY : src/item_search.c.s
+
 src/local_limits.o: src/local_limits.c.o
 .PHONY : src/local_limits.o
 
@@ -2510,6 +2534,9 @@ help:
 	@echo "... src/interpreter.o"
 	@echo "... src/interpreter.i"
 	@echo "... src/interpreter.s"
+	@echo "... src/item_search.o"
+	@echo "... src/item_search.i"
+	@echo "... src/item_search.s"
 	@echo "... src/local_limits.o"
 	@echo "... src/local_limits.i"
 	@echo "... src/local_limits.s"
