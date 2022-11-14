@@ -169,41 +169,43 @@ struct obj_data *get_object_in_equip(struct char_data * ch, char *name)
   return NULL;
 }
 
+struct eq_pos_list {
+    const char *pos;
+    int where;
+} eq_pos[] = {
+        {"hold",     WEAR_WIELD2},
+        {"held",     WEAR_WIELD2},
+        {"light",    WEAR_WIELD2},
+        {"wield",    WEAR_WIELD1},
+        {"rfinger",  WEAR_FINGER_R},
+        {"lfinger",  WEAR_FINGER_L},
+        {"neck1",    WEAR_NECK_1},
+        {"neck2",    WEAR_NECK_2},
+        {"body",     WEAR_BODY},
+        {"head",     WEAR_HEAD},
+        {"legs",     WEAR_LEGS},
+        {"feet",     WEAR_FEET},
+        {"hands",    WEAR_HANDS},
+        {"arms",     WEAR_ARMS},
+        {"shield",   WEAR_WIELD2},
+        {"about",    WEAR_ABOUT},
+        {"waist",    WEAR_WAIST},
+        {"rwrist",   WEAR_WRIST_R},
+        {"lwrist",   WEAR_WRIST_L},
+        {"backpack", WEAR_BACKPACK},
+        {"rear",     WEAR_EAR_R},
+        {"lear",     WEAR_EAR_L},
+        {"shoulders",WEAR_SH},
+        {"scouter",  WEAR_EYE},
+        {"none", -1}
+};
+
 /* Handles 'held', 'light' and 'wield' positions - Welcor
    After idea from Byron Ellacott - bje@apnic.net */
 int find_eq_pos_script(char *arg)
 {
   int i;
-  struct eq_pos_list {
-    const char *pos;
-    int where;
-  } eq_pos[] = {
-    {"hold",     WEAR_WIELD2},
-    {"held",     WEAR_WIELD2},
-    {"light",    WEAR_WIELD2},
-    {"wield",    WEAR_WIELD1},
-    {"rfinger",  WEAR_FINGER_R},
-    {"lfinger",  WEAR_FINGER_L},
-    {"neck1",    WEAR_NECK_1},
-    {"neck2",    WEAR_NECK_2},
-    {"body",     WEAR_BODY},
-    {"head",     WEAR_HEAD},
-    {"legs",     WEAR_LEGS},
-    {"feet",     WEAR_FEET},
-    {"hands",    WEAR_HANDS},
-    {"arms",     WEAR_ARMS},
-    {"shield",   WEAR_WIELD2},
-    {"about",    WEAR_ABOUT},
-    {"waist",    WEAR_WAIST},
-    {"rwrist",   WEAR_WRIST_R},
-    {"lwrist",   WEAR_WRIST_L},
-    {"backpack", WEAR_BACKPACK},
-    {"rear",     WEAR_EAR_R},
-    {"lear",     WEAR_EAR_L},
-    {"shoulders",WEAR_SH},
-    {"scouter",  WEAR_EYE},
-    {"none", -1}
-  };
+
 
   if (is_number(arg) && (i = atoi(arg)) >= 0 && i < NUM_WEARS)
     return i;

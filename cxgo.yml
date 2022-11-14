@@ -16,6 +16,10 @@ idents:
     rename: netpoll_select
   - name: perror
     rename: fmt.Println
+  - name: help_table
+    type: slice
+  - name: soc_mess_list
+    type: slice
   - name: world
     type: slice
   - name: zone_table
@@ -28,16 +32,4002 @@ idents:
     type: slice
   - name: mob_index
     type: slice
+  - name: complete_cmd_info
+    type: slice
+  - name: shop_index
+    type: slice
   - name: zone_data
     fields:
       - name: cmd
         type: slice
   - name: trig_index
     type: slice
+
+
+  - name: extra_descr_data
+    fields:
+      - name: keyword
+        type: string
+      - name: description
+        type: string
+
+  - name: obj_data
+    fields:
+      - name: name
+        type: string
+      - name: description
+        type: string
+      - name: short_description
+        type: string
+      - name: action_descripton
+        type: string
+      - name: auctname
+        type: string
+
+  - name: player_special_data
+    fields:
+      - name: poofin
+        type: string
+      - name: poofout
+        type: string
+      - name: host
+        type: string
+
+  - name: char_data
+    fields:
+      - name: name
+        type: string
+      - name: short_descr
+        type: string
+      - name: long_descr
+        type: string
+      - name: description
+        type: string
+      - name: title
+        type: string
+      - name: clan
+        type: string
+      - name: voice
+        type: string
+      - name: loguser
+        type: string
+      - name: feature
+        type: string
+      - name: temp_prompt
+        type: string
+      - name: rdisplay
+        type: string
+
+  - name: descriptor_data
+    fields:
+      - name: showstr_head
+        type: string
+      - name: backstr
+        type: string
+      - name: output
+        type: string
+      - name: history
+        type: string
+      - name: user
+        type: string
+      - name: email
+        type: string
+      - name: pass
+        type: string
+      - name: loadplay
+        type: string
+      - name: tmp1
+        type: string
+      - name: tmp2
+        type: string
+      - name: tmp3
+        type: string
+      - name: tmp4
+        type: string
+      - name: tmp5
+        type: string
+      - name: newsbuf
+        type: string
+      - name: obj_was
+        type: string
+      - name: obj_name
+        type: string
+      - name: obj_short
+        type: string
+      - name: obj_long
+        type: string
+      - name: ship_name
+        type: string
+      - name: title
+        type: string
+
+  - name: msg_type
+    fields:
+      - name: attacker_msg
+        type: string
+      - name: victim_msg
+        type: string
+      - name: room_msg
+        type: string
+
+  - name: social_messg
+    fields:
+      - name: command
+        type: string
+      - name: sort_as
+        type: string
+      - name: char_no_arg
+        type: string
+      - name: others_no_arg
+        type: string
+      - name: char_found
+        type: string
+      - name: others_found
+        type: string
+      - name: vict_found
+        type: string
+      - name: char_body_found;
+        type: string
+      - name: others_Body_found
+        type: string
+      - name: vict_body_found
+        type: string
+      - name: not_found
+        type: string
+      - name: char_auto
+        type: string
+      - name: others_auto
+        type: string
+      - name: char_obj_found
+        type: string
+      - name: others_obj_found
+        type: string
+
+  - name: index_data
+    fields:
+      - name: farg
+        type: string
+
+  - name: game_data
+    fields:
+      - name: OK
+        type: string
+      - name: NOPERSON
+        type: string
+      - name: NOEFFECT
+        type: string
+
+  - name: game_operation
+    fields:
+      - name: DFLT_IP
+        type: string
+      - name: DFLT_DIR
+        type: string
+      - name: LOGNAME
+        type: string
+      - name: MENU
+        type: string
+      - name: WELC_MESSG
+        type: string
+      - name: START_MESSG
+        type: string
+
+  - name: help
+    type: string
+  - name: ihelp
+    type: string
+  - name: credits
+    type: string
+  - name: news
+    type: string
+  - name: info
+    type: string
+  - name: wizlist
+    type: string
+  - name: immlist
+    type: background
+  - name: policies
+    type: string
+  - name: handbook
+    type: string
+  - name: motd
+    type: string
+  - name: imotd
+    type: string
+  - name: GREETINGS
+    type: string
+  - name: GREETANSI
+    type: string
+
+  - name: reset_com
+    fields:
+      - name: sarg1
+        type: string
+      - name: sarg2
+        type: string
+
+  - name: zone_data
+    fields:
+      - name: name
+        type: string
+      - name: builders
+        type: string
+
+  - name: player_index_element
+    fields:
+      - name: name
+        type: string
+      - name: clan
+        type: string
+
+  - name: help_index_element
+    fields:
+      - name: index
+        type: string
+      - name: keywords
+        type: string
+      - name: entry
+        type: string
+
+  - name: ban_list_elmement
+    fields:
+      - name: site
+        type: string
+      - name: name
+        type: string
+
+  - name: disabled_data
+    fields:
+      - name: disabled_by
+        type: string
+
+  - name: board_msg
+    fields:
+      - name: subject
+        type: string
+      - name: data
+        type: string
+      - name: name
+        type: string
+
+  - name: board_memory
+    fields:
+      - name: name
+        type: string
+
+  - name: cmdlist_element
+    fields:
+      - name: cmd
+        type: string
+
+  - name: trig_var_data
+    fields:
+      - name: name
+        type: string
+      - name: value
+        type: string
+
+  - name: trig_data
+    fields:
+      - name: name
+        type: string
+      - name: arglist
+        type: string
+
+  - name: script_memory
+    fields:
+      - name: cmd
+        type: string
+
+
+  - name: feat_info
+    fields:
+      - name: name
+        type: string
+
+  - name: guild_data
+    fields:
+      - name: no_such_skill
+        type: string
+      - name: not_enough_gold
+        type: string
+
+  - name: command_info
+    fields:
+      - name: command
+        type: string
+      - name: sort_as
+        type: string
+
+  - name: alias_data
+    fields:
+      - name: alias
+        type: string
+      - name: replacement
+        type: string
+
+  - name: oasis_olc_data
+    fields:
+      - name: storage
+        type: string
+
+  - name: shop_buy_data
+    fields:
+      - name: keywords
+        type: string
+
+  - name: shop_data
+    fields:
+      - name: producing
+        type: slice
+      - name: no_such_item1
+        type: string
+      - name: no_such_item2
+        type: string
+      - name: missing_cash1
+        type: string
+      - name: missing_cash2
+        type: string
+      - name: do_not_buy
+        type: string
+      - name: message_buy
+        type: string
+      - name: message_sell
+        type: string
+
+  - name: spell_info_type
+    fields:
+      - name: name
+        type: string
+      - name: wear_off_msg
+        type: string
+
+  - name: attack_hit_type
+    fields:
+      - name: singular
+        type: string
+      - name: plural
+        type: string
+
+  - name: room_direction_data
+    fields:
+      - name: general_description
+        type: string
+      - name: keyword
+        type: string
+
+  - name: room_data
+    fields:
+      - name: name
+        type: string
+      - name: description
+        type: string
+
+  - name: txt_block
+    fields:
+      - name: text
+        type: string
+
+  - name: config_data
+    fields:
+      - name: CONFFILE
+        type: string
+
+  - name: syllable
+    fields:
+      - name: org
+        type: string
+      - name: news
+        type: string
+
+  - name: file_struct
+    fields:
+      - name: cmd
+        type: string
+      - name: file
+        type: string
+
+  - name: show_struct
+    fields:
+      - name: cmd
+        type: string
+
+  - name: set_struct
+    fields:
+      - name: cmd
+        type: string
+
+  - name: zcheck_armor
+    fields:
+      - name: message
+        type: string
+
+  - name: zcheck_affs
+    fields:
+      - name: message
+        type: string
+
+  - name: clan_data
+    fields:
+      - name: name
+        type: string
+      - name: info
+        type: string
+      - name: highrank
+        type: string
+      - name: midrank
+        type: string
+
+  - name: obj_command_info
+    fields:
+      - name: command
+        type: string
+
+  - name: eq_post_list
+    fields:
+      - name: pos
+        type: string
+
+  - name: wld_command_info
+    fields:
+      - name: command
+        type: string
+
+  - name: old_scmd_info_t
+    fields:
+      - name: text
+        type: string
+
+  # functions: act.informative.h
+  - name: find_exdesc
+    fields:
+      - name: word
+        type: string
+  - name: add_history
+    fields:
+      - name: str
+        type: string
+  - name: introWrite
+    fields:
+      - name: name
+        type: string
+  - name: search_help
+    fields:
+      - name: argument
+        type: string
+
+  # functions: act.item.h
+  - name: find_eq_pos
+    fields:
+      - name: arg
+        type: string
+
+  # functions: act.misc.h
+  - name: rpp_feature
+    fields:
+      - name: arg
+        type: string
+
+  # functions: act.movement.h
+  - name: land_location
+    fields:
+      - name: arg
+        type: string
+
+  # functions: act.other.h
+  - name: log_imm_action
+    fields:
+      - name: messg
+        type: string
+
+  # functions: act.wizard.h
+  - name: search_replace
+    fields:
+      - name: string
+        type: string
+      - name: find
+        type: string
+      - name: replace
+        type: string
+
+  # functions: aedit.h
+  - name: aedit_parse
+    fields:
+      - name: arg
+        type: string
+  - name: aedit_find_command
+    fields:
+      - name: txt
+        type: string
+
+  # functions: alias.h
+  - name: delete_aliases
+    fields:
+      - name: charname
+        type: string
+
+  # functions: assedit.h
+  - name: assedit_parse
+    fields:
+      - name: arg
+        type: string
+
+  # functions: assemblies.h
+  - name: assemblyFindAssembly
+    fields:
+      - name: pszAssemblyName
+        type: string
+
+  # functions: ban.h
+  - name: isbanned
+    fields:
+      - name: hostname
+        type: string
+  - name: Valid_name
+    fields:
+      - name: newname
+        type: string
+
+  #functions boards.h
+  - name: write_board_message
+    fields:
+      - name: arg
+        type: string
+
+  #fuunctions: clan.h
+  - name: clanReload
+    fields:
+      - name: name
+        type: string
+
+  - name: clanCreate
+    fields:
+      - name: name
+        type: string
+
+  - name: clanINFOW
+    fields:
+      - name: name
+        type: string
+  - name: clanSAFE
+    fields:
+      - name: name
+        type: string
+  - name: clanDestroy
+    fields:
+      - name: name
+        type: string
+
+  - name: isClan
+    fields:
+      - name: name
+        type: string
+
+  - name: clanApply
+    fields:
+      - name: name
+        type: string
+  - name: clanInduct
+    fields:
+      - name: name
+        type: string
+
+  - name: clanHIGHRANK
+    fields:
+      - name: name
+        type: string
+      - name: rank
+        type: string
+  - name: clanMIDRANK
+    fields:
+      - name: name
+        type: string
+      - name: rank
+        type: string
+  - name: clanRANK
+    fields:
+      - name: name
+        type: string
+  - name: clanRANKD
+    fields:
+      - name: name
+        type: string
+  - name: clanBANKADD
+    fields:
+      - name: name
+        type: string
+  - name: clanBANKSUB
+    fields:
+      - name: name
+        type: string
+  - name: clanBANK
+    fields:
+      - name: name
+        type: string
+  - name: clanBANY
+    fields:
+      - name: name
+        type: string
+  - name: clanBSET
+    fields:
+      - name: name
+        type: string
+  - name: clanMakeModerator
+    fields:
+      - name: name
+        type: string
+  - name: clanExpel
+    fields:
+      - name: name
+        type: string
+  - name: clanDecline
+    fields:
+      - name: name
+        type: string
+  - name: clanIsMember
+    fields:
+      - name: name
+        type: string
+  - name: clanIsModerator
+    fields:
+      - name: name
+        type: string
+  - name: clanIsApplicant
+    fields:
+      - name: name
+        type: string
+  - name: clanOpenJoin
+    fields:
+      - name: name
+        type: string
+  - name: clanOpenLeave
+    fields:
+      - name: name
+        type: string
+  - name: clanSetOpenJoin
+    fields:
+      - name: name
+        type: string
+  - name: clanSetOpenLeave
+    fields:
+      - name: name
+        type: string
+  - name: listClanInfo
+    fields:
+      - name: name
+        type: string
+
+  # functions: comm.h
+  - name: send_to_eaves
+    fields:
+      - name: messg
+        type: string
+  - name: send_to_char
+    fields:
+      - name: messg
+        type: string
+  - name: send_to_all
+    fields:
+      - name: messg
+        type: string
+  - name: send_to_room
+    fields:
+      - name: messg
+        type: string
+  - name: send_to_outdoor
+    fields:
+      - name: messg
+        type: string
+  - name: send_to_moon
+    fields:
+      - name: messg
+        type: string
+  - name: send_to_planet
+    fields:
+      - name: messg
+        type: string
+  - name: send_to_range
+    fields:
+      - name: messg
+        type: string
+  - name: perform_act
+    fields:
+      - name: orig
+        type: string
+  - name: act
+    fields:
+      - name: str
+        type: string
+  - name: write_to_q
+    fields:
+      - name: txt
+        type: string
+  - name: write_to_descriptor
+    fields:
+      - name: txt
+        type: string
+  - name: write_to_output
+    fields:
+      - name: txt
+        type: string
+  - name: vwrite_to_output
+    fields:
+      - name: format
+        type: string
+  - name: string_add
+    fields:
+      - name: str
+        type: string
+  - name: page_string
+    fields:
+      - name: str
+        type: string
+  - name: show_help
+    fields:
+      - name: entry
+        type: string
+  - name: last_act_message
+    type: string
+  - name: perform_socket_read
+    fields:
+      - name: read_point
+        type: string
+  - name: perform_socket_write
+    fields:
+      - name: txt
+        type: string
+  - name: perform_subst
+    fields:
+      - name: orig
+        type: string
+      - name: subst
+        type: string
+  - name: setup_log
+    fields:
+      - name: filename
+        type: string
+  - name: open_logfile
+    fields:
+      - name: filename
+        type: string
+
+  # config.h
+  - name: NEWS_TITLE
+    type: string
+  - name: OK
+    type: string
+  - name: NOPERSON
+    type: string
+  - name: NOEFFECT
+    type: string
+  - name: DFLT_IP
+    type: string
+  - name: DFLT_DIR
+    type: string
+  - name: LOGNAME
+    type: string
+  - name: ANSIQUESTION
+    type: string
+  - name: MENU
+    type: string
+  - name: WELC_MESSG
+    type: string
+  - name: START_MESSG
+    type: string
+
+  # constants.h
+  - name: circlemud_version
+    type: string
+  - name: oasisolc_version
+    type: string
+  - name: ascii_pfiles_version
+    type: string
+
+  # db.h
+  - name: create_entry
+    fields:
+      - name: name
+        type: string
+  - name: fread_string
+    fields:
+      - name: error
+        type: string
+  - name: get_id_by_name
+    fields:
+      - name: name
+        type: string
+  - name: load_help
+    fields:
+      - name: name
+        type: string
+  - name: load_char
+    fields:
+      - name: name
+        type: string
+  - name: vnum_mobile
+    fields:
+      - name: searchname
+        type: string
+  - name: get_ptable_by_name
+    fields:
+      - name: name
+        type: string
+  - name: vnum_object
+    fields:
+      - name: searchname
+        type: string
+  - name: vnum_material
+    fields:
+      - name: searchname
+        type: string
+  - name: vnum_weapontype
+    fields:
+      - name: searchname
+        type: string
+  - name: vnum_armortype
+    fields:
+      - name: searchname
+        type: string
+
+  # dg_comm.h
+  - name: send_to_imm
+    fields:
+      - name: messg
+        type: string
+  - name: fly_zone
+    fields:
+      - name: messg
+        type: string
+  - name: send_to_scouter
+    fields:
+      - name: messg
+        type: string
+  - name: send_to_sense
+    fields:
+      - name: messg
+        type: string
+
+  # dg_olc.h
+  - name: dg_script_edit_parse
+    fields:
+      - name: arg
+        type: string
+
+  # dg_scripts.h
+  - name: one_phrase
+    fields:
+      - name: arg
+        type: string
+      - name: first_arg
+        type: string
+  - name: is_substring
+    fields:
+      - name: sub
+        type: string
+      - name: string
+        type: string
+  - name: word_check
+    fields:
+      - name: str
+        type: string
+      - name: wordlist
+        type: string
+  - name: act_mtrigger
+    fields:
+      - name: str
+        type: string
+      - name: arg
+        type: string
+  - name: speech_mtrigger
+    fields:
+      - name: str
+        type: string
+  - name: speech_wtrigger
+    fields:
+      - name: str
+        type: string
+  - name: cmd_otrig
+    fields:
+      - name: cmd
+        type: string
+      - name: argument
+        type: string
+  - name: command_otrigger
+    fields:
+      - name: cmd
+        type: string
+      - name: argument
+        type: string
+  - name: command_mtrigger
+    fields:
+      - name: cmd
+        type: string
+      - name: argument
+        type: string
+  - name: command_wtrigger
+    fields:
+      - name: cmd
+        type: string
+      - name: argument
+        type: string
+  - name: str_str
+    fields:
+      - name: cs
+        type: string
+      - name: ct
+        type: string
+  - name: find_eq_pos_script
+    fields:
+      - name: arg
+        type: string
+  - name: get_char
+    fields:
+      - name: name
+        type: string
+  - name: get_char_near_obj
+    fields:
+      - name: name
+        type: string
+  - name: get_char_in_room
+    fields:
+      - name: name
+        type: string
+  - name: get_obj_near_obj
+    fields:
+      - name: name
+        type: string
+  - name: get_obj
+    fields:
+      - name: name
+        type: string
+  - name: get_room
+    fields:
+      - name: name
+        type: string
+  - name: get_char_by_obj
+    fields:
+      - name: name
+        type: string
+  - name: get_char_by_room
+    fields:
+      - name: name
+        type: string
+  - name: get_obj_by_obj
+    fields:
+      - name: name
+        type: string
+  - name: get_obj_in_room
+    fields:
+      - name: name
+        type: string
+  - name: get_obj_by_room
+    fields:
+      - name: name
+        type: string
+  - name: get_obj_in_list
+    fields:
+      - name: name
+        type: string
+  - name: get_obj_in_equip
+    fields:
+      - name: name
+        type: string
+  - name: find_uid_name
+    fields:
+      - name: uid
+        type: string
+      - name: name
+        type: string
+  - name: script_vlog
+    fields:
+      - name: format
+        type: String
+  - name: script_log
+    fields:
+      - name: format
+        type: string
+  - name: matching_quote
+    fields:
+      - name: p
+        type: string
+  - name: process_eval
+    fields:
+      - name: cmd
+        type: string
+  - name: dg_obj_trigger
+    fields:
+      - name: line
+        type: string
+  - name: add_var
+    fields:
+      - name: name
+        type: string
+      - name: value
+        type: string
+  - name: item_in_list
+    fields:
+      - name: item
+        type: string
+  - name: char_has_item
+    fields:
+      - name: item
+        type: string
+  - name: var_subst
+    fields:
+      - name: line
+        type: string
+      - name: buf
+        type: string
+  - name: text_processed
+    fields:
+      - name: field
+        type: string
+      - name: subfield
+        type: string
+      - name: str
+        type: string
+  - name: find_replacement
+    fields:
+      - name: var
+        type: string
+      - name: field
+        type: string
+      - name: subfield
+        type: string
+      - name: str
+        type: string
+  - name: remove_var
+    fields:
+      - name: name
+        type: string
+  - name: delete_variables
+    fields:
+      - name: charname
+        type: string
+  - name: any_one_name
+    fields:
+      - name: argument
+        type: string
+      - name: first_arg
+        type: string
+  - name: sub_write
+    fields:
+      - name: arg
+        type: string
+  - name: send_to_zone
+    fields:
+      - name: messg
+        type: string
+  - name: do_dg_cast
+    fields:
+      - name: cmd
+        type: string
+  - name: do_dg_affect
+    fields:
+      - name: cmd
+        type: string
+  - name: check_flags_by_name_ar
+    fields:
+      - name: search
+        type: string
+
+  # feats.h
+  - name: find_feat_num
+    fields:
+      - name: name
+        type: string
+  - name: feat_is_available
+    fields:
+      - name: sarg
+        type: string
+
+  # fight.h
+  - name: impact_sound
+    fields:
+      - name: mssg
+        type: string
+
+  # gedit.h
+  - name: gedit_parse
+    fields:
+      - name: arg
+        type: string
+  - name: gedit_modify_string
+    fields:
+      - name: new
+        type: string
+
+  # gengld.h
+  - name: modify_string
+    fields:
+      - name: newstr
+        type: string
+
+  # genolc.h
+  - name: genolc_checkstring
+    fields:
+      - name: arg
+        type: string
+  - name: strip_cr
+    fields:
+      - name: str
+        type: string
+  - name: str_udup
+    fields:
+      - name: str
+        type: string
+  - name: sprintascii
+    fields:
+      - name: out
+        type: string
+  - name: create_world_index
+    fields:
+      - name: type
+        type: string
+
+  # guild.h
+  - name: print_skills_by_type
+    fields:
+      - name: buf
+        type: string
+      - name: argument
+        type: string
+  - name: levelup_parse
+    fields:
+      - name: arg
+        type: string
+  - name: show_guild
+    fields:
+      - name: arg
+        type: string
+  - name: list_skills
+    fields:
+      - name: arg
+        type: string
+
+  # handler.h
+  - name: isname
+    fields:
+      - name: str
+        type: string
+      - name: namelist
+        type: string
+  - name: is_name
+    fields:
+      - name: str
+        type: string
+      - name: namelist
+        type: string
+  - name: fname
+    fields:
+      - name: namelist
+        type: string
+  - name: get_char_room
+    fields:
+      - name: name
+        type: string
+  - name: get_player_vis
+    fields:
+      - name: name
+      - type: string
+  - name: get_char_vis
+    fields:
+      - name: name
+      - type: string
+  - name: get_char_room_vis
+    fields:
+      - name: name
+      - type: string
+  - name: get_char_world_vis
+    fields:
+      - name: name
+      - type: string
+  - name: get_obj_in_list_vis
+    fields:
+      - name: name
+      - type: string
+  - name: get_obj_vis
+    fields:
+      - name: name
+      - type: string
+  - name: get_obj_in_equip_vis
+    fields:
+      - name: arg
+      - type: string
+  - name: get_obj_pos_in_equip_vis
+    fields:
+      - name: arg
+      - type: string
+  - name: find_eq_pos
+    fields:
+      - name: arg
+      - type: string
+  - name: find_all_dots
+    fields:
+      - name: arg
+      - type: string
+  - name: generic_find
+    fields:
+      - name: arg
+      - type: string
+
+  # hedit.h
+  - name: hedit_parse
+    fields:
+      - name: p
+        type: string
+
+  # hsedit.h
+  - name: hsedit_parse
+    fields:
+      - name: arg
+        type: string
+
+  # improved-edit.h
+  - name: parse_edit_action
+    fields:
+      - name: string
+        type: string
+  - name: improved_editor_execute
+    fields:
+      - name: string
+        type: string
+
+  #item_search.h
+  - name: find_obj_in_list_name
+    fields:
+      - name: name
+        type: string
+
+  # local_limits.h
+  - name: set_title
+    fields:
+      - name: title
+        type: string
+
+  # mail.h
+  - name: store_mail
+    fields:
+      - name: message_pointer
+        type: string
+
+  # modify.h
+  - name: paginate_string
+    fields:
+      - name: str
+        type: string
+  - name: smash_tilde
+    fields:
+      - name: str
+        type: string
+  - name: show_string
+    fields:
+      - name: input
+        type: string
+
+  # oasis.h
+  - name: split_argument
+    fields:
+      - name: argument
+        type: string
+      - name: tag
+        type: string
+  - name: medit_parse
+    fields:
+      - name: arg
+        type: string
+  - name: oedit_parse
+    fields:
+      - name: arg
+        type: string
+  - name: iedit_parse
+    fields:
+      - name: arg
+        type: string
+  - name: redit_parse
+    fields:
+      - name: arg
+        type: string
+  - name: sedit_parse
+    fields:
+      - name: arg
+        type: string
+  - name: gedit_parse
+    fields:
+      - name: arg
+        type: string
+  - name: oedit_parse
+    fields:
+      - name: arg
+        type: string
+  - name: zedit_create_index
+    fields:
+      - name: type
+        type: string
+  - name: cedit_parse
+    fields:
+      - name: arg
+        type: string
+  - name: trigedit_parse
+    fields:
+      - name: arg
+        type: string
+  - name: parse_stats
+    fields:
+      - name: arg
+        type: string
+  - name: context_help
+    fields:
+      - name: arg
+        type: string
+
+  # obj_edit.h
+  - name: pobj_edit_parse
+    fields:
+      - name: arg
+        type: string
+
+  # objsave.h
+  - name: Crash_delete_file
+    fields:
+      - name: name
+        type: string
+  - name: Crash_clean_file
+    fields:
+      - name: name
+        type: string
+  - name: Crash_listrent
+    fields:
+      - name: name
+        type: string
+
+  # shop.h
+  - name: boot_the_shops
+    fields:
+      - name: filename
+        type: string
+  - name: show_shops
+    fields:
+      - name: arg
+        type: string
+
+  # spells.h
+  - name: spellname
+    fields:
+      - name: arg
+        type: string
+  - name: find_skill_num
+    fields:
+      - name: name
+        type: string
+  - name: mag_summons
+    fields:
+      - name: arg
+        type: string
+  - name: call_magic
+    fields:
+      - name: arg
+        type: string
+  - name: mag_objectmagic
+    fields:
+      - name: argument
+        type: string
+  - name: cast_spell
+    fields:
+      - name: arg
+        type: string
+
+  # utils.h
+  - name: masadv
+    fields:
+      - name: tmp
+        type: string
+  - name: prune_crlf
+    fields:
+      - name: txt
+        type: string
+  - name: mob_respond
+    fields:
+      - name: speech
+        type: string
+
+  - name: customRead
+    fields:
+      - name: name
+        type: string
+
+  - name: get_flag_by_name
+    fields:
+      - name: flag_list
+        type: slice
+      - name: flag_name
+        type: string
   - name: basic_mud_log
     fields:
       - name: format
         type: string
+  - name: basic_mud_vlog
+    fields:
+      - name: format
+        type: string
+  - name: trim
+    fields:
+      - name: s
+        type: string
+  - name: mudlog
+    fields:
+      - name: str
+        type: string
+  - name: sprintbit
+    fields:
+      - name: names
+        type: slice
+      - name: result
+        type: string
+  - name: sprinttype
+    fields:
+      - name: names
+        type: slice
+      - name: result
+        type: string
+  - name: sprintbitarray
+    fields:
+      - name: names
+        type: slice
+      - name: result
+        type: string
+  - name: get_filename
+    fields:
+      - name: filename
+        type: string
+      - name: orig_name
+        type: string
+  - name: core_dump_real
+    fields:
+      - name: who
+        type: string
+  - name: count_color_chars
+    fields:
+      - name: string
+        type: string
+  - name: game_info
+    fields:
+      - name: format
+        type: string
+  - name: mob_talk
+    fields:
+      - name: speech
+        type: string
+  - name: CAP
+    fields:
+      - name: txt
+        type: string
+  - name: add_history
+    fields:
+      - name: msg
+        type: string
+  - name: AN
+    fields:
+      - name: str
+        type: string
+  - name: xdir_scan
+    fields:
+      - name: dir_name
+        type: string
+  - name: insure_directory
+    fields:
+      - name: path
+        type: string
+  - name: levenshtein_distance
+    fields:
+      - name: s1
+        type: string
+      - name: s2
+        type: string
+
+  # sysdep.h
+  - name: CommandFunc
+    fields:
+      - name: argument
+        type: string
+  - name: SpecialFunc
+    fields:
+      - name: argument
+        type: string
+
+  # auto-generated
+  - fields:
+      - name: argument
+        type: string
+    name: do_status
+  - fields:
+      - name: argument
+        type: string
+    name: do_mecho
+  - fields:
+      - name: argument
+        type: string
+    name: do_geno
+  - fields:
+      - name: argument
+        type: string
+    name: do_history
+  - fields:
+      - name: argument
+        type: string
+    name: do_deathbeam
+  - fields:
+      - name: argument
+        type: string
+    name: do_runic
+  - fields:
+      - name: argument
+        type: string
+    name: do_forgery
+  - fields:
+      - name: argument
+        type: string
+    name: do_show
+  - fields:
+      - name: argument
+        type: string
+    name: do_shimmer
+  - fields:
+      - name: argument
+        type: string
+    name: do_dig
+  - fields:
+      - name: argument
+        type: string
+    name: do_wiznet
+  - fields:
+      - name: argument
+        type: string
+    name: do_shell
+  - fields:
+      - name: argument
+        type: string
+    name: do_wield
+  - fields:
+      - name: argument
+        type: string
+    name: do_zen
+  - fields:
+      - name: argument
+        type: string
+    name: do_display
+  - fields:
+      - name: argument
+        type: string
+    name: do_action
+  - fields:
+      - name: argument
+        type: string
+    name: do_train
+  - fields:
+      - name: argument
+        type: string
+    name: do_hydromancy
+  - fields:
+      - name: argument
+        type: string
+    name: do_vdelete
+  - fields:
+      - name: argument
+        type: string
+    name: do_not_here
+  - fields:
+      - name: argument
+        type: string
+    name: do_tstat
+  - fields:
+      - name: argument
+        type: string
+    name: do_spike
+  - fields:
+      - name: argument
+        type: string
+    name: do_kill
+  - fields:
+      - name: argument
+        type: string
+    name: do_grapple
+  - fields:
+      - name: argument
+        type: string
+    name: puff
+  - fields:
+      - name: argument
+        type: string
+    name: do_last
+  - fields:
+      - name: argument
+        type: string
+    name: do_lightgrenade
+  - fields:
+      - name: argument
+        type: string
+    name: do_multiform
+  - fields:
+      - name: argument
+        type: string
+    name: do_drive
+  - fields:
+      - name: argument
+        type: string
+    name: do_rescue
+  - fields:
+      - name: argument
+        type: string
+    name: do_rbank
+  - fields:
+      - name: argument
+        type: string
+    name: do_remove
+  - fields:
+      - name: argument
+        type: string
+    name: do_future
+  - fields:
+      - name: argument
+        type: string
+    name: do_nickname
+  - fields:
+      - name: argument
+        type: string
+    name: do_energize
+  - fields:
+      - name: argument
+        type: string
+    name: do_save
+  - fields:
+      - name: argument
+        type: string
+    name: do_help
+  - fields:
+      - name: argument
+        type: string
+    name: do_syslog
+  - fields:
+      - name: argument
+        type: string
+    name: do_scouter
+  - fields:
+      - name: argument
+        type: string
+    name: do_tedit
+  - fields:
+      - name: argument
+        type: string
+    name: do_baku
+  - fields:
+      - name: argument
+        type: string
+    name: do_ban
+  - fields:
+      - name: argument
+        type: string
+    name: do_reply
+  - fields:
+      - name: argument
+        type: string
+    name: do_defend
+  - fields:
+      - name: argument
+        type: string
+    name: do_mheal
+  - fields:
+      - name: argument
+        type: string
+    name: guild
+  - fields:
+      - name: argument
+        type: string
+    name: do_combine
+  - fields:
+      - name: argument
+        type: string
+    name: do_gmote
+  - fields:
+      - name: argument
+        type: string
+    name: do_absorb
+  - fields:
+      - name: argument
+        type: string
+    name: do_mechoaround
+  - fields:
+      - name: argument
+        type: string
+    name: do_spit
+  - fields:
+      - name: argument
+        type: string
+    name: do_rpbanktrans
+  - fields:
+      - name: argument
+        type: string
+    name: janitor
+  - fields:
+      - name: argument
+        type: string
+    name: do_rest
+  - fields:
+      - name: argument
+        type: string
+    name: do_heal
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_sedit
+  - fields:
+      - name: argument
+        type: string
+    name: postmaster
+  - fields:
+      - name: argument
+        type: string
+    name: do_ram
+  - fields:
+      - name: argument
+        type: string
+    name: do_warp
+  - fields:
+      - name: argument
+        type: string
+    name: do_attack2
+  - fields:
+      - name: argument
+        type: string
+    name: do_drag
+  - fields:
+      - name: argument
+        type: string
+    name: do_consider
+  - fields:
+      - name: argument
+        type: string
+    name: do_report
+  - fields:
+      - name: argument
+        type: string
+    name: gauntlet_end
+  - fields:
+      - name: argument
+        type: string
+    name: do_purge
+  - fields:
+      - name: argument
+        type: string
+    name: do_auction
+  - fields:
+      - name: argument
+        type: string
+    name: do_show_save_list
+  - fields:
+      - name: argument
+        type: string
+    name: do_grab
+  - fields:
+      - name: argument
+        type: string
+    name: do_land
+  - fields:
+      - name: argument
+        type: string
+    name: do_dimizu
+  - fields:
+      - name: argument
+        type: string
+    name: do_mimic
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_links
+  - fields:
+      - name: argument
+        type: string
+    name: do_pslash
+  - fields:
+      - name: argument
+        type: string
+    name: do_permission
+  - fields:
+      - name: argument
+        type: string
+    name: do_hellflash
+  - fields:
+      - name: argument
+        type: string
+    name: do_enter
+  - fields:
+      - name: argument
+        type: string
+    name: do_potential
+  - fields:
+      - name: argument
+        type: string
+    name: do_mtransform
+  - fields:
+      - name: argument
+        type: string
+    name: do_kaioken
+  - fields:
+      - name: argument
+        type: string
+    name: do_fireshield
+  - fields:
+      - name: argument
+        type: string
+    name: do_twohand
+  - fields:
+      - name: argument
+        type: string
+    name: do_barrier
+  - fields:
+      - name: argument
+        type: string
+    name: do_mdamage
+  - fields:
+      - name: argument
+        type: string
+    name: do_throw
+  - fields:
+      - name: argument
+        type: string
+    name: do_beam
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_medit
+  - fields:
+      - name: argument
+        type: string
+    name: do_gsay
+  - fields:
+      - name: argument
+        type: string
+    name: do_time
+  - fields:
+      - name: argument
+        type: string
+    name: do_crusher
+  - fields:
+      - name: argument
+        type: string
+    name: do_bigbang
+  - fields:
+      - name: argument
+        type: string
+    name: do_compare
+  - fields:
+      - name: argument
+        type: string
+    name: do_plant
+  - fields:
+      - name: argument
+        type: string
+    name: do_follow
+  - fields:
+      - name: argument
+        type: string
+    name: do_mjunk
+  - fields:
+      - name: argument
+        type: string
+    name: do_page
+  - fields:
+      - name: argument
+        type: string
+    name: do_knee
+  - fields:
+      - name: argument
+        type: string
+    name: do_kura
+  - fields:
+      - name: argument
+        type: string
+    name: do_examine
+  - fields:
+      - name: argument
+        type: string
+    name: do_olc
+  - fields:
+      - name: argument
+        type: string
+    name: do_switch
+  - fields:
+      - name: argument
+        type: string
+    name: do_mfollow
+  - fields:
+      - name: argument
+        type: string
+    name: do_stat
+  - fields:
+      - name: argument
+        type: string
+    name: do_mpurge
+  - fields:
+      - name: argument
+        type: string
+    name: do_roundhouse
+  - fields:
+      - name: argument
+        type: string
+    name: do_trip
+  - fields:
+      - name: argument
+        type: string
+    name: do_finddoor
+  - fields:
+      - name: argument
+        type: string
+    name: do_selfd
+  - fields:
+      - name: argument
+        type: string
+    name: do_implant
+  - fields:
+      - name: argument
+        type: string
+    name: do_sradar
+  - fields:
+      - name: argument
+        type: string
+    name: do_extract
+  - fields:
+      - name: argument
+        type: string
+    name: do_wear
+  - fields:
+      - name: argument
+        type: string
+    name: do_mkill
+  - fields:
+      - name: argument
+        type: string
+    name: do_regenerate
+  - fields:
+      - name: argument
+        type: string
+    name: do_lag
+  - fields:
+      - name: argument
+        type: string
+    name: do_levels
+  - fields:
+      - name: argument
+        type: string
+    name: do_spiritcontrol
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_zedit
+  - fields:
+      - name: argument
+        type: string
+    name: do_wizupdate
+  - fields:
+      - name: argument
+        type: string
+    name: do_rbanktrans
+  - fields:
+      - name: argument
+        type: string
+    name: pet_shops
+  - fields:
+      - name: argument
+        type: string
+    name: do_eyec
+  - fields:
+      - name: argument
+        type: string
+    name: do_masenko
+  - fields:
+      - name: argument
+        type: string
+    name: do_recall
+  - fields:
+      - name: argument
+        type: string
+    name: do_ungroup
+  - fields:
+      - name: argument
+        type: string
+    name: do_willpower
+  - fields:
+      - name: argument
+        type: string
+    name: do_disguise
+  - fields:
+      - name: argument
+        type: string
+    name: do_toplist
+  - fields:
+      - name: argument
+        type: string
+    name: do_teach
+  - fields:
+      - name: argument
+        type: string
+    name: do_table
+  - fields:
+      - name: argument
+        type: string
+    name: do_assemble
+  - fields:
+      - name: argument
+        type: string
+    name: do_ensnare
+  - fields:
+      - name: argument
+        type: string
+    name: do_charge
+  - fields:
+      - name: argument
+        type: string
+    name: do_silk
+  - fields:
+      - name: argument
+        type: string
+    name: do_kamehameha
+  - fields:
+      - name: argument
+        type: string
+    name: do_instill
+  - fields:
+      - name: argument
+        type: string
+    name: do_taisha
+  - fields:
+      - name: argument
+        type: string
+    name: do_zanzoken
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_gedit
+  - fields:
+      - name: argument
+        type: string
+    name: do_blessedhammer
+  - fields:
+      - name: argument
+        type: string
+    name: do_scribe
+  - fields:
+      - name: argument
+        type: string
+    name: do_look
+  - fields:
+      - name: argument
+        type: string
+    name: do_copyover
+  - fields:
+      - name: argument
+        type: string
+    name: do_shuffle
+  - fields:
+      - name: argument
+        type: string
+    name: do_razor
+  - fields:
+      - name: argument
+        type: string
+    name: do_map
+  - fields:
+      - name: argument
+        type: string
+    name: do_put
+  - fields:
+      - name: argument
+        type: string
+    name: do_echo
+  - fields:
+      - name: argument
+        type: string
+    name: do_zcheck
+  - fields:
+      - name: argument
+        type: string
+    name: do_arena
+  - fields:
+      - name: argument
+        type: string
+    name: do_skills
+  - fields:
+      - name: argument
+        type: string
+    name: magic_user_orig
+  - fields:
+      - name: argument
+        type: string
+    name: do_kyodaika
+  - fields:
+      - name: argument
+        type: string
+    name: do_mforce
+  - fields:
+      - name: argument
+        type: string
+    name: do_breath
+  - fields:
+      - name: argument
+        type: string
+    name: do_clan
+  - fields:
+      - name: argument
+        type: string
+    name: do_sunder
+  - fields:
+      - name: argument
+        type: string
+    name: do_spar
+  - fields:
+      - name: argument
+        type: string
+    name: bank
+  - fields:
+      - name: argument
+        type: string
+    name: do_ingest
+  - fields:
+      - name: argument
+        type: string
+    name: do_summon
+  - fields:
+      - name: argument
+        type: string
+    name: do_gen_write
+  - fields:
+      - name: argument
+        type: string
+    name: do_reboot
+  - fields:
+      - name: argument
+        type: string
+    name: healtank
+  - fields:
+      - name: argument
+        type: string
+    name: do_head
+  - fields:
+      - name: argument
+        type: string
+    name: do_kienzan
+  - fields:
+      - name: argument
+        type: string
+    name: do_gecho
+  - fields:
+      - name: argument
+        type: string
+    name: do_approve
+  - fields:
+      - name: argument
+        type: string
+    name: shop_keeper
+  - fields:
+      - name: argument
+        type: string
+    name: do_trans
+  - fields:
+      - name: argument
+        type: string
+    name: do_upgrade
+  - fields:
+      - name: argument
+        type: string
+    name: do_spiral
+  - fields:
+      - name: argument
+        type: string
+    name: do_skillset
+  - fields:
+      - name: argument
+        type: string
+    name: do_kiblast
+  - fields:
+      - name: argument
+        type: string
+    name: do_nogrow
+  - fields:
+      - name: argument
+        type: string
+    name: do_pour
+  - fields:
+      - name: argument
+        type: string
+    name: do_give
+  - fields:
+      - name: argument
+        type: string
+    name: do_tsuihidan
+  - fields:
+      - name: argument
+        type: string
+    name: do_psyblast
+  - fields:
+      - name: argument
+        type: string
+    name: do_lifeforce
+  - fields:
+      - name: argument
+        type: string
+    name: do_adrenaline
+  - fields:
+      - name: argument
+        type: string
+    name: do_mat
+  - fields:
+      - name: argument
+        type: string
+    name: do_exits
+  - fields:
+      - name: argument
+        type: string
+    name: do_garden
+  - fields:
+      - name: argument
+        type: string
+    name: receptionist
+  - fields:
+      - name: argument
+        type: string
+    name: do_aid
+  - fields:
+      - name: argument
+        type: string
+    name: do_autoexit
+  - fields:
+      - name: argument
+        type: string
+    name: do_strike
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_list
+  - fields:
+      - name: argument
+        type: string
+    name: do_powerup
+  - fields:
+      - name: argument
+        type: string
+    name: do_who
+  - fields:
+      - name: argument
+        type: string
+    name: do_post
+  - fields:
+      - name: argument
+        type: string
+    name: do_say
+  - fields:
+      - name: argument
+        type: string
+    name: do_checkloadstatus
+  - fields:
+      - name: argument
+        type: string
+    name: do_hindex
+  - fields:
+      - name: argument
+        type: string
+    name: do_insult
+  - fields:
+      - name: argument
+        type: string
+    name: do_dc
+  - fields:
+      - name: argument
+        type: string
+    name: do_teleport
+  - fields:
+      - name: argument
+        type: string
+    name: do_drink
+  - fields:
+      - name: argument
+        type: string
+    name: do_form
+  - fields:
+      - name: argument
+        type: string
+    name: do_shutdown
+  - fields:
+      - name: argument
+        type: string
+    name: do_gen_door
+  - fields:
+      - name: argument
+        type: string
+    name: do_carry
+  - fields:
+      - name: argument
+        type: string
+    name: do_qcomm
+  - fields:
+      - name: argument
+        type: string
+    name: do_mzoneecho
+  - fields:
+      - name: argument
+        type: string
+    name: do_mforget
+  - fields:
+      - name: argument
+        type: string
+    name: do_poofset
+  - fields:
+      - name: argument
+        type: string
+    name: do_aura
+  - fields:
+      - name: argument
+        type: string
+    name: gauntlet_room
+  - fields:
+      - name: argument
+        type: string
+    name: do_tailwhip
+  - fields:
+      - name: argument
+        type: string
+    name: do_dodonpa
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_hedit
+  - fields:
+      - name: argument
+        type: string
+    name: do_astat
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_oedit
+  - fields:
+      - name: argument
+        type: string
+    name: do_commands
+  - fields:
+      - name: argument
+        type: string
+    name: do_visible
+  - fields:
+      - name: argument
+        type: string
+    name: do_use
+  - fields:
+      - name: argument
+        type: string
+    name: do_msend
+  - fields:
+      - name: argument
+        type: string
+    name: augmenter
+  - fields:
+      - name: argument
+        type: string
+    name: do_deploy
+  - fields:
+      - name: argument
+        type: string
+    name: do_cook
+  - fields:
+      - name: argument
+        type: string
+    name: thief
+  - fields:
+      - name: argument
+        type: string
+    name: do_sleep
+  - fields:
+      - name: argument
+        type: string
+    name: do_fish
+  - fields:
+      - name: argument
+        type: string
+    name: do_uppercut
+  - fields:
+      - name: argument
+        type: string
+    name: do_saveall
+  - fields:
+      - name: argument
+        type: string
+    name: do_spoil
+  - fields:
+      - name: argument
+        type: string
+    name: do_reward
+  - fields:
+      - name: argument
+        type: string
+    name: do_rcopy
+  - fields:
+      - name: argument
+        type: string
+    name: do_focus
+  - fields:
+      - name: argument
+        type: string
+    name: do_escape
+  - fields:
+      - name: argument
+        type: string
+    name: do_obstruct
+  - fields:
+      - name: argument
+        type: string
+    name: do_varstat
+  - fields:
+      - name: argument
+        type: string
+    name: auction
+  - fields:
+      - name: argument
+        type: string
+    name: do_bite
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_trigedit
+  - fields:
+      - name: argument
+        type: string
+    name: do_gold
+  - fields:
+      - name: argument
+        type: string
+    name: do_gen_ps
+  - fields:
+      - name: argument
+        type: string
+    name: do_hspiral
+  - fields:
+      - name: argument
+        type: string
+    name: do_load
+  - fields:
+      - name: argument
+        type: string
+    name: cleric_ao
+  - fields:
+      - name: argument
+        type: string
+    name: do_alias
+  - fields:
+      - name: argument
+        type: string
+    name: magic_user
+  - fields:
+      - name: argument
+        type: string
+    name: do_kanso
+  - fields:
+      - name: argument
+        type: string
+    name: do_respond
+  - fields:
+      - name: argument
+        type: string
+    name: do_recharge
+  - fields:
+      - name: argument
+        type: string
+    name: do_plist
+  - fields:
+      - name: argument
+        type: string
+    name: do_raise
+  - fields:
+      - name: argument
+        type: string
+    name: do_mload
+  - fields:
+      - name: argument
+        type: string
+    name: guild_guard
+  - fields:
+      - name: argument
+        type: string
+    name: do_steal
+  - fields:
+      - name: argument
+        type: string
+    name: gauntlet_rest
+  - fields:
+      - name: argument
+        type: string
+    name: do_deathball
+  - fields:
+      - name: argument
+        type: string
+    name: do_inventory
+  - fields:
+      - name: argument
+        type: string
+    name: do_return
+  - fields:
+      - name: argument
+        type: string
+    name: do_meditate
+  - fields:
+      - name: argument
+        type: string
+    name: do_zreset
+  - fields:
+      - name: argument
+        type: string
+    name: do_spec_comm
+  - fields:
+      - name: argument
+        type: string
+    name: do_chown
+  - fields:
+      - name: argument
+        type: string
+    name: do_invis
+  - fields:
+      - name: argument
+        type: string
+    name: do_sbc
+  - fields:
+      - name: argument
+        type: string
+    name: gravity
+  - fields:
+      - name: argument
+        type: string
+    name: do_value
+  - fields:
+      - name: argument
+        type: string
+    name: do_break
+  - fields:
+      - name: argument
+        type: string
+    name: do_block
+  - fields:
+      - name: argument
+        type: string
+    name: do_leave
+  - fields:
+      - name: argument
+        type: string
+    name: cityguard
+  - fields:
+      - name: argument
+        type: string
+    name: do_rptrans
+  - fields:
+      - name: argument
+        type: string
+    name: do_unban
+  - fields:
+      - name: argument
+        type: string
+    name: do_eavesdrop
+  - fields:
+      - name: argument
+        type: string
+    name: do_ddslash
+  - fields:
+      - name: argument
+        type: string
+    name: do_languages
+  - fields:
+      - name: argument
+        type: string
+    name: do_finger
+  - fields:
+      - name: argument
+        type: string
+    name: do_flee
+  - fields:
+      - name: argument
+        type: string
+    name: do_practice
+  - fields:
+      - name: argument
+        type: string
+    name: do_pushup
+  - fields:
+      - name: argument
+        type: string
+    name: do_warppool
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_redit
+  - fields:
+      - name: argument
+        type: string
+    name: do_date
+  - fields:
+      - name: argument
+        type: string
+    name: do_title
+  - fields:
+      - name: argument
+        type: string
+    name: do_pbarrage
+  - fields:
+      - name: argument
+        type: string
+    name: do_pagelength
+  - fields:
+      - name: argument
+        type: string
+    name: do_kousengan
+  - fields:
+      - name: argument
+        type: string
+    name: do_situp
+  - fields:
+      - name: argument
+        type: string
+    name: do_honoo
+  - fields:
+      - name: argument
+        type: string
+    name: do_evolve
+  - fields:
+      - name: argument
+        type: string
+    name: do_koteiru
+  - fields:
+      - name: argument
+        type: string
+    name: do_whois
+  - fields:
+      - name: argument
+        type: string
+    name: dziak
+  - fields:
+      - name: argument
+        type: string
+    name: do_shogekiha
+  - fields:
+      - name: argument
+        type: string
+    name: do_peace
+  - fields:
+      - name: argument
+        type: string
+    name: do_equipment
+  - fields:
+      - name: argument
+        type: string
+    name: mayor
+  - fields:
+      - name: argument
+        type: string
+    name: do_toggle
+  - fields:
+      - name: argument
+        type: string
+    name: do_write
+  - fields:
+      - name: argument
+        type: string
+    name: do_suppress
+  - fields:
+      - name: argument
+        type: string
+    name: do_handout
+  - fields:
+      - name: argument
+        type: string
+    name: do_mremember
+  - fields:
+      - name: argument
+        type: string
+    name: do_hass
+  - fields:
+      - name: argument
+        type: string
+    name: do_restore
+  - fields:
+      - name: argument
+        type: string
+    name: do_rpp
+  - fields:
+      - name: argument
+        type: string
+    name: do_breaker
+  - fields:
+      - name: argument
+        type: string
+    name: do_goto
+  - fields:
+      - name: argument
+        type: string
+    name: do_zpurge
+  - fields:
+      - name: argument
+        type: string
+    name: do_heeldrop
+  - fields:
+      - name: argument
+        type: string
+    name: do_rip
+  - fields:
+      - name: argument
+        type: string
+    name: do_move
+  - fields:
+      - name: argument
+        type: string
+    name: do_scan
+  - fields:
+      - name: argument
+        type: string
+    name: do_radar
+  - fields:
+      - name: argument
+        type: string
+    name: do_snoop
+  - fields:
+      - name: argument
+        type: string
+    name: do_masound
+  - fields:
+      - name: argument
+        type: string
+    name: do_candy
+  - fields:
+      - name: argument
+        type: string
+    name: do_vnum
+  - fields:
+      - name: argument
+        type: string
+    name: do_final
+  - fields:
+      - name: argument
+        type: string
+    name: do_eat
+  - fields:
+      - name: argument
+        type: string
+    name: do_hayasa
+  - fields:
+      - name: argument
+        type: string
+    name: dump
+  - fields:
+      - name: argument
+        type: string
+    name: do_play
+  - fields:
+      - name: argument
+        type: string
+    name: do_resize
+  - fields:
+      - name: argument
+        type: string
+    name: do_file
+  - fields:
+      - name: argument
+        type: string
+    name: do_appraise
+  - fields:
+      - name: argument
+        type: string
+    name: do_tribeam
+  - fields:
+      - name: argument
+        type: string
+    name: do_refuel
+  - fields:
+      - name: argument
+        type: string
+    name: do_wizutil
+  - fields:
+      - name: argument
+        type: string
+    name: do_ship_fire
+  - fields:
+      - name: argument
+        type: string
+    name: do_eraser
+  - fields:
+      - name: argument
+        type: string
+    name: do_rpbank
+  - fields:
+      - name: argument
+        type: string
+    name: do_mteleport
+  - fields:
+      - name: argument
+        type: string
+    name: do_majinize
+  - fields:
+      - name: argument
+        type: string
+    name: do_transform
+  - fields:
+      - name: argument
+        type: string
+    name: do_dualbeam
+  - fields:
+      - name: argument
+        type: string
+    name: do_helpcheck
+  - fields:
+      - name: argument
+        type: string
+    name: do_track
+  - fields:
+      - name: argument
+        type: string
+    name: do_stand
+  - fields:
+      - name: argument
+        type: string
+    name: do_news
+  - fields:
+      - name: argument
+        type: string
+    name: do_elbow
+  - fields:
+      - name: argument
+        type: string
+    name: do_slam
+  - fields:
+      - name: argument
+        type: string
+    name: do_weather
+  - fields:
+      - name: argument
+        type: string
+    name: do_score
+  - fields:
+      - name: argument
+        type: string
+    name: do_hand
+  - fields:
+      - name: argument
+        type: string
+    name: do_perf
+  - fields:
+      - name: argument
+        type: string
+    name: do_vstat
+  - fields:
+      - name: argument
+        type: string
+    name: do_scry
+  - fields:
+      - name: argument
+        type: string
+    name: do_fury
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis
+  - fields:
+      - name: argument
+        type: string
+    name: do_gen_tog
+  - fields:
+      - name: argument
+        type: string
+    name: do_tslash
+  - fields:
+      - name: argument
+        type: string
+    name: do_diagnose
+  - fields:
+      - name: argument
+        type: string
+    name: do_nova
+  - fields:
+      - name: argument
+        type: string
+    name: do_sac
+  - fields:
+      - name: argument
+        type: string
+    name: do_snet
+  - fields:
+      - name: argument
+        type: string
+    name: do_punch
+  - fields:
+      - name: argument
+        type: string
+    name: do_fly
+  - fields:
+      - name: argument
+        type: string
+    name: do_set
+  - fields:
+      - name: argument
+        type: string
+    name: do_pack
+  - fields:
+      - name: argument
+        type: string
+    name: do_assist
+  - fields:
+      - name: argument
+        type: string
+    name: do_restring
+  - fields:
+      - name: argument
+        type: string
+    name: do_advance
+  - fields:
+      - name: argument
+        type: string
+    name: do_disable
+  - fields:
+      - name: argument
+        type: string
+    name: do_think
+  - fields:
+      - name: argument
+        type: string
+    name: do_beacon
+  - fields:
+      - name: argument
+        type: string
+    name: do_findkey
+  - fields:
+      - name: argument
+        type: string
+    name: do_balefire
+  - fields:
+      - name: argument
+        type: string
+    name: do_bid
+  - fields:
+      - name: argument
+        type: string
+    name: do_attach
+  - fields:
+      - name: argument
+        type: string
+    name: do_hellspear
+  - fields:
+      - name: argument
+        type: string
+    name: do_feed
+  - fields:
+      - name: argument
+        type: string
+    name: do_moondust
+  - fields:
+      - name: argument
+        type: string
+    name: do_healglow
+  - fields:
+      - name: argument
+        type: string
+    name: do_color
+  - fields:
+      - name: argument
+        type: string
+    name: do_solar
+  - fields:
+      - name: argument
+        type: string
+    name: do_intro
+  - fields:
+      - name: argument
+        type: string
+    name: do_iedit
+  - fields:
+      - name: argument
+        type: string
+    name: do_detach
+  - fields:
+      - name: argument
+        type: string
+    name: do_boom
+  - fields:
+      - name: argument
+        type: string
+    name: do_metamorph
+  - fields:
+      - name: argument
+        type: string
+    name: do_transobj
+  - fields:
+      - name: argument
+        type: string
+    name: do_newsedit
+  - fields:
+      - name: argument
+        type: string
+    name: do_channel
+  - fields:
+      - name: argument
+        type: string
+    name: do_ashcloud
+  - fields:
+      - name: argument
+        type: string
+    name: do_spiritball
+  - fields:
+      - name: argument
+        type: string
+    name: do_amnisiac
+  - fields:
+      - name: argument
+        type: string
+    name: do_send
+  - fields:
+      - name: argument
+        type: string
+    name: do_resurrect
+  - fields:
+      - name: argument
+        type: string
+    name: do_renzo
+  - fields:
+      - name: argument
+        type: string
+    name: do_kick
+  - fields:
+      - name: argument
+        type: string
+    name: do_where
+  - fields:
+      - name: argument
+        type: string
+    name: do_paralyze
+  - fields:
+      - name: argument
+        type: string
+    name: azimer
+  - fields:
+      - name: argument
+        type: string
+    name: do_drop
+  - fields:
+      - name: argument
+        type: string
+    name: do_kiball
+  - fields:
+      - name: argument
+        type: string
+    name: do_commune
+  - fields:
+      - name: argument
+        type: string
+    name: do_mdoor
+  - fields:
+      - name: argument
+        type: string
+    name: do_get
+  - fields:
+      - name: argument
+        type: string
+    name: do_wizlock
+  - fields:
+      - name: argument
+        type: string
+    name: do_force
+  - fields:
+      - name: argument
+        type: string
+    name: fido
+  - fields:
+      - name: argument
+        type: string
+    name: do_cast
+  - fields:
+      - name: argument
+        type: string
+    name: do_mgoto
+  - fields:
+      - name: argument
+        type: string
+    name: do_attack
+  - fields:
+      - name: argument
+        type: string
+    name: do_hcontrol
+  - fields:
+      - name: argument
+        type: string
+    name: do_rdisplay
+  - fields:
+      - name: argument
+        type: string
+    name: do_house
+  - fields:
+      - name: argument
+        type: string
+    name: lyrzaxyn
+  - fields:
+      - name: argument
+        type: string
+    name: do_draw
+  - fields:
+      - name: argument
+        type: string
+    name: do_users
+  - fields:
+      - name: argument
+        type: string
+    name: do_quit
+  - fields:
+      - name: argument
+        type: string
+    name: do_ginfo
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_hsedit
+  - fields:
+      - name: argument
+        type: string
+    name: do_genki
+  - fields:
+      - name: argument
+        type: string
+    name: do_srepair
+  - fields:
+      - name: argument
+        type: string
+    name: do_voice
+  - fields:
+      - name: argument
+        type: string
+    name: do_bash
+  - fields:
+      - name: argument
+        type: string
+    name: do_liquefy
+  - fields:
+      - name: argument
+        type: string
+    name: do_spells
+  - fields:
+      - name: argument
+        type: string
+    name: do_split
+  - fields:
+      - name: argument
+        type: string
+    name: do_preference
+  - fields:
+      - name: argument
+        type: string
+    name: do_sit
+  - fields:
+      - name: argument
+        type: string
+    name: do_hide
+  - fields:
+      - name: argument
+        type: string
+    name: do_fix
+  - fields:
+      - name: argument
+        type: string
+    name: do_instant
+  - fields:
+      - name: argument
+        type: string
+    name: do_kakusanha
+  - fields:
+      - name: argument
+        type: string
+    name: do_galikgun
+  - fields:
+      - name: argument
+        type: string
+    name: do_seishou
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_aedit
+  - fields:
+      - name: argument
+        type: string
+    name: do_bury
+  - fields:
+      - name: argument
+        type: string
+    name: do_assedit
+  - fields:
+      - name: argument
+        type: string
+    name: do_hell
+  - fields:
+      - name: argument
+        type: string
+    name: do_telepathy
+  - fields:
+      - name: argument
+        type: string
+    name: do_tell
+  - fields:
+      - name: argument
+        type: string
+    name: do_scatter
+  - fields:
+      - name: argument
+        type: string
+    name: do_group
+  - fields:
+      - name: argument
+        type: string
+    name: do_pose
+  - fields:
+      - name: argument
+        type: string
+    name: do_osay
+  - fields:
+      - name: argument
+        type: string
+    name: do_malice
+  - fields:
+      - name: argument
+        type: string
+    name: do_mrecho
+  - fields:
+      - name: argument
+        type: string
+    name: do_wake
+  - fields:
+      - name: argument
+        type: string
+    name: do_stop
+  - fields:
+      - name: argument
+        type: string
+    name: do_song
+  - fields:
+      - name: argument
+        type: string
+    name: do_showoff
+  - fields:
+      - name: argument
+        type: string
+    name: do_tailhide
+  - fields:
+      - name: argument
+        type: string
+    name: do_rogafufuken
+  - fields:
+      - name: argument
+        type: string
+    name: do_interest
+  - fields:
+      - name: argument
+        type: string
+    name: do_infuse
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_cedit
+  - fields:
+      - name: argument
+        type: string
+    name: do_at
+  - fields:
+      - name: argument
+        type: string
+    name: cleric_marduk
+  - fields:
+      - name: argument
+        type: string
+    name: do_gen_comm
+  - fields:
+      - name: argument
+        type: string
+    name: snake
+
+
+  # remaining idents
+  - fields:
+      - name: arg
+        type: string
+    name: spell_create_water
+  - fields:
+      - name: arg
+        type: string
+    name: spell_recall
+  - fields:
+      - name: arg
+        type: string
+    name: spell_teleport
+  - fields:
+      - name: arg
+        type: string
+    name: spell_sumon
+  - fields:
+      - name: arg
+        type: string
+    name: spell_locate_object
+  - fields:
+      - name: arg
+        type: string
+    name: spell_charm
+  - fields:
+      - name: arg
+        type: string
+    name: spell_identify
+  - fields:
+      - name: arg
+        type: string
+    name: spell_enchant_weapon
+  - fields:
+      - name: arg
+        type: string
+    name: spell_detect_poison
+  - fields:
+      - name: arg
+        type: string
+    name: spell_portal
+  - fields:
+      - name: arg
+        type: string
+    name: art_abundant_step
+  - fields:
+      - name: string
+        type: string
+    name: garble_text
+  - fields:
+      - name: filename
+        type: string
+    name: clanLoad
+  - fields:
+      - name: filename
+        type: string
+    name: clanSave
+  - fields:
+      - name: clan
+        type: string
+    name: set_clan
+  - fields:
+      - name: name
+        type: string
+    name: get_object_in_equip
+  - fields:
+      - name: name
+        type: string
+    name: remove_trigger
+  - fields:
+      - name: format
+        type: string
+    name: script_vlog
+  - fields:
+      - name: arg
+        type: string
+    name: is_num
+  - fields:
+      - name: op
+        type: string
+      - name: lhs
+        type: string
+      - name: rhs
+        type: string
+    name: eval_op
+  - fields:
+      - name: format
+        type: string
+    name: wld_log
+  - fields:
+      - name: str
+        type: string
+    name: act_to_room
+  - fields:
+      - name: argument
+        type: string
+    name: do_weffect
+  - fields:
+      - name: argument
+        type: string
+    name: do_wasound
+  - fields:
+      - name: argument
+        type: string
+    name: do_wecho
+  - fields:
+      - name: argument
+        type: string
+    name: do_wsend
+  - fields:
+      - name: argument
+        type: string
+    name: do_wzoneecho
+  - fields:
+      - name: argument
+        type: string
+    name: do_wrecho
+  - fields:
+      - name: argument
+        type: string
+    name: do_wdoor
+  - fields:
+      - name: argument
+        type: string
+    name: do_wteleport
+  - fields:
+      - name: argument
+        type: string
+    name: do_wforce
+  - fields:
+      - name: argument
+        type: string
+    name: do_wpurge
+  - fields:
+      - name: name
+        type: string
+    name: feato
+  - fields:
+      - name: txt
+        type: string
+    name: str_udup
+  - fields:
+      - name: buffer
+        type: string
+    name: strip_cr
+  - fields:
+      - name: argument
+        type: string
+    name: handle_forget
+  - fields:
+      - name: argument
+        type: string
+    name: handle_grand
+  - fields:
+      - name: argument
+        type: string
+    name: handle_practice
+  - fields:
+      - name: argument
+        type: string
+    name: handle_train
+  - fields:
+      - name: argument
+        type: string
+    name: handle_gain
+  - fields:
+      - name: argument
+        type: string
+    name: handle_exp
+  - fields:
+      - name: argument
+        type: string
+    name: handle_study
+  - fields:
+      - name: argument
+        type: string
+    name: handle_learn
+  - fields:
+      - name: arg
+        type: string
+    name: hedit_parse
+  - fields:
+      - name: filename
+        type: string
+    name: House_get_filename
+  - fields:
+      - name: arg
+        type: string
+    name: hcontrol_build_house
+  - fields:
+      - name: arg
+        type: string
+    name: hcontrol_destroy_house
+  - fields:
+      - name: arg
+        type: string
+    name: hcontrol_pay_house
+  - fields:
+      - name: guestlist
+        type: string
+    name: hsedit_list_guests
+  - fields:
+      - name: str
+        type: string
+    name: improved_editor_execute
+  - fields:
+      - name: pattern
+        type: string
+      - name: replacement
+        type: string
+    name: replace_str
+  - fields:
+      - name: argument
+        type: string
+    name: command_interpreter
+  - fields:
+      - name: str
+        type: string
+    name: find_alias
+  - fields:
+      - name: orig
+        type: string
+    name: perform_complex_alias
+  - fields:
+      - name: orig
+        type: string
+    name: perform_alias
+  - fields:
+      - name: arg
+        type: string
+    name: search_block
+  - fields:
+      - name: str
+        type: string
+    name: is_number
+  - fields:
+      - name: string
+        type: string
+    name: delete_doubledollar
+  - fields:
+      - name: argument
+        type: string
+    name: fill_word
+  - fields:
+      - name: argument
+        type: string
+    name: reserved_word
+  - fields:
+      - name: argument
+        type: string
+      - name: first_arg
+        type: string
+    name: one_argument
+  - fields:
+      - name: argument
+        type: string
+      - name: first_arg
+        type: string
+    name: one_word
+  - fields:
+      - name: argument
+        type: string
+      - name: first_arg
+        type: string
+    name: any_one_arg
+  - fields:
+      - name: argument
+        type: string
+      - name: first_arg
+        type: string
+      - name: second_arg
+        type: string
+    name: two_arguments
+  - fields:
+      - name: argument
+        type: string
+      - name: first_arg
+        type: string
+      - name: second_arg
+        type: string
+      - name: third_arg
+        type: string
+    name: three_arguments
+  - fields:
+      - name: arg1, arg2
+        type: string
+    name: is_abbrev
+  - fields:
+      - name: string
+        type: string
+      - name: arg1
+        type: string
+      - name: arg2
+        type: string
+    name: half_chop
+  - fields:
+      - name: command
+        type: string
+    name: find_command
+  - fields:
+      - name: arg
+        type: string
+    name: special
+  - fields:
+      - name: arg
+        type: string
+      - name: name
+        type: string
+    name: _parse_name
+  - fields:
+      - name: name
+        type: string
+    name: readUserIndex
+  - fields:
+      - name: cmd
+        type: string
+    name: command_pass
+  - fields:
+      - name: name
+        type: string
+    name: lockread
+  - fields:
+      - name: name
+        type: string
+    name: userLoad
+  - fields:
+      - name: arg
+        type: string
+    name: rIntro
+  - fields:
+      - name: name
+        type: string
+    name: userWrite
+  - fields:
+      - name: name
+        type: string
+    name: fingerUser
+
+  - fields:
+      - name: arg
+        type: string
+    name: spell_summon
+  - fields:
+      - name: messg
+        type: string
+    name: auc_send_to_all
+  - fields:
+      - name: arg
+        type: string
+    name: get_from_container
+  - fields:
+      - name: word
+        type: string
+    name: find_exdesc_keywords
+  - fields:
+      - name: arg
+        type: string
+    name: get_from_room
+  - fields:
+      - name: sname
+        type: string
+    name: perform_drop
+  - fields:
+      - name: arg
+        type: string
+    name: give_find_vict
+  - fields:
+      - name: name
+        type: string
+    name: clanGet
+  - fields:
+      - name: filename
+        type: string
+    name: discrete_load
+  - fields:
+      - name: flag
+        type: string
+    name: asciiflag_conv
+  - fields:
+      - name: flag
+        type: string
+    name: asciiflag_conv_aff
+  - fields:
+      - name: p
+        type: string
+    name: matching_paren
+  - fields:
+      - name: cmd
+        type: string
+    name: process_attach
+  - fields:
+      - name: cmd
+        type: string
+    name: process_detach
+  - fields:
+      - name: cmd
+        type: string
+    name: makeuid_var
+  - fields:
+      - name: argument
+        type: string
+    name: do_feats
+  - fields:
+      - name: filename
+        type: string
+    name: boot_the_guilds
+  - fields:
+      - name: arg
+        type: string
+    name: find_all_dots
+  - fields:
+      - name: arg
+        type: string
+    name: parse_bonuses
+  - fields:
+      - name: arg
+        type: string
+    name: nanny
+  - fields:
+      - name: name
+        type: string
+    name: mail_recip_ok
+  - fields:
+      - name: arg
+        type: string
+    name: postmaster_send_mail
+  - fields:
+      - name: arg
+        type: string
+    name: postmaster_check_mail
+  - fields:
+      - name: arg
+        type: string
+    name: postmaster_receive_mail
+  - fields:
+      - name: str
+        type: string
+    name: smash_numb
+  - fields:
+      - name: str
+        type: string
+    name: next_page
+  - fields:
+      - name: str
+        type: string
+    name: count_pages
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasis_copy
+  - fields:
+      - name: arg
+        type: string
+    name: gen_receptionist
+  - fields:
+      - name: argument
+        type: string
+    name: cryogenicist
+  - fields:
+      - name: arg
+        type: string
+    name: olc_interpreter
+  - fields:
+      - name: arg
+        type: string
+    name: olc_string
+  - fields:
+      - name: arg
+        type: string
+    name: olc_bitvector
+  - fields:
+      - name: arg
+        type: string
+    name: olc_set_show
+  - fields:
+      - name: str
+        type: string
+    name: kill_ems
+  - fields:
+      - name: argument
+        type: string
+      - name: tag
+        type: string
+    name: tag_argument
+  - fields:
+      - name: line
+        type: string
+    name: load_majin
+  - fields:
+      - name: line
+        type: string
+    name: load_molt
+  - fields:
+      - name: expr
+        type: string
+    name: evaluate_expression
+  - fields:
+      - name: arg
+        type: string
+    name: transaction_amt
+  - fields:
+      - name: name
+        type: string
+    name: times_message
+  - fields:
+      - name: name
+        type: string
+    name: get_slide_obj_vis
+  - fields:
+      - name: name
+        type: string
+    name: get_hash_obj_vis
+  - fields:
+      - name: arg
+        type: string
+    name: get_purchase_obj
+  - fields:
+      - name: arg
+        type: string
+    name: shopping_app
+  - fields:
+      - name: arg
+        type: string
+    name: shopping_buy
+  - fields:
+      - name: name
+        type: string
+    name: get_selling_obj
+  - fields:
+      - name: arg
+        type: string
+    name: shopping_sell
+
+  #last stuff
+  - fields:
+      - name: arg
+        type: string
+    name: zedit_parse
+  - fields:
+      - name: arg
+        type: string
+    name: perform_tell
+  - fields:
+      - name: buf
+        type: string
+    name: handle_whisper
+  - fields:
+      - name: buf
+        type: string
+    name: overhear
+  - fields:
+      - name: arg
+        type: string
+    name: look_in_obj
+  - fields:
+      - name: arg
+        type: string
+    name: look_at_target
+  - fields:
+      - name: arg
+        type: string
+    name: look_out_window
+  - fields:
+      - name: str
+        type: string
+    name: space_to_minus
+  - fields:
+      - name: arg
+        type: string
+    name: perform_mortal_where
+  - fields:
+      - name: arg
+        type: string
+    name: perform_immort_where
+  - fields:
+      - name: col
+        type: string
+    name: cchoice_to_str
+  - fields:
+      - name: str
+        type: string
+      - name: choice
+        type: string
+    name: str_to_cchoice
+  - fields:
+      - name: str
+        type: string
+    name: add_history
+  - fields:
+      - name: name
+        type: string
+    name: find_social
+  - fields:
+      - name: newname
+        type: string
+    name: Valid_Name
+  - fields:
+      - name: zonename
+        type: string
+    name: load_zones
+  - fields:
+      - name: name
+        type: string
+    name: file_to_string_alloc
+  - fields:
+      - name: message
+        type: string
+    name: log_zone_error
+  - fields:
+      - name: whatami
+        type: string
+      - name: whatbits
+        type: string
+    name: check_bitvector_names
+  - fields:
+      - name: argument
+        type: string
+    name: do_oecho
+  - fields:
+      - name: argument
+        type: string
+    name: do_oforce
+  - fields:
+      - name: argument
+        type: string
+    name: do_ozoneecho
+  - fields:
+      - name: argument
+        type: string
+    name: do_osend
+  - fields:
+      - name: argument
+        type: string
+    name: do_orecho
+  - fields:
+      - name: argument
+        type: string
+    name: do_otimer
+  - fields:
+      - name: argument
+        type: string
+    name: do_otransform
+  - fields:
+      - name: argument
+        type: string
+    name: do_dupe
+  - fields:
+      - name: argument
+        type: string
+    name: do_opurge
+  - fields:
+      - name: argument
+        type: string
+    name: do_ogoto
+  - fields:
+      - name: buf
+        type: string
+    name: pick_n_throw
+  - fields:
+      - name: buf
+        type: string
+    name: mob_attack
+  - fields:
+      - name: arg
+        type: string
+    name: shopping_list
+  - fields:
+      - name: arg
+        type: string
+    name: shopping_value
+  - fields:
+      - name: why
+        type: string
+    name: read_shop_message
+  - fields:
+      - name: name
+        type: string
+    name: spello
+  - fields:
+      - name: name
+        type: string
+    name: arto
+  - fields:
+      - name: name
+        type: string
+    name: skillo
+  - fields:
+      - name: path
+        type: string
+    name: touch
+  - fields:
+      - name: arg
+        type: string
+    name: ship_land_location
+  - fields:
+      - name: arg
+        type: string
+    name: drive_into_vehicle
 
 files:
   - name: "include/*.h"

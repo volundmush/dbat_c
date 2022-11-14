@@ -30,7 +30,7 @@
 static void sort_keeper_objs(struct char_data *keeper, int shop_nr);
 
 /* Local variables */
-struct shop_data *shop_index;
+shop_data *shop_index;
 int top_shop = -1;
 int cmd_say, cmd_tell, cmd_emote, cmd_slap, cmd_puke;
 

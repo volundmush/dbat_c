@@ -1950,7 +1950,7 @@ struct obj_data {
    int  cost;           /* Value when sold (gp.)               */
    int  cost_per_day;   /* Cost to keep pr. real day           */
    int  timer;          /* Timer for object                    */
-    bitvector_t  bitvector[AF_ARRAY_MAX]; /* To set chars bits          */
+   bitvector_t  bitvector[AF_ARRAY_MAX]; /* To set chars bits          */
    int  size;           /* Size class of object                */
 
    struct obj_affected_type affected[MAX_OBJ_AFFECT];  /* affects */
@@ -2123,7 +2123,7 @@ struct player_special_data {
   int8_t freeze_level;		/* Level of god who froze char, if any	*/
   int16_t invis_level;		/* level of invisibility		*/
   room_vnum load_room;		/* Which room to place char in		*/
-    bitvector_t pref[PR_ARRAY_MAX];	/* preference flags for PC's.		*/
+  bitvector_t pref[PR_ARRAY_MAX];	/* preference flags for PC's.		*/
   uint8_t bad_pws;		/* number of bad password attemps	*/
   int8_t conditions[NUM_CONDITIONS];		/* Drunk, full, thirsty			*/
   int skill_points;		/* Skill points earned from race HD	*/
@@ -2514,7 +2514,7 @@ struct char_data {
   struct char_data *original;
   short clones;
   int relax_count;
- 	int ingestLearned;
+  int ingestLearned;
 };
 
 /* ====================================================================== */

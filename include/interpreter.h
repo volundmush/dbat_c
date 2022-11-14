@@ -62,19 +62,18 @@ struct command_info {
    const char *command;
    const char *sort_as;
    int8_t minimum_position;
-   void	(*command_pointer)
-	   (struct char_data *ch, char *argument, int cmd, int subcmd);
+   CommandFunc command_pointer;
    int16_t minimum_level;
    int16_t minimum_admlevel;
    int	subcmd;
 };
-
+typedef struct command_info command_info;
 extern const struct command_info cmd_info[];
 /*
  * Necessary for CMD_IS macro.  Borland needs the structure defined first
  * so it has been moved down here.
  */
-extern struct command_info *complete_cmd_info;
+extern command_info *complete_cmd_info;
 
 /*
  * Alert! Changed from 'struct alias' to 'struct alias_data' in bpl15

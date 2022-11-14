@@ -7,7 +7,7 @@
 
 #include "structs.h"
 
-extern void hedit_parse(struct descriptor_data *, char *);
+extern void hedit_parse(struct descriptor_data *, char *p);
 static void hedit_setup_new(struct descriptor_data *);
 static void hedit_setup_existing(struct descriptor_data *, int);
 static void hedit_save_to_disk(struct descriptor_data *);

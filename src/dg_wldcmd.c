@@ -44,8 +44,7 @@ void wld_command_interpreter(struct room_data *room, char *argument);
 
 struct wld_command_info {
     char *command;
-    void (*command_pointer)
-           (struct room_data *room, char *argument, int cmd, int subcmd);
+    CommandFunc command_pointer;
     int        subcmd;
 };
 

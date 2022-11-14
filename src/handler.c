@@ -11,7 +11,6 @@
 #include "utils.h"
 #include "comm.h"
 #include "db.h"
-#include "handler.h"
 #include "interpreter.h"
 #include "spells.h"
 #include "dg_scripts.h"
@@ -20,8 +19,6 @@
 #include "class.h"
 #include "objsave.h"
 #include "fight.h"
-#include "races.h"
-#include "act.informative.h"
 #include "vehicles.h"
 #include "shop.h"
 #include "act.item.h"
@@ -1623,180 +1620,24 @@ void extract_pending_chars(void)
 *********************************************************************** */
 
 
-struct char_data *get_player_vis(struct char_data *ch, char *name, int *number, int inroom)
+struct char_data *get_player_vis(struct char_data *ch, char *name, int *number, room_rnum inroom)
 {
-  struct char_data *i;
-  int num;
-
-  if (!number) {
-    number = &num;
-    num = get_number(&name);
-  }
-
-  for (i = character_list; i; i = i->next) {
-    if (IS_NPC(i))
-      continue;
-    if (inroom == FIND_CHAR_ROOM && IN_ROOM(i) != IN_ROOM(ch))
-      continue;
-    if (GET_ADMLEVEL(ch) < 1 && GET_ADMLEVEL(i) < 1 && !IS_NPC(ch) && !IS_NPC(i)) {
-     if (strcasecmp(RACE(i), name) && !strstr(RACE(i), name)) {
-      if (readIntro(ch, i) == 1) {
-       if (strcasecmp(get_i_name(ch, i), name) && !strstr(get_i_name(ch, i), name)) {
-        continue;
-       }
-      }
-      else {
-       continue;
-      }
-     }
-    }
-    if ((GET_ADMLEVEL(ch) >= 1 || GET_ADMLEVEL(i) >= 1 || IS_NPC(ch) || IS_NPC(i))) {
-     if (strcasecmp(i->name, name) && !strstr(i->name, name)) {
-      if (strcasecmp(RACE(i), name) && !strstr(RACE(i), name)) {
-        if (!IS_NPC(ch) && !IS_NPC(i) && readIntro(ch, i) == 1) {
-         if (strcasecmp(get_i_name(ch, i), name) && !strstr(get_i_name(ch, i), name)) {
-          continue;
-         }
-        }
-       else {
-        continue;
-       }
-      }
-     }
-    }
-    if (!CAN_SEE(ch, i))
-      continue;
-    if (--(*number) != 0)
-      continue;
-    return (i);
-  }
-
-  return (NULL);
+    basic_mud_log("REIMPLEMENT THIS!");
+    exit(-1);
 }
 
 
 struct char_data *get_char_room_vis(struct char_data *ch, char *name, int *number)
 {
-  struct char_data *i;
-  int num;
-
-  if (!number) {
-    number = &num;
-    num = get_number(&name);
-  }
-
-  /* JE 7/18/94 :-) :-) */
-  if (!strcasecmp(name, "self") || !strcasecmp(name, "me"))
-    return (ch);
-
-  /* 0.<name> means PC with name */
-  if (*number == 0)
-    return (get_player_vis(ch, name, NULL, FIND_CHAR_ROOM));
-
-  for (i = world[IN_ROOM(ch)].people; i && *number; i = i->next_in_room) {
-    if (!strcasecmp(name, "last") && LASTHIT(i) != 0 && LASTHIT(i) == GET_IDNUM(ch)) {
-      if (CAN_SEE(ch, i))
-        if (--(*number) == 0)
-          return (i);
-    }
-    else if (isname(name, i->name) && (IS_NPC(i) || IS_NPC(ch) || GET_ADMLEVEL(i) > 0 || GET_ADMLEVEL(ch) > 0) && i != ch) {
-      if (CAN_SEE(ch, i))
-	if (--(*number) == 0)
-	  return (i);
-    }
-    else if (isname(name, i->name) && i == ch) {
-      if (CAN_SEE(ch, i))
-        if (--(*number) == 0)
-          return (i);
-    }
-    else if (!IS_NPC(i) && !IS_NPC(ch) && !strcasecmp(get_i_name(ch, i), CAP(name)) && i != ch) {
-      if (CAN_SEE(ch, i))
-        if (--(*number) == 0)
-          return (i);
-    }
-    else if (!IS_NPC(i) && !IS_NPC(ch) && strstr(get_i_name(ch, i), CAP(name)) && i != ch) {
-      if (CAN_SEE(ch, i))
-        if (--(*number) == 0)
-          return (i);
-    }
-    else if (!IS_NPC(i) && !(strcmp(RACE(i), CAP(name))) && i != ch) {
-      if (CAN_SEE(ch, i))
-        if (--(*number) == 0)
-          return (i);
-    }
-    else if (!IS_NPC(i) && strstr(RACE(i), CAP(name)) && i != ch) {
-      if (CAN_SEE(ch, i))
-        if (--(*number) == 0)
-          return (i);
-    }
-    else if (!IS_NPC(i) && !(strcmp(RACE(i), name)) && i != ch) {
-      if (CAN_SEE(ch, i))
-        if (--(*number) == 0)
-          return (i);
-    }
-    else if (!IS_NPC(i) && strstr(RACE(i), name) && i != ch) {
-      if (CAN_SEE(ch, i))
-        if (--(*number) == 0)
-          return (i);
-    }
-  }
-  return (NULL);
+    basic_mud_log("REIMPLEMENT THIS!");
+    exit(-1);
 }
 
 
 struct char_data *get_char_world_vis(struct char_data *ch, char *name, int *number)
 {
-  struct char_data *i;
-  int num;
-
-  if (!number) {
-    number = &num;
-    num = get_number(&name);
-  }
-
-  if ((i = get_char_room_vis(ch, name, number)) != NULL)
-    return (i);
-
-  if (*number == 0)
-    return get_player_vis(ch, name, NULL, 0);
-
-  for (i = character_list; i && *number; i = i->next) {
-    if (IN_ROOM(ch) == IN_ROOM(i))
-      continue;
-    if (GET_ADMLEVEL(ch) < 1 && GET_ADMLEVEL(i) < 1 && !IS_NPC(ch) && !IS_NPC(i)) {
-     if (strcasecmp(RACE(i), name) && !strstr(RACE(i), name)) {
-      if (readIntro(ch, i) == 1) {
-       if (strcasecmp(get_i_name(ch, i), name) && !strstr(get_i_name(ch, i), name)) {
-        continue;
-       }
-      }
-      else {
-       continue;
-      }
-     }
-    }
-    if ((GET_ADMLEVEL(ch) >= 1 || GET_ADMLEVEL(i) >= 1 || IS_NPC(ch) || IS_NPC(i))) {
-     if (strcasecmp(i->name, name) && !strstr(i->name, name)) {
-      if (strcasecmp(RACE(i), name) && !strstr(RACE(i), name)) {
-        if (!IS_NPC(ch) && !IS_NPC(i) && readIntro(ch, i) == 1) {
-         if (strcasecmp(get_i_name(ch, i), name) && !strstr(get_i_name(ch, i), name)) {
-          continue;
-         }
-        }
-       else {
-        continue;
-       }
-      }
-     }
-    }
-    /*if (!CAN_SEE(ch, i))
-      continue;*/
-    if (--(*number) != 0)
-      continue;
-
-    return (i);
-  }
-  return (NULL);
+    basic_mud_log("REIMPLEMENT THIS!");
+    exit(-1);
 }
 
 
@@ -1837,33 +1678,8 @@ struct obj_data *get_obj_in_list_vis(struct char_data *ch, char *name, int *numb
 /* search the entire world for an object, and return a pointer  */
 struct obj_data *get_obj_vis(struct char_data *ch, char *name, int *number)
 {
-  struct obj_data *i;
-  int num;
-
-  if (!number) {
-    number = &num;
-    num = get_number(&name);
-  }
-
-  if (*number == 0)
-    return (NULL);
-
-  /* scan items carried */
-  if ((i = get_obj_in_list_vis(ch, name, number, ch->carrying)) != NULL)
-    return (i);
-
-  /* scan room */
-  if ((i = get_obj_in_list_vis(ch, name, number, world[IN_ROOM(ch)].contents)) != NULL)
-    return (i);
-
-  /* ok.. no luck yet. scan the entire obj list   */
-  for (i = object_list; i && *number; i = i->next)
-    if (isname(name, i->name))
-      if (CAN_SEE_OBJ(ch, i))
-	if (--(*number) == 0)
-	  return (i);
-
-  return (NULL);
+    basic_mud_log("REIMPLEMENT THIS!");
+    exit(-1);
 }
 
 

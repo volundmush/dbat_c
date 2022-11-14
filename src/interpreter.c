@@ -86,7 +86,7 @@ void payout(int num);
 
 
 /* prototypes for all do_x functions. */
-struct command_info *complete_cmd_info;
+command_info *complete_cmd_info;
 
 /* This is the Master Command List(tm).
 

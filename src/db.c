@@ -69,7 +69,7 @@ zone_data *zone_table;	/* zone table			 */
 zone_rnum top_of_zone_table = 0;/* top element of zone tab	 */
 struct message_list fight_messages[MAX_MESSAGES];	/* fighting messages	 */
 
-index_data *trig_index; /* index table for triggers      */
+index_data **trig_index; /* index table for triggers      */
 struct trig_data *trigger_list = NULL;  /* all attached triggers */
 int top_of_trigt = 0;           /* top of trigger index table    */
 long max_mob_id = MOB_ID_BASE;  /* for unique mob id's       */
@@ -109,10 +109,10 @@ char *handbook = NULL;		/* handbook for new immortals	 */
 char *policies = NULL;		/* policies page		 */
 char *ihelp = NULL;		/* help screen (immortals)	 */
 
-struct help_index_element *help_table = NULL;	/* the help table	 */
+help_index_element *help_table = NULL;	/* the help table	 */
 int top_of_helpt = 0;
 
-struct social_messg *soc_mess_list = NULL;      /* list of socials */
+social_messg *soc_mess_list = NULL;      /* list of socials */
 int top_of_socialt = -1;                        /* number of socials */
 
 struct time_info_data time_info;/* the infomation about the time    */

@@ -50,7 +50,7 @@ void obj_command_interpreter(struct obj_data *obj, char *argument);
 
 struct obj_command_info {
    char *command;
-   void        (*command_pointer)(struct obj_data *obj, char *argument, int cmd, int subcmd);
+   CommandFunc command_pointer;
    int        subcmd;
 };
 

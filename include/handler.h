@@ -70,7 +70,7 @@ extern void extract_char_final(struct char_data *ch);
 extern void extract_pending_chars(void);
 
 /* find if character can see */
-extern struct char_data *get_player_vis(struct char_data *ch, char *name, int *number, int inroom);
+extern struct char_data *get_player_vis(struct char_data *ch, char *name, int *number, room_rnum inroom);
 extern struct char_data *get_char_vis(struct char_data *ch, char *name, int *number, int where);
 extern struct char_data *get_char_room_vis(struct char_data *ch, char *name, int *number);
 extern struct char_data *get_char_world_vis(struct char_data *ch, char *name, int *number);

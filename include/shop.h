@@ -254,9 +254,10 @@ struct stack_data {
 #define MSG_NO_BUY_BROKEN	"Sorry, but I don't deal in broken items."
 
 // global variables
+typedef struct shop_data shop_data;
 extern const char *trade_letters[NUM_TRADERS+1];
 extern const char *shop_bits[];
-extern struct shop_data *shop_index;
+extern shop_data *shop_index;
 extern int top_shop, cmd_say, cmd_tell, cmd_emote, cmd_slap, cmd_puke;
 
 // functions

@@ -114,6 +114,8 @@
 
 
 // global variables
+typedef struct help_index_element help_index_element;
+
 extern struct time_info_data time_info;/* the infomation about the time    */
 extern struct weather_data weather_info;	/* the infomation about the weather */
 extern struct player_special_data dummy_mob;	/* dummy spec area for mobs	*/
@@ -122,7 +124,7 @@ extern struct char_data *EDRAGON;
 extern int WISH[2];
 extern int DRAGONR, DRAGONZ, DRAGONC, SHENRON;
 extern int circle_restrict;
-extern struct help_index_element *help_table;
+extern help_index_element *help_table;
 extern char *help, *ihelp, *credits, *news, *info, *wizlist, *immlist, *background;
 extern char *policies, *handbook, *motd, *imotd, *GREETINGS, *GREETANSI;
 extern int top_of_helpt, dballtime;
@@ -350,10 +352,12 @@ extern struct htree_node *room_htree;
 extern struct htree_node *mob_htree;
 extern struct htree_node *obj_htree;
 
-extern struct social_messg *soc_mess_list;
+typedef struct social_messg social_messg;
+
+extern social_messg *soc_mess_list;
 extern int top_of_socialt;
 
-extern index_data *trig_index;
+extern index_data **trig_index;
 extern trig_data *trigger_list;
 extern int top_of_trigt;
 extern long max_mob_id;
