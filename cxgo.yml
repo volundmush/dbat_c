@@ -36,13 +36,8 @@ idents:
     type: slice
   - name: shop_index
     type: slice
-  - name: zone_data
-    fields:
-      - name: cmd
-        type: slice
   - name: trig_index
     type: slice
-
 
   - name: extra_descr_data
     fields:
@@ -252,6 +247,8 @@ idents:
         type: string
       - name: builders
         type: string
+      - name: cmd
+        type: slice
 
   - name: player_index_element
     fields:
@@ -4028,6 +4025,9 @@ idents:
       - name: arg
         type: string
     name: drive_into_vehicle
+
+  - name: pComponents
+    type: slice
 
 files:
   - name: "include/*.h"

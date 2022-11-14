@@ -224,7 +224,7 @@ struct reset_com {
    */
 };
 
-
+typedef struct reset_com reset_com;
 
 /* zone definition structure. for the 'zone-table'   */
 #define CUR_WORLD_VERSION 1
@@ -241,7 +241,7 @@ struct zone_data {
 
    int	reset_mode;         /* conditions for reset (see below)   */
    zone_vnum number;	    /* virtual number of this zone	  */
-   struct reset_com *cmd;   /* command table for reset	          */
+   reset_com *cmd;   /* command table for reset	          */
    int min_level;           /* Minimum level to enter zone        */
    int max_level;           /* Max Mortal level to enter zone     */
    int zone_flags[ZF_ARRAY_MAX];          /* Flags for the zone.                */
@@ -255,7 +255,7 @@ struct zone_data {
     */
 };
 
-
+typedef struct zone_data zone_data;
 
 /* for queueing zones for update   */
 struct reset_q_element {
