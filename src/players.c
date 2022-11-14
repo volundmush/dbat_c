@@ -43,7 +43,7 @@ void load_majin(struct char_data *ch, const char *line);
 
 
 /* 'global' vars */
-struct player_index_element *player_table = NULL;	/* index to plr file	 */
+player_index_element *player_table = NULL;	/* index to plr file	 */
 int top_of_p_table = 0;		/* ref to top of table		 */
 int top_of_p_file = 0;		/* ref of size of p file	 */
 long top_idnum = 0;		/* highest idnum in use		 */

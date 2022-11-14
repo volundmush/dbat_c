@@ -289,6 +289,8 @@ struct player_index_element {
    char *clan;
 };
 
+typedef struct player_index_element player_index_element;
+
 
 struct help_index_element {
    char *index;      /*Future Use */

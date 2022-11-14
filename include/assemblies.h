@@ -35,7 +35,7 @@
 
 typedef struct assembly_data   ASSEMBLY;
 typedef struct component_data  COMPONENT;
-
+typedef struct component_data component_data;
 /* ******************************************************************** *
  * Structure definitions.                                              *
  * ******************************************************************** */
@@ -46,7 +46,7 @@ struct assembly_data {
   long         lNumComponents;         /* Number of components. */
   unsigned char        uchAssemblyType;        /* Type of assembly (ASSM_xxx).
 */
-  struct component_data *pComponents;          /* Array of component info. */
+  component_data *pComponents;          /* Array of component info. */
 };
 
 /* Assembly component structure definition. */

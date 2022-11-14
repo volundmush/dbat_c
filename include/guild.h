@@ -27,6 +27,8 @@ struct guild_data {
   int feats[NUM_FEATS_DEFINED];  /* array to keep track of which feats things we'll train */
 };
 
+typedef struct guild_data guild_data;
+
 #define GM_NUM(i)  (guild_index[i].vnum)
 #define GM_TRAINER(i) (guild_index[i].gm)
 #define GM_OPEN(i) (guild_index[i].open)
@@ -124,7 +126,7 @@ struct guild_data {
 #define NOTRAIN_LIZARDFOLK(i)	(IS_SET_AR((GM_WITH_WHO(i)), TRADE_NOLIZARDFOLK))
 
 
-extern struct guild_data *guild_index;
+extern guild_data *guild_index;
 extern int top_guild;
 extern int spell_sort_info[SKILL_TABLE_SIZE + 1];
 

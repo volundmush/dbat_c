@@ -25,7 +25,7 @@
 /* Local variables */
 int spell_sort_info[SKILL_TABLE_SIZE + 1];
 int top_guild = -1;
-struct guild_data *guild_index;
+guild_data *guild_index;
 
 char *guild_customer_string(int guild_nr, int detailed);
 int calculate_skill_cost(struct char_data *ch, int skill);

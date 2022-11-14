@@ -38,6 +38,10 @@ idents:
     type: slice
   - name: trig_index
     type: slice
+  - name: guild_index
+    type: slice
+  - name: player_table
+    type: slice
 
   - name: extra_descr_data
     fields:
@@ -48,13 +52,15 @@ idents:
 
   - name: obj_data
     fields:
+      - name: sbinfo
+        type: slice
       - name: name
         type: string
       - name: description
         type: string
       - name: short_description
         type: string
-      - name: action_descripton
+      - name: action_description
         type: string
       - name: auctname
         type: string
@@ -347,6 +353,8 @@ idents:
     fields:
       - name: storage
         type: string
+      - name: OlcAssembly
+        type: slice
 
   - name: shop_buy_data
     fields:
@@ -355,6 +363,10 @@ idents:
 
   - name: shop_data
     fields:
+      - name: type
+        type: slice
+      - name: in_room
+        type: slice
       - name: producing
         type: slice
       - name: no_such_item1
@@ -554,6 +566,11 @@ idents:
     fields:
       - name: pszAssemblyName
         type: string
+
+  - name: assembly_data
+    fields:
+      - name: pComponents
+        type: slice
 
   # functions: ban.h
   - name: isbanned
@@ -1161,6 +1178,12 @@ idents:
     fields:
       - name: type
         type: string
+
+  # genzon.c
+  - name: count_commands
+    fields:
+      - name: list
+        type: slice
 
   # guild.h
   - name: print_skills_by_type
