@@ -35,7 +35,8 @@ void extract_mobile_all(mob_vnum vnum);
 
 int add_mobile(struct char_data *mob, mob_vnum vnum)
 {
-
+    basic_mud_log("REIMPLEMENT THIS!");
+    exit(-1);
 }
 
 int copy_mobile(struct char_data *to, struct char_data *from)

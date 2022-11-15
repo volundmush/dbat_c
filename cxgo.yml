@@ -492,6 +492,8 @@ idents:
     fields:
       - name: word
         type: string
+      - name: return
+        type: string
   - name: add_history
     fields:
       - name: str
@@ -586,6 +588,12 @@ idents:
   - name: write_board_message
     fields:
       - name: arg
+        type: string
+
+  #functions: class.h
+  - name: class_desc_str
+    fields:
+      - name: return
         type: string
 
   #fuunctions: clan.h
@@ -712,6 +720,11 @@ idents:
         type: string
 
   # functions: comm.h
+  - name: make_prompt
+    fields:
+      - name: return
+        type: string
+
   - name: send_to_eaves
     fields:
       - name: messg
@@ -748,10 +761,14 @@ idents:
     fields:
       - name: orig
         type: string
+
   - name: act
     fields:
       - name: str
         type: string
+      - name: return
+        type: string
+
   - name: write_to_q
     fields:
       - name: txt
@@ -838,13 +855,21 @@ idents:
     type: string
 
   # db.h
-  - name: create_entry
-    fields:
-      - name: name
-        type: string
   - name: fread_string
     fields:
       - name: error
+        type: string
+      - name: return
+        type: string
+
+  - name: get_name_by_id
+    fields:
+      - name: return
+        type: string
+
+  - name: create_entry
+    fields:
+      - name: name
         type: string
   - name: get_id_by_name
     fields:
@@ -883,6 +908,11 @@ idents:
       - name: searchname
         type: string
 
+  - name: sprintuniques
+    fields:
+      - name: return
+        type: string
+
   # dg_comm.h
   - name: send_to_imm
     fields:
@@ -914,12 +944,16 @@ idents:
         type: string
       - name: first_arg
         type: string
+      - name: return
+        type: string
+
   - name: is_substring
     fields:
       - name: sub
         type: string
       - name: string
         type: string
+
   - name: word_check
     fields:
       - name: str
@@ -964,12 +998,16 @@ idents:
         type: string
       - name: argument
         type: string
+
   - name: str_str
     fields:
       - name: cs
         type: string
       - name: ct
         type: string
+      - name: return
+        type: string
+
   - name: find_eq_pos_script
     fields:
       - name: arg
@@ -1036,18 +1074,24 @@ idents:
     fields:
       - name: format
         type: String
+
   - name: script_log
     fields:
       - name: format
         type: string
+
   - name: matching_quote
     fields:
       - name: p
         type: string
+      - name: return
+        type: string
+
   - name: process_eval
     fields:
       - name: cmd
         type: string
+
   - name: dg_obj_trigger
     fields:
       - name: line
@@ -1103,6 +1147,8 @@ idents:
       - name: argument
         type: string
       - name: first_arg
+        type: string
+      - name: return
         type: string
   - name: sub_write
     fields:
@@ -1168,7 +1214,9 @@ idents:
         type: string
   - name: str_udup
     fields:
-      - name: str
+      - name: txt
+        type: string
+      - name: return
         type: string
   - name: sprintascii
     fields:
@@ -1206,6 +1254,10 @@ idents:
         type: string
 
   # handler.h
+  - name: money_desc
+    fields:
+      - name: return
+        type: string
   - name: isname
     fields:
       - name: str
@@ -1222,6 +1274,12 @@ idents:
     fields:
       - name: namelist
         type: string
+      - name: return
+        type: string
+  - name: get_i_name
+    fields:
+      - name: return
+        type: string
   - name: get_char_room
     fields:
       - name: name
@@ -1229,47 +1287,44 @@ idents:
   - name: get_player_vis
     fields:
       - name: name
-      - type: string
+        type: string
   - name: get_char_vis
     fields:
       - name: name
-      - type: string
+        type: string
   - name: get_char_room_vis
     fields:
       - name: name
-      - type: string
+        type: string
   - name: get_char_world_vis
     fields:
       - name: name
-      - type: string
+        type: string
   - name: get_obj_in_list_vis
     fields:
       - name: name
-      - type: string
+        type: string
   - name: get_obj_vis
     fields:
       - name: name
-      - type: string
+        type: string
   - name: get_obj_in_equip_vis
     fields:
       - name: arg
-      - type: string
+        type: string
   - name: get_obj_pos_in_equip_vis
     fields:
       - name: arg
-      - type: string
-  - name: find_eq_pos
-    fields:
-      - name: arg
-      - type: string
+        type: string
+
   - name: find_all_dots
     fields:
       - name: arg
-      - type: string
+        type: string
   - name: generic_find
     fields:
       - name: arg
-      - type: string
+        type: string
 
   # hedit.h
   - name: hedit_parse
@@ -1299,16 +1354,54 @@ idents:
       - name: name
         type: string
 
+  - name: find_obj_target_room
+    fields:
+      - name: rawroomstr
+        type: string
+
+  - name: find_door
+    fields:
+      - name: type
+        type: string
+      - name: dir
+        type: string
+      - name: cmdname
+        type: string
+
   # local_limits.h
   - name: set_title
     fields:
       - name: title
         type: string
 
+  - name: find_target_room
+    fields:
+      - name: rawroomstr
+        type: string
+
+  - name: print_zone_to_buf
+    fields:
+      - name: bufptr
+        type: string
+
+  - name: perform_set
+    fields:
+      - name: val_arg
+        type: string
+
+  - name: get_from_q
+    fields:
+      - name: dest
+        type: string
+
   # mail.h
   - name: store_mail
     fields:
       - name: message_pointer
+        type: string
+  - name: read_delete
+    fields:
+      - name: return
         type: string
 
   # modify.h
@@ -1323,6 +1416,11 @@ idents:
   - name: show_string
     fields:
       - name: input
+        type: string
+
+  - name: lockWrite
+    fields:
+      - name: name
         type: string
 
   # oasis.h
@@ -1380,6 +1478,17 @@ idents:
     fields:
       - name: arg
         type: string
+
+  - name: parse_stat_menu
+    fields:
+      - name: arg
+        type: string
+
+  - name: stats_assign_stat
+    fields:
+      - name: arg
+        type: string
+
 
   # obj_edit.h
   - name: pobj_edit_parse
@@ -1446,16 +1555,38 @@ idents:
     fields:
       - name: txt
         type: string
+  - name: report_party_health
+    fields:
+      - name: return
+        type: string
   - name: mob_respond
     fields:
       - name: speech
         type: string
-
+  - name: disp_align
+    fields:
+      - name: return
+        type: string
+  - name: sense_location
+    fields:
+      - name: return
+        type: string
   - name: customRead
     fields:
       - name: name
         type: string
-
+  - name: handle_racial
+    fields:
+      - name: return
+        type: string
+  - name: introd_calc
+    fields:
+      - name: return
+        type: string
+  - name: class_desc_str
+    fields:
+      - name: return
+        type: string
   - name: get_flag_by_name
     fields:
       - name: flag_list
@@ -1522,6 +1653,18 @@ idents:
     fields:
       - name: txt
         type: string
+      - name: return
+        type: string
+  - name: strlwr
+    fields:
+      - name: s
+        type: string
+      - name: return
+        type: string
+  - name: add_commas
+    fields:
+      - name: return
+        type: string
   - name: add_history
     fields:
       - name: msg
@@ -1530,9 +1673,19 @@ idents:
     fields:
       - name: str
         type: string
+      - name: return
+        type: string
   - name: xdir_scan
     fields:
       - name: dir_name
+        type: string
+  - name: xdir_get_name
+    fields:
+      - name: return
+        type: string
+  - name: xdir_next
+    fields:
+      - name: return
         type: string
   - name: insure_directory
     fields:
@@ -1544,7 +1697,62 @@ idents:
         type: string
       - name: s2
         type: string
-
+  - name: GET_TITLE
+    fields:
+      - name: return
+        type: string
+  - name: GET_NAME
+    fields:
+      - name: return
+        type: string
+  - name: GET_USER
+    fields:
+      - name: return
+        type: string
+  - name: HSHR
+    fields:
+      - name: return
+        type: string
+  - name: HSSH
+    fields:
+      - name: return
+        type: string
+  - name: HMHR
+    fields:
+      - name: return
+        type: string
+  - name: MAFE
+    fields:
+      - name: return
+        type: string
+  - name: ANA
+    fields:
+      - name: return
+        type: string
+  - name: SANA
+    fields:
+      - name: return
+        type: string
+  - name: PERS
+    fields:
+      - name: return
+        type: string
+  - name: OBJS
+    fields:
+      - name: return
+        type: string
+  - name: OBJN
+    fields:
+      - name: return
+        type: string
+  - name: JUGGLERACE
+    fields:
+      - name: return
+        type: string
+  - name: JUGGLERACELOWER
+    fields:
+      - name: return
+        type: string
   # sysdep.h
   - name: CommandFunc
     fields:
@@ -3427,6 +3635,7 @@ idents:
       - name: arg
         type: string
     name: is_num
+
   - fields:
       - name: op
         type: string
@@ -3434,7 +3643,10 @@ idents:
         type: string
       - name: rhs
         type: string
+      - name: result
+        type: string
     name: eval_op
+
   - fields:
       - name: format
         type: string
@@ -3455,6 +3667,22 @@ idents:
       - name: argument
         type: string
     name: do_wecho
+
+  - name: do_wat
+    fields:
+      - name: argument
+        type: string
+
+  - name: do_wdamage
+    fields:
+      - name: argument
+        type: string
+
+  - name: do_wload
+    fields:
+      - name: argument
+        type: string
+
   - fields:
       - name: argument
         type: string
@@ -3493,6 +3721,8 @@ idents:
     name: str_udup
   - fields:
       - name: buffer
+        type: string
+      - name: return
         type: string
     name: strip_cr
   - fields:
@@ -3550,10 +3780,13 @@ idents:
   - fields:
       - name: guestlist
         type: string
+      - name: return
+        type: string
     name: hsedit_list_guests
   - fields:
       - name: str
         type: string
+
     name: improved_editor_execute
   - fields:
       - name: pattern
@@ -3588,33 +3821,48 @@ idents:
   - fields:
       - name: string
         type: string
+      - name: return
+        type: string
     name: delete_doubledollar
   - fields:
       - name: argument
         type: string
+
     name: fill_word
+
   - fields:
       - name: argument
         type: string
     name: reserved_word
+
   - fields:
       - name: argument
         type: string
       - name: first_arg
+        type: string
+      - name: return
         type: string
     name: one_argument
+
+
   - fields:
       - name: argument
         type: string
       - name: first_arg
+        type: string
+      - name: return
         type: string
     name: one_word
+
   - fields:
       - name: argument
         type: string
       - name: first_arg
         type: string
+      - name: return
+        type: string
     name: any_one_arg
+
   - fields:
       - name: argument
         type: string
@@ -3622,7 +3870,10 @@ idents:
         type: string
       - name: second_arg
         type: string
+      - name: return
+        type: string
     name: two_arguments
+
   - fields:
       - name: argument
         type: string
@@ -3632,11 +3883,15 @@ idents:
         type: string
       - name: third_arg
         type: string
+      - name: return
+        type: string
     name: three_arguments
+
   - fields:
       - name: arg1, arg2
         type: string
     name: is_abbrev
+
   - fields:
       - name: string
         type: string
@@ -3678,6 +3933,8 @@ idents:
   - fields:
       - name: arg
         type: string
+      - name: return
+        type: string
     name: rIntro
   - fields:
       - name: name
@@ -3687,7 +3944,10 @@ idents:
       - name: name
         type: string
     name: fingerUser
-
+  - name: getmapchar
+    fields:
+      - name: return
+        type: string
   - fields:
       - name: arg
         type: string
@@ -3703,10 +3963,13 @@ idents:
   - fields:
       - name: word
         type: string
+      - name: return
+        type: string
     name: find_exdesc_keywords
   - fields:
       - name: arg
         type: string
+
     name: get_from_room
   - fields:
       - name: sname
@@ -3734,6 +3997,8 @@ idents:
     name: asciiflag_conv_aff
   - fields:
       - name: p
+        type: string
+      - name: return
         type: string
     name: matching_paren
   - fields:
@@ -3791,6 +4056,8 @@ idents:
   - fields:
       - name: str
         type: string
+      - name: return
+        type: string
     name: next_page
   - fields:
       - name: str
@@ -3812,10 +4079,14 @@ idents:
       - name: arg
         type: string
     name: olc_interpreter
+
   - fields:
+      - name: string
+        type: string
       - name: arg
         type: string
     name: olc_string
+
   - fields:
       - name: arg
         type: string
@@ -3853,9 +4124,17 @@ idents:
   - fields:
       - name: name
         type: string
+      - name: return
+        type: string
     name: times_message
   - fields:
       - name: name
+        type: string
+      - name: return
+        type: string
+    name: list_object
+  - fields:
+      - name: return
         type: string
     name: get_slide_obj_vis
   - fields:
@@ -3899,9 +4178,13 @@ idents:
   - fields:
       - name: buf
         type: string
+      - name: return
+        type: string
     name: overhear
   - fields:
       - name: arg
+        type: string
+      - name: return
         type: string
     name: look_in_obj
   - fields:
@@ -3926,6 +4209,8 @@ idents:
     name: perform_immort_where
   - fields:
       - name: col
+        type: string
+      - name: return
         type: string
     name: cchoice_to_str
   - fields:
@@ -4023,13 +4308,20 @@ idents:
   - fields:
       - name: why
         type: string
+      - name: return
+        type: string
     name: read_shop_message
   - fields:
       - name: name
         type: string
+      - name: wearoff
+        type: string
     name: spello
+
   - fields:
       - name: name
+        type: string
+      - name: wearoff
         type: string
     name: arto
   - fields:
@@ -4051,6 +4343,266 @@ idents:
 
   - name: pComponents
     type: slice
+
+  - name: fread_action
+    fields:
+      - name: return
+        type: string
+
+  - name: clanFilename
+    fields:
+      - name: return
+        type: string
+
+  - name: parse_object
+    fields:
+      - name: return
+        type: string
+
+  - name: skill_percent
+    fields:
+      - name: skill
+        type: string
+      - name: return
+        type: string
+  - name: guild_customer_string
+    fields:
+      - name: return
+        type: string
+  - name: customer_string
+    fields:
+      - name: return
+        type: string
+  - name: skill_name
+    fields:
+      - name: return
+        type: string
+  - name: how_good
+    fields:
+      - name: return
+        type: string
+
+  - name: proc_colors
+    fields:
+      - name: txt
+        type: string
+
+  - name: passcomm
+    fields:
+      - name: comm
+        type: string
+
+  - name: interpret_espec
+    fields:
+      - name: keyword
+        type: string
+      - name: value
+        type: string
+
+  - name: parse_espec
+    fields:
+      - name: buf
+        type: string
+
+  - name: get_line
+    fields:
+      - name: buf
+        type: string
+
+  - name: get_one_line
+    fields:
+      - name: buf
+        type: string
+
+  - name: file_to_string
+    fields:
+      - name: name
+        type: string
+      - name: buf
+        type: string
+
+  - name: strip_string
+    fields:
+      - name: buffer
+        type: string
+
+  - name: mob_log
+    fields:
+      - name: format
+        type: string
+
+  - name: obj_log
+    fields:
+      - name: format
+        type: string
+
+  - name: fgetlinetomax
+    fields:
+      - name: p
+        type: string
+
+  - name: wld_command_interpreter
+    fields:
+      - name: argument
+        type: string
+
+  - fields:
+      - name: argument
+        type: string
+    name: do_oteleport
+  - fields:
+      - name: argument
+        type: string
+    name: do_dgoload
+  - fields:
+      - name: argument
+        type: string
+    name: do_odamage
+  - fields:
+      - name: argument
+        type: string
+    name: do_oasound
+  - fields:
+      - name: argument
+        type: string
+    name: do_odoor
+  - fields:
+      - name: argument
+        type: string
+    name: do_osetval
+  - fields:
+      - name: argument
+        type: string
+    name: do_oat
+  - fields:
+      - name: argument
+        type: string
+    name: obj_command_interpreter
+  - fields:
+      - name: line
+        type: string
+      - name: result
+        type: string
+    name: eval_expr
+  - fields:
+      - name: expr
+        type: string
+      - name: result
+        type: string
+    name: eval_lhs_op_rhs
+  - fields:
+      - name: cond
+        type: string
+    name: process_if
+  - fields:
+      - name: cmd
+        type: string
+    name: process_wait
+  - fields:
+      - name: cmd
+        type: string
+    name: process_set
+  - fields:
+      - name: cmd
+        type: string
+    name: process_return
+  - fields:
+      - name: cmd
+        type: string
+    name: process_unset
+  - fields:
+      - name: cmd
+        type: string
+    name: process_remote
+  - fields:
+      - name: val_arg
+        type: string
+    name: perform_set_dg_var
+  - fields:
+      - name: cmd
+        type: string
+    name: process_rdelete
+  - fields:
+      - name: cmd
+        type: string
+    name: process_global
+  - fields:
+      - name: cmd
+        type: string
+    name: process_context
+  - fields:
+      - name: cmd
+        type: string
+    name: extract_value
+  - fields:
+      - name: cmd
+        type: string
+    name: dg_letter_value
+  - fields:
+      - name: cond
+        type: string
+    name: find_case
+  - fields:
+      - name: p
+        type: string
+    name: fgetline
+  - fields:
+      - name: new_g
+        type: string
+    name: gedit_modify_string
+  - fields:
+      - name: dscr
+        type: string
+    name: check_mobile_string
+  - fields:
+      - name: new_s
+        type: string
+    name: modify_string
+
+  - fields:
+      - name: string
+        type: string
+      - name: type
+        type: string
+    name: read_guild_line
+
+  - name: strlcpy
+    fields:
+      - name: dest
+        type: string
+      - name: source
+        type: string
+
+  - fields:
+      - name: msg
+        type: string
+    name: aff_apply_modify
+  - fields:
+      - name: arg1
+        type: string
+      - name: arg2
+        type: string
+    name: is_abbrev
+  - fields:
+      - name: name
+        type: string
+    name: lockRead
+  - fields:
+      - name: line
+        type: string
+    name: load_HMVS
+  - fields:
+      - name: line
+        type: string
+    name: load_BASE
+  - fields:
+      - name: name
+        type: string
+    name: get_slide_obj_vis
+  - fields:
+      - name: string
+        type: string
+    name: read_line
 
 files:
   - name: "include/*.h"

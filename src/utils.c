@@ -4685,7 +4685,8 @@ char *xdir_get_name(struct xap_dir *xd,int i) {
 }
 
 int insure_directory(char *path, int isfile) {
-
+    basic_mud_log("REIMPLEMENT THIS!");
+    exit(-1);
 }
 
 

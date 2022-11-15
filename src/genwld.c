@@ -21,7 +21,8 @@
  */
 room_rnum add_room(struct room_data *room)
 {
-
+    basic_mud_log("REIMPLEMENT THIS!");
+    exit(-1);
 }
 
 /* -------------------------------------------------------------------------- */
