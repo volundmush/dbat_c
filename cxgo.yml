@@ -4404,21 +4404,9 @@ idents:
       - name: buf
         type: string
 
-  - name: get_line
-    fields:
-      - name: buf
-        type: string
-
-  - name: get_one_line
-    fields:
-      - name: buf
-        type: string
-
   - name: file_to_string
     fields:
       - name: name
-        type: string
-      - name: buf
         type: string
 
   - name: strip_string

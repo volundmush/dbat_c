@@ -852,13 +852,13 @@ void boot_db(void)
   file_to_string_alloc(CREDITS_FILE, &credits);
   file_to_string_alloc(MOTD_FILE, &motd);
   file_to_string_alloc(IMOTD_FILE, &imotd);
-  file_to_string_alloc(HELP_PAGE_FILE, &help);
   file_to_string_alloc(INFO_FILE, &info);
   file_to_string_alloc(WIZLIST_FILE, &wizlist);
   file_to_string_alloc(IMMLIST_FILE, &immlist);
   file_to_string_alloc(POLICIES_FILE, &policies);
   file_to_string_alloc(HANDBOOK_FILE, &handbook);
   file_to_string_alloc(BACKGROUND_FILE, &background);
+  file_to_string_alloc(HELP_PAGE_FILE, &help);
   file_to_string_alloc(IHELP_PAGE_FILE, &ihelp);
   if (file_to_string_alloc(GREETINGS_FILE, &GREETINGS) == 0)
     prune_crlf(GREETINGS);
