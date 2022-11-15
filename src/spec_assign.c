@@ -17,9 +17,9 @@
 #include "mail.h"
 
 /* local functions */
-void ASSIGNROOM(room_vnum room, SPECIAL(fname));
-void ASSIGNMOB(mob_vnum mob, SPECIAL(fname));
-void ASSIGNOBJ(obj_vnum obj, SPECIAL(fname));
+void ASSIGNROOM(room_vnum room, SpecialFunc);
+void ASSIGNMOB(mob_vnum mob, SpecialFunc);
+void ASSIGNOBJ(obj_vnum obj, SpecialFunc);
 
 /* functions to perform assignments */
 
