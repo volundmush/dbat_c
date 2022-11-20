@@ -15,7 +15,7 @@
 ************************************************************************ */
 
 #include "config.h"
-#include "interpreter.h"	/* alias_data definition for structs.h */
+#include "interpreter.h"    /* alias_data definition for structs.h */
 
 /*
  * Update:  The following constants and variables are now the default values
@@ -72,15 +72,15 @@ int number_of_assassins = 0;
 
 char last_user_freed[MAX_INPUT_LENGTH];
 
- /* Toplist Data */
- int TOPLOADED = FALSE;
- char *topname[25];
- int64_t toppoint[25] = {0};
- /* End Top Data */
+/* Toplist Data */
+int TOPLOADED = 0;
+char *topname[25];
+int64_t toppoint[25] = {0};
+/* End Top Data */
 
 int ERAPLAYERS = 0;
 int TOPCOUNTDOWN = 60;
-int HEDITS = FALSE;
+int HEDITS = 0;
 int WISHTIME = 0;
 int TOP_OF_NEWS = 0;
 char *NEWS_TITLE;
@@ -95,34 +95,34 @@ time_t LASTINTEREST = 0;
 time_t LASTPAYOUT = 0;
 int LASTNEWS = 0;
 int LASTPAYTYPE = 0;
-int SAIYAN_ALLOWED = FALSE;
-int MAJIN_ALLOWED = FALSE;
-int MOON_UP = FALSE;
-int DEATHPHASE = FALSE;
+int SAIYAN_ALLOWED = 0;
+int MAJIN_ALLOWED = 0;
+int MOON_UP = 0;
+int DEATHPHASE = 0;
 int PCOUNT = 0;
 int HIGHPCOUNT = 0;
 time_t PCOUNTDATE = 0;
 time_t PCOUNTDAY = 0;
- /* This is for the dragon ball system */
- int SELFISHMETER = 0;
- int SHADOW_DRAGON1 = -1;
- int SHADOW_DRAGON2 = -1;
- int SHADOW_DRAGON3 = -1;
- int SHADOW_DRAGON4 = -1;
- int SHADOW_DRAGON5 = -1;
- int SHADOW_DRAGON6 = -1;
- int SHADOW_DRAGON7 = -1;
+/* This is for the dragon ball system */
+int SELFISHMETER = 0;
+int SHADOW_DRAGON1 = -1;
+int SHADOW_DRAGON2 = -1;
+int SHADOW_DRAGON3 = -1;
+int SHADOW_DRAGON4 = -1;
+int SHADOW_DRAGON5 = -1;
+int SHADOW_DRAGON6 = -1;
+int SHADOW_DRAGON7 = -1;
 
- int DBALL_HUNTER1 = -1;
- int DBALL_HUNTER2 = -1;
- int DBALL_HUNTER3 = -1;
- int DBALL_HUNTER4 = -1;
+int DBALL_HUNTER1 = -1;
+int DBALL_HUNTER2 = -1;
+int DBALL_HUNTER3 = -1;
+int DBALL_HUNTER4 = -1;
 
- int DBALL_HUNTER1_VNUM = 88;
- int DBALL_HUNTER2_VNUM = 89;
- int DBALL_HUNTER3_VNUM = 0;
- int DBALL_HUNTER4_VNUM = 0;
- /* End dragon ball system stuff       */
+int DBALL_HUNTER1_VNUM = 88;
+int DBALL_HUNTER2_VNUM = 89;
+int DBALL_HUNTER3_VNUM = 0;
+int DBALL_HUNTER4_VNUM = 0;
+/* End dragon ball system stuff       */
 
 /*  how many people can get into a tunnel?  The default is two, but there
  *  is also an alternate message in the case of one person being allowed.
@@ -130,8 +130,8 @@ time_t PCOUNTDAY = 0;
 int tunnel_size = 2;
 
 /* exp change limits */
-int max_exp_gain = 1000000;	/* max gainable per kill */
-int max_exp_loss = 250000;	/* max losable per death */
+int max_exp_gain = 1000000;    /* max gainable per kill */
+int max_exp_loss = 250000;    /* max losable per death */
 
 /* number of tics (usually 75 seconds) before PC/NPC corpses decompose */
 int max_npc_corpse_time = 5;
@@ -285,13 +285,13 @@ int auto_pwipe = YES;
 */
 const struct pclean_criteria_data pclean_criteria[7] = {
 /*	LEVEL		DAYS	*/
-  {	0		,0	}, /* level 0 */
-  {	1		,30	},
-  {	4		,90	},
-  {	10		,180	},
-  {	50		,360	}, /* highest mortal */
-  {	100		,360	}, /* all immortals */
-  {	-1		,0	}  /* no more level checks */
+        {0,   0}, /* level 0 */
+        {1,   30},
+        {4,   90},
+        {10,  180},
+        {50,  360}, /* highest mortal */
+        {100, 360}, /* all immortals */
+        {-1,  0}  /* no more level checks */
 };
 
 /* Do you want players who self-delete to be wiped immediately with no
@@ -321,8 +321,8 @@ room_vnum frozen_start_room = 2;
  * donation rooms.
  */
 room_vnum donation_room_1 = 3063;
-room_vnum donation_room_2 = NOWHERE;	/* unused - room for expansion */
-room_vnum donation_room_3 = NOWHERE;	/* unused - room for expansion */
+room_vnum donation_room_2 = NOWHERE;    /* unused - room for expansion */
+room_vnum donation_room_3 = NOWHERE;    /* unused - room for expansion */
 
 
 /****************************************************************************/
@@ -335,14 +335,14 @@ room_vnum donation_room_3 = NOWHERE;	/* unused - room for expansion */
  * Please read 128bit.readme before setting this to true. Set this
  * flag if you want the conversion to take place.
  */
-int bitwarning = FALSE;
+int bitwarning = 0;
 
 /*
  * If you want to look at normal worldfiles but DO NOT want to save
  * to 128bit format, turn this to false. However, do not save through
  * olc, or your worldfiles will be 128bit anyway.
  */
-int bitsavetodisk = TRUE;
+int bitsavetodisk = 1;
 
 /*
  * This is the default port on which the game should run if no port is
@@ -398,7 +398,7 @@ int max_bad_pws = 3;
  * to just have to remove the SITEOK flags from those people I want to ban
  * rather than what is currently done?
  */
-int siteok_everyone = TRUE;
+int siteok_everyone = 1;
 
 /*
  * Some nameservers are very slow and cause the game to lag terribly every 
@@ -433,28 +433,27 @@ int auto_save_olc = 1;
 int use_new_socials = 1;
 
 const char *MENU =
-"\r\n"
-"@GWelcome to @YCircleMUD!@n\r\n"
-"@B0@W) @CExit from @YCircleMUD.@n\r\n"
-"@B1@W) @CEnter the game.@n\r\n"
-"@B2@W) @CEnter description.@n\r\n"
-"@B3@W) @CGame Info (Please Read)@n\r\n"
-"@B4@W) @CChange password.@n\r\n"
-"@B5@W) @CDelete this character.@n\r\n"
-"\r\n"
-"   @WMake your choice: @n";
-
+        "\r\n"
+        "@GWelcome to @YCircleMUD!@n\r\n"
+        "@B0@W) @CExit from @YCircleMUD.@n\r\n"
+        "@B1@W) @CEnter the game.@n\r\n"
+        "@B2@W) @CEnter description.@n\r\n"
+        "@B3@W) @CGame Info (Please Read)@n\r\n"
+        "@B4@W) @CChange password.@n\r\n"
+        "@B5@W) @CDelete this character.@n\r\n"
+        "\r\n"
+        "   @WMake your choice: @n";
 
 
 const char *WELC_MESSG =
-"\r\n"
-"Welcome to the land of CircleMUD!  May your visit here be... Interesting."
-"\r\n\r\n";
+        "\r\n"
+        "Welcome to the land of CircleMUD!  May your visit here be... Interesting."
+        "\r\n\r\n";
 
 const char *START_MESSG =
-"Welcome.  This is your new CircleMUD character!  You can now earn gold,\r\n"
-"gain experience, find weapons and equipment, and much more -- while\r\n"
-"meeting people from around the world!\r\n";
+        "Welcome.  This is your new CircleMUD character!  You can now earn gold,\r\n"
+        "gain experience, find weapons and equipment, and much more -- while\r\n"
+        "meeting people from around the world!\r\n";
 
 /****************************************************************************/
 /****************************************************************************/

@@ -103,7 +103,6 @@
 #include "src/assemblies.c"
 #include "src/ban.c"
 #include "src/boards.c"
-#include "src/bsd-snprintf.c"
 #include "src/cedit.c"
 #include "src/clan.c"
 #include "src/class.c"

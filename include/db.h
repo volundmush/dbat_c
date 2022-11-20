@@ -15,38 +15,38 @@
 
 
 /* arbitrary constants used by index_boot() (must be unique) */
-#define DB_BOOT_WLD	0
-#define DB_BOOT_MOB	1
-#define DB_BOOT_OBJ	2
-#define DB_BOOT_ZON	3
-#define DB_BOOT_SHP	4
-#define DB_BOOT_HLP	5
-#define DB_BOOT_TRG	6
-#define DB_BOOT_GLD	7
+#define DB_BOOT_WLD    0
+#define DB_BOOT_MOB    1
+#define DB_BOOT_OBJ    2
+#define DB_BOOT_ZON    3
+#define DB_BOOT_SHP    4
+#define DB_BOOT_HLP    5
+#define DB_BOOT_TRG    6
+#define DB_BOOT_GLD    7
 
 #define LIB_USER        "user/"
 #define LIB_INTRO       "intro/"
 #define LIB_SENSE       "sense/"
-#define LIB_WORLD	"world/"
-#define LIB_TEXT	"text/"
-#define LIB_TEXT_HELP	"text/help/"
-#define LIB_MISC	"misc/"
-#define LIB_ETC		"etc/"
-#define LIB_PLRTEXT	"plrtext/"
-#define LIB_PLROBJS	"plrobjs/"
-#define LIB_PLRVARS	"plrvars/"
-#define LIB_PLRALIAS	"plralias/"
-#define LIB_PLRFILES	"plrfiles/"
-#define LIB_HOUSE	"house/"
+#define LIB_WORLD    "world/"
+#define LIB_TEXT    "text/"
+#define LIB_TEXT_HELP    "text/help/"
+#define LIB_MISC    "misc/"
+#define LIB_ETC        "etc/"
+#define LIB_PLRTEXT    "plrtext/"
+#define LIB_PLROBJS    "plrobjs/"
+#define LIB_PLRVARS    "plrvars/"
+#define LIB_PLRALIAS    "plralias/"
+#define LIB_PLRFILES    "plrfiles/"
+#define LIB_HOUSE    "house/"
 #define LIB_PLRIMC      "plrimc/"
-#define SLASH		"/"
+#define SLASH        "/"
 
-#define SUF_OBJS	"new"
-#define SUF_TEXT	"text"
-#define SUF_ALIAS	"alias"
-#define SUF_MEM	        "mem"
-#define SUF_PLR	        "plr"
-#define SUF_PET		"pet"
+#define SUF_OBJS    "new"
+#define SUF_TEXT    "text"
+#define SUF_ALIAS    "alias"
+#define SUF_MEM            "mem"
+#define SUF_PLR            "plr"
+#define SUF_PET        "pet"
 #define SUF_IMC         "imc"
 #define SUF_USER        "usr"
 #define SUF_INTRO       "itr"
@@ -58,69 +58,69 @@
 #define PAUSE_FILE      "../pause"      /* autorun: don't restart mud   */
 
 /* names of various files and directories */
-#define INDEX_FILE	"index"		/* index of world files		*/
-#define MINDEX_FILE	"index.mini"	/* ... and for mini-mud-mode	*/
+#define INDEX_FILE    "index"        /* index of world files		*/
+#define MINDEX_FILE    "index.mini"    /* ... and for mini-mud-mode	*/
 
-#define WLD_PREFIX	LIB_WORLD "wld" SLASH	/* room definitions	*/
-#define MOB_PREFIX	LIB_WORLD "mob" SLASH	/* monster prototypes	*/
-#define OBJ_PREFIX	LIB_WORLD "obj" SLASH	/* object prototypes	*/
-#define ZON_PREFIX	LIB_WORLD "zon" SLASH	/* zon defs & command tables */
-#define SHP_PREFIX	LIB_WORLD "shp" SLASH	/* shop definitions	*/
-#define HLP_PREFIX	LIB_TEXT "help" SLASH	/* for HELP <keyword>	*/
-#define TRG_PREFIX	LIB_WORLD "trg" SLASH	/* trigger files	*/
-#define GLD_PREFIX	LIB_WORLD "gld" SLASH	/* guild files		*/
+#define WLD_PREFIX    LIB_WORLD "wld" SLASH    /* room definitions	*/
+#define MOB_PREFIX    LIB_WORLD "mob" SLASH    /* monster prototypes	*/
+#define OBJ_PREFIX    LIB_WORLD "obj" SLASH    /* object prototypes	*/
+#define ZON_PREFIX    LIB_WORLD "zon" SLASH    /* zon defs & command tables */
+#define SHP_PREFIX    LIB_WORLD "shp" SLASH    /* shop definitions	*/
+#define HLP_PREFIX    LIB_TEXT "help" SLASH    /* for HELP <keyword>	*/
+#define TRG_PREFIX    LIB_WORLD "trg" SLASH    /* trigger files	*/
+#define GLD_PREFIX    LIB_WORLD "gld" SLASH    /* guild files		*/
 
-#define CREDITS_FILE	LIB_TEXT "credits" /* for the 'credits' command	*/
-#define NEWS_FILE	LIB_TEXT "news"	/* for the 'news' command	*/
-#define MOTD_FILE	LIB_TEXT "motd"	/* messages of the day / mortal	*/
-#define IMOTD_FILE	LIB_TEXT "imotd"	/* messages of the day / immort	*/
-#define GREETINGS_FILE	LIB_TEXT "greetings"	/* The opening screen.	*/
-#define GREETANSI_FILE	LIB_TEXT "greetansi"	/* The opening screen.	*/
-#define HELP_PAGE_FILE	LIB_TEXT_HELP "screen"	/* for HELP <CR>	*/
-#define CONTEXT_HELP_FILE LIB_TEXT "contexthelp"	/* The opening screen.	*/
-#define INFO_FILE	LIB_TEXT "info"		/* for INFO		*/
-#define WIZLIST_FILE	LIB_TEXT "wizlist"	/* for WIZLIST		*/
-#define IMMLIST_FILE	LIB_TEXT "immlist"	/* for IMMLIST		*/
-#define BACKGROUND_FILE	LIB_TEXT "background"/* for the background story	*/
-#define POLICIES_FILE	LIB_TEXT "policies"  /* player policies/rules	*/
-#define HANDBOOK_FILE	LIB_TEXT "handbook"  /* handbook for new immorts	*/
-#define IHELP_PAGE_FILE	LIB_TEXT_HELP "iscreen"	/* for HELP <CR>	*/
+#define CREDITS_FILE    LIB_TEXT "credits" /* for the 'credits' command	*/
+#define NEWS_FILE    LIB_TEXT "news"    /* for the 'news' command	*/
+#define MOTD_FILE    LIB_TEXT "motd"    /* messages of the day / mortal	*/
+#define IMOTD_FILE    LIB_TEXT "imotd"    /* messages of the day / immort	*/
+#define GREETINGS_FILE    LIB_TEXT "greetings"    /* The opening screen.	*/
+#define GREETANSI_FILE    LIB_TEXT "greetansi"    /* The opening screen.	*/
+#define HELP_PAGE_FILE    LIB_TEXT_HELP "screen"    /* for HELP <CR>	*/
+#define CONTEXT_HELP_FILE LIB_TEXT "contexthelp"    /* The opening screen.	*/
+#define INFO_FILE    LIB_TEXT "info"        /* for INFO		*/
+#define WIZLIST_FILE    LIB_TEXT "wizlist"    /* for WIZLIST		*/
+#define IMMLIST_FILE    LIB_TEXT "immlist"    /* for IMMLIST		*/
+#define BACKGROUND_FILE    LIB_TEXT "background"/* for the background story	*/
+#define POLICIES_FILE    LIB_TEXT "policies"  /* player policies/rules	*/
+#define HANDBOOK_FILE    LIB_TEXT "handbook"  /* handbook for new immorts	*/
+#define IHELP_PAGE_FILE    LIB_TEXT_HELP "iscreen"    /* for HELP <CR>	*/
 #define HELP_FILE       "help.hlp"
 
-#define IDEA_FILE	LIB_MISC "ideas"	   /* for the 'idea'-command	*/
-#define TYPO_FILE	LIB_MISC "typos"	   /*         'typo'		*/
-#define BUG_FILE	LIB_MISC "bugs"	   /*         'bug'		*/
+#define IDEA_FILE    LIB_MISC "ideas"       /* for the 'idea'-command	*/
+#define TYPO_FILE    LIB_MISC "typos"       /*         'typo'		*/
+#define BUG_FILE    LIB_MISC "bugs"       /*         'bug'		*/
 #define REQUEST_FILE    LIB_MISC "request"  /*      RPP Requests         */
 #define CUSTOM_FILE     LIB_MISC "customs"  /*      Custom EQ            */
-#define MESS_FILE	LIB_MISC "messages" /* damage messages		*/
-#define SOCMESS_FILE	LIB_MISC "socials"  /* messages for social acts	*/
+#define MESS_FILE    LIB_MISC "messages" /* damage messages		*/
+#define SOCMESS_FILE    LIB_MISC "socials"  /* messages for social acts	*/
 #define SOCMESS_FILE_NEW LIB_MISC "socials.new"  /* messages for social acts with aedit patch*/
-#define XNAME_FILE	LIB_MISC "xnames"   /* invalid name substrings	*/
+#define XNAME_FILE    LIB_MISC "xnames"   /* invalid name substrings	*/
 
 #define CONFIG_FILE   LIB_ETC "config"      /* OasisOLC * GAME CONFIG FL */
-#define PLAYER_FILE	LIB_ETC "players"   /* the player database	*/
-#define MAIL_FILE	LIB_ETC "plrmail"   /* for the mudmail system	*/
-#define BAN_FILE	LIB_ETC "badsites"  /* for the siteban system	*/
-#define HCONTROL_FILE	LIB_ETC "hcontrol"  /* for the house system	*/
-#define TIME_FILE	LIB_ETC "time"	   /* for calendar system	*/
+#define PLAYER_FILE    LIB_ETC "players"   /* the player database	*/
+#define MAIL_FILE    LIB_ETC "plrmail"   /* for the mudmail system	*/
+#define BAN_FILE    LIB_ETC "badsites"  /* for the siteban system	*/
+#define HCONTROL_FILE    LIB_ETC "hcontrol"  /* for the house system	*/
+#define TIME_FILE    LIB_ETC "time"       /* for calendar system	*/
 #define AUCTION_FILE    LIB_ETC "auction"   /* for the auction house system */
 #define ASSEMBLIES_FILE LIB_ETC "assemblies"/* for assemblies system 	*/
-#define LEVEL_CONFIG	LIB_ETC "levels"	   /* set various level values  */
+#define LEVEL_CONFIG    LIB_ETC "levels"       /* set various level values  */
 
 /* new bitvector data for use in player_index_element */
-#define PINDEX_DELETED		(1 << 0)	/* deleted player	*/
-#define PINDEX_NODELETE		(1 << 1)	/* protected player	*/
-#define PINDEX_SELFDELETE	(1 << 2)	/* player is selfdeleting*/
-#define PINDEX_NOWIZLIST	(1 << 3)	/* Player shouldn't be on wizlist*/
+#define PINDEX_DELETED        (1 << 0)    /* deleted player	*/
+#define PINDEX_NODELETE        (1 << 1)    /* protected player	*/
+#define PINDEX_SELFDELETE    (1 << 2)    /* player is selfdeleting*/
+#define PINDEX_NOWIZLIST    (1 << 3)    /* Player shouldn't be on wizlist*/
 
 
 // global variables
 typedef struct help_index_element help_index_element;
 
 extern struct time_info_data time_info;/* the infomation about the time    */
-extern struct weather_data weather_info;	/* the infomation about the weather */
-extern struct player_special_data dummy_mob;	/* dummy spec area for mobs	*/
-extern struct reset_q_type reset_q;	/* queue of zones to be reset	 */
+extern struct weather_data weather_info;    /* the infomation about the weather */
+extern struct player_special_data dummy_mob;    /* dummy spec area for mobs	*/
+extern struct reset_q_type reset_q;    /* queue of zones to be reset	 */
 extern struct char_data *EDRAGON;
 extern int WISH[2];
 extern int DRAGONR, DRAGONZ, DRAGONC, SHENRON;
@@ -130,68 +130,117 @@ extern char *help, *ihelp, *credits, *news, *info, *wizlist, *immlist, *backgrou
 extern char *policies, *handbook, *motd, *imotd, *GREETINGS, *GREETANSI;
 extern int top_of_helpt, dballtime;
 extern int mini_mud, no_rent_check, no_mail;
-extern room_rnum r_mortal_start_room;	/* rnum of mortal start room	 */
-extern room_rnum r_immort_start_room;	/* rnum of immort start room	 */
-extern room_rnum r_frozen_start_room;	/* rnum of frozen start room	 */
+extern room_rnum r_mortal_start_room;    /* rnum of mortal start room	 */
+extern room_rnum r_immort_start_room;    /* rnum of immort start room	 */
+extern room_rnum r_frozen_start_room;    /* rnum of frozen start room	 */
 
 /* public procedures in db.c */
 extern void auc_load(struct obj_data *obj);
+
 extern void boot_world(void);
-extern int is_empty(zone_rnum zone_nr);
+
+extern bool is_empty(zone_rnum zone_nr);
+
 extern void index_boot(int mode);
+
 extern void boot_db(void);
+
 extern void destroy_db(void);
+
 extern int create_entry(char *name);
+
 extern void zone_update(void);
+
 extern char *fread_string(FILE *fl, const char *error);
+
 extern long get_id_by_name(const char *name);
+
 extern char *get_name_by_id(long id);
+
 extern void save_mud_time(struct time_info_data *when);
+
 extern void free_extra_descriptions(struct extra_descr_data *edesc);
+
 extern void free_text_files(void);
+
 extern void free_player_index(void);
+
 extern void load_disabled(void);
+
 extern void save_disabled(void);
+
 extern void free_disabled(void);
+
 extern void free_help_table(void);
+
 extern void load_help(FILE *fl, char *name);
+
 extern void auc_save(void);
+
 extern void load_config(void);
 
 extern zone_rnum real_zone(zone_vnum vnum);
-extern room_rnum  real_room(room_vnum vnum);
+
+extern room_rnum real_room(room_vnum vnum);
+
 extern mob_rnum real_mobile(mob_vnum vnum);
+
 extern obj_rnum real_object(obj_vnum vnum);
 
 extern int load_char(const char *name, struct char_data *ch);
+
 extern void load_char_pets(struct char_data *ch);
+
 extern void save_char(struct char_data *ch);
+
 extern void save_char_pets(struct char_data *ch);
+
 extern void init_char(struct char_data *ch);
-extern struct char_data* create_char(void);
+
+extern struct char_data *create_char(void);
+
 extern struct char_data *read_mobile(mob_vnum nr, int type);
+
 extern int vnum_mobile(char *searchname, struct char_data *ch);
+
 extern void clear_char(struct char_data *ch);
+
 extern void reset_char(struct char_data *ch);
+
 extern void free_char(struct char_data *ch);
+
 extern void save_player_index(void);
-extern long  get_ptable_by_name(const char *name);
+
+extern long get_ptable_by_name(const char *name);
+
 extern void read_level_data(struct char_data *ch, FILE *fl);
+
 extern void write_level_data(struct char_data *ch, FILE *fl);
 
-extern int parse_mobile_from_file(FILE *mob_f, struct char_data *ch);
+extern bool parse_mobile_from_file(FILE *mob_f, struct char_data *ch);
 
 extern struct obj_data *create_obj(void);
+
 extern void clear_object(struct obj_data *obj);
+
 extern void free_obj(struct obj_data *obj);
+
 extern struct obj_data *read_object(obj_vnum nr, int type);
+
 extern int vnum_object(char *searchname, struct char_data *ch);
-extern int my_obj_save_to_disk(FILE *fp, struct obj_data *obj, int locate);
+
+extern bool my_obj_save_to_disk(FILE *fp, struct obj_data *obj, int locate);
+
 extern void add_unique_id(struct obj_data *obj);
+
 extern void check_unique_id(struct obj_data *obj);
+
 extern char *sprintuniques(int low, int high);
+
 extern int vnum_material(char *searchname, struct char_data *ch);
+
 extern int vnum_weapontype(char *searchname, struct char_data *ch);
+
 extern int vnum_armortype(char *searchname, struct char_data *ch);
 
 #define REAL 0
@@ -199,30 +248,30 @@ extern int vnum_armortype(char *searchname, struct char_data *ch);
 
 /* structure for the reset commands */
 struct reset_com {
-   char	command;   /* current command                      */
+    char command;   /* current command                      */
 
-   bool if_flag;	/* if TRUE: exe only if preceding exe'd */
-   vnum	arg1;		/*                                      */
-    vnum	arg2;		/* Arguments to the command             */
-    vnum	arg3;		/*                                      */
-    vnum  arg4;		/* room_max  default 0			*/
-    vnum  arg5;           /* percentages variable                 */
-   int line;		/* line number this command appears on  */
-   char *sarg1;		/* string argument                      */
-   char *sarg2;		/* string argument                      */
+    bool if_flag;    /* if TRUE: exe only if preceding exe'd */
+    vnum arg1;        /*                                      */
+    vnum arg2;        /* Arguments to the command             */
+    vnum arg3;        /*                                      */
+    vnum arg4;        /* room_max  default 0			*/
+    vnum arg5;           /* percentages variable                 */
+    int line;        /* line number this command appears on  */
+    char *sarg1;        /* string argument                      */
+    char *sarg2;        /* string argument                      */
 
-   /* 
-	*  Commands:              *
-	*  'M': Read a mobile     *
-	*  'O': Read an object    *
-	*  'G': Give obj to mob   *
-	*  'P': Put obj in obj    *
-	*  'G': Obj to char       *
-	*  'E': Obj to char equip *
-	*  'D': Set state of door *
-	*  'T': Trigger command   *
-        *  'V': Assign a variable *
-   */
+    /*
+     *  Commands:              *
+     *  'M': Read a mobile     *
+     *  'O': Read an object    *
+     *  'G': Give obj to mob   *
+     *  'P': Put obj in obj    *
+     *  'G': Obj to char       *
+     *  'E': Obj to char equip *
+     *  'D': Set state of door *
+     *  'T': Trigger command   *
+         *  'V': Assign a variable *
+    */
 };
 
 typedef struct reset_com reset_com;
@@ -232,44 +281,43 @@ typedef struct reset_com reset_com;
 #define CUR_ZONE_VERSION  2
 
 struct zone_data {
-   char	*name;		    /* name of this zone                  */
-   char *builders;          /* namelist of builders allowed to    */
-                            /* modify this zone.		  */
-   int	lifespan;           /* how long between resets (minutes)  */
-   int	age;                /* current age of this zone (minutes) */
-   room_vnum bot;           /* starting room number for this zone */
-   room_vnum top;           /* upper limit for rooms in this zone */
+    char *name;            /* name of this zone                  */
+    char *builders;          /* namelist of builders allowed to    */
+    /* modify this zone.		  */
+    int lifespan;           /* how long between resets (minutes)  */
+    int age;                /* current age of this zone (minutes) */
+    room_vnum bot;           /* starting room number for this zone */
+    room_vnum top;           /* upper limit for rooms in this zone */
 
-   int	reset_mode;         /* conditions for reset (see below)   */
-   zone_vnum number;	    /* virtual number of this zone	  */
-   reset_com *cmd;   /* command table for reset	          */
-   int min_level;           /* Minimum level to enter zone        */
-   int max_level;           /* Max Mortal level to enter zone     */
-   bitvector_t zone_flags[ZF_ARRAY_MAX];          /* Flags for the zone.                */
+    int reset_mode;         /* conditions for reset (see below)   */
+    zone_vnum number;        /* virtual number of this zone	  */
+    reset_com *cmd;   /* command table for reset	          */
+    int min_level;           /* Minimum level to enter zone        */
+    int max_level;           /* Max Mortal level to enter zone     */
+    bitvector_t zone_flags[ZF_ARRAY_MAX];          /* Flags for the zone.                */
 
 
-   /*
-    * Reset mode:
-    *   0: Don't reset, and don't update age.
-    *   1: Reset if no PC's are located in zone.
-    *   2: Just reset.
-    */
+    /*
+     * Reset mode:
+     *   0: Don't reset, and don't update age.
+     *   1: Reset if no PC's are located in zone.
+     *   2: Just reset.
+     */
 };
 
 typedef struct zone_data zone_data;
 
 /* for queueing zones for update   */
 struct reset_q_element {
-   zone_rnum zone_to_reset;            /* ref to zone_data */
-   struct reset_q_element *next;
+    zone_rnum zone_to_reset;            /* ref to zone_data */
+    struct reset_q_element *next;
 };
-
 
 
 /* structure for the update queue     */
 struct reset_q_type {
-   struct reset_q_element *head;
-   struct reset_q_element *tail;
+    struct reset_q_element *head;
+    struct reset_q_element *tail;
 };
 
 
@@ -278,43 +326,43 @@ struct reset_q_type {
    etc if you like.
 */
 struct player_index_element {
-   char	*name;
-   long id;
-   int level;
-   int admlevel;
-   int flags;
-   time_t last;
-   int ship;
-   int shiproom;
-   time_t played;
-   char *clan;
+    char *name;
+    long id;
+    int level;
+    int admlevel;
+    int flags;
+    time_t last;
+    int ship;
+    int shiproom;
+    time_t played;
+    char *clan;
 };
 
 typedef struct player_index_element player_index_element;
 
 
 struct help_index_element {
-   char *index;      /*Future Use */
-   char *keywords;   /*Keyword Place holder and sorter */
-   char *entry;      /*Entries for help files with Keywords at very top*/
-   int duplicate;    /*Duplicate entries for multple keywords*/
-   int min_level;    /*Min Level to read help entry*/
+    char *index;      /*Future Use */
+    char *keywords;   /*Keyword Place holder and sorter */
+    char *entry;      /*Entries for help files with Keywords at very top*/
+    int duplicate;    /*Duplicate entries for multple keywords*/
+    int min_level;    /*Min Level to read help entry*/
 };
 
 
 /* don't change these */
-#define BAN_NOT 	0
-#define BAN_NEW 	1
-#define BAN_SELECT	2
-#define BAN_ALL		3
+#define BAN_NOT    0
+#define BAN_NEW    1
+#define BAN_SELECT    2
+#define BAN_ALL        3
 
 #define BANNED_SITE_LENGTH    50
 struct ban_list_element {
-   char	site[BANNED_SITE_LENGTH+1];
-   int	type;
-   time_t date;
-   char	name[MAX_NAME_LENGTH+1];
-   struct ban_list_element *next;
+    char site[BANNED_SITE_LENGTH + 1];
+    int type;
+    time_t date;
+    char name[MAX_NAME_LENGTH + 1];
+    struct ban_list_element *next;
 };
 
 
@@ -369,8 +417,11 @@ extern int dg_owner_purged;
 extern int xap_objs;
 
 extern void strip_string(char *buffer);
-extern int read_xap_objects(FILE *fl,struct char_data *ch);
+
+extern int read_xap_objects(FILE *fl, struct char_data *ch);
+
 extern bitvector_t asciiflag_conv(char *flag);
+
 extern void reset_zone(zone_rnum zone);
 
 /* For disabled commands code by Erwin S. Andreasen, */
@@ -385,11 +436,11 @@ extern DISABLED_DATA *disabled_first; /* interpreter.c */
 
 /* one disabled command */
 struct disabled_data {
-       DISABLED_DATA *next;                /* pointer to next node          */
-       struct command_info const *command; /* pointer to the command struct */
-       char *disabled_by;                  /* name of disabler              */
-       int16_t level;                       /* level of disabler             */
-       int subcmd;                         /* the subcmd, if any            */
+    DISABLED_DATA *next;                /* pointer to next node          */
+    struct command_info const *command; /* pointer to the command struct */
+    char *disabled_by;                  /* name of disabler              */
+    int16_t level;                       /* level of disabler             */
+    int subcmd;                         /* the subcmd, if any            */
 };
 
 // commands

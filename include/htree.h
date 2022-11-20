@@ -26,9 +26,9 @@
 /* End of magic constants */
 
 struct htree_node {
-  IDXTYPE content;
-  struct htree_node *parent;
-  struct htree_node *subs[HTREE_NODE_SUBS];
+    IDXTYPE content;
+    struct htree_node *parent;
+    struct htree_node *subs[HTREE_NODE_SUBS];
 };
 
 extern struct htree_node *HTREE_NULL;
@@ -36,11 +36,17 @@ extern int htree_total_nodes;
 extern int htree_depth_used;
 
 extern void htree_shutdown();
+
 extern struct htree_node *htree_init();
+
 extern void htree_free(struct htree_node *root);
+
 extern void htree_add(struct htree_node *root, IDXTYPE index, IDXTYPE content);
+
 extern void htree_del(struct htree_node *root, IDXTYPE index);
+
 extern IDXTYPE htree_find(struct htree_node *root, IDXTYPE index);
+
 extern void htree_test();
 
 

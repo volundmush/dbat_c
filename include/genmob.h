@@ -11,21 +11,28 @@
 
 
 extern int delete_mobile(mob_rnum);
-extern int copy_mobile(struct char_data *to, struct char_data *from);
+
+extern void copy_mobile(struct char_data *to, struct char_data *from);
+
 extern int add_mobile(struct char_data *, mob_vnum);
+
 extern int copy_mob_strings(struct char_data *to, struct char_data *from);
-extern int free_mobile_strings(struct char_data *mob);
-extern int free_mobile(struct char_data *mob);
+
+extern void free_mobile_strings(struct char_data *mob);
+
+extern bool free_mobile(struct char_data *mob);
+
 extern int save_mobiles(zone_rnum rznum);
-extern int write_mobile_record(mob_vnum mvnum, struct char_data *mob, FILE *fd);
+
+extern bool write_mobile_record(mob_vnum mvnum, struct char_data *mob, FILE *fd);
 
 /* Handy macros. */
-#define GET_NDD(mob)	((mob)->mob_specials.damnodice)
-#define GET_SDD(mob)	((mob)->mob_specials.damsizedice)
-#define GET_ALIAS(mob)	((mob)->name)
-#define GET_SDESC(mob)	((mob)->short_descr)
-#define GET_LDESC(mob)	((mob)->long_descr)
-#define GET_DDESC(mob)	((mob)->description)
-#define GET_ATTACK(mob)	((mob)->mob_specials.attack_type)
+#define GET_NDD(mob)    ((mob)->mob_specials.damnodice)
+#define GET_SDD(mob)    ((mob)->mob_specials.damsizedice)
+#define GET_ALIAS(mob)    ((mob)->name)
+#define GET_SDESC(mob)    ((mob)->short_descr)
+#define GET_LDESC(mob)    ((mob)->long_descr)
+#define GET_DDESC(mob)    ((mob)->description)
+#define GET_ATTACK(mob)    ((mob)->mob_specials.attack_type)
 
 #endif

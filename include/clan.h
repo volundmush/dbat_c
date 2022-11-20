@@ -32,8 +32,8 @@
 #include "structs.h"        // for char_data
 
 #define LVL_CLAN_MOD            32
-#define DEFAULT_OPEN_JOIN          FALSE
-#define DEFAULT_OPEN_LEAVE         FALSE
+#define DEFAULT_OPEN_JOIN          false
+#define DEFAULT_OPEN_LEAVE         false
 #define DEFAULT_CLAN_INFO       "little is known about this clan, currently."
 #define LIB_CLAN                LIB_ETC"clan/"
 #define CLAN_LIST               LIB_CLAN"clans.cla"
@@ -64,7 +64,9 @@ extern bool clanCreate(const char *name);
 // Write a clan's info.
 //
 extern void clanINFOW(char *name, struct char_data *ch);
+
 extern void clanSAFE(char *name);
+
 extern void clan_update(void);
 
 //
@@ -105,17 +107,24 @@ extern bool clanInduct(const char *name, struct char_data *ch);
 //
 
 extern bool clanHIGHRANK(const char *name, const struct char_data *ch, const char *rank);
+
 extern bool clanMIDRANK(const char *name, const struct char_data *ch, const char *rank);
+
 extern bool clanRANK(const char *name, const struct char_data *ch, struct char_data *vict, int num);
+
 extern bool clanRANKD(const char *name, struct char_data *ch, struct char_data *vict);
 
 //
 // This handles deposit, withdraw, and checking the clan bank
 //
 extern bool clanBANKADD(const char *name, const struct char_data *ch, long amt);
+
 extern bool clanBANKSUB(const char *name, const struct char_data *ch, long amt);
+
 extern long clanBANK(const char *name, const struct char_data *ch);
+
 extern bool clanBANY(const char *name, const struct char_data *ch);
+
 extern bool clanBSET(const char *name, struct char_data *ch);
 
 //
@@ -199,7 +208,9 @@ extern void listClanInfo(const char *name, struct char_data *ch);
 // send a list of all clans to the character
 //
 extern void listClans(struct char_data *ch);
+
 extern int checkCLAN(struct char_data *ch);
+
 extern void checkAPP(struct char_data *ch);
 
 

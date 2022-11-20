@@ -10,7 +10,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
-find_library(LIBBSD NAMES bsd libbsd)
+find_library(LIBBSD NAMES bsd libbsd REQUIRED)
 include_directories(include)
 if(${LIBBSD})
     link_libraries(${LIBBSD})
@@ -20,7 +20,7 @@ endif()
 # this is the core library we're making.
 add_library(circlemud ${CIRCLE_INCLUDE} ${CIRCLE_SRC})
 # everything we make will link to it.
-link_libraries(circlemud)
+link_libraries(circlemud )
 
 # the various binaries
 add_executable(circle apps/circle.c amalgam.h include/dg_mobcmd.h)

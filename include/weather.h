@@ -10,8 +10,11 @@
 
 // commands
 extern void star_phase(struct char_data *ch, int type);
+
 extern void oozaru_add(struct char_data *tch);
+
 extern void oozaru_drop(struct char_data *tch);
+
 extern void weather_and_time(int mode);
 
 #endif //CIRCLE_WEATHER_H

@@ -4,7 +4,7 @@
 //#include "conf.h"
 #include "typestubs.h"
 
-#define CIRCLE_GNU_LIBC_MEMORY_TRACK	0	/* 0 = off, 1 = on */
+#define CIRCLE_GNU_LIBC_MEMORY_TRACK    0    /* 0 = off, 1 = on */
 
 #include <stdio.h>
 #include <ctype.h>
@@ -31,7 +31,9 @@
 #ifdef HAVE_LIBBSD
 #include <bsd/string.h>
 #else
+
 #include "stringutils.h"
+
 #endif
 
 /* Basic system dependencies *******************************************/
@@ -39,22 +41,22 @@
 #error "Cannot use GNU C library memory tracking without <mcheck.h>"
 #endif
 
-#if defined(__cplusplus)	/* C++ */
+#if defined(__cplusplus)    /* C++ */
 #define cpp_extern	extern
 #else				/* C */
-#define cpp_extern	/* Nothing */
+#define cpp_extern    /* Nothing */
 #endif
 
 #define HAS_RLIMIT
 
-#define CIRCLE_UNSIGNED_INDEX 0	/* 0 = signed, 1 = unsigned */
+#define CIRCLE_UNSIGNED_INDEX 0    /* 0 = signed, 1 = unsigned */
 
 #if CIRCLE_UNSIGNED_INDEX
 #define IDXTYPE	uint64_t
 #define NOTHING	((IDXTYPE)~0)
 #else
-#define IDXTYPE	int64_t
-#define NOTHING	(-1)	/* nil reference for objects	*/
+#define IDXTYPE    int
+#define NOTHING    (-1)    /* nil reference for objects	*/
 #endif
 
 #define NOWHERE NOTHING
@@ -89,15 +91,15 @@ typedef vnum guild_rnum;
  */
 typedef uint32_t bitvector_t;
 
-#define FALSE 0
-#define TRUE 1
-
 #define NO 0
 #define YES 1
 
 #define ACMD(name) void (name)(struct char_data *ch, char *argument, int cmd, int subcmd)
+
 typedef void (*CommandFunc)(struct char_data *ch, char *argument, int cmd, int subcmd);
-typedef int(*SpecialFunc)(struct char_data *ch, void *me, int cmd, char *argument);
-#define SPECIAL(name) int (name)(struct char_data *ch, void *me, int cmd, char *argument)
+
+typedef bool(*SpecialFunc)(struct char_data *ch, void *me, int cmd, char *argument);
+
+#define SPECIAL(name) bool (name)(struct char_data *ch, void *me, int cmd, char *argument)
 
 #endif

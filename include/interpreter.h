@@ -21,29 +21,53 @@ extern const char *list_bonus[];
 
 
 extern void userLoad(struct descriptor_data *d, char *name);
-extern int perform_alias(struct descriptor_data *d, char *orig, size_t maxlen);
+
+extern bool perform_alias(struct descriptor_data *d, char *orig, size_t maxlen);
+
 extern void topLoad(void);
+
 extern void topWrite(struct char_data *ch);
+
 extern char *rIntro(struct char_data *ch, char *arg);
-extern int special(struct char_data *ch, int cmd, char *arg);
+
+extern bool special(struct char_data *ch, int cmd, char *arg);
+
 extern void fingerUser(struct char_data *ch, char *name);
-extern int readUserIndex(char *name);
+
+extern bool readUserIndex(char *name);
+
 extern void userWrite(struct descriptor_data *d, int setTot, int setRpp, int setRBank, char *name);
+
 extern void command_interpreter(struct char_data *ch, char *argument);
+
 extern int search_block(char *arg, const char **list, int exact);
-extern char lower( char c );
+
+extern char lower(char c);
+
 extern char *one_argument(char *argument, char *first_arg);
+
 extern char *one_word(char *argument, char *first_arg);
+
 extern char *any_one_arg(char *argument, char *first_arg);
+
 extern char *two_arguments(char *argument, char *first_arg, char *second_arg);
+
 extern char *three_arguments(char *argument, char *first_arg, char *second_arg, char *third_arg);
+
 extern int fill_word(char *argument);
+
 extern void half_chop(char *string, char *arg1, char *arg2);
+
 extern void nanny(struct descriptor_data *d, char *arg);
-extern int is_abbrev(const char *arg1, const char *arg2);
-extern int is_number(const char *str);
+
+extern bool is_abbrev(const char *arg1, const char *arg2);
+
+extern bool is_number(const char *str);
+
 extern int find_command(const char *command);
+
 extern void skip_spaces(char **string);
+
 extern char *delete_doubledollar(char *string);
 
 /* WARNING: if you have added diagonal directions and have them at the
@@ -56,16 +80,17 @@ extern char *delete_doubledollar(char *string);
 #define argument_interpreter(a, b, c) two_arguments(a, b, c)
 
 extern ACMD(do_alias);
+
 extern ACMD(do_disable);
 
 struct command_info {
-   const char *command;
-   const char *sort_as;
-   int8_t minimum_position;
-   CommandFunc command_pointer;
-   int16_t minimum_level;
-   int16_t minimum_admlevel;
-   int	subcmd;
+    const char *command;
+    const char *sort_as;
+    int8_t minimum_position;
+    CommandFunc command_pointer;
+    int16_t minimum_level;
+    int16_t minimum_admlevel;
+    int subcmd;
 };
 typedef struct command_info command_info;
 extern const struct command_info cmd_info[];
@@ -81,18 +106,18 @@ extern command_info *complete_cmd_info;
  * named member.
  */
 struct alias_data {
-  char *alias;
-  char *replacement;
-  int type;
-  struct alias_data *next;
+    char *alias;
+    char *replacement;
+    int type;
+    struct alias_data *next;
 };
 
-#define ALIAS_SIMPLE	0
-#define ALIAS_COMPLEX	1
+#define ALIAS_SIMPLE    0
+#define ALIAS_COMPLEX    1
 
-#define ALIAS_SEP_CHAR	';'
-#define ALIAS_VAR_CHAR	'$'
-#define ALIAS_GLOB_CHAR	'*'
+#define ALIAS_SEP_CHAR    ';'
+#define ALIAS_VAR_CHAR    '$'
+#define ALIAS_GLOB_CHAR    '*'
 
 /*
  * SUBCOMMANDS
@@ -101,12 +126,12 @@ struct alias_data {
  */
 
 /* directions */
-#define SCMD_NORTH	1
-#define SCMD_EAST	2
-#define SCMD_SOUTH	3
-#define SCMD_WEST	4
-#define SCMD_UP		5
-#define SCMD_DOWN	6
+#define SCMD_NORTH    1
+#define SCMD_EAST    2
+#define SCMD_SOUTH    3
+#define SCMD_WEST    4
+#define SCMD_UP        5
+#define SCMD_DOWN    6
 #define SCMD_NW         7
 #define SCMD_NE         8
 #define SCMD_SE         9
@@ -116,36 +141,36 @@ struct alias_data {
 
 /* do_gen_ps */
 #define SCMD_INFO       0
-#define SCMD_HANDBOOK   1 
+#define SCMD_HANDBOOK   1
 #define SCMD_CREDITS    2
 #define SCMD_NEWS       3
 #define SCMD_WIZLIST    4
 #define SCMD_POLICIES   5
 #define SCMD_VERSION    6
 #define SCMD_IMMLIST    7
-#define SCMD_MOTD	8
-#define SCMD_IMOTD	9
-#define SCMD_CLEAR	10
-#define SCMD_WHOAMI	11
+#define SCMD_MOTD    8
+#define SCMD_IMOTD    9
+#define SCMD_CLEAR    10
+#define SCMD_WHOAMI    11
 
 /* do_gen_tog */
 #define SCMD_NOSUMMON   0
 #define SCMD_NOHASSLE   1
 #define SCMD_BRIEF      2
 #define SCMD_COMPACT    3
-#define SCMD_NOTELL	4
-#define SCMD_NOAUCTION	5
-#define SCMD_DEAF	6
-#define SCMD_NOGOSSIP	7
-#define SCMD_NOGRATZ	8
-#define SCMD_NOWIZ	9
-#define SCMD_QUEST	10
-#define SCMD_ROOMFLAGS	11
-#define SCMD_NOREPEAT	12
-#define SCMD_HOLYLIGHT	13
-#define SCMD_SLOWNS	14
-#define SCMD_AUTOEXIT	15
-#define SCMD_TRACK	16
+#define SCMD_NOTELL    4
+#define SCMD_NOAUCTION    5
+#define SCMD_DEAF    6
+#define SCMD_NOGOSSIP    7
+#define SCMD_NOGRATZ    8
+#define SCMD_NOWIZ    9
+#define SCMD_QUEST    10
+#define SCMD_ROOMFLAGS    11
+#define SCMD_NOREPEAT    12
+#define SCMD_HOLYLIGHT    13
+#define SCMD_SLOWNS    14
+#define SCMD_AUTOEXIT    15
+#define SCMD_TRACK    16
 #define SCMD_BUILDWALK  17
 #define SCMD_AFK        18
 #define SCMD_AUTOASSIST 19
@@ -154,9 +179,9 @@ struct alias_data {
 #define SCMD_CLS        22
 #define SCMD_AUTOSPLIT  23
 #define SCMD_AUTOSAC    24
-#define SCMD_SNEAK	25
-#define SCMD_HIDE	26
-#define SCMD_AUTOMEM	27
+#define SCMD_SNEAK    25
+#define SCMD_HIDE    26
+#define SCMD_AUTOMEM    27
 #define SCMD_VIEWORDER  28
 #define SCMD_NOCOMPRESS 29
 #define SCMD_TEST       30
@@ -175,88 +200,88 @@ struct alias_data {
 #define SCMD_IHEALTH    43
 
 /* do_wizutil */
-#define SCMD_REROLL	0
+#define SCMD_REROLL    0
 #define SCMD_PARDON     1
 #define SCMD_NOTITLE    2
 #define SCMD_SQUELCH    3
-#define SCMD_FREEZE	4
-#define SCMD_THAW	5
-#define SCMD_UNAFFECT	6
+#define SCMD_FREEZE    4
+#define SCMD_THAW    5
+#define SCMD_UNAFFECT    6
 
 /* do_spec_com */
-#define SCMD_WHISPER	0
-#define SCMD_ASK	1
+#define SCMD_WHISPER    0
+#define SCMD_ASK    1
 
 /* do_gen_com */
-#define SCMD_HOLLER	0
-#define SCMD_SHOUT	1
-#define SCMD_GOSSIP	2
-#define SCMD_AUCTION	3
-#define SCMD_GRATZ	4
-#define SCMD_GEMOTE	5
+#define SCMD_HOLLER    0
+#define SCMD_SHOUT    1
+#define SCMD_GOSSIP    2
+#define SCMD_AUCTION    3
+#define SCMD_GRATZ    4
+#define SCMD_GEMOTE    5
 
 /* do_shutdown */
-#define SCMD_SHUTDOW	0
+#define SCMD_SHUTDOW    0
 #define SCMD_SHUTDOWN   1
 
 /* do_quit */
-#define SCMD_QUI	0
-#define SCMD_QUIT	1
+#define SCMD_QUI    0
+#define SCMD_QUIT    1
 
 /* do_date */
-#define SCMD_DATE	0
-#define SCMD_UPTIME	1
+#define SCMD_DATE    0
+#define SCMD_UPTIME    1
 
 /* do_commands */
-#define SCMD_COMMANDS	0
-#define SCMD_SOCIALS	1
-#define SCMD_WIZHELP	2
+#define SCMD_COMMANDS    0
+#define SCMD_SOCIALS    1
+#define SCMD_WIZHELP    2
 
 /* do_drop */
-#define SCMD_DROP	0
-#define SCMD_JUNK	1
-#define SCMD_DONATE	2
+#define SCMD_DROP    0
+#define SCMD_JUNK    1
+#define SCMD_DONATE    2
 
 /* do_gen_write */
-#define SCMD_BUG	0
-#define SCMD_TYPO	1
-#define SCMD_IDEA	2
+#define SCMD_BUG    0
+#define SCMD_TYPO    1
+#define SCMD_IDEA    2
 
 /* do_look */
-#define SCMD_LOOK	0
-#define SCMD_READ	1
+#define SCMD_LOOK    0
+#define SCMD_READ    1
 #define SCMD_SEARCH     2
 
 /* do_qcomm */
-#define SCMD_QSAY	0
-#define SCMD_QECHO	1
+#define SCMD_QSAY    0
+#define SCMD_QECHO    1
 
 /* do_pour */
-#define SCMD_POUR	0
-#define SCMD_FILL	1
+#define SCMD_POUR    0
+#define SCMD_FILL    1
 
 /* do_poof */
-#define SCMD_POOFIN	0
-#define SCMD_POOFOUT	1
+#define SCMD_POOFIN    0
+#define SCMD_POOFOUT    1
 
 /* do_hit */
-#define SCMD_HIT	0
-#define SCMD_MURDER	1
+#define SCMD_HIT    0
+#define SCMD_MURDER    1
 
 /* do_eat */
-#define SCMD_EAT	0
-#define SCMD_TASTE	1
-#define SCMD_DRINK	2
-#define SCMD_SIP	3
+#define SCMD_EAT    0
+#define SCMD_TASTE    1
+#define SCMD_DRINK    2
+#define SCMD_SIP    3
 
 /* do_use */
-#define SCMD_USE	0
-#define SCMD_QUAFF	1
-#define SCMD_RECITE	2
+#define SCMD_USE    0
+#define SCMD_QUAFF    1
+#define SCMD_RECITE    2
 
 /* do_echo */
-#define SCMD_ECHO	0
-#define SCMD_EMOTE	1
+#define SCMD_ECHO    0
+#define SCMD_EMOTE    1
 #define SCMD_SMOTE      2
 
 /* do_gen_door */
@@ -318,13 +343,13 @@ struct alias_data {
 #define SCMD_WHEN_SLOT 4
 
 /* do_value list */
-#define SCMD_WIMPY	0
-#define SCMD_POWERATT	1
+#define SCMD_WIMPY    0
+#define SCMD_POWERATT    1
 #define SCMD_COMBATEXP  2
 
 /* do_cast */
-#define SCMD_CAST	0
-#define SCMD_ART	1
+#define SCMD_CAST    0
+#define SCMD_ART    1
 
 /* oasis_copy */
 #define SCMD_TEDIT      0

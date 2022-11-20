@@ -15,7 +15,7 @@
 
 /* ship.c functions */
 
-               /*-------------  ship.c defines -------------*/
+/*-------------  ship.c defines -------------*/
 
 /* Menus */
 #define SHIP_MAIN   1

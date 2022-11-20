@@ -12,10 +12,69 @@ replace:
 
 
 idents:
+  # typedefs
+  - name: vnum
+    alias: true
+  - name: room_vnum
+    alias: true
+  - name: obj_vnum
+    alias: true
+  - name: mob_vnum
+    alias: true
+  - name: zone_vnum
+    alias: true
+  - name: shop_vnum
+    alias: true
+  - name: trig_vnum
+    alias: true
+  - name: guild_vnum
+    alias: true
+  - name: room_rnum
+    alias: true
+  - name: obj_rnum
+    alias: true
+  - name: mob_rnum
+    alias: true
+  - name: zone_rnum
+    alias: true
+  - name: shop_rnum
+    alias: true
+  - name: trig_rnum
+    alias: true
+  - name: guild_rnum
+    alias: true
+
+  - name: bitvector_t
+    alias: true
+
+  - name: MapStruct
+    alias: true
+  - name: ASSEMBLY
+    alias: true
+  - name: COMPONENT
+    alias: true
+  - name: component_data
+    alias: true
+  - name: DISABLED_DATA
+    alias: true
+  - name: header_block_type
+    alias: true
+  - name: data_block_type
+    alias: true
+  - name: position_list_type
+    alias: true
+  - name: mail_index_type
+    alias: true
+  - name: memory_rec
+    alias: true
+
+  #system stuff
   - name: select
     rename: netpoll_select
   - name: perror
     rename: fmt.Println
+
+  # game stuff
   - name: help_table
     type: slice
   - name: soc_mess_list

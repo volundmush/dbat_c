@@ -22,23 +22,23 @@
 #define KNUL  ""
 
 /* conditional color.  pass it a pointer to a char_data and a color level. */
-#define C_OFF	0
-#define C_ON	1
-#define C_BRI	C_ON	/* Compatibility hack */
-#define C_NRM	C_ON	/* Compatibility hack */
-#define C_CMP	C_ON	/* Compatibility hack */
+#define C_OFF    0
+#define C_ON    1
+#define C_BRI    C_ON    /* Compatibility hack */
+#define C_NRM    C_ON    /* Compatibility hack */
+#define C_CMP    C_ON    /* Compatibility hack */
 
-#define COLOR_CHOICES(ch)	(IS_NPC(ch) ? NULL : ch->player_specials ? ch->player_specials->color_choices : NULL)
+#define COLOR_CHOICES(ch)    (IS_NPC(ch) ? NULL : ch->player_specials ? ch->player_specials->color_choices : NULL)
 #define _clrlevel(ch) (!IS_NPC(ch) ? (PRF_FLAGGED((ch), PRF_COLOR) ? 1 : 0) : 0)
-#define clr(ch,lvl) (_clrlevel(ch) >= (lvl))
-#define CCNRM(ch,lvl)  (clr((ch),(lvl))?KNRM:KNUL)
-#define CCRED(ch,lvl)  (clr((ch),(lvl))?KRED:KNUL)
-#define CCGRN(ch,lvl)  (clr((ch),(lvl))?KGRN:KNUL)
-#define CCYEL(ch,lvl)  (clr((ch),(lvl))?KYEL:KNUL)
-#define CCBLU(ch,lvl)  (clr((ch),(lvl))?KBLU:KNUL)
-#define CCMAG(ch,lvl)  (clr((ch),(lvl))?KMAG:KNUL)
-#define CCCYN(ch,lvl)  (clr((ch),(lvl))?KCYN:KNUL)
-#define CCWHT(ch,lvl)  (clr((ch),(lvl))?KWHT:KNUL)
+#define clr(ch, lvl) (_clrlevel(ch) >= (lvl))
+#define CCNRM(ch, lvl)  (clr((ch),(lvl))?KNRM:KNUL)
+#define CCRED(ch, lvl)  (clr((ch),(lvl))?KRED:KNUL)
+#define CCGRN(ch, lvl)  (clr((ch),(lvl))?KGRN:KNUL)
+#define CCYEL(ch, lvl)  (clr((ch),(lvl))?KYEL:KNUL)
+#define CCBLU(ch, lvl)  (clr((ch),(lvl))?KBLU:KNUL)
+#define CCMAG(ch, lvl)  (clr((ch),(lvl))?KMAG:KNUL)
+#define CCCYN(ch, lvl)  (clr((ch),(lvl))?KCYN:KNUL)
+#define CCWHT(ch, lvl)  (clr((ch),(lvl))?KWHT:KNUL)
 
 #define COLOR_LEV(ch) (_clrlevel(ch))
 

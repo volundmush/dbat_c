@@ -4,6 +4,7 @@
 
 #ifndef CIRCLE_STRINGUTILS_H
 #define CIRCLE_STRINGUTILS_H
+
 #include <stdint.h>
 #include <stddef.h>
 

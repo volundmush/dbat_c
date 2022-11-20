@@ -73,7 +73,7 @@ int main(int argc, char **argv)
                 }
                 break;
             case 'C': /* -C<socket number> - recover from copyover, this is the control socket */
-                fCopyOver = TRUE;
+                fCopyOver = 1;
                 //mother_desc = atoi(argv[pos]+2);
                 break;
             case 'd':

@@ -8,6 +8,7 @@
 #include "sysdep.h"
 
 extern void circle_srandom(unsigned long initial_seed);
+
 extern unsigned long circle_random(void);
 
 #endif //CIRCLE_RANDOM_H

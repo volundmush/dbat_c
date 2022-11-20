@@ -5,7 +5,7 @@
  *  Copyright 1997-2001 George Greer (greerga@circlemud.org)		*
  *  Copyright 2002 Kip Potter [Mythran] (kip_potter@hotmail.com)	*
  ************************************************************************/
- 
+
 /* 
    +-----------------------------------------------------------------------+
    | As of right now, all I have made is the ability to delete rooms.      |
@@ -15,14 +15,14 @@
    | be adding more deletion code after this patch.                        |
    |   -- Mythran                                                          |
    +-----------------------------------------------------------------------+
-*/                                                                       
+*/
 
 #include "structs.h"
 #include "utils.h"
 #include "oasis.h"
 
 /* Internal Functions */
-int free_strings(void *data, int type);
+bool free_strings(void *data, int type);
 
 /************************************************************************\
  ** Description :                                                      **
@@ -34,49 +34,49 @@ int free_strings(void *data, int type);
  ** Parameters  :                                                      **
  **   type - The OLC type constant relating to the data type of data.  **
 \************************************************************************/
-int free_strings(void *data, int type)
-{
-  struct config_data *config;
-  
-  switch (type) {
-    case OASIS_MOB:
-    case OASIS_OBJ:
-      return (FALSE);		/* For now... */
-    
-    case OASIS_CFG:
-      config = (struct config_data *) data;
-      
-      if (config->play.OK)
-        free(config->play.OK);
-        
-      if (config->play.NOPERSON)
-        free(config->play.NOPERSON);
-        
-      if (config->play.NOEFFECT)
-        free(config->play.NOEFFECT);
-      
-      if (config->operation.DFLT_IP)
-        free(config->operation.DFLT_IP);
-        
-      if (config->operation.DFLT_DIR)
-        free(config->operation.DFLT_DIR);
-        
-      if (config->operation.LOGNAME)
-        free(config->operation.LOGNAME);
-        
-      if (config->operation.MENU)
-        free(config->operation.MENU);
-        
-      if (config->operation.WELC_MESSG)
-        free(config->operation.WELC_MESSG);
-        
-      if (config->operation.START_MESSG)
-        free(config->operation.START_MESSG);
-      
-      return (TRUE);
-    
-    default:
-      mudlog(BRF, ADMLVL_GOD, TRUE, "SYSERR: oasis_delete.c: free_strings: Invalid type handled (Type %d).", type);
-      return (FALSE);
-  }
+bool free_strings(void *data, int type) {
+    struct config_data *config;
+
+    switch (type) {
+        case OASIS_MOB:
+        case OASIS_OBJ:
+            return false;        /* For now... */
+
+        case OASIS_CFG:
+            config = (struct config_data *) data;
+
+            if (config->play.OK)
+                free(config->play.OK);
+
+            if (config->play.NOPERSON)
+                free(config->play.NOPERSON);
+
+            if (config->play.NOEFFECT)
+                free(config->play.NOEFFECT);
+
+            if (config->operation.DFLT_IP)
+                free(config->operation.DFLT_IP);
+
+            if (config->operation.DFLT_DIR)
+                free(config->operation.DFLT_DIR);
+
+            if (config->operation.LOGNAME)
+                free(config->operation.LOGNAME);
+
+            if (config->operation.MENU)
+                free(config->operation.MENU);
+
+            if (config->operation.WELC_MESSG)
+                free(config->operation.WELC_MESSG);
+
+            if (config->operation.START_MESSG)
+                free(config->operation.START_MESSG);
+
+            return true;
+
+        default:
+            mudlog(BRF, ADMLVL_GOD, 1, "SYSERR: oasis_delete.c: free_strings: Invalid type handled (Type %d).",
+                   type);
+            return false;
+    }
 }
