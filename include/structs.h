@@ -1944,7 +1944,7 @@ struct obj_data {
    int  value[NUM_OBJ_VAL_POSITIONS];   /* Values of the item (see list)    */
    int8_t type_flag;      /* Type of item                        */
    int  level;           /* Minimum level of object.            */
-   int  wear_flags[TW_ARRAY_MAX]; /* Where you can wear it     */
+   bitvector_t  wear_flags[TW_ARRAY_MAX]; /* Where you can wear it     */
    bitvector_t  extra_flags[EF_ARRAY_MAX]; /* If it hums, glows, etc.  */
    int64_t  weight;         /* Weigt what else                     */
    int  cost;           /* Value when sold (gp.)               */
@@ -2009,7 +2009,7 @@ struct room_direction_data {
 
    char	*keyword;		/* for open/close			*/
 
-    bitvector_t exit_info;		/* Exit info			*/
+   bitvector_t exit_info;		/* Exit info			*/
    obj_vnum key;		/* Key's number (-1 for no key)		*/
    room_rnum to_room;		/* Where direction leads (NOWHERE)	*/
    int dclock;			/* DC to pick the lock			*/
@@ -2038,7 +2038,7 @@ struct room_data {
    struct script_data *script;  /* script info for the object         */
 
    int8_t light;                  /* Number of lightsources in room     */
-   SPECIAL(*func);
+   SpecialFunc func;
 
    struct obj_data *contents;   /* List of items in room              */
    struct char_data *people;    /* List of NPC / PC in room           */
@@ -2688,7 +2688,7 @@ struct weather_data {
 struct index_data {
    mob_vnum	vnum;	/* virtual number of this mob/obj		*/
    int		number;	/* number of existing units of this mob/obj	*/
-   SPECIAL(*func);
+   SpecialFunc func;
 
    char *farg;         /* string argument for special function     */
    struct trig_data *proto;     /* for triggers... the trigger     */

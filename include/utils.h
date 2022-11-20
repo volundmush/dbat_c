@@ -268,7 +268,6 @@ extern int64_t MAX(int64_t x, int64_t y);
 #define Q_FIELD(x)  ((int) (x) / 32)
 #define Q_BIT(x)    (1 << ((x) % 32))
 extern bool IS_SET_AR(const bitvector_t var[], bitvector_t bit);
-
 extern void SET_BIT_AR(bitvector_t var[], bitvector_t bit);
 extern void REMOVE_BIT_AR(bitvector_t var[], bitvector_t bit);
 extern bitvector_t TOGGLE_BIT_AR(bitvector_t var[], bitvector_t bit);

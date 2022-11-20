@@ -60,6 +60,7 @@
 /* names of various files and directories */
 #define INDEX_FILE	"index"		/* index of world files		*/
 #define MINDEX_FILE	"index.mini"	/* ... and for mini-mud-mode	*/
+
 #define WLD_PREFIX	LIB_WORLD "wld" SLASH	/* room definitions	*/
 #define MOB_PREFIX	LIB_WORLD "mob" SLASH	/* monster prototypes	*/
 #define OBJ_PREFIX	LIB_WORLD "obj" SLASH	/* object prototypes	*/
@@ -244,7 +245,7 @@ struct zone_data {
    reset_com *cmd;   /* command table for reset	          */
    int min_level;           /* Minimum level to enter zone        */
    int max_level;           /* Max Mortal level to enter zone     */
-   int zone_flags[ZF_ARRAY_MAX];          /* Flags for the zone.                */
+   bitvector_t zone_flags[ZF_ARRAY_MAX];          /* Flags for the zone.                */
 
 
    /*

@@ -4862,7 +4862,7 @@ int masadv(char *tmp, struct char_data *ch)
 /* Turns number into string and adds commas to it. */
 char *add_commas(int64_t num)
 { 
-  #define DIGITS_PER_GROUP      3 
+  #define DIGITS_PER_GROUP      3
   #define BUFFER_COUNT         19 
   #define DIGITS_PER_BUFFER    25 
 
