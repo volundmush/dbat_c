@@ -854,7 +854,7 @@ void handle_forget(struct char_data *keeper, int guild_nr, struct char_data *ch,
 
 }
 
-void handle_grand(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument) {
+void handle_grand(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument, int unused) {
 
     int skill_num;
 
@@ -1089,7 +1089,7 @@ void handle_practice(struct char_data *keeper, int guild_nr, struct char_data *c
 }
 
 
-void handle_train(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument) {
+void handle_train(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument, int unused) {
     skip_spaces(&argument);
     if (!argument || !*argument)
         send_to_char(ch, "Training sessions remaining: %d\r\n"
@@ -1134,7 +1134,7 @@ void handle_train(struct char_data *keeper, int guild_nr, struct char_data *ch, 
 }
 
 
-void handle_gain(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument) {
+void handle_gain(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument, int unused) {
     int whichclass = GET_CLASS(ch);
 
     skip_spaces(&argument);
@@ -1258,7 +1258,7 @@ int rpp_to_level(struct char_data *ch) {
  }*/
 }
 
-void handle_exp(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument) {
+void handle_exp(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument, int unused) {
     if (GET_PRACTICES(ch, GET_CLASS(ch)) < 25) {
         send_to_char(ch, "You need at least 25 practice sessions to learn.\r\n");
         return;
@@ -1286,7 +1286,7 @@ void handle_exp(struct char_data *keeper, int guild_nr, struct char_data *ch, ch
     }
 }
 
-void handle_study(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument) {
+void handle_study(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument, int unused) {
 
     int expcost = 25000, goldcost = 750, fail = 0, reward = 25, goldadjust = 0, expadjust = 0;
 
@@ -1345,7 +1345,7 @@ void handle_study(struct char_data *keeper, int guild_nr, struct char_data *ch, 
 
 }
 
-void handle_learn(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument) {
+void handle_learn(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument, int unused) {
     int feat_num, subval, sftype, subfeat;
     char *ptr;
     const char *cptr;
@@ -1624,23 +1624,23 @@ void handle_learn(struct char_data *keeper, int guild_nr, struct char_data *ch, 
     return;
 }
 
+typedef void (*GuildFunc)(struct char_data *, int, struct char_data *, char *, int);
+struct {
+    const char *cmd;
+    GuildFunc func;
+} guild_cmd_tab[] = {
+        {"practice", handle_practice},
+        {"gain",     handle_gain},
+        {"forget",   handle_forget},
+        {"study",    handle_study},
+        {"grand",    handle_grand},
+        {NULL, NULL}
+};
 
 SPECIAL(guild) {
     char arg[MAX_INPUT_LENGTH];
     int guild_nr, i;
     struct char_data *keeper = (struct char_data *) me;
-    struct {
-        const char *cmd;
-
-        void (*func)(struct char_data *, int, struct char_data *, char *);
-    } guild_cmd_tab[] = {
-            {"practice", handle_practice},
-            {"gain",     handle_gain},
-            {"forget",   handle_forget},
-            {"study",    handle_study},
-            {"grand",    handle_grand},
-            {NULL, NULL}
-    };
 
     for (guild_nr = 0; guild_nr <= top_guild; guild_nr++)
         if (GM_TRAINER(guild_nr) == keeper->nr)
@@ -1667,7 +1667,7 @@ SPECIAL(guild) {
     if (!(is_guild_ok(keeper, ch, guild_nr)))
         return true;
 
-    (guild_cmd_tab[i].func)(keeper, guild_nr, ch, argument);
+    (guild_cmd_tab[i].func)(keeper, guild_nr, ch, argument, 0);
 
     return true;
 }

@@ -354,7 +354,7 @@ void affect_modify(struct char_data *ch, int loc, int mod, int spec, long bitv, 
 }
 
 
-void affect_modify_ar(struct char_data *ch, int loc, int mod, int spec, int bitv[], bool add) {
+void affect_modify_ar(struct char_data *ch, int loc, int mod, int spec, bitvector_t bitv[], bool add) {
     int i, j;
 
     if (add) {

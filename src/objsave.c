@@ -1474,5 +1474,5 @@ bool Crash_load(struct char_data *ch) {
 
     Crash_crashsave(ch);
 
-    return !((orig_rent_code == RENT_RENTED) || (orig_rent_code == RENT_CRYO))
+    return !((orig_rent_code == RENT_RENTED) || (orig_rent_code == RENT_CRYO));
 }

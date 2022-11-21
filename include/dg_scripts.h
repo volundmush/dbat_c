@@ -455,7 +455,7 @@ extern bool valid_dg_target(struct char_data *ch, int bitvector);
 
 extern void script_damage(struct char_data *vict, int dam);
 
-extern bool check_flags_by_name_ar(int *array, int numflags, char *search, const char *namelist[]);
+extern bool check_flags_by_name_ar(bitvector_t array[], int numflags, char *search, const char *namelist[]);
 
 /* from dg_objcmd.c */
 extern room_rnum obj_room(struct obj_data *obj);

@@ -2343,7 +2343,7 @@ struct char_data {
     struct char_data *absorbby;  /* Who is absorbing me */
 
     int8_t feats[MAX_FEATS + 1];    /* Feats (booleans and counters)	*/
-    int combat_feats[CFEAT_MAX + 1][FT_ARRAY_MAX];
+    bitvector_t combat_feats[CFEAT_MAX + 1][FT_ARRAY_MAX];
     /* One bitvector array per CFEAT_ type	*/
     int school_feats[SFEAT_MAX + 1];/* One bitvector array per CFEAT_ type	*/
 
@@ -2360,7 +2360,7 @@ struct char_data {
     bitvector_t act[PM_ARRAY_MAX];    /* act flag for NPC's; player flag for PC's */
 
     bitvector_t affected_by[AF_ARRAY_MAX];/* Bitvector for current affects	*/
-    int bodyparts[AF_ARRAY_MAX];  /* Bitvector for current bodyparts      */
+    bitvector_t bodyparts[AF_ARRAY_MAX];  /* Bitvector for current bodyparts      */
     int16_t saving_throw[3];    /* Saving throw				*/
     int16_t apply_saving_throw[3];    /* Saving throw bonuses			*/
 
@@ -2470,7 +2470,7 @@ struct char_data {
     int rage_meter;
     char *feature;
     int transclass;
-    int transcost[6];
+    bool transcost[6];
     int armor_last;
     int forgeting;
     int forgetcount;

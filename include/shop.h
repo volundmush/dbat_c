@@ -39,7 +39,7 @@ struct shop_data {
     int temper1;        /* How does keeper react if no money	*/
     bitvector_t bitvector;    /* Can attack? Use bank? Cast here?	*/
     mob_rnum keeper;    /* The mobile who owns the shop (rnum)	*/
-    int with_who[SW_ARRAY_MAX];/* Who does the shop trade with?	*/
+    bitvector_t with_who[SW_ARRAY_MAX];/* Who does the shop trade with?	*/
     room_vnum *in_room;        /* Where is the shop?			*/
     int open1, open2;        /* When does the shop open?		*/
     int close1, close2;    /* When does the shop close?		*/

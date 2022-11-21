@@ -4762,12 +4762,11 @@ bool masadv(char *tmp, struct char_data *ch) {
     }
 }
 
-/* Turns number into string and adds commas to it. */
-char *add_commas(int64_t num) {
 #define DIGITS_PER_GROUP      3
 #define BUFFER_COUNT         19
 #define DIGITS_PER_BUFFER    25
-
+/* Turns number into string and adds commas to it. */
+char *add_commas(int64_t num) {
     int64_t i, j, len, negative = (num < 0);
     char num_string[DIGITS_PER_BUFFER];
     static char comma_string[BUFFER_COUNT][DIGITS_PER_BUFFER];
@@ -4787,11 +4786,10 @@ char *add_commas(int64_t num) {
     which = (which + 1) % BUFFER_COUNT;
 
     return comma_string[i];
-
-#undef DIGITS_PER_GROUP
-#undef BUFFER_COUNT
-#undef DIGITS_PER_BUFFER
 }
+//#undef DIGITS_PER_GROUP
+//#undef BUFFER_COUNT
+//#undef DIGITS_PER_BUFFER
 
 int get_flag_by_name(const char *flag_list[], char *flag_name) {
     int i = 0;
@@ -5396,8 +5394,8 @@ bool VALID_ROOM_RNUM(room_rnum rnum) {
     return rnum != NOWHERE && rnum <= top_of_world;
 }
 
-bool GET_ROOM_VNUM(room_rnum rnum) {
-    return (room_vnum) (VALID_ROOM_RNUM(rnum) ? world[rnum].number : NOWHERE);
+int GET_ROOM_VNUM(room_rnum rnum) {
+    return VALID_ROOM_RNUM(rnum) ? world[rnum].number : NOWHERE;
 }
 
 SpecialFunc GET_ROOM_SPEC(room_rnum rnum) {

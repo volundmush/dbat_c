@@ -3012,7 +3012,7 @@ void remove_from_lookup_table(long uid) {
     log("remove_from_lookup. UID %ld not found.", uid);
 }
 
-bool check_flags_by_name_ar(int *array, int numflags, char *search, const char *namelist[]) {
+bool check_flags_by_name_ar(bitvector_t array[], int numflags, char *search, const char *namelist[]) {
     int i, item = -1;
 
     for (i = 0; i < numflags && item < 0; i++)

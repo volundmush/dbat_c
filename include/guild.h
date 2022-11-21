@@ -15,7 +15,7 @@
 
 struct guild_data {
     room_vnum vnum;                /* number of the guild */
-    int skills[SKILL_TABLE_SIZE];  /* array to keep track of which feats things we'll train */
+    bool skills[SKILL_TABLE_SIZE];  /* array to keep track of which feats things we'll train */
     float charge;                  /* charge * skill level = how much we'll charge */
     char *no_such_skill;           /* message when we don't teach that skill */
     char *not_enough_gold;         /* message when the student doesn't have enough gold */
@@ -24,7 +24,7 @@ struct guild_data {
     bitvector_t with_who[GW_ARRAY_MAX];    /* whom we dislike */
     int open, close;               /* when we will train */
     SpecialFunc func;                /* secondary spec_proc for the GM */
-    int feats[NUM_FEATS_DEFINED];  /* array to keep track of which feats things we'll train */
+    bool feats[NUM_FEATS_DEFINED];  /* array to keep track of which feats things we'll train */
 };
 
 typedef struct guild_data guild_data;

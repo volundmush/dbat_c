@@ -209,9 +209,9 @@ extern void look_at_room(room_rnum target_room, struct char_data *ch, int mode);
 extern void add_history(struct char_data *ch, char *msg, int type);
 
 /* in act.movement.c */
-extern int do_simple_move(struct char_data *ch, int dir, int following);
+extern bool do_simple_move(struct char_data *ch, int dir, int following);
 
-extern int perform_move(struct char_data *ch, int dir, int following);
+extern bool perform_move(struct char_data *ch, int dir, int following);
 
 /* in act.item.c */
 extern int64_t max_carry_weight(struct char_data *ch);
@@ -477,7 +477,7 @@ extern bool SUNKEN(room_rnum room);
 
 extern bool VALID_ROOM_RNUM(room_rnum rnum);
 
-extern bool GET_ROOM_VNUM(room_rnum rnum);
+extern int GET_ROOM_VNUM(room_rnum rnum);
 
 extern SpecialFunc GET_ROOM_SPEC(room_rnum rnum);
 
