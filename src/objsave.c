@@ -48,20 +48,20 @@ void delete_inv_backup(struct char_data *ch)
     FILE *source;
     char source_file[20480];
     char alpha[MAX_INPUT_LENGTH], name[MAX_INPUT_LENGTH];
-    sprintf(name, GET_NAME(ch));
+    snprintf(name, sizeof(name), "%s", GET_NAME(ch));
 
     if (name[0] == 'a' || name[0] == 'A' || name[0] == 'b' || name[0] == 'B' || name[0] == 'c' || name[0] == 'C' || name[0] == 'd' || name[0] == 'D' || name[0] == 'e' || name[0] == 'E') {
-     sprintf(alpha, "A-E");
+     snprintf(alpha, sizeof(alpha),"A-E");
     } else if (name[0] == 'f' || name[0] == 'F' || name[0] == 'g' || name[0] == 'G' || name[0] == 'h' || name[0] == 'H' || name[0] == 'i' || name[0] == 'I' || name[0] == 'j' || name[0] == 'J') {
-     sprintf(alpha, "F-J");
+     snprintf(alpha, sizeof(alpha),"F-J");
     } else if (name[0] == 'k' || name[0] == 'K' || name[0] == 'l' || name[0] == 'L' || name[0] == 'm' || name[0] == 'M' || name[0] == 'n' || name[0] == 'N' || name[0] == 'o' || name[0] == 'O') {
-     sprintf(alpha, "K-O");
+     snprintf(alpha, sizeof(alpha),"K-O");
     } else if (name[0] == 'p' || name[0] == 'P' || name[0] == 'q' || name[0] == 'Q' || name[0] == 'r' || name[0] == 'R' || name[0] == 's' || name[0] == 'S' || name[0] == 't' || name[0] == 'T') {
-     sprintf(alpha, "P-T");
+     snprintf(alpha, sizeof(alpha),"P-T");
     } else if (name[0] == 'u' || name[0] == 'U' || name[0] == 'v' || name[0] == 'V' || name[0] == 'w' || name[0] == 'W' || name[0] == 'x' || name[0] == 'X' || name[0] == 'y' || name[0] == 'Y' || name[0] == 'z' || name[0] == 'Z') {
-     sprintf(alpha, "U-Z");
+     snprintf(alpha, sizeof(alpha),"U-Z");
     }
-    sprintf(source_file, ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
+    snprintf(source_file, sizeof(source_file), ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
 
     if (!(source = fopen(source_file, "r"))) {
       return;
@@ -87,34 +87,34 @@ int load_inv_backup(struct char_data *ch)
     FILE *source, *target;
     char source_file[20480], target_file[20480], buf2[20480];
     char alpha[MAX_INPUT_LENGTH], name[MAX_INPUT_LENGTH];
-    sprintf(name, GET_NAME(ch));
+    snprintf(name, sizeof(name), "%s", GET_NAME(ch));
 
     if (name[0] == 'a' || name[0] == 'A' || name[0] == 'b' || name[0] == 'B' || name[0] == 'c' || name[0] == 'C' || name[0] == 'd' || name[0] == 'D' || name[0] == 'e' || name[0] == 'E') {
-     sprintf(alpha, "A-E");
+     snprintf(alpha, sizeof(alpha),"A-E");
     } else if (name[0] == 'f' || name[0] == 'F' || name[0] == 'g' || name[0] == 'G' || name[0] == 'h' || name[0] == 'H' || name[0] == 'i' || name[0] == 'I' || name[0] == 'j' || name[0] == 'J') {
-     sprintf(alpha, "F-J");
+     snprintf(alpha, sizeof(alpha),"F-J");
     } else if (name[0] == 'k' || name[0] == 'K' || name[0] == 'l' || name[0] == 'L' || name[0] == 'm' || name[0] == 'M' || name[0] == 'n' || name[0] == 'N' || name[0] == 'o' || name[0] == 'O') {
-     sprintf(alpha, "K-O");
+     snprintf(alpha, sizeof(alpha),"K-O");
     } else if (name[0] == 'p' || name[0] == 'P' || name[0] == 'q' || name[0] == 'Q' || name[0] == 'r' || name[0] == 'R' || name[0] == 's' || name[0] == 'S' || name[0] == 't' || name[0] == 'T') {
-     sprintf(alpha, "P-T");
+     snprintf(alpha, sizeof(alpha),"P-T");
     } else if (name[0] == 'u' || name[0] == 'U' || name[0] == 'v' || name[0] == 'V' || name[0] == 'w' || name[0] == 'W' || name[0] == 'x' || name[0] == 'X' || name[0] == 'y' || name[0] == 'Y' || name[0] == 'z' || name[0] == 'Z') {
-     sprintf(alpha, "U-Z");
+     snprintf(alpha, sizeof(alpha),"U-Z");
     }
 
-    sprintf(source_file, ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
+    snprintf(source_file, sizeof(source_file), ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
     if (!get_filename(buf2, sizeof(buf2), NEW_OBJ_FILES, GET_NAME(ch)))
      return -1;
-    sprintf(target_file, "/home/m053car2/dbat/lib/%s", buf2);
+    snprintf(target_file, sizeof(target_file), "/home/m053car2/dbat/lib/%s", buf2);
 
     if (!(source = fopen(source_file, "r"))) {
-      log("Source in load_inv_backup failed to load.");
-      log(source_file);
+      log("%s", "Source in load_inv_backup failed to load.");
+      log("%s", source_file);
       return -1;
     }
 
     if (!(target = fopen(target_file, "w"))) {
-      log("Target in load_inv_backup failed to load.");
-      log(target_file);
+      log("%s", "Target in load_inv_backup failed to load.");
+      log("%s", target_file);
       return -1;
     }
 
@@ -135,21 +135,21 @@ static int inv_backup(struct char_data *ch)
  char buf[20480];
 
     char alpha[MAX_INPUT_LENGTH], name[MAX_INPUT_LENGTH];
-    sprintf(name, GET_NAME(ch));
+    snprintf(name, sizeof(name), "%s", GET_NAME(ch));
 
     if (name[0] == 'a' || name[0] == 'A' || name[0] == 'b' || name[0] == 'B' || name[0] == 'c' || name[0] == 'C' || name[0] == 'd' || name[0] == 'D' || name[0] == 'e' || name[0] == 'E') {
-     sprintf(alpha, "A-E");
+     snprintf(alpha, sizeof(alpha),"%s", "A-E");
     } else if (name[0] == 'f' || name[0] == 'F' || name[0] == 'g' || name[0] == 'G' || name[0] == 'h' || name[0] == 'H' || name[0] == 'i' || name[0] == 'I' || name[0] == 'j' || name[0] == 'J') {
-     sprintf(alpha, "F-J");
+     snprintf(alpha, sizeof(alpha),"%s", "F-J");
     } else if (name[0] == 'k' || name[0] == 'K' || name[0] == 'l' || name[0] == 'L' || name[0] == 'm' || name[0] == 'M' || name[0] == 'n' || name[0] == 'N' || name[0] == 'o' || name[0] == 'O') {
-     sprintf(alpha, "K-O");
+     snprintf(alpha, sizeof(alpha),"%s", "K-O");
     } else if (name[0] == 'p' || name[0] == 'P' || name[0] == 'q' || name[0] == 'Q' || name[0] == 'r' || name[0] == 'R' || name[0] == 's' || name[0] == 'S' || name[0] == 't' || name[0] == 'T') {
-     sprintf(alpha, "P-T");
+     snprintf(alpha, sizeof(alpha),"%s", "P-T");
     } else if (name[0] == 'u' || name[0] == 'U' || name[0] == 'v' || name[0] == 'V' || name[0] == 'w' || name[0] == 'W' || name[0] == 'x' || name[0] == 'X' || name[0] == 'y' || name[0] == 'Y' || name[0] == 'z' || name[0] == 'Z') {
-     sprintf(alpha, "U-Z");
+     snprintf(alpha, sizeof(alpha),"%s", "U-Z");
     }
 
-  sprintf(buf, ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
+  snprintf(buf, sizeof(buf), ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
 
   if (!(backup = fopen(buf, "r")))
     return -1;
@@ -165,34 +165,34 @@ int cp(struct char_data *ch)
     FILE *source, *target;
     char source_file[20480], target_file[20480], buf2[20480];
     char alpha[MAX_INPUT_LENGTH], name[MAX_INPUT_LENGTH];
-    sprintf(name, GET_NAME(ch));
+    snprintf(name, sizeof(name), "%s", GET_NAME(ch));
 
     if (name[0] == 'a' || name[0] == 'A' || name[0] == 'b' || name[0] == 'B' || name[0] == 'c' || name[0] == 'C' || name[0] == 'd' || name[0] == 'D' || name[0] == 'e' || name[0] == 'E') {
-     sprintf(alpha, "A-E");
+     snprintf(alpha, sizeof(alpha),"%s", "A-E");
     } else if (name[0] == 'f' || name[0] == 'F' || name[0] == 'g' || name[0] == 'G' || name[0] == 'h' || name[0] == 'H' || name[0] == 'i' || name[0] == 'I' || name[0] == 'j' || name[0] == 'J') {
-     sprintf(alpha, "F-J");
+     snprintf(alpha, sizeof(alpha),"%s", "F-J");
     } else if (name[0] == 'k' || name[0] == 'K' || name[0] == 'l' || name[0] == 'L' || name[0] == 'm' || name[0] == 'M' || name[0] == 'n' || name[0] == 'N' || name[0] == 'o' || name[0] == 'O') {
-     sprintf(alpha, "K-O");
+     snprintf(alpha, sizeof(alpha),"%s", "K-O");
     } else if (name[0] == 'p' || name[0] == 'P' || name[0] == 'q' || name[0] == 'Q' || name[0] == 'r' || name[0] == 'R' || name[0] == 's' || name[0] == 'S' || name[0] == 't' || name[0] == 'T') {
-     sprintf(alpha, "P-T");
+     snprintf(alpha, sizeof(alpha),"%s", "P-T");
     } else if (name[0] == 'u' || name[0] == 'U' || name[0] == 'v' || name[0] == 'V' || name[0] == 'w' || name[0] == 'W' || name[0] == 'x' || name[0] == 'X' || name[0] == 'y' || name[0] == 'Y' || name[0] == 'z' || name[0] == 'Z') {
-     sprintf(alpha, "U-Z");
+     snprintf(alpha, sizeof(alpha),"%s", "U-Z");
     }
 
-    sprintf(target_file, ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
+    snprintf(target_file, sizeof(target_file), ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
     if (!get_filename(buf2, sizeof(buf2), NEW_OBJ_FILES, GET_NAME(ch)))
      return -1;
-    sprintf(source_file, ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"%s", buf2);
+    snprintf(source_file, sizeof(source_file), ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"%s", buf2);
 
     if (!(source = fopen(source_file, "r"))) {
-      log("Source failed to load.");
-      log(source_file);
+      log("%s", "Source failed to load.");
+      log("%s", source_file);
       return -1;
     }
 
     if (!(target = fopen(target_file, "w"))) {
-      log("Target failed to load.");
-      log(target_file);
+      log("%s", "Target failed to load.");
+      log("%s", target_file);
       return -1;
     }
  
@@ -1093,7 +1093,7 @@ int Crash_load(struct char_data *ch)
 
   if (!(fl = fopen(cmfname, "r+b"))) {
     if (errno != ENOENT) {	/* if it fails, NOT because of no file */
-      sprintf(buf1, "SYSERR: READING OBJECT FILE %s (5)", cmfname);
+      snprintf(buf1, sizeof(buf1), "SYSERR: READING OBJECT FILE %s (5)", cmfname);
       perror(buf1);
       send_to_char(ch, 
 		   "\r\n********************* NOTICE *********************\r\n"
@@ -1110,7 +1110,7 @@ int Crash_load(struct char_data *ch)
       return -1;
      else if (!(fl = fopen(cmfname, "r+b"))) {
       if (errno != ENOENT) {      /* if it fails, NOT because of no file */
-       sprintf(buf1, "SYSERR: READING OBJECT FILE %s (5)", cmfname);
+       snprintf(buf1, sizeof(buf1), "SYSERR: READING OBJECT FILE %s (5)", cmfname);
        perror(buf1);
        send_to_char(ch,
                    "\r\n********************* NOTICE *********************\r\n"
@@ -1271,9 +1271,9 @@ int Crash_load(struct char_data *ch)
           switch (*line) {
             case 'E':
               CREATE(new_descr, struct extra_descr_data, 1);
-              sprintf(buf2, "rented object edesc keyword for object #%d", nr);
+              snprintf(buf2, sizeof(buf2), "rented object edesc keyword for object #%d", nr);
               new_descr->keyword = fread_string(fl, buf2);
-              sprintf(buf2, "rented object edesc text for object #%d keyword %s", nr, new_descr->keyword);
+              snprintf(buf2, sizeof(buf2), "rented object edesc text for object #%d keyword %s", nr, new_descr->keyword);
               new_descr->description = fread_string(fl, buf2);
               new_descr->next = temp->ex_description;
               temp->ex_description = new_descr;

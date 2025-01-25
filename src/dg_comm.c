@@ -109,7 +109,7 @@ void sub_write_to_char(struct char_data *ch, char *tokens[],
 		strcat(sb,HMHR((struct char_data *) otokens[i]));
 	    break;
 
-	case '¨':
+	case '"':
 	    if (!otokens[i])
 		strcat(sb,"something");
 	    else
@@ -158,7 +158,7 @@ void sub_write(char *arg, struct char_data *ch, int8_t find_invis, int targets)
 	    tokens[++i] = ++s;
 	    break;
 
-	case '¨':
+	case '"':
 	    /* get obj_data, move to next token */
 	    type[i] = *p;
 	    *s = '\0';
@@ -497,38 +497,28 @@ void send_to_worlds(struct char_data *ch)
   }
 }
 
-void send_to_imm(char *messg, ...)
-{
-  struct descriptor_data *i;
+void send_to_imm(char *messg, ...) {
+ struct descriptor_data *i;
 
-  if (!messg || !*messg)
-    return;
+ char buf[MAX_STRING_LENGTH], buf2[MAX_STRING_LENGTH];
+ va_list args;
+ va_start(args, messg);
+ vsnprintf(buf, sizeof(buf), messg, args);
+ va_end(args);
 
-  for (i = descriptor_list; i; i = i->next) {
-    if (STATE(i) != CON_PLAYING) {
-     continue;
-    }
-    else if (GET_ADMLEVEL(i->character) == 0) {
-    continue;
-    }
-    else if (!PRF_FLAGGED(i->character, PRF_LOG2)) {
-    continue;
-    }
-    else if (PLR_FLAGGED(i->character, PLR_WRITING)) {
-     continue;
-    }
-    else {
-    write_to_output(i, "@g[ Log: ");
-    va_list args;
-    va_start(args, messg);
+ snprintf(buf2, sizeof(buf2), "@g[ Log: %s ]@n\n", buf);
 
-    vwrite_to_output(i, messg, args);
-    write_to_output(i, " ]@n\n");
-    va_end(args);
-    }
-  }
-    va_list args;
-    va_start(args, messg);
-    basic_mud_vlog(messg, args);
-    va_end(args);
+ if (!messg || !*messg)
+  return;
+
+ for (i = descriptor_list; i; i = i->next) {
+  if (STATE(i) != CON_PLAYING) continue;
+  if (GET_ADMLEVEL(i->character) == 0) continue;
+  if (!PRF_FLAGGED(i->character, PRF_LOG2)) continue;
+  if (PLR_FLAGGED(i->character, PLR_WRITING)) continue;
+
+  write_to_output(i, "%s", buf2);
+ }
+
+ basic_mud_log("%s", buf);
 }

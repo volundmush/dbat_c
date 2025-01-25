@@ -22,6 +22,9 @@
 #include "races.h"
 #include "handler.h"
 #include "combat.h"
+#include "dg_scripts.h"
+#include "objsave.h"
+#include "class.h"
 
 /* Structures */
 struct char_data *combat_list = NULL;	/* head of l-list of fighting chars */
@@ -193,9 +196,9 @@ static int pick_n_throw(struct char_data *ch, char *buf)
 
  for (cont = world[IN_ROOM(ch)].contents; cont; cont = cont->next_content) {
   if (GET_OBJ_WEIGHT(cont) <= CAN_CARRY_W(ch) + IS_CARRYING_W(ch)) {
-   sprintf(buf2, "%s", cont->name);
+   snprintf(buf2, sizeof(buf3), "%s", cont->name);
    do_get(ch, buf2, 0, 0);
-   sprintf(buf3, "%s %s", buf2, buf);
+   snprintf(buf3, sizeof(buf3), "%s %s", buf2, buf);
    do_throw(ch, buf3, 0, 0);
    return (TRUE);
   }

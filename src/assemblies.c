@@ -164,7 +164,7 @@ void assemblyListToChar( struct char_data *pCharacter )
       sprinttype(g_pAssemblyTable[ i ].uchAssemblyType, AssemblyTypes, szAssmType, sizeof(szAssmType));
       sprintf( szBuffer, "[%5ld] %s (%s)\r\n", g_pAssemblyTable[ i ].lVnum,
        obj_proto[ lRnum ].short_description, szAssmType );
-      send_to_char(pCharacter, szBuffer);
+      send_to_char(pCharacter, "%s", szBuffer);
 
       for( j = 0; j < g_pAssemblyTable[ i ].lNumComponents; j++ )
       {
@@ -180,7 +180,7 @@ void assemblyListToChar( struct char_data *pCharacter )
            obj_proto[ lRnum ].short_description,
            (g_pAssemblyTable[ i ].pComponents[ j ].bExtract ? "Yes" : "No"),
            (g_pAssemblyTable[ i ].pComponents[ j ].bInRoom  ? "Yes" : "No") );
-         send_to_char(pCharacter, szBuffer);
+         send_to_char(pCharacter, "%s", szBuffer);
        }
       }
     }

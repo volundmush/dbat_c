@@ -367,7 +367,7 @@ void parse_edit_action(int command, char *string, struct descriptor_data *d)
 	s++;
 	temp = *s;
 	*s = '\0';
-	sprintf(buf, "%s%4d: ", buf, (i - 1));
+	snprintf(buf, sizeof(buf), "%s%4d: ", buf, (i - 1));
 	strcat(buf, t);
 	*s = temp;
 	t = s;

@@ -405,7 +405,7 @@ static void drive_into_vehicle(struct char_data *ch, struct obj_data *vehicle, c
     } else {
     sprintf(buf, "%s @wenters %s.\n\r", vehicle->short_description, 
     vehicle_in_out->short_description);
-    send_to_room(IN_ROOM(vehicle), buf);
+    send_to_room(IN_ROOM(vehicle), "%s", buf);
 
     was_in = IN_ROOM(vehicle);
     obj_from_room(vehicle);
@@ -416,7 +416,7 @@ static void drive_into_vehicle(struct char_data *ch, struct obj_data *vehicle, c
           send_to_char(ch, "@wThe ship flies onward:\r\n");
         look_at_room(IN_ROOM(vehicle), ch, 0);
     sprintf(buf, "%s @wenters.\r\n", vehicle->short_description);
-    send_to_room(is_in, buf);
+    send_to_room(is_in, "%s", buf);
         }
         }
 }
@@ -434,14 +434,14 @@ static void drive_outof_vehicle(struct char_data *ch, struct obj_data *vehicle)
   } else {
         sprintf(buf, "%s @wexits %s.\r\n", vehicle->short_description, 
          vehicle_in_out->short_description);
-        send_to_room(IN_ROOM(vehicle), buf);
+        send_to_room(IN_ROOM(vehicle), "%s", buf);
 		
         obj_from_room(vehicle);
         obj_to_room(vehicle, IN_ROOM(vehicle_in_out));
 		
         if (ch->desc != NULL)
           act("@wThe @De@Wn@wg@Di@wn@We@Ds@w of the ship @rr@Ro@ra@Rr@w as it moves.", TRUE, ch, 0, 0, TO_ROOM);
-          send_to_char(ch, "@wThe ship flies onward:\r\n");
+          send_to_char(ch, "%s", "@wThe ship flies onward:\r\n");
           look_at_room(IN_ROOM(vehicle), ch, 0);
           int door;
          for (door = 0; door < NUM_OF_DIRS; door++) {
@@ -451,7 +451,7 @@ static void drive_outof_vehicle(struct char_data *ch, struct obj_data *vehicle)
         }
         sprintf(buf, "%s @wflies out of %s.\r\n", vehicle->short_description,
          vehicle_in_out->short_description);
-        send_to_room(IN_ROOM(vehicle), buf);
+        send_to_room(IN_ROOM(vehicle), "%s", buf);
   }
 }
 
@@ -477,7 +477,7 @@ void drive_in_direction(struct char_data *ch, struct obj_data *vehicle, int dir)
           int was_in, is_in;
 
           sprintf(buf, "%s @wflies %s.\n\r", vehicle->short_description, dirs[dir]);
-          send_to_room(IN_ROOM(vehicle), buf);
+          send_to_room(IN_ROOM(vehicle), "%s", buf);
 
           was_in = IN_ROOM(vehicle);
           obj_from_room(vehicle);
@@ -521,7 +521,7 @@ void drive_in_direction(struct char_data *ch, struct obj_data *vehicle, int dir)
           sprintf(buf, "%s @wflies in from the %s.\r\n",
                   vehicle->short_description, dirs[rev_dir[dir]]);
            
-          send_to_room(is_in, buf);
+          send_to_room(is_in, "%s", buf);
       }
 }
 
@@ -1250,7 +1250,7 @@ ACMD(do_drive)
           if (land_location <= 50) {
            sprintf(buf3, "%s @wcomes in from above and slowly settles on the launch-pad.@n\r\n", vehicle->short_description);
            look_at_room(IN_ROOM(vehicle), ch, 0);
-           send_to_room(IN_ROOM(vehicle), buf3);
+           send_to_room(IN_ROOM(vehicle), "%s", buf3);
           } else {
            sprintf(buf3, "%s @wcomes in from above and slams into the ground!@n\r\n", vehicle->short_description);
            ROOM_DAMAGE(IN_ROOM(vehicle)) += 1;
@@ -1258,7 +1258,7 @@ ACMD(do_drive)
             ROOM_DAMAGE(IN_ROOM(vehicle)) = 10;
            }
            look_at_room(IN_ROOM(vehicle), ch, 0);
-           send_to_room(IN_ROOM(vehicle), buf3);
+           send_to_room(IN_ROOM(vehicle), "%s", buf3);
           }
       }
      else if (!strcasecmp(arg, "launch")) {

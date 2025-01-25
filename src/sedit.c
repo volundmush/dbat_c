@@ -16,6 +16,7 @@
 #include "constants.h"
 #include "races.h"
 #include "act.informative.h"
+#include "handler.h"
 
 /*
  * Should check more things.

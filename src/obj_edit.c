@@ -468,13 +468,13 @@ void pobj_edit_parse(struct descriptor_data *d, char *arg)
         break;
       }
       *buf = '\0';
-      sprintf(buf, d->obj_name);
+      sprintf(buf, "%s", d->obj_name);
       obj->name = strdup(buf);
       *buf2 = '\0';
-      sprintf(buf2, d->obj_short);
+      sprintf(buf2, "%s", d->obj_short);
       obj->short_description = strdup(buf2);
       *buf3 = '\0';
-      sprintf(buf3, d->obj_long);
+      sprintf(buf3, "%s", d->obj_long);
       obj->description = strdup(buf3);
      } else {
       obj = read_object(20098, VIRTUAL);

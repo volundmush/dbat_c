@@ -34,18 +34,18 @@
 #define COPYOVER_FILE "copyover.dat"
 
 /* comm.c */
-int arena_watch(struct char_data *ch);
-void send_to_eaves(const char *messg, struct char_data *tch, ...);
-size_t	send_to_char(struct char_data *ch, const char *messg, ...) __attribute__ ((format (printf, 2, 3)));
-void	send_to_all(const char *messg, ...) __attribute__ ((format (printf, 1, 2)));
-void	send_to_room(room_rnum room, const char *messg, ...) __attribute__ ((format (printf, 2, 3)));
-void	send_to_outdoor(const char *messg, ...) __attribute__ ((format (printf, 1, 2)));
-void    send_to_moon(const char *messg, ...) __attribute__ ((format (printf, 1, 2)));
-void    send_to_planet(int type, int planet, const char *messg, ...) __attribute__ ((format (printf, 3, 4)));
-void	send_to_range(room_vnum start, room_vnum finish, const char *messg, ...) __attribute__ ((format (printf, 3, 4)));
-void	perform_act(const char *orig, struct char_data *ch, struct obj_data *obj, const void *vict_obj, struct char_data *to);
-char	*act(const char *str, int hide_invisible, struct char_data *ch, struct obj_data *obj, const void *vict_obj, int type);
-void close_socket(struct descriptor_data *d);
+extern int arena_watch(struct char_data *ch);
+extern void send_to_eaves(const char *messg, struct char_data *tch, ...) __attribute__ ((format (printf, 1, 3)));;
+extern size_t	send_to_char(struct char_data *ch, const char *messg, ...) __attribute__ ((format (printf, 2, 3)));
+extern void	send_to_all(const char *messg, ...) __attribute__ ((format (printf, 1, 2)));
+extern void	send_to_room(room_rnum room, const char *messg, ...) __attribute__ ((format (printf, 2, 3)));
+extern void	send_to_outdoor(const char *messg, ...) __attribute__ ((format (printf, 1, 2)));
+extern void    send_to_moon(const char *messg, ...) __attribute__ ((format (printf, 1, 2)));
+extern void    send_to_planet(int type, int planet, const char *messg, ...) __attribute__ ((format (printf, 3, 4)));
+extern void	send_to_range(room_vnum start, room_vnum finish, const char *messg, ...) __attribute__ ((format (printf, 3, 4)));
+extern void	perform_act(const char *orig, struct char_data *ch, struct obj_data *obj, const void *vict_obj, struct char_data *to);
+extern char	*act(const char *str, int hide_invisible, struct char_data *ch, struct obj_data *obj, const void *vict_obj, int type);
+extern void close_socket(struct descriptor_data *d);
 
 #define TO_ROOM		1
 #define TO_VICT		2
@@ -58,12 +58,12 @@ void close_socket(struct descriptor_data *d);
 #define TO_HIDERESIST   (2 << 10)	/* resisted hiding roll      */
 
 /* I/O functions */
-void	write_to_q(const char *txt, struct txt_q *queue, int aliased);
-int	write_to_descriptor(socklen_t desc, const char *txt, struct compr *comp);
-size_t	write_to_output(struct descriptor_data *d, const char *txt, ...) __attribute__ ((format (printf, 2, 3)));
-size_t	vwrite_to_output(struct descriptor_data *d, const char *format, va_list args);
-void	string_add(struct descriptor_data *d, char *str);
-void	string_write(struct descriptor_data *d, char **txt, size_t len, long mailto, void *data);
+extern void	write_to_q(const char *txt, struct txt_q *queue, int aliased);
+extern int	write_to_descriptor(socklen_t desc, const char *txt, struct compr *comp);
+extern size_t	write_to_output(struct descriptor_data *d, const char *txt, ...) __attribute__ ((format (printf, 2, 3)));
+extern size_t	vwrite_to_output(struct descriptor_data *d, const char *format, va_list args);
+extern void	string_add(struct descriptor_data *d, char *str);
+extern void	string_write(struct descriptor_data *d, char **txt, size_t len, long mailto, void *data);
 
 #define PAGE_LENGTH	22
 #define PAGE_WIDTH	79

@@ -77,7 +77,7 @@ const char *get_i_name(struct char_data *ch, struct char_data *vict) {
     get_line(fl, line);
     sscanf(line, "%s %s\n", filler, scrap);
     if (!strcasecmp(GET_NAME(vict), filler)) {
-     sprintf(name, "%s", scrap);
+     snprintf(name, sizeof(name), "%s", scrap);
      known = TRUE;
     }
   }
@@ -1079,7 +1079,7 @@ void obj_to_room(struct obj_data *object, room_rnum room)
          sprintf(nick, "EDI Xenofighter MK. II %s", object->action_description);
          sprintf(nick2, "@wAn @YE@yD@YI @CX@ce@Wn@Do@Cf@ci@Wg@Dh@Wt@ce@Cr @RMK. II @wnamed @D(@C%s@D)@w", object->action_description);
         }
-        sprintf(nick3, "%s is resting here@w", nick2);
+        snprintf(nick3, sizeof(nick3), "%s is resting here@w", nick2);
         vehicle->name = strdup(nick);
         vehicle->short_description = strdup(nick2);
         vehicle->description = strdup(nick3);

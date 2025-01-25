@@ -23,6 +23,8 @@
 #include "handler.h"
 #include "constants.h"
 #include "genzon.h"
+#include "dg_scripts.h"
+#include "class.h"
 
 /* local functions */
 void damage_weapon(struct char_data *ch, struct obj_data *obj, struct char_data *vict)
@@ -2556,7 +2558,7 @@ void handle_defense(struct char_data *vict, int *pry, int *blk, int *dge)
   return;
 }
 
-void parry_ki(double attperc, struct char_data *ch, struct char_data *vict, char sname[1000], int prob, int perc, int skill, int type) {
+void parry_ki(double attperc, struct char_data *ch, struct char_data *vict, const char* sname, int prob, int perc, int skill, int type) {
      char buf[200];
      char buf2[200];
      char buf3[200];

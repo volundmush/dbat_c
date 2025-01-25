@@ -431,7 +431,7 @@ void medit_disp_class(struct descriptor_data *d)
   clear_screen(d);
   for (i = 0; i < NUM_CLASSES; i++) {
     sprintf(buf, "@g%2d@n) %s\r\n", i, pc_class_types[i]);
-    write_to_output(d, buf);
+    write_to_output(d, "%s", buf);
   }
   write_to_output(d, "Enter class number : ");
 }
@@ -448,7 +448,7 @@ void medit_disp_race(struct descriptor_data *d)
   for (i = 0; i < NUM_RACES; i++) {
     sprintf(buf, "@g%2d@n) %-20.20s  %s", i , pc_race_types[i],
                         !(++columns % 2) ? "\r\n" : "");
-    write_to_output(d, buf);
+    write_to_output(d, "%s", buf);
   }
   write_to_output(d, "Enter race number : ");
 }
@@ -467,7 +467,7 @@ void medit_disp_size(struct descriptor_data *d)
     sprintf(buf, "@g%2d@n) %-20.20s  %s", i ,
             (i == SIZE_UNDEFINED) ? "DEFAULT" : size_names[i],
                         !(++columns % 2) ? "\r\n" : "");
-    write_to_output(d, buf);
+    write_to_output(d, "%s", buf);
   }
   write_to_output(d, "Enter size number (-1 for default): ");
 }

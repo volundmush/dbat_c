@@ -986,9 +986,9 @@ const char *extra_bits[NUM_ITEM_FLAGS+1] = {
   "ANTI_DABURA",
   "ANTI_GINYU",
   "ANTI_HUMAN",
-  "ANTI_DWARF",
-  "ANTI_ELF",
-  "ANTI_GNOME",
+  "ANTI_ICER",
+  "ANTI_SAIYAN",
+  "ANTI_KONATSU",
   "UNIQUE",
   "BROKEN",
   "UNBREAKABLE",
@@ -1058,7 +1058,6 @@ const char *extra_bits[NUM_ITEM_FLAGS+1] = {
   "CARDCASE",
   "MOB_NOPICKUP",
   "NOSTEAL",
-  "RESTRING",
   "\n"
 };
 

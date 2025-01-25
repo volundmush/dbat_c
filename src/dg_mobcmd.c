@@ -47,6 +47,7 @@
 #include "constants.h"
 #include "act.wizard.h"
 #include "act.offensive.h"
+#include "fight.h"
 
 /*
  * Local functions.
@@ -340,7 +341,7 @@ ACMD(do_mechoaround)
     
     char buf[MAX_STRING_LENGTH];
 
-    sprintf(buf, p);
+    sprintf(buf, "%s", p);
     search_replace(buf, GET_NAME(victim), "$n");
     act(buf, TRUE, victim, 0, 0, TO_ROOM);
     /*sub_write(p, victim, TRUE, TO_ROOM);*/

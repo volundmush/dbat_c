@@ -383,7 +383,7 @@ SPECIAL(gauntlet_room)  /* Jamdog - 13th Feb 2006 */
 
         if (proceed == 0) 
         { 
-          send_to_char(ch, buf); 
+          send_to_char(ch, "%s", buf);
           act(buf2, FALSE, ch, 0, ch, TO_ROOM); 
           return TRUE; 
         } 
@@ -521,7 +521,7 @@ SPECIAL(gauntlet_rest)  /* Jamdog - 20th Feb 2007 */
 */ 
         if (proceed == 0) 
         { 
-          send_to_char(ch, buf); 
+          send_to_char(ch, "%s", buf);
           act(buf2, FALSE, ch, 0, ch, TO_ROOM); 
           return TRUE; 
         } 

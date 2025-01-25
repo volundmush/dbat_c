@@ -835,8 +835,8 @@ ACMD(do_nickname)
   } else {
    send_to_char(ch, "@wYou nickname %s@w as '@C%s@w'.@n\r\n", obj->short_description, arg2);
    char nick[MAX_INPUT_LENGTH], nick2[MAX_INPUT_LENGTH];
-   sprintf(nick, "%s @wnicknamed @D(@C%s@D)@n", obj->short_description, CAP(arg2));
-   sprintf(nick2, "%s %s", obj->name, arg2);
+   snprintf(nick, sizeof(nick), "%s @wnicknamed @D(@C%s@D)@n", obj->short_description, CAP(arg2));
+   snprintf(nick2, sizeof(nick2), "%s %s", obj->name, arg2);
    obj->short_description = strdup(nick);
    obj->name = strdup(nick2);
    return;
@@ -2211,7 +2211,7 @@ static void gen_map(struct char_data *ch, int num)
      key += 1;
     }
     else {
-      send_to_char(ch, buf2);
+      send_to_char(ch, "%s", buf2);
     }
   }
   if (num == 1) {
@@ -4464,7 +4464,7 @@ void look_at_room(room_rnum target_room, struct char_data *ch, int ignore_brief)
         send_to_char(ch, " %d", GET_TRIG_VNUM(t));
       send_to_char(ch, "@D] ");
     }
-    sprintf(buf3, "@D[ @G%s@D] @wSector: @D[ @G%s @D] @wVnum: @D[@G%5d@D]@n", buf, buf2, GET_ROOM_VNUM(target_room));
+    snprintf(buf3, sizeof(buf3), "@D[ @G%s@D] @wSector: @D[ @G%s @D] @wVnum: @D[@G%5d@D]@n", buf, buf2, GET_ROOM_VNUM(target_room));
     send_to_char(ch, "@wFlags: %-70s@w\r\n", buf3);
    if (!IS_NPC(ch) && !PRF_FLAGGED(ch, PRF_NODEC)) {
     send_to_char(ch, "@wO----------------------------------------------------------------------O@n\r\n");
@@ -7077,9 +7077,9 @@ ACMD(do_who)
       continue;
 
     if (short_list)
-      send_to_char(ch, "Players\r\n-------\r\n");
+      send_to_char(ch, "%s", "Players\r\n-------\r\n");
     else
-      send_to_char(ch, rank[i].disp);
+      send_to_char(ch, "%s", rank[i].disp);
 
     for (d = descriptor_list; d; d = d->next) {
       if (!IS_PLAYING(d))
@@ -8565,9 +8565,9 @@ static void search_in_direction(struct char_data * ch, int dir)
   if (EXIT(ch, dir)) {
     if (EXIT(ch, dir)->general_description &&
         !EXIT_FLAGGED(EXIT(ch, dir), EX_SECRET))
-      send_to_char(ch, EXIT(ch, dir)->general_description);
+      send_to_char(ch, "%s", EXIT(ch, dir)->general_description);
     else if (!EXIT_FLAGGED(EXIT(ch, dir), EX_SECRET))
-      send_to_char(ch, "There is a normal exit there.\r\n");
+      send_to_char(ch, "%s", "There is a normal exit there.\r\n");
     else if (EXIT_FLAGGED(EXIT(ch, dir), EX_ISDOOR) &&
              EXIT_FLAGGED(EXIT(ch, dir), EX_SECRET) &&
              EXIT(ch, dir)->keyword && (check == TRUE)  )
@@ -8575,7 +8575,7 @@ static void search_in_direction(struct char_data * ch, int dir)
                    fname (EXIT(ch, dir)->keyword),
                    (EXIT_FLAGGED(EXIT(ch, dir), EX_CLOSED)) ? "" : "open ");
     else
-      send_to_char(ch, "There is no exit there.\r\n");
+      send_to_char(ch, "%s", "There is no exit there.\r\n");
   } else
-    send_to_char(ch, "There is no exit there.\r\n");
+    send_to_char(ch, "%s", "There is no exit there.\r\n");
 }

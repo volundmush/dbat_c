@@ -395,7 +395,7 @@ void printmap(int rnum, struct char_data * ch, int type, int vnum) {
     lasty = FALSE;
   }
 
-  send_to_char(ch, buf);
+  send_to_char(ch, "%s", buf);
   *buf2 = '\0';
   *buf = '\0';
   if (type == 0) {

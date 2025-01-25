@@ -25,7 +25,7 @@ int handle_combo(struct char_data *ch, struct char_data *vict);
 int handle_parry(struct char_data *ch);
 void handle_spiral(struct char_data *ch, struct char_data *vict, int skill, int first);
 void handle_cooldown(struct char_data *ch, int cooldown);
-void parry_ki(double attperc, struct char_data *ch, struct char_data *vict, char sname[1000], int prob, int perc, int skill, int type);
+void parry_ki(double attperc, struct char_data *ch, struct char_data *vict, const char* sname, int prob, int perc, int skill, int type);
 void dodge_ki(struct char_data *ch, struct char_data *vict, int type, int type2, int skill, int skill2);
 void damage_eq(struct char_data *vict, int location);
 void remove_limb(struct char_data *vict, int num);

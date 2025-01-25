@@ -22,6 +22,7 @@
 #include "dg_event.h"
 #include "constants.h"
 #include "act.wizard.h"
+#include "modify.h"
 
 /* local functions */
 static void trigedit_disp_menu(struct descriptor_data *d);

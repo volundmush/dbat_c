@@ -47,7 +47,7 @@
 #endif
 
 #ifndef HAVE_SNPRINTF
-int snprintf(char *str, size_t count, const char *fmt, ...);
+int snprintf(char *str, size_t count, const char *fmt, ...) __attribute__ ((format(printf, 3, 4)));
 #endif /* !HAVE_SNPRINTF */
 
 #ifndef HAVE_VSNPRINTF

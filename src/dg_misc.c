@@ -18,6 +18,7 @@
 #include "screen.h"
 #include "spells.h"
 #include "constants.h"
+#include "fight.h"
 
 /* copied from spell_parser.c: */
 #define SINFO spell_info[spellnum]

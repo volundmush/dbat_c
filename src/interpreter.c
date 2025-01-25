@@ -1862,7 +1862,7 @@ int reserved_word(char *argument)
  * copy the first non-fill-word, space-delimited argument of 'argument'
  * to 'first_arg'; return a pointer to the remainder of the string.
  */
-char *one_argument(char *argument, char *first_arg)
+char* one_argument(char *argument, char *first_arg)
 {
   char *begin = first_arg;
 

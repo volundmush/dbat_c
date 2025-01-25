@@ -123,7 +123,7 @@ void writeClanMasterlist() {
 
 
   sprintf(buf, "%d\n", num_clans);
-  fprintf(fl, buf);
+  fprintf(fl, "%s", buf);
   for(i = 0; i < num_clans; i++) {
     fprintf(fl, "%s%d.cla\n", LIB_CLAN, i);
   }
@@ -202,9 +202,9 @@ struct clan_data *clanLoad(const char *filename) {
 
   CREATE(S, struct clan_data, 1);
 
-  sprintf(S->modlist, "@D---@CLeaders@D---\n");
-  sprintf(S->memlist, "@D---@cMembers@D---\n");
-  sprintf(S->applist, "@D---@YApplicants@D---\n");
+  sprintf(S->modlist, "%s", "@D---@CLeaders@D---\n");
+  sprintf(S->memlist, "%s", "@D---@cMembers@D---\n");
+  sprintf(S->applist, "%s", "@D---@YApplicants@D---\n");
   fgetlinetomax(fl, line, MAX_STRING_LENGTH);
   sscanf(line, "%d %d", &(S->open_join), &(S->open_leave));
 
@@ -907,9 +907,9 @@ void handle_clan_member_list(struct char_data *ch)
  if(S == NULL)
   return;
 
- send_to_char(ch, S->modlist);
- send_to_char(ch, S->memlist);
- send_to_char(ch, S->applist);
+ send_to_char(ch, "%s", S->modlist);
+ send_to_char(ch, "%s", S->memlist);
+ send_to_char(ch, "%s", S->applist);
  send_to_char(ch, "@n");
 }
 

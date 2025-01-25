@@ -7904,11 +7904,11 @@ ACMD(do_eavesdrop) {
   if (EXIT(ch, dir)) {
     if (IS_SET(EXIT(ch, dir)->exit_info, EX_CLOSED) && EXIT(ch, dir)->keyword) {
       sprintf(buf, "The %s is closed.\r\n", fname(EXIT(ch, dir)->keyword));
-      send_to_char(ch, buf);
+      send_to_char(ch, "%s", buf);
     } else {
       GET_EAVESDROP(ch) = GET_ROOM_VNUM(EXIT(ch, dir)->to_room);
       GET_EAVESDIR(ch) = dir;
-      send_to_char(ch, "Okay.\r\n");
+      send_to_char(ch, "%s", "Okay.\r\n");
     }
   } else
     send_to_char(ch, "There is not a room there...\r\n");
@@ -14016,7 +14016,7 @@ ACMD(do_snet)
     if (global == FALSE && call <= -1 && SFREQ(obj2) == SFREQ(obj) && GET_ADMLEVEL(i->character) < 1) {
       send_to_char(i->character, "@C%s is heard @W(@c%s@W), @D[@WSNET FREQ@D: @Y%d@D] @G%s %s@n\r\n", voice, readIntro(i->character, ch) == 1 ? get_i_name(i->character, ch) : "Unknown", SFREQ(obj), CAP(arg), !*arg2 ? "" : arg2);
       *hist = '\0';
-      sprintf(hist, "@C%s is heard @W(@c%s@W), @D[@WSNET FREQ@D: @Y%d@D] @G%s %s@n\r\n", voice, readIntro(i->character, ch) == 1 ? get_i_name(i->character, ch) : "Unknown", SFREQ(obj), CAP(arg), !*arg2 ? "" : arg2);
+      snprintf(hist, sizeof(hist), "@C%s is heard @W(@c%s@W), @D[@WSNET FREQ@D: @Y%d@D] @G%s %s@n\r\n", voice, readIntro(i->character, ch) == 1 ? get_i_name(i->character, ch) : "Unknown", SFREQ(obj), CAP(arg), !*arg2 ? "" : arg2);
       add_history(i->character, hist, HIST_SNET);
       if (has_scanner(i->character)) {
        char *blah = sense_location(ch);
@@ -14063,7 +14063,7 @@ ACMD(do_snet)
     reveal_hiding(ch, 3);
     send_to_char(ch, "@CYou @D[@WSNET FREQ@D: @Y%d@D] @G%s %s@n\r\n", SFREQ(obj), arg, !*arg2 ? "" : arg2);
       *hist = '\0';
-      sprintf(hist, "@CYou @D[@WSNET FREQ@D: @Y%d@D] @G%s %s@n\r\n", SFREQ(obj), arg, !*arg2 ? "" : arg2);
+      snprintf(hist, sizeof(hist), "@CYou @D[@WSNET FREQ@D: @Y%d@D] @G%s %s@n\r\n", SFREQ(obj), arg, !*arg2 ? "" : arg2);
       add_history(ch, hist, HIST_SNET);
     char over[MAX_STRING_LENGTH];
     sprintf(over, "@C$n@W says into $s scouter, '@G@G%s %s@W'@n\r\n", CAP(arg), !*arg2 ? "" : arg2);
@@ -14076,7 +14076,7 @@ ACMD(do_snet)
    reveal_hiding(ch, 3);
    send_to_char(ch, "@CYou @D[@WSNET FREQ@D: @Y%d @mBroadcast@D] @G%s@n\r\n", SFREQ(obj), !*arg2 ? "" : CAP(arg2));
       *hist = '\0';
-      sprintf(hist, "@CYou @D[@WSNET FREQ@D: @Y%d @mBroadcast@D] @G%s@n\r\n", SFREQ(obj), !*arg2 ? "" : CAP(arg2));
+      snprintf(hist, sizeof(hist), "@CYou @D[@WSNET FREQ@D: @Y%d @mBroadcast@D] @G%s@n\r\n", SFREQ(obj), !*arg2 ? "" : CAP(arg2));
       add_history(ch, hist, HIST_SNET);
     char over[MAX_STRING_LENGTH];
     sprintf(over, "@C$n@W says into $s scouter, '@G@G%s@W'@n\r\n", !*arg2 ? "" : CAP(arg2));
@@ -15868,7 +15868,7 @@ ACMD(do_file)
      for (j = 0, i = 1; fields[i].level; i++)
        if (fields[i].level <= GET_LEVEL(ch))
          sprintf(buf+strlen(buf), "%-15s%s\r\n", fields[i].cmd, fields[i].file);
-     send_to_char(ch, buf);
+     send_to_char(ch, "%s", buf);
      return;
    }
 

@@ -790,7 +790,7 @@ int prereq_pass(struct char_data *ch, int snum)
 }
 
 
-void handle_forget(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument)
+void handle_forget(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument, int skill)
 {
 
  int skill_num;
@@ -829,7 +829,7 @@ void handle_forget(struct char_data *keeper, int guild_nr, struct char_data *ch,
 
 }
 
-void handle_grand(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument)
+void handle_grand(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument, int skill)
 {
 
  int skill_num;
@@ -1057,33 +1057,33 @@ void handle_train(struct char_data *keeper, int guild_nr, struct char_data *ch, 
   else if (!GET_TRAINS(ch))
     send_to_char(ch, "You have no ability training sessions.\r\n");
   else if (!strncasecmp("strength", argument, strlen(argument))) {
-    send_to_char(ch, CONFIG_OK);
+    send_to_char(ch, "%s", CONFIG_OK);
     ch->real_abils.str += 1;
     GET_TRAINS(ch) -= 1;
   } else if (!strncasecmp("constitution", argument, strlen(argument))) {
-    send_to_char(ch, CONFIG_OK);
+    send_to_char(ch, "%s", CONFIG_OK);
     ch->real_abils.con += 1;
     /* Give them retroactive hit points for constitution */
     if (! (ch->real_abils.con % 2))
       GET_MAX_HIT(ch) += GET_LEVEL(ch);
     GET_TRAINS(ch) -= 1;
   } else if (!strncasecmp("agility", argument, strlen(argument))) {
-    send_to_char(ch, CONFIG_OK);
+    send_to_char(ch, "%s", CONFIG_OK);
     ch->real_abils.dex += 1;
     GET_TRAINS(ch) -= 1;
   } else if (!strncasecmp("intelligence", argument, strlen(argument))) {
-    send_to_char(ch, CONFIG_OK);
+    send_to_char(ch, "%s", CONFIG_OK);
     ch->real_abils.intel += 1;
     /* Give extra skill practice, but only for this level */
     if (! (ch->real_abils.intel % 2))
       GET_PRACTICES(ch, GET_CLASS(ch)) += 1;
     GET_TRAINS(ch) -= 1;
   } else if (!strncasecmp("wisdom", argument, strlen(argument))) {
-    send_to_char(ch, CONFIG_OK);
+    send_to_char(ch, "%s", CONFIG_OK);
     ch->real_abils.wis += 1;
     GET_TRAINS(ch) -= 1;
   } else if (!strncasecmp("speed", argument, strlen(argument))) {
-    send_to_char(ch, CONFIG_OK);
+    send_to_char(ch, "%s", CONFIG_OK);
     ch->real_abils.cha += 1;
     GET_TRAINS(ch) -= 1;
   } else
@@ -1093,7 +1093,7 @@ void handle_train(struct char_data *keeper, int guild_nr, struct char_data *ch, 
 }
 
 
-void handle_gain(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument)
+void handle_gain(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument, int skill)
 {
   int whichclass = GET_CLASS(ch);
 
@@ -1251,7 +1251,7 @@ void handle_exp(struct char_data *keeper, int guild_nr, struct char_data *ch, ch
  }
 }
 
-void handle_study(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument)
+void handle_study(struct char_data *keeper, int guild_nr, struct char_data *ch, char *argument, int skill)
 {
 
  int expcost = 25000, goldcost = 750, fail = FALSE, reward = 25, goldadjust = 0, expadjust = 0;
@@ -1597,7 +1597,7 @@ SPECIAL(guild)
   struct char_data *keeper = (struct char_data *) me;
   struct {
     const char *cmd;
-    void (*func)(struct char_data *, int, struct char_data *, char *);
+    void (*func)(struct char_data *, int, struct char_data *, char *, int);
   } guild_cmd_tab[] = {
     { "practice",	handle_practice },
     { "gain",		handle_gain },
@@ -1632,7 +1632,7 @@ SPECIAL(guild)
   if (!(is_guild_ok(keeper, ch, guild_nr)))
     return (TRUE);
 
-  (guild_cmd_tab[i].func)(keeper, guild_nr, ch, argument);
+  (guild_cmd_tab[i].func)(keeper, guild_nr, ch, argument, 0);
 
   return (TRUE);
 }
@@ -1848,20 +1848,20 @@ void list_detailed_guild(struct char_data * ch, int gm_nr)
   else
     sprintf(buf1, "%6d   ", mob_index[GM_TRAINER(gm_nr)].vnum);
 
-  sprintf(buf, " Guild Master: %s\r\n", buf1);
-  sprintf(buf, "%s Hours: %4d to %4d,  Surcharge: %5.2f\r\n", buf,
+  snprintf(buf, sizeof(buf), " Guild Master: %s\r\n", buf1);
+  snprintf(buf, sizeof(buf), "%s Hours: %4d to %4d,  Surcharge: %5.2f\r\n", buf,
 			  GM_OPEN(gm_nr), GM_CLOSE(gm_nr), GM_CHARGE(gm_nr));
-  sprintf(buf, "%s Min Level will train: %d\r\n", buf, GM_MINLVL(gm_nr));
-  sprintf(buf, "%s Whom will train: %s\r\n", buf, guild_customer_string(gm_nr, TRUE));
+  snprintf(buf, sizeof(buf), "%s Min Level will train: %d\r\n", buf, GM_MINLVL(gm_nr));
+  snprintf(buf, sizeof(buf), "%s Whom will train: %s\r\n", buf, guild_customer_string(gm_nr, TRUE));
 
    /* now for the REAL reason why someone would want to see a Guild :) */
 
-  sprintf(buf, "%s The GM can teach the following:\r\n", buf);
+  snprintf(buf, sizeof(buf), "%s The GM can teach the following:\r\n", buf);
 
   *buf2 = '\0';
   for (i = 0; i < SKILL_TABLE_SIZE; i++) {
     if (does_guild_know(gm_nr, i))
-      sprintf(buf2, "%s %s \r\n", buf2, spell_info[i].name);
+      snprintf(buf2, sizeof(buf2), "%s %s \r\n", buf2, spell_info[i].name);
   }
  
   strcat(buf, buf2);

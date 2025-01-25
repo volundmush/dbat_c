@@ -497,7 +497,7 @@ ACMD(do_say)
 
          if (granted == FALSE && strstr(argument, "vitality")) {
           if (wch != NULL) {
-           send_to_room(real_room(DRAGONR), "@wShenron says, '@CYour wish cannot be granted, You might want to try something else instead, mortal!%s@w'@n\r\n");
+           send_to_room(real_room(DRAGONR), "%s", "@wShenron says, '@CYour wish cannot be granted, You might want to try something else instead, mortal!@w'@n\r\n");
            /*send_to_room(real_room(DRAGONR), "@wShenron says, '@CYour wish has been granted, %s now will never hunger or thirst again!%s@w'@n\r\n", GET_NAME(wch), WISH[0] ? "" : " Now make your second wish.");
            GET_COND(ch, HUNGER) = -1;
            GET_COND(ch, THIRST) = -1;
@@ -770,7 +770,7 @@ ACMD(do_gsay)
 
   strcpy(buf, argument);
 
-  sprintf(blah, "$n@W tells the group @W'@G%s@W'@n\r\n", buf);
+  snprintf(blah, sizeof(blah), "$n@W tells the group @W'@G%s@W'@n\r\n", buf);
 
   if (AFF_FLAGGED(k, AFF_GROUP) && (k != ch) && AWAKE(k)) {
     if (CONFIG_ENABLE_LANGUAGES) {
@@ -800,47 +800,49 @@ ACMD(do_gsay)
   }
 }
 
-static void perform_tell(struct char_data *ch, struct char_data *vict, char *arg)
-{
-  char buf[MAX_STRING_LENGTH], buf2[MAX_STRING_LENGTH];
+static void perform_tell(struct char_data *ch, struct char_data *vict, char *buf) {
+    char buf2[MAX_STRING_LENGTH];
 
-  strcpy(buf, arg);
-
-  if (CONFIG_ENABLE_LANGUAGES) {
-    snprintf(buf2, sizeof(buf2), "@[13]%s tells you%s '%s@[13]'@n\r\n", CAN_SEE(vict, ch) ? GET_NAME(ch) : "Someone", GET_SKILL(vict, SPEAKING(ch)) ? "," : ", in an unfamiliar tongue,", buf);
-    send_to_char(vict, "%s", buf2);
-    add_history(vict, buf2, HIST_TELL);
-  } else if (!IS_NPC(ch) && GET_ADMLEVEL(vict) < 1) {
-    snprintf(buf2, sizeof(buf2),  "@Y%s@Y tells you '%s'@n\r\n", GET_ADMLEVEL(ch) > 0 ? GET_NAME(ch) : ch->desc->user, buf);
-    send_to_char(vict, "%s", buf2);
-    add_history(vict, buf2, HIST_TELL);
-  } else if (!IS_NPC(ch) && GET_ADMLEVEL(vict) >= 1) {
-    snprintf(buf2, sizeof(buf2),  "@Y%s(%s)@Y tells you '%s'@n\r\n", ch->desc->user, GET_NAME(ch), buf);
-    send_to_char(vict, "%s", buf2);
-    add_history(vict, buf2, HIST_TELL);
-  } else if (IS_NPC(ch)) {
-    snprintf(buf2, sizeof(buf2),  "@Y%s@Y tells you '%s'@n\r\n", GET_NAME(ch), buf);
-    send_to_char(vict, "%s", buf2);
-  }
-
-  if (!IS_NPC(ch) && PRF_FLAGGED(ch, PRF_NOREPEAT)) {
-    send_to_char(ch, "%s", CONFIG_OK);
-  } else {
-    if (!IS_NPC(ch)) {
-    snprintf(buf2, sizeof(buf2),  "@YYou tell %s, '%s'@n\r\n", GET_ADMLEVEL(vict) > 0 ? GET_NAME(vict) : (vict->desc->user ? vict->desc->user : "ERROR"), arg);
-    if (GET_ADMLEVEL(ch) < 5 && GET_ADMLEVEL(vict) < 5 && !IS_NPC(ch) && !IS_NPC(vict)) {
-     send_to_imm("@GTELL: @C%s@G tells @c%s, @W'@w%s@W'@n", GET_ADMLEVEL(ch) > 0 ? GET_NAME(ch) : GET_USER(ch),  GET_ADMLEVEL(vict) > 0 ? GET_NAME(vict) : GET_USER(vict), arg);
+    if (CONFIG_ENABLE_LANGUAGES) {
+        snprintf(buf2, sizeof(buf2), "@[13]%s tells you%s '%s@[13]'@n\r\n",
+                 CAN_SEE(vict, ch) ? GET_NAME(ch) : "Someone",
+                 GET_SKILL(vict, SPEAKING(ch)) ? "," : ", in an unfamiliar tongue,", buf);
+        send_to_char(vict, "%s", buf2);
+        add_history(vict, buf2, HIST_TELL);
+    } else if (!IS_NPC(ch) && GET_ADMLEVEL(vict) < 1) {
+        snprintf(buf2, sizeof(buf2), "@Y%s@Y tells you '%s'@n\r\n",
+                 GET_ADMLEVEL(ch) > 0 ? GET_NAME(ch) : ch->desc->user, buf);
+        send_to_char(vict, "%s", buf2);
+        add_history(vict, buf2, HIST_TELL);
+    } else if (!IS_NPC(ch) && GET_ADMLEVEL(vict) >= 1) {
+        snprintf(buf2, sizeof(buf2), "@Y%s(%s)@Y tells you '%s'@n\r\n", ch->desc->user, GET_NAME(ch), buf);
+        send_to_char(vict, "%s", buf2);
+        add_history(vict, buf2, HIST_TELL);
+    } else if (IS_NPC(ch)) {
+        snprintf(buf2, sizeof(buf2), "@Y%s@Y tells you '%s'@n\r\n", GET_NAME(ch), buf);
+        send_to_char(vict, "%s", buf2);
     }
-    send_to_char(ch, "%s", buf2);
-    add_history(ch, buf2, HIST_TELL);
-    }
-    else {
-     send_to_char(ch, "%s", CONFIG_OK);
-    }
-  }
 
-  if (!IS_NPC(vict) && !IS_NPC(ch))
-    GET_LAST_TELL(vict) = GET_IDNUM(ch);
+    if (!IS_NPC(ch) && PRF_FLAGGED(ch, PRF_NOREPEAT)) {
+        send_to_char(ch, "%s", CONFIG_OK);
+    } else {
+        if (!IS_NPC(ch)) {
+            snprintf(buf2, sizeof(buf2), "@YYou tell %s, '%s'@n\r\n",
+                     GET_ADMLEVEL(vict) > 0 ? GET_NAME(vict) : (vict->desc->user ? vict->desc->user : "ERROR"), buf);
+            if (GET_ADMLEVEL(ch) < 5 && GET_ADMLEVEL(vict) < 5 && !IS_NPC(ch) && !IS_NPC(vict)) {
+                send_to_imm("@GTELL: @C%s@G tells @c%s, @W'@w%s@W'@n",
+                            GET_ADMLEVEL(ch) > 0 ? GET_NAME(ch) : GET_USER(ch),
+                            GET_ADMLEVEL(vict) > 0 ? GET_NAME(vict) : GET_USER(vict), buf);
+            }
+            send_to_char(ch, "%s", buf2);
+            add_history(ch, buf2, HIST_TELL);
+        } else {
+            send_to_char(ch, "%s", CONFIG_OK);
+        }
+    }
+
+    if (!IS_NPC(vict) && !IS_NPC(ch))
+        GET_LAST_TELL(vict) = GET_IDNUM(ch);
 }
 
 static int is_tell_ok(struct char_data *ch, struct char_data *vict)
@@ -1023,7 +1025,7 @@ ACMD(do_spec_comm)
       send_to_char(ch, "%s", CONFIG_OK);
     } else {
       char blum[MAX_INPUT_LENGTH];
-      sprintf(blum, "@WYou %s @C$N@W, '@m%s@W'@n\r\n", action_sing, buf2);
+      snprintf(blum, sizeof(blum), "@WYou %s @C$N@W, '@m%s@W'@n\r\n", action_sing, buf2);
       act(blum, TRUE, ch, 0, vict, TO_CHAR);
     }
 

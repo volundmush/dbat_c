@@ -1026,7 +1026,7 @@ void cedit_disp_creation_menu(struct descriptor_data *d)
   clear_screen(d);
   for (i = 0; i < NUM_CREATION_METHODS; i++) {
     sprintf(buf, "@W%d@B) @C%s@n\r\n", i, creation_methods[i]);
-    write_to_output(d, buf);
+    write_to_output(d, "%s", buf);
   }
   write_to_output(d, "Choose character creation type: ");
   OLC_MODE(d) = CEDIT_CREATION_MENU;  

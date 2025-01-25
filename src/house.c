@@ -557,7 +557,7 @@ int House_load(room_vnum rvnum)
 
   if (!(fl = fopen(cmfname, "r+b"))) {
     if (errno != ENOENT) {  /* if it fails, NOT because of no file */
-      sprintf(buf1, "SYSERR: READING HOUSE FILE %s (5)", cmfname);
+      snprintf(buf1, sizeof(buf1), "SYSERR: READING HOUSE FILE %s (5)", cmfname);
       perror(buf1);
     }
     return 0;

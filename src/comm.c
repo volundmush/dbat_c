@@ -1998,12 +1998,12 @@ void set_color(struct descriptor_data *d)
       d->character->desc = d;
     }
   SET_BIT_AR(PRF_FLAGS(d->character), PRF_COLOR);
-  write_to_output(d, GREETANSI);
-  write_to_output(d, "\r\n@w                  Welcome to Dragonball Advent Truth\r\n");
+  write_to_output(d, "%s", GREETANSI);
+  write_to_output(d, "%s", "\r\n@w                  Welcome to Dragonball Advent Truth\r\n");
   write_to_output(d, "@D                 ---(@CPeak Logon Count Today@W: @w%4d@D)---@n\r\n", PCOUNT);
   write_to_output(d, "@D                 ---(@CHighest Logon Count   @W: @w%4d@D)---@n\r\n", HIGHPCOUNT);
   write_to_output(d, "@D                 ---(@CTotal Era %d Characters@W: @w%4s@D)---@n\r\n", CURRENT_ERA, add_commas(ERAPLAYERS));
-  write_to_output(d, "\r\n@cEnter your desired username or the username you have already made.\n@CEnter Username:@n\r\n");
+  write_to_output(d, "%s", "\r\n@cEnter your desired username or the username you have already made.\n@CEnter Username:@n\r\n");
   d->user = strdup("Empty");
   d->pass = strdup("Empty");
   d->email = strdup("Empty");
@@ -3007,9 +3007,9 @@ void send_to_eaves(const char *messg, struct char_data *tch, ...)
       char buf[1000];
       char buf2[1000];
       *buf = '\0';
-      sprintf(buf2, "@W%s %s\r\n", PERS(d->character, tch), messg);
-      sprintf(buf, "-----Eavesdrop-----\r\n%s-----Eavesdrop-----\r\n", buf2);
-      send_to_char(d->character, buf);
+      snprintf(buf2, sizeof(buf2), "@W%s %s\r\n", PERS(d->character, tch), messg);
+      snprintf(buf, sizeof(buf), "-----Eavesdrop-----\r\n%s-----Eavesdrop-----\r\n", buf2);
+      send_to_char(d->character, "%s", buf);
      }
   }
 }
@@ -3360,10 +3360,10 @@ char *act(const char *str, int hide_invisible, struct char_data *ch,
          !PLR_FLAGGED(i->character, PLR_WRITING) && 
          !ROOM_FLAGGED(IN_ROOM(i->character), ROOM_SOUNDPROOF)) { 
 
-        sprintf(buf, "@y%s@n", str);
+        snprintf(buf, sizeof(buf), "@y%s@n", str);
         perform_act(buf, ch, obj, vict_obj, i->character);
         char buf2[MAX_STRING_LENGTH];
-        sprintf(buf2, "%s\r\n", buf);
+        snprintf(buf2, sizeof(buf2), "%s\r\n", buf);
         add_history(i->character, buf2, HIST_GOSSIP);
       } 
     } 
