@@ -1,10 +1,4 @@
-//
-// Created by basti on 10/22/2021.
-//
-
-#ifndef CIRCLE_ACT_ATTACK_H
-#define CIRCLE_ACT_ATTACK_H
-
+#pragma once
 #include "structs.h"
 
 // Commands
@@ -30,4 +24,3 @@ ACMD(do_strike);
 ACMD(do_ram);
 ACMD(do_breath);
 
-#endif //CIRCLE_ACT_ATTACK_H

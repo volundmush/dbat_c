@@ -1,44 +1,43 @@
-#ifndef __SYSDEP_H__
-#define __SYSDEP_H__
+#pragma once
 
-//#include "conf.h"
+// #include "conf.h"
 #include "typestubs.h"
 
-#define CIRCLE_GNU_LIBC_MEMORY_TRACK	0	/* 0 = off, 1 = on */
+#define CIRCLE_GNU_LIBC_MEMORY_TRACK 0 /* 0 = off, 1 = on */
 
-#include <stdio.h>
-#include <ctype.h>
-#include <stdarg.h>
-#include <stdint.h>
-#include <string.h>
-#include <strings.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include <limits.h>
-#include <errno.h>
-#include <crypt.h>
-#include <sys/time.h>
-#include <time.h>
-#include <assert.h>
-#include <zlib.h>
-#include <sys/select.h>
-#include <fcntl.h>
-#include <sys/fcntl.h>
-#include <sys/socket.h>
-#include <sys/resource.h>
-#include <sys/wait.h>
-#include <netinet/in.h>
 #include <arpa/inet.h>
+#include <arpa/telnet.h>
+#include <assert.h>
+#include <crypt.h>
+#include <ctype.h>
+#include <dirent.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <limits.h>
+#include <linux/limits.h>
 #include <netdb.h>
+#include <netinet/in.h>
 #include <signal.h>
-#include <sys/uio.h>
-#include <sys/stat.h>
+#include <stdarg.h>
 #include <stdbool.h>
 #include <stddef.h>
-#include <arpa/telnet.h>
-#include <dirent.h>
-#include <linux/limits.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include <sys/fcntl.h>
+#include <sys/resource.h>
+#include <sys/select.h>
+#include <sys/socket.h>
+#include <sys/stat.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <sys/uio.h>
+#include <sys/wait.h>
+#include <time.h>
+#include <unistd.h>
+#include <zlib.h>
 
 #ifdef HAVE_LIBBSD
 #include <bsd/string.h>
@@ -51,28 +50,26 @@
 #error "Cannot use GNU C library memory tracking without <mcheck.h>"
 #endif
 
-#if defined(__cplusplus)	/* C++ */
-#define cpp_extern	extern
-#else				/* C */
-#define cpp_extern	/* Nothing */
+#ifdef __cplusplus /* C++ */
+#define cpp_extern extern
+#else /* C */
+#define cpp_extern /* Nothing */
 #endif
 
 #define HAS_RLIMIT
 
-#define CIRCLE_UNSIGNED_INDEX 1	/* 0 = signed, 1 = unsigned */
+#define CIRCLE_UNSIGNED_INDEX 0 /* 0 = signed, 1 = unsigned */
 
 #if CIRCLE_UNSIGNED_INDEX
-#define IDXTYPE	uint16_t
-#define NOWHERE	((IDXTYPE)~0)
-#define NOTHING	((IDXTYPE)~0)
-#define NOBODY	((IDXTYPE)~0)
-#define NOFLAG  ((IDXTYPE)~0)
+#define IDXTYPE uint16_t
+#define NOTHING ((IDXTYPE) ~0)
 #else
-#define IDXTYPE	int16_t
-#define NOWHERE	(-1)	/* nil reference for rooms	*/
-#define NOTHING	(-1)	/* nil reference for objects	*/
-#define NOBODY		(-1)	/* nil reference for mobiles	*/
+#define IDXTYPE int16_t
+#define NOTHING (-1) /* nil reference for objects	*/
 #endif
+#define NOBODY NOTHING
+#define NOWHERE NOTHING
+#define NOFLAG NOTHING
 
 #define I64T "ld"
 #define SZT "ld"
@@ -104,8 +101,5 @@ typedef uint32_t bitvector_t;
 #define FALSE 0
 #define TRUE 1
 
-
-#define ACMD(name) void (name)(struct char_data *ch, char *argument, int cmd, int subcmd)
-#define SPECIAL(name) int (name)(struct char_data *ch, void *me, int cmd, char *argument)
-
-#endif
+#define ACMD(name) void(name)(struct char_data * ch, char *argument, int cmd, int subcmd)
+#define SPECIAL(name) int(name)(struct char_data * ch, void *me, int cmd, char *argument)

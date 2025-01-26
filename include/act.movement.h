@@ -1,10 +1,4 @@
-//
-// Created by basti on 10/22/2021.
-//
-
-#ifndef CIRCLE_ACT_MOVEMENT_H
-#define CIRCLE_ACT_MOVEMENT_H
-
+#pragma once
 #include "structs.h"
 
 // global variables
@@ -35,5 +29,3 @@ ACMD(do_flee);
 ACMD(do_carry);
 ACMD(do_land);
 ACMD(do_move);
-
-#endif //CIRCLE_ACT_MOVEMENT_H

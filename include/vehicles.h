@@ -1,10 +1,4 @@
-//
-// Created by volund on 10/20/21.
-//
-
-#ifndef CIRCLE_VEHICLES_H
-#define CIRCLE_VEHICLES_H
-
+#pragma once
 #include "structs.h"
 
 
@@ -20,6 +14,3 @@ struct obj_data *get_obj_in_list_type(int type, struct obj_data *list);
 ACMD(do_warp);
 ACMD(do_drive);
 ACMD(do_ship_fire);
-
-
-#endif //CIRCLE_VEHICLES_H

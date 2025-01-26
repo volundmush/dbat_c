@@ -1,9 +1,4 @@
-//
-// Created by basti on 10/22/2021.
-//
-
-#ifndef CIRCLE_ACT_ITEM_H
-#define CIRCLE_ACT_ITEM_H
+#pragma once
 
 #include "structs.h"
 
@@ -50,4 +45,4 @@ ACMD(do_garden);
 ACMD(do_refuel);
 ACMD(do_sac);
 
-#endif //CIRCLE_ACT_ITEM_H
+

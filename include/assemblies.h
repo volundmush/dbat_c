@@ -5,10 +5,7 @@
  * -------------------------------------------------------------------- *
  * 1999 MAY 07 gdavis/azrael@laker.net Initial implementation.         *
  * ******************************************************************** */
-
-#ifndef __ASSEMBLIES_H__
-#define __ASSEMBLIES_H__
-
+#pragma once
 #include "structs.h"
 
 
@@ -86,5 +83,4 @@ ASSEMBLY*      assemblyGetAssemblyPtr( long lVnum );
 
 /* ******************************************************************** */
 
-#endif
 

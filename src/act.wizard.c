@@ -2498,79 +2498,81 @@ ACMD(do_copyover)
     } 
   } 
 #endif 
-} 
+}
 
-static void execute_copyover(void)
-{
-  FILE *fp;
-  struct descriptor_data *d, *d_next;
-  char buf [100], buf2[100];
+static void
+execute_copyover(void) {
+    FILE *fp;
+    struct descriptor_data *d, *d_next;
+    char buf[100], buf2[100];
 
-  fp = fopen (COPYOVER_FILE, "w");
+    fp = fopen(COPYOVER_FILE, "w");
 
-  if (!fp) {
-    send_to_imm("Copyover file not writeable, aborted.\n\r");
-    return;
-  }
+    if(!fp) {
+        send_to_imm("Copyover file not writeable, aborted.\n\r");
+        return;
+    }
 
-  /* Consider changing all saved areas here, if you use OLC */
-  save_all();
-  save_mud_time(&time_info);
-  sprintf (buf, "\t\x1B[1;31m \007\007\007The universe stops for a moment as space and time fold.\x1B[0;0m\r\n");
-  /* For each playing descriptor, save its state */
-  for (d = descriptor_list; d ; d = d_next) {
-    struct char_data * och = d->character;
-    d_next = d->next; /* We delete from the list , so need to save this */
-    if (!d->character || d->connected > CON_PLAYING) {
-      write_to_descriptor (d->descriptor, "\n\rSorry, we are rebooting. Come back in a few seconds.\n\r", d->comp);
-      close_socket (d); /* throw'em out */
-    } else {
-      if (GET_ROOM_VNUM(IN_ROOM(och)) > 1) {
-       fprintf (fp, "%d %s %s %d %s\n", d->descriptor, GET_NAME(och), d->host, GET_ROOM_VNUM(IN_ROOM(och)), d->user);
-      } else if (GET_ROOM_VNUM(IN_ROOM(och)) <= 1 && GET_ROOM_VNUM(GET_WAS_IN(och)) > 1) {
-       fprintf (fp, "%d %s %s %d %s\n", d->descriptor, GET_NAME(och), d->host, GET_ROOM_VNUM(GET_WAS_IN(och)), d->user);
-      } else {
-       fprintf (fp, "%d %s %s 300 %s\n", d->descriptor, GET_NAME(och), d->host, d->user);
-      }
-      log("printing descriptor name and host of connected players");
-      /* save och */
-      Crash_rentsave(och, 0);
-      save_char(och);
-        if (d->comp->state == 2) {
-            d->comp->state = 3; /* Code to use Z_FINISH for deflate */
-        }
-      write_to_descriptor (d->descriptor, buf, d->comp);
-      d->comp->state = 0;
-        if (d->comp->stream) {
-            deflateEnd(d->comp->stream);
-            free(d->comp->stream);
-            free(d->comp->buff_out);
-            free(d->comp->buff_in);
+    /* Consider changing all saved areas here, if you use OLC */
+    save_all();
+    save_mud_time(&time_info);
+    sprintf(buf, "\t\x1B[1;31m \007\007\007The universe stops for a moment as space and time fold.\x1B[0;0m\r\n");
+    /* For each playing descriptor, save its state */
+    for(d = descriptor_list; d; d = d_next) {
+        struct char_data *och = d->character;
+        d_next = d->next; /* We delete from the list , so need to save this */
+        if(!d->character || d->connected > CON_PLAYING) {
+            write_to_descriptor(d->descriptor, "\n\rSorry, we are rebooting. Come back in a few seconds.\n\r", d->comp);
+            close_socket(d); /* throw'em out */
+        } else {
+            if(GET_ROOM_VNUM(IN_ROOM(och)) > 1) {
+                fprintf(fp, "%d %s %s %d %s\n", d->descriptor, GET_NAME(och), d->host, GET_ROOM_VNUM(IN_ROOM(och)),
+                        d->user);
+            } else if(GET_ROOM_VNUM(IN_ROOM(och)) <= 1 && GET_ROOM_VNUM(GET_WAS_IN(och)) > 1) {
+                fprintf(fp, "%d %s %s %d %s\n", d->descriptor, GET_NAME(och), d->host, GET_ROOM_VNUM(GET_WAS_IN(och)),
+                        d->user);
+            } else {
+                fprintf(fp, "%d %s %s 300 %s\n", d->descriptor, GET_NAME(och), d->host, d->user);
+            }
+            log("printing descriptor name and host of connected players");
+            /* save och */
+            Crash_rentsave(och, 0);
+            save_char(och);
+            if(d->comp->state == 2) {
+                d->comp->state = 3; /* Code to use Z_FINISH for deflate */
+            }
+            write_to_descriptor(d->descriptor, buf, d->comp);
+            d->comp->state = 0;
+            if(d->comp->stream) {
+                deflateEnd(d->comp->stream);
+                free(d->comp->stream);
+                free(d->comp->buff_out);
+                free(d->comp->buff_in);
+            }
         }
     }
-  }
 
-  fprintf (fp, "-1\n");
-  fclose (fp);
+    fprintf(fp, "-1\n");
+    fclose(fp);
 
-  /* Close reserve and other always-open files and release other resources
-     since we are now using ASCII pfiles, closing the player_fl would crash
-     the game, since it's no longer around, so I commented it out. I'll
-     leave the code here, for historical reasons -spl
-     fclose(player_fl); */
+    /* Close reserve and other always-open files and release other resources
+       since we are now using ASCII pfiles, closing the player_fl would crash
+       the game, since it's no longer around, so I commented it out. I'll
+       leave the code here, for historical reasons -spl
+       fclose(player_fl); */
 
-  /* exec - descriptors are inherited */
+    /* exec - descriptors are inherited */
 
-  sprintf (buf, "%d", port);
-  sprintf (buf2, "-C%d", mother_desc);
-  chdir ("..");
-  execl (EXE_FILE, "circle", buf2, buf, (char *) NULL);
-  /* Failed - sucessful exec will not return */
+    sprintf(buf, "%d", port);
+    sprintf(buf2, "-C%d", mother_desc);
+    chdir("..");
+    execl(EXE_FILE, "circle", buf2, buf, (char *) NULL);
+    /* Failed - sucessful exec will not return */
 
-  perror ("do_copyover: execl");
-  send_to_imm("%s", "Copyover FAILED!\n\r");
+    perror("do_copyover: execl");
+    send_to_imm("%s", "Copyover FAILED!\n\r");
 
-  exit (1); /* too much trouble to try to recover! */
+    exit(1); /* too much trouble to try to recover! */
 }
 
 void copyover_check(void) 
@@ -2740,7 +2742,6 @@ ACMD(do_restore)
     GET_HIT(vict) = gear_pl(vict);
     GET_MANA(vict) = GET_MAX_MANA(vict);
     GET_MOVE(vict) = GET_MAX_MOVE(vict);
-    GET_KI(vict) = GET_MAX_KI(vict);
     REMOVE_BIT_AR(AFF_FLAGS(vict), AFF_BLIND);
     GET_LIMBCOND(vict, 1) = 100;
     GET_LIMBCOND(vict, 2) = 100;
@@ -4263,13 +4264,7 @@ static int perform_set(struct char_data *ch, struct char_data *vict, int mode,
     break;
 
   case 56:
-    vict->max_ki = RANGE(1, 5000);
-    affect_total(vict);
-    break;
-
   case 57:
-    vict->ki = RANGE(0, vict->max_ki);
-    affect_total(vict);
     break;
 
   case 58:

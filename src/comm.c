@@ -3089,17 +3089,15 @@ void send_to_planet(int type, int planet, const char *messg, ...)
       continue;
     if (!AWAKE(i->character) || !ROOM_FLAGGED(IN_ROOM(i->character), planet))
       continue;
-    else {
-     if (type == 0) {
-      va_start(args, messg);
-      vwrite_to_output(i, messg, args);
-      va_end(args);
-     } else if (OUTSIDE(i->character) && GET_SKILL(i->character, SKILL_SPOT) >= axion_dice(-5)) {
-      va_start(args, messg);
-      vwrite_to_output(i, messg, args);
-      va_end(args);
-     }
-    }
+      if (type == 0) {
+          va_start(args, messg);
+          vwrite_to_output(i, messg, args);
+          va_end(args);
+      } else if (OUTSIDE(i->character) && GET_SKILL(i->character, SKILL_SPOT) >= axion_dice(-5)) {
+          va_start(args, messg);
+          vwrite_to_output(i, messg, args);
+          va_end(args);
+      }
   }
 }
 

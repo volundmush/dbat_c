@@ -1,10 +1,4 @@
-//
-// Created by volund on 10/20/21.
-//
-
-#ifndef CIRCLE_LIMITS_H
-#define CIRCLE_LIMITS_H
-
+#pragma once
 #include "structs.h"
 
 // functions
@@ -19,5 +13,3 @@ void gain_exp_regardless(struct char_data *ch, int gain);
 void gain_condition(struct char_data *ch, int condition, int value);
 void point_update(void);
 void update_innate(struct char_data *ch);
-
-#endif //CIRCLE_LIMITS_H

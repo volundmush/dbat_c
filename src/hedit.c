@@ -29,7 +29,7 @@
 
 /* local functions */
 
-static void hedit_disp_menu(struct descriptor_data *);
+void hedit_disp_menu(struct descriptor_data *);
 
 ACMD(do_oasis_hedit)
 {
@@ -94,7 +94,7 @@ ACMD(do_oasis_hedit)
   mudlog(CMP, ADMLVL_IMMORT, TRUE, "OLC: %s starts editing help files.", GET_NAME(ch));
 }
 
-static void hedit_setup_new(struct descriptor_data *d)
+void hedit_setup_new(struct descriptor_data *d)
 {
   CREATE(OLC_HELP(d), struct help_index_element, 1);
 
@@ -111,7 +111,7 @@ static void hedit_setup_new(struct descriptor_data *d)
   hedit_disp_menu(d);
 }
 
-static void hedit_setup_existing(struct descriptor_data *d, int rnum)
+void hedit_setup_existing(struct descriptor_data *d, int rnum)
 {
   CREATE(OLC_HELP(d), struct help_index_element, 1);
 
@@ -124,7 +124,7 @@ static void hedit_setup_existing(struct descriptor_data *d, int rnum)
   hedit_disp_menu(d);
 }
 
-static void hedit_save_internally(struct descriptor_data *d)
+void hedit_save_internally(struct descriptor_data *d)
 {
   struct help_index_element *new_help_table = NULL;
   if (OLC_ZNUM(d) == NOWHERE) {
@@ -145,7 +145,7 @@ static void hedit_save_internally(struct descriptor_data *d)
     hedit_save_to_disk(d);
 }
 
-static void hedit_save_to_disk(struct descriptor_data *d)
+void hedit_save_to_disk(struct descriptor_data *d)
 {
   FILE *fp;
   char buf1[MAX_STRING_LENGTH], index_name[READ_SIZE];
@@ -178,7 +178,7 @@ static void hedit_save_to_disk(struct descriptor_data *d)
 }
 
 /* The main menu. */
-static void hedit_disp_menu(struct descriptor_data *d)
+void hedit_disp_menu(struct descriptor_data *d)
 {
   write_to_output(d,
       "@n-- Help file editor\r\n"

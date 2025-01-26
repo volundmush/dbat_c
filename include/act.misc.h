@@ -1,9 +1,4 @@
-//
-// Created by basti on 10/22/2021.
-//
-
-#ifndef CIRCLE_ACT_MISC_H
-#define CIRCLE_ACT_MISC_H
+#pragma once
 
 #include "structs.h"
 void handle_multi_merge(struct char_data *form);
@@ -55,4 +50,3 @@ ACMD(do_spiritcontrol);
 ACMD(do_ashcloud);
 ACMD(do_silk);
 
-#endif //CIRCLE_ACT_MISC_H

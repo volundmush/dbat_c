@@ -1,3 +1,4 @@
+#pragma once
 /* ************************************************************************
 *   File: constants.h                                   Part of CircleMUD *
 *  Usage: Header file for constants.                                      *
@@ -6,12 +7,8 @@
 *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
 *  tbaMUD is based on CircleMUD and DikuMUD, Copyright (C) 1990, 1991.    *
 ************************************************************************ */
-
-#ifndef __CONSTANTS_H__
-#define __CONSTANTS_H__
-
 #include "structs.h"
-#include "interpreter.h"	/* alias_data */
+#include "interpreter.h" /* alias_data */
 
 extern const char *circlemud_version;
 extern const char *oasisolc_version;
@@ -82,5 +79,3 @@ extern const char *skin_types[];
 extern const char *aura_types[];
 extern const char *npc_personality[MAX_PERSONALITIES + 1];
 extern const char *song_types[];
-
-#endif

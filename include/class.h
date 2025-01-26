@@ -1,10 +1,4 @@
-//
-// Created by volund on 10/20/21.
-//
-
-#ifndef CIRCLE_CLASS_H
-#define CIRCLE_CLASS_H
-
+#pragma once
 #include "structs.h"
 
 
@@ -34,4 +28,3 @@ int calc_penalty_exp(struct char_data *ch, int gain);
 time_t birth_age(struct char_data *ch);
 time_t max_age(struct char_data *ch);
 
-#endif //CIRCLE_CLASS_H

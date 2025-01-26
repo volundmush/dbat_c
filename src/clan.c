@@ -438,8 +438,8 @@ void clanAdd(struct clan_data *S)
   int i;
   struct clan_data **oldList = clan;
 
-  /*clan = malloc( sizeof(struct clan_data *) * (num_clans) );*/
-  clan = malloc( sizeof(struct clan_data *) * (num_clans + 1) );
+  /*clan = calloc( sizeof(struct clan_data *) * (num_clans) );*/
+  CREATE(clan, struct clan_data*, num_clans+1);
 
   for(i = 0; i < num_clans; i++)
     clan[i] = oldList[i];
@@ -519,8 +519,7 @@ void clanBoot() {
     clan = NULL;
     return;
   }
-
-  clan = malloc( sizeof(struct clan_data *) * num_clans );
+    CREATE(clan, struct clan_data*, num_clans);
 
   for(i = 0; i < num_clans; i++) {
     if( (len = fgetlinetomax(fl, line, MAX_STRING_LENGTH)) > 0) {

@@ -1,12 +1,5 @@
-//
-// Created by basti on 10/22/2021.
-//
-
-#ifndef CIRCLE_SPEC_PROCS_H
-#define CIRCLE_SPEC_PROCS_H
-
+#pragma once
 #include "structs.h"
-
 
 // functions
 void npc_steal(struct char_data *ch, struct char_data *victim);
@@ -45,5 +38,3 @@ SPECIAL(cleric_ao);
 SPECIAL(dziak);
 SPECIAL(azimer);
 SPECIAL(lyrzaxyn);
-
-#endif //CIRCLE_SPEC_PROCS_H

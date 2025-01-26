@@ -1,10 +1,4 @@
-//
-// Created by basti on 10/22/2021.
-//
-
-#ifndef CIRCLE_ACT_OFFENSIVE_H
-#define CIRCLE_ACT_OFFENSIVE_H
-
+#pragma once
 #include "structs.h"
 
 // commands
@@ -64,6 +58,3 @@ ACMD(do_shogekiha);
 ACMD(do_tsuihidan);
 ACMD(do_slam);
 ACMD(do_rescue);
-
-
-#endif //CIRCLE_ACT_OFFENSIVE_H

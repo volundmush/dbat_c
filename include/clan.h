@@ -1,3 +1,4 @@
+#pragma once
 //********************************************************************************
 //
 // This is the API for clans on Aeonian Dreams.
@@ -26,8 +27,6 @@
 //
 //********************************************************************************
 
-#ifndef __CLAN_H__
-#define __CLAN_H__
 
 #include "structs.h"        // for char_data
 
@@ -42,7 +41,7 @@
 //
 // Boot up all the clans we have
 //
-void clanBoot();
+void clanBoot(void);
 
 
 //
@@ -218,5 +217,3 @@ extern int num_clans;
 // List all of the clans vict belongs to, to char
 //
 void listClansOfVictToChar(const struct char_data *vict, struct char_data *ch);
-
-#endif

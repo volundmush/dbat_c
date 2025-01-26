@@ -1,3 +1,4 @@
+#pragma once
 /* ************************************************************************
 *  File: obj_edit.h                  Part of Dragonball Advent Truth      *
 *  Usage: Player level ship editing utilities and common functions for    *
@@ -7,10 +8,6 @@
 *  to house all player level ship   editing defines/declarations          *
 *                                                            Iovan 1/6/13 *
 ************************************************************************ */
-
-#ifndef __SHIP_H__
-#define __SHIP_H__
-
 /* external functions   */
 
 /* ship.c functions */
@@ -35,5 +32,3 @@
 #define SHIP_EXTRAS   7
 #define SHIP_ARMORS   5
 #define SHIP_EQUIP    5
-
-#endif

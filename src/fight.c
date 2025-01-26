@@ -184,27 +184,27 @@ void mutant_limb_regen(struct char_data *ch)
  }
 }
 
-static int pick_n_throw(struct char_data *ch, char *buf)
-{
- struct obj_data *cont;
- char buf2[MAX_INPUT_LENGTH], buf3[MAX_INPUT_LENGTH];;
+static int
+pick_n_throw(struct char_data *ch, char *buf) {
+    struct obj_data *cont;
+    char buf2[MAX_INPUT_LENGTH], buf3[MAX_INPUT_LENGTH];
 
- if (rand_number(1, 20) < 18) {
-  return (FALSE);
- }
+    if(rand_number(1, 20) < 18) {
+        return (FALSE);
+    }
 
 
- for (cont = world[IN_ROOM(ch)].contents; cont; cont = cont->next_content) {
-  if (GET_OBJ_WEIGHT(cont) <= CAN_CARRY_W(ch) + IS_CARRYING_W(ch)) {
-   snprintf(buf2, sizeof(buf3), "%s", cont->name);
-   do_get(ch, buf2, 0, 0);
-   snprintf(buf3, sizeof(buf3), "%s %s", buf2, buf);
-   do_throw(ch, buf3, 0, 0);
-   return (TRUE);
-  }
- }
- 
- return (FALSE);
+    for(cont = world[IN_ROOM(ch)].contents; cont; cont = cont->next_content) {
+        if(GET_OBJ_WEIGHT(cont) <= CAN_CARRY_W(ch) + IS_CARRYING_W(ch)) {
+            snprintf(buf2, sizeof(buf3), "%s", cont->name);
+            do_get(ch, buf2, 0, 0);
+            snprintf(buf3, sizeof(buf3), "%s %s", buf2, buf);
+            do_throw(ch, buf3, 0, 0);
+            return (TRUE);
+        }
+    }
+
+    return (FALSE);
 }
 
 static void mob_attack(struct char_data *ch, char *buf)

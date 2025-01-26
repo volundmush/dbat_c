@@ -1,3 +1,4 @@
+#pragma once
 /***************************************************************************
  *   File: htree.h                                                         *
  *  Usage: Generalized hash tree code for fast lookups                     *
@@ -6,13 +7,7 @@
  * Written by Elie Rosenblum <fnord@cosanostra.net>                        *
  * Copyright (c) 7-Oct-2004                                                *
  ***************************************************************************/
-
-#ifndef __HTREE_H__
-#define __HTREE_H__
-
 #include "structs.h"
-
-
 
 /* Magic constants: */
 /* Don't change these unless you know what you're doing, the constants must
@@ -26,9 +21,9 @@
 /* End of magic constants */
 
 struct htree_node {
-  IDXTYPE content;
-  struct htree_node *parent;
-  struct htree_node *subs[HTREE_NODE_SUBS];
+    IDXTYPE content;
+    struct htree_node *parent;
+    struct htree_node *subs[HTREE_NODE_SUBS];
 };
 
 extern struct htree_node *HTREE_NULL;
@@ -42,6 +37,3 @@ void htree_add(struct htree_node *root, IDXTYPE index, IDXTYPE content);
 void htree_del(struct htree_node *root, IDXTYPE index);
 IDXTYPE htree_find(struct htree_node *root, IDXTYPE index);
 void htree_test();
-
-
-#endif

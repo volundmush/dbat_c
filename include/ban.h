@@ -1,10 +1,4 @@
-//
-// Created by volund on 10/20/21.
-//
-
-#ifndef CIRCLE_BAN_H
-#define CIRCLE_BAN_H
-
+#pragma once
 #include "structs.h"
 
 extern struct ban_list_element *ban_list;
@@ -20,4 +14,3 @@ void Read_Invalid_List(void);
 ACMD(do_ban);
 ACMD(do_unban);
 
-#endif //CIRCLE_BAN_H

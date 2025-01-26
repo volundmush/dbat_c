@@ -1,10 +1,4 @@
-//
-// Created by basti on 10/22/2021.
-//
-
-#ifndef CIRCLE_ACT_OTHER_H
-#define CIRCLE_ACT_OTHER_H
-
+#pragma once
 #include "structs.h"
 
 // variables
@@ -114,5 +108,3 @@ ACMD(do_fix);
 ACMD(do_resurrect);
 ACMD(do_clan);
 ACMD(do_aid);
-
-#endif //CIRCLE_ACT_OTHER_H
