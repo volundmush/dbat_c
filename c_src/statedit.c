@@ -8,7 +8,7 @@
  ************************************************************************/
 
 /* --relistan 2/22/99 - 2/24/99 */
-
+#include "libraries.h"
 #include "statedit.h"
 #include "interpreter.h"
 #include "comm.h"

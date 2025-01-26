@@ -13,6 +13,7 @@
 *   credits found in act.offensive.c except for the commands added in-    *
 *                                                   ~~Iovan               *
 ************************************************************************ */
+#include "libraries.h"
 #include "act.attack.h"
 #include "fight.h"
 #include "dg_comm.h"

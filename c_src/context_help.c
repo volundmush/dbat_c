@@ -2,7 +2,7 @@
  * The functions below this point is handling the context sensitive help system
  * If you add more olc options, be sure to add a case for it here. - Welcor
  */
-
+#include "libraries.h"
 #include "context_help.h"
 #include "act.informative.h"
 #include "oasis.h"

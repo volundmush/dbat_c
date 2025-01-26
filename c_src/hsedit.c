@@ -6,6 +6,7 @@
 *  Copyright 2007 Stefan Cole (aka Jamdog)                               * 
 *  Used at AderonMUD (aderonmud.genesismuds.com 3200)                    * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */ 
+#include "libraries.h"
 #include "hsedit.h"
 #include "comm.h"
 #include "utils.h"

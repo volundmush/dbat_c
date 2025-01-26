@@ -8,6 +8,7 @@
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.              *
 *  Vehicle.c written by Chris Jacobson <fear@athenet.net>		 *
 *************************************************************************/
+#include "libraries.h"
 #include "vehicles.h"
 #include "utils.h"
 #include "comm.h"

@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug (Rust)",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/target/debug/dbat",
+        "args": [],
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "MIMode": "gdb",        // or "lldb"
+        "setupCommands": [
+          { "text": "-enable-pretty-printing", "description": "Enable GDB pretty printing", "ignoreFailures": true }
+        ]
+      }
+    ]
+  }

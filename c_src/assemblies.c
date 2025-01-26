@@ -5,8 +5,7 @@
  * -------------------------------------------------------------------- *
  * 1999 MAY 07 gdavis/azrael@laker.net Initial implementation.         *
  * ******************************************************************** */
-#define __ASSEMBLIES_C__
-
+#include "libraries.h"
 #include "assemblies.h"
 #include "utils.h"
 #include "comm.h"

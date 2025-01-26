@@ -1,0 +1,560 @@
+[
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/act.attack.c.o -c /home/volund/dbat_c/c_src/act.attack.c",
+  "file": "/home/volund/dbat_c/c_src/act.attack.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/act.attack.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/act.comm.c.o -c /home/volund/dbat_c/c_src/act.comm.c",
+  "file": "/home/volund/dbat_c/c_src/act.comm.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/act.comm.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/act.informative.c.o -c /home/volund/dbat_c/c_src/act.informative.c",
+  "file": "/home/volund/dbat_c/c_src/act.informative.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/act.informative.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/act.item.c.o -c /home/volund/dbat_c/c_src/act.item.c",
+  "file": "/home/volund/dbat_c/c_src/act.item.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/act.item.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/act.misc.c.o -c /home/volund/dbat_c/c_src/act.misc.c",
+  "file": "/home/volund/dbat_c/c_src/act.misc.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/act.misc.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/act.movement.c.o -c /home/volund/dbat_c/c_src/act.movement.c",
+  "file": "/home/volund/dbat_c/c_src/act.movement.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/act.movement.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/act.offensive.c.o -c /home/volund/dbat_c/c_src/act.offensive.c",
+  "file": "/home/volund/dbat_c/c_src/act.offensive.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/act.offensive.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/act.other.c.o -c /home/volund/dbat_c/c_src/act.other.c",
+  "file": "/home/volund/dbat_c/c_src/act.other.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/act.other.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/act.social.c.o -c /home/volund/dbat_c/c_src/act.social.c",
+  "file": "/home/volund/dbat_c/c_src/act.social.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/act.social.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/act.wizard.c.o -c /home/volund/dbat_c/c_src/act.wizard.c",
+  "file": "/home/volund/dbat_c/c_src/act.wizard.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/act.wizard.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/aedit.c.o -c /home/volund/dbat_c/c_src/aedit.c",
+  "file": "/home/volund/dbat_c/c_src/aedit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/aedit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/alias.c.o -c /home/volund/dbat_c/c_src/alias.c",
+  "file": "/home/volund/dbat_c/c_src/alias.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/alias.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/assedit.c.o -c /home/volund/dbat_c/c_src/assedit.c",
+  "file": "/home/volund/dbat_c/c_src/assedit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/assedit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/assemblies.c.o -c /home/volund/dbat_c/c_src/assemblies.c",
+  "file": "/home/volund/dbat_c/c_src/assemblies.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/assemblies.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/ban.c.o -c /home/volund/dbat_c/c_src/ban.c",
+  "file": "/home/volund/dbat_c/c_src/ban.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/ban.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/boards.c.o -c /home/volund/dbat_c/c_src/boards.c",
+  "file": "/home/volund/dbat_c/c_src/boards.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/boards.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/bsd-snprintf.c.o -c /home/volund/dbat_c/c_src/bsd-snprintf.c",
+  "file": "/home/volund/dbat_c/c_src/bsd-snprintf.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/bsd-snprintf.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/cedit.c.o -c /home/volund/dbat_c/c_src/cedit.c",
+  "file": "/home/volund/dbat_c/c_src/cedit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/cedit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/circle.c.o -c /home/volund/dbat_c/c_src/circle.c",
+  "file": "/home/volund/dbat_c/c_src/circle.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/circle.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/clan.c.o -c /home/volund/dbat_c/c_src/clan.c",
+  "file": "/home/volund/dbat_c/c_src/clan.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/clan.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/class.c.o -c /home/volund/dbat_c/c_src/class.c",
+  "file": "/home/volund/dbat_c/c_src/class.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/class.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/combat.c.o -c /home/volund/dbat_c/c_src/combat.c",
+  "file": "/home/volund/dbat_c/c_src/combat.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/combat.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/comm.c.o -c /home/volund/dbat_c/c_src/comm.c",
+  "file": "/home/volund/dbat_c/c_src/comm.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/comm.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/config.c.o -c /home/volund/dbat_c/c_src/config.c",
+  "file": "/home/volund/dbat_c/c_src/config.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/config.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/constants.c.o -c /home/volund/dbat_c/c_src/constants.c",
+  "file": "/home/volund/dbat_c/c_src/constants.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/constants.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/context_help.c.o -c /home/volund/dbat_c/c_src/context_help.c",
+  "file": "/home/volund/dbat_c/c_src/context_help.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/context_help.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/db.c.o -c /home/volund/dbat_c/c_src/db.c",
+  "file": "/home/volund/dbat_c/c_src/db.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/db.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/dg_comm.c.o -c /home/volund/dbat_c/c_src/dg_comm.c",
+  "file": "/home/volund/dbat_c/c_src/dg_comm.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/dg_comm.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/dg_db_scripts.c.o -c /home/volund/dbat_c/c_src/dg_db_scripts.c",
+  "file": "/home/volund/dbat_c/c_src/dg_db_scripts.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/dg_db_scripts.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/dg_event.c.o -c /home/volund/dbat_c/c_src/dg_event.c",
+  "file": "/home/volund/dbat_c/c_src/dg_event.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/dg_event.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/dg_handler.c.o -c /home/volund/dbat_c/c_src/dg_handler.c",
+  "file": "/home/volund/dbat_c/c_src/dg_handler.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/dg_handler.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/dg_misc.c.o -c /home/volund/dbat_c/c_src/dg_misc.c",
+  "file": "/home/volund/dbat_c/c_src/dg_misc.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/dg_misc.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/dg_mobcmd.c.o -c /home/volund/dbat_c/c_src/dg_mobcmd.c",
+  "file": "/home/volund/dbat_c/c_src/dg_mobcmd.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/dg_mobcmd.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/dg_objcmd.c.o -c /home/volund/dbat_c/c_src/dg_objcmd.c",
+  "file": "/home/volund/dbat_c/c_src/dg_objcmd.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/dg_objcmd.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/dg_olc.c.o -c /home/volund/dbat_c/c_src/dg_olc.c",
+  "file": "/home/volund/dbat_c/c_src/dg_olc.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/dg_olc.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/dg_scripts.c.o -c /home/volund/dbat_c/c_src/dg_scripts.c",
+  "file": "/home/volund/dbat_c/c_src/dg_scripts.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/dg_scripts.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/dg_triggers.c.o -c /home/volund/dbat_c/c_src/dg_triggers.c",
+  "file": "/home/volund/dbat_c/c_src/dg_triggers.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/dg_triggers.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/dg_variables.c.o -c /home/volund/dbat_c/c_src/dg_variables.c",
+  "file": "/home/volund/dbat_c/c_src/dg_variables.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/dg_variables.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/dg_wldcmd.c.o -c /home/volund/dbat_c/c_src/dg_wldcmd.c",
+  "file": "/home/volund/dbat_c/c_src/dg_wldcmd.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/dg_wldcmd.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/feats.c.o -c /home/volund/dbat_c/c_src/feats.c",
+  "file": "/home/volund/dbat_c/c_src/feats.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/feats.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/fight.c.o -c /home/volund/dbat_c/c_src/fight.c",
+  "file": "/home/volund/dbat_c/c_src/fight.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/fight.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/gedit.c.o -c /home/volund/dbat_c/c_src/gedit.c",
+  "file": "/home/volund/dbat_c/c_src/gedit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/gedit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/gengld.c.o -c /home/volund/dbat_c/c_src/gengld.c",
+  "file": "/home/volund/dbat_c/c_src/gengld.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/gengld.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/genmob.c.o -c /home/volund/dbat_c/c_src/genmob.c",
+  "file": "/home/volund/dbat_c/c_src/genmob.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/genmob.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/genobj.c.o -c /home/volund/dbat_c/c_src/genobj.c",
+  "file": "/home/volund/dbat_c/c_src/genobj.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/genobj.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/genolc.c.o -c /home/volund/dbat_c/c_src/genolc.c",
+  "file": "/home/volund/dbat_c/c_src/genolc.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/genolc.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/genshp.c.o -c /home/volund/dbat_c/c_src/genshp.c",
+  "file": "/home/volund/dbat_c/c_src/genshp.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/genshp.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/genwld.c.o -c /home/volund/dbat_c/c_src/genwld.c",
+  "file": "/home/volund/dbat_c/c_src/genwld.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/genwld.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/genzon.c.o -c /home/volund/dbat_c/c_src/genzon.c",
+  "file": "/home/volund/dbat_c/c_src/genzon.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/genzon.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/graph.c.o -c /home/volund/dbat_c/c_src/graph.c",
+  "file": "/home/volund/dbat_c/c_src/graph.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/graph.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/guild.c.o -c /home/volund/dbat_c/c_src/guild.c",
+  "file": "/home/volund/dbat_c/c_src/guild.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/guild.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/handler.c.o -c /home/volund/dbat_c/c_src/handler.c",
+  "file": "/home/volund/dbat_c/c_src/handler.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/handler.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/hedit.c.o -c /home/volund/dbat_c/c_src/hedit.c",
+  "file": "/home/volund/dbat_c/c_src/hedit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/hedit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/house.c.o -c /home/volund/dbat_c/c_src/house.c",
+  "file": "/home/volund/dbat_c/c_src/house.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/house.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/hsedit.c.o -c /home/volund/dbat_c/c_src/hsedit.c",
+  "file": "/home/volund/dbat_c/c_src/hsedit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/hsedit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/imc.c.o -c /home/volund/dbat_c/c_src/imc.c",
+  "file": "/home/volund/dbat_c/c_src/imc.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/imc.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/improved-edit.c.o -c /home/volund/dbat_c/c_src/improved-edit.c",
+  "file": "/home/volund/dbat_c/c_src/improved-edit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/improved-edit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/interpreter.c.o -c /home/volund/dbat_c/c_src/interpreter.c",
+  "file": "/home/volund/dbat_c/c_src/interpreter.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/interpreter.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/local_limits.c.o -c /home/volund/dbat_c/c_src/local_limits.c",
+  "file": "/home/volund/dbat_c/c_src/local_limits.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/local_limits.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/magic.c.o -c /home/volund/dbat_c/c_src/magic.c",
+  "file": "/home/volund/dbat_c/c_src/magic.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/magic.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/mail.c.o -c /home/volund/dbat_c/c_src/mail.c",
+  "file": "/home/volund/dbat_c/c_src/mail.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/mail.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/maputils.c.o -c /home/volund/dbat_c/c_src/maputils.c",
+  "file": "/home/volund/dbat_c/c_src/maputils.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/maputils.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/medit.c.o -c /home/volund/dbat_c/c_src/medit.c",
+  "file": "/home/volund/dbat_c/c_src/medit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/medit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/mobact.c.o -c /home/volund/dbat_c/c_src/mobact.c",
+  "file": "/home/volund/dbat_c/c_src/mobact.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/mobact.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/modify.c.o -c /home/volund/dbat_c/c_src/modify.c",
+  "file": "/home/volund/dbat_c/c_src/modify.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/modify.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/oasis.c.o -c /home/volund/dbat_c/c_src/oasis.c",
+  "file": "/home/volund/dbat_c/c_src/oasis.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/oasis.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/oasis_copy.c.o -c /home/volund/dbat_c/c_src/oasis_copy.c",
+  "file": "/home/volund/dbat_c/c_src/oasis_copy.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/oasis_copy.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/oasis_delete.c.o -c /home/volund/dbat_c/c_src/oasis_delete.c",
+  "file": "/home/volund/dbat_c/c_src/oasis_delete.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/oasis_delete.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/oasis_list.c.o -c /home/volund/dbat_c/c_src/oasis_list.c",
+  "file": "/home/volund/dbat_c/c_src/oasis_list.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/oasis_list.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/obj_edit.c.o -c /home/volund/dbat_c/c_src/obj_edit.c",
+  "file": "/home/volund/dbat_c/c_src/obj_edit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/obj_edit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/objsave.c.o -c /home/volund/dbat_c/c_src/objsave.c",
+  "file": "/home/volund/dbat_c/c_src/objsave.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/objsave.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/oedit.c.o -c /home/volund/dbat_c/c_src/oedit.c",
+  "file": "/home/volund/dbat_c/c_src/oedit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/oedit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/olc.c.o -c /home/volund/dbat_c/c_src/olc.c",
+  "file": "/home/volund/dbat_c/c_src/olc.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/olc.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/players.c.o -c /home/volund/dbat_c/c_src/players.c",
+  "file": "/home/volund/dbat_c/c_src/players.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/players.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/races.c.o -c /home/volund/dbat_c/c_src/races.c",
+  "file": "/home/volund/dbat_c/c_src/races.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/races.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/random.c.o -c /home/volund/dbat_c/c_src/random.c",
+  "file": "/home/volund/dbat_c/c_src/random.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/random.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/redit.c.o -c /home/volund/dbat_c/c_src/redit.c",
+  "file": "/home/volund/dbat_c/c_src/redit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/redit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/reset.c.o -c /home/volund/dbat_c/c_src/reset.c",
+  "file": "/home/volund/dbat_c/c_src/reset.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/reset.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/sedit.c.o -c /home/volund/dbat_c/c_src/sedit.c",
+  "file": "/home/volund/dbat_c/c_src/sedit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/sedit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/sha256.c.o -c /home/volund/dbat_c/c_src/sha256.c",
+  "file": "/home/volund/dbat_c/c_src/sha256.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/sha256.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/shop.c.o -c /home/volund/dbat_c/c_src/shop.c",
+  "file": "/home/volund/dbat_c/c_src/shop.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/shop.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/spec_assign.c.o -c /home/volund/dbat_c/c_src/spec_assign.c",
+  "file": "/home/volund/dbat_c/c_src/spec_assign.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/spec_assign.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/spec_procs.c.o -c /home/volund/dbat_c/c_src/spec_procs.c",
+  "file": "/home/volund/dbat_c/c_src/spec_procs.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/spec_procs.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/spell_parser.c.o -c /home/volund/dbat_c/c_src/spell_parser.c",
+  "file": "/home/volund/dbat_c/c_src/spell_parser.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/spell_parser.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/spells.c.o -c /home/volund/dbat_c/c_src/spells.c",
+  "file": "/home/volund/dbat_c/c_src/spells.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/spells.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/statedit.c.o -c /home/volund/dbat_c/c_src/statedit.c",
+  "file": "/home/volund/dbat_c/c_src/statedit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/statedit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/stringutils.c.o -c /home/volund/dbat_c/c_src/stringutils.c",
+  "file": "/home/volund/dbat_c/c_src/stringutils.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/stringutils.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/tedit.c.o -c /home/volund/dbat_c/c_src/tedit.c",
+  "file": "/home/volund/dbat_c/c_src/tedit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/tedit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/utils.c.o -c /home/volund/dbat_c/c_src/utils.c",
+  "file": "/home/volund/dbat_c/c_src/utils.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/utils.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/vehicles.c.o -c /home/volund/dbat_c/c_src/vehicles.c",
+  "file": "/home/volund/dbat_c/c_src/vehicles.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/vehicles.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/weather.c.o -c /home/volund/dbat_c/c_src/weather.c",
+  "file": "/home/volund/dbat_c/c_src/weather.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/weather.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/zedit.c.o -c /home/volund/dbat_c/c_src/zedit.c",
+  "file": "/home/volund/dbat_c/c_src/zedit.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/zedit.c.o"
+},
+{
+  "directory": "/home/volund/dbat_c/build",
+  "command": "/usr/bin/gcc -I/home/volund/dbat_c/include -g -o CMakeFiles/circlemud.dir/c_src/zmalloc.c.o -c /home/volund/dbat_c/c_src/zmalloc.c",
+  "file": "/home/volund/dbat_c/c_src/zmalloc.c",
+  "output": "CMakeFiles/circlemud.dir/c_src/zmalloc.c.o"
+}
+]

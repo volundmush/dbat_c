@@ -6,6 +6,7 @@
 *  to house all player level object editing functions -- Iovan 1/6/13     *
 ************************************************************************ */
 #define __OBJ_EDIT_C__
+#include "libraries.h"
 #include "obj_edit.h"
 #include "utils.h"
 #include "comm.h"

@@ -7,7 +7,7 @@
 *  $Date: 2004/10/11 12:07:00$                                            *
 *  $Revision: 1.0.14 $                                                    *
 **************************************************************************/
-
+#include "libraries.h"
 #include "dg_scripts.h"
 #include "act.wizard.h"
 #include "dg_event.h"

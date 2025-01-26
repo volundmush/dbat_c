@@ -1,0 +1,116 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  )
+
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/volund/dbat_c/c_src/act.attack.c" "CMakeFiles/circlemud.dir/c_src/act.attack.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/act.attack.c.o.d"
+  "/home/volund/dbat_c/c_src/act.comm.c" "CMakeFiles/circlemud.dir/c_src/act.comm.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/act.comm.c.o.d"
+  "/home/volund/dbat_c/c_src/act.informative.c" "CMakeFiles/circlemud.dir/c_src/act.informative.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/act.informative.c.o.d"
+  "/home/volund/dbat_c/c_src/act.item.c" "CMakeFiles/circlemud.dir/c_src/act.item.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/act.item.c.o.d"
+  "/home/volund/dbat_c/c_src/act.misc.c" "CMakeFiles/circlemud.dir/c_src/act.misc.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/act.misc.c.o.d"
+  "/home/volund/dbat_c/c_src/act.movement.c" "CMakeFiles/circlemud.dir/c_src/act.movement.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/act.movement.c.o.d"
+  "/home/volund/dbat_c/c_src/act.offensive.c" "CMakeFiles/circlemud.dir/c_src/act.offensive.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/act.offensive.c.o.d"
+  "/home/volund/dbat_c/c_src/act.other.c" "CMakeFiles/circlemud.dir/c_src/act.other.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/act.other.c.o.d"
+  "/home/volund/dbat_c/c_src/act.social.c" "CMakeFiles/circlemud.dir/c_src/act.social.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/act.social.c.o.d"
+  "/home/volund/dbat_c/c_src/act.wizard.c" "CMakeFiles/circlemud.dir/c_src/act.wizard.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/act.wizard.c.o.d"
+  "/home/volund/dbat_c/c_src/aedit.c" "CMakeFiles/circlemud.dir/c_src/aedit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/aedit.c.o.d"
+  "/home/volund/dbat_c/c_src/alias.c" "CMakeFiles/circlemud.dir/c_src/alias.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/alias.c.o.d"
+  "/home/volund/dbat_c/c_src/assedit.c" "CMakeFiles/circlemud.dir/c_src/assedit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/assedit.c.o.d"
+  "/home/volund/dbat_c/c_src/assemblies.c" "CMakeFiles/circlemud.dir/c_src/assemblies.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/assemblies.c.o.d"
+  "/home/volund/dbat_c/c_src/ban.c" "CMakeFiles/circlemud.dir/c_src/ban.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/ban.c.o.d"
+  "/home/volund/dbat_c/c_src/boards.c" "CMakeFiles/circlemud.dir/c_src/boards.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/boards.c.o.d"
+  "/home/volund/dbat_c/c_src/bsd-snprintf.c" "CMakeFiles/circlemud.dir/c_src/bsd-snprintf.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/bsd-snprintf.c.o.d"
+  "/home/volund/dbat_c/c_src/cedit.c" "CMakeFiles/circlemud.dir/c_src/cedit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/cedit.c.o.d"
+  "/home/volund/dbat_c/c_src/circle.c" "CMakeFiles/circlemud.dir/c_src/circle.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/circle.c.o.d"
+  "/home/volund/dbat_c/c_src/clan.c" "CMakeFiles/circlemud.dir/c_src/clan.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/clan.c.o.d"
+  "/home/volund/dbat_c/c_src/class.c" "CMakeFiles/circlemud.dir/c_src/class.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/class.c.o.d"
+  "/home/volund/dbat_c/c_src/combat.c" "CMakeFiles/circlemud.dir/c_src/combat.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/combat.c.o.d"
+  "/home/volund/dbat_c/c_src/comm.c" "CMakeFiles/circlemud.dir/c_src/comm.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/comm.c.o.d"
+  "/home/volund/dbat_c/c_src/config.c" "CMakeFiles/circlemud.dir/c_src/config.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/config.c.o.d"
+  "/home/volund/dbat_c/c_src/constants.c" "CMakeFiles/circlemud.dir/c_src/constants.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/constants.c.o.d"
+  "/home/volund/dbat_c/c_src/context_help.c" "CMakeFiles/circlemud.dir/c_src/context_help.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/context_help.c.o.d"
+  "/home/volund/dbat_c/c_src/db.c" "CMakeFiles/circlemud.dir/c_src/db.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/db.c.o.d"
+  "/home/volund/dbat_c/c_src/dg_comm.c" "CMakeFiles/circlemud.dir/c_src/dg_comm.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/dg_comm.c.o.d"
+  "/home/volund/dbat_c/c_src/dg_db_scripts.c" "CMakeFiles/circlemud.dir/c_src/dg_db_scripts.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/dg_db_scripts.c.o.d"
+  "/home/volund/dbat_c/c_src/dg_event.c" "CMakeFiles/circlemud.dir/c_src/dg_event.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/dg_event.c.o.d"
+  "/home/volund/dbat_c/c_src/dg_handler.c" "CMakeFiles/circlemud.dir/c_src/dg_handler.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/dg_handler.c.o.d"
+  "/home/volund/dbat_c/c_src/dg_misc.c" "CMakeFiles/circlemud.dir/c_src/dg_misc.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/dg_misc.c.o.d"
+  "/home/volund/dbat_c/c_src/dg_mobcmd.c" "CMakeFiles/circlemud.dir/c_src/dg_mobcmd.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/dg_mobcmd.c.o.d"
+  "/home/volund/dbat_c/c_src/dg_objcmd.c" "CMakeFiles/circlemud.dir/c_src/dg_objcmd.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/dg_objcmd.c.o.d"
+  "/home/volund/dbat_c/c_src/dg_olc.c" "CMakeFiles/circlemud.dir/c_src/dg_olc.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/dg_olc.c.o.d"
+  "/home/volund/dbat_c/c_src/dg_scripts.c" "CMakeFiles/circlemud.dir/c_src/dg_scripts.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/dg_scripts.c.o.d"
+  "/home/volund/dbat_c/c_src/dg_triggers.c" "CMakeFiles/circlemud.dir/c_src/dg_triggers.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/dg_triggers.c.o.d"
+  "/home/volund/dbat_c/c_src/dg_variables.c" "CMakeFiles/circlemud.dir/c_src/dg_variables.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/dg_variables.c.o.d"
+  "/home/volund/dbat_c/c_src/dg_wldcmd.c" "CMakeFiles/circlemud.dir/c_src/dg_wldcmd.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/dg_wldcmd.c.o.d"
+  "/home/volund/dbat_c/c_src/feats.c" "CMakeFiles/circlemud.dir/c_src/feats.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/feats.c.o.d"
+  "/home/volund/dbat_c/c_src/fight.c" "CMakeFiles/circlemud.dir/c_src/fight.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/fight.c.o.d"
+  "/home/volund/dbat_c/c_src/gedit.c" "CMakeFiles/circlemud.dir/c_src/gedit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/gedit.c.o.d"
+  "/home/volund/dbat_c/c_src/gengld.c" "CMakeFiles/circlemud.dir/c_src/gengld.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/gengld.c.o.d"
+  "/home/volund/dbat_c/c_src/genmob.c" "CMakeFiles/circlemud.dir/c_src/genmob.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/genmob.c.o.d"
+  "/home/volund/dbat_c/c_src/genobj.c" "CMakeFiles/circlemud.dir/c_src/genobj.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/genobj.c.o.d"
+  "/home/volund/dbat_c/c_src/genolc.c" "CMakeFiles/circlemud.dir/c_src/genolc.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/genolc.c.o.d"
+  "/home/volund/dbat_c/c_src/genshp.c" "CMakeFiles/circlemud.dir/c_src/genshp.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/genshp.c.o.d"
+  "/home/volund/dbat_c/c_src/genwld.c" "CMakeFiles/circlemud.dir/c_src/genwld.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/genwld.c.o.d"
+  "/home/volund/dbat_c/c_src/genzon.c" "CMakeFiles/circlemud.dir/c_src/genzon.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/genzon.c.o.d"
+  "/home/volund/dbat_c/c_src/graph.c" "CMakeFiles/circlemud.dir/c_src/graph.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/graph.c.o.d"
+  "/home/volund/dbat_c/c_src/guild.c" "CMakeFiles/circlemud.dir/c_src/guild.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/guild.c.o.d"
+  "/home/volund/dbat_c/c_src/handler.c" "CMakeFiles/circlemud.dir/c_src/handler.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/handler.c.o.d"
+  "/home/volund/dbat_c/c_src/hedit.c" "CMakeFiles/circlemud.dir/c_src/hedit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/hedit.c.o.d"
+  "/home/volund/dbat_c/c_src/house.c" "CMakeFiles/circlemud.dir/c_src/house.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/house.c.o.d"
+  "/home/volund/dbat_c/c_src/hsedit.c" "CMakeFiles/circlemud.dir/c_src/hsedit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/hsedit.c.o.d"
+  "/home/volund/dbat_c/c_src/htree.c" "CMakeFiles/circlemud.dir/c_src/htree.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/htree.c.o.d"
+  "/home/volund/dbat_c/c_src/imc.c" "CMakeFiles/circlemud.dir/c_src/imc.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/imc.c.o.d"
+  "/home/volund/dbat_c/c_src/improved-edit.c" "CMakeFiles/circlemud.dir/c_src/improved-edit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/improved-edit.c.o.d"
+  "/home/volund/dbat_c/c_src/interpreter.c" "CMakeFiles/circlemud.dir/c_src/interpreter.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/interpreter.c.o.d"
+  "/home/volund/dbat_c/c_src/local_limits.c" "CMakeFiles/circlemud.dir/c_src/local_limits.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/local_limits.c.o.d"
+  "/home/volund/dbat_c/c_src/magic.c" "CMakeFiles/circlemud.dir/c_src/magic.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/magic.c.o.d"
+  "/home/volund/dbat_c/c_src/mail.c" "CMakeFiles/circlemud.dir/c_src/mail.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/mail.c.o.d"
+  "/home/volund/dbat_c/c_src/maputils.c" "CMakeFiles/circlemud.dir/c_src/maputils.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/maputils.c.o.d"
+  "/home/volund/dbat_c/c_src/medit.c" "CMakeFiles/circlemud.dir/c_src/medit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/medit.c.o.d"
+  "/home/volund/dbat_c/c_src/mobact.c" "CMakeFiles/circlemud.dir/c_src/mobact.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/mobact.c.o.d"
+  "/home/volund/dbat_c/c_src/modify.c" "CMakeFiles/circlemud.dir/c_src/modify.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/modify.c.o.d"
+  "/home/volund/dbat_c/c_src/oasis.c" "CMakeFiles/circlemud.dir/c_src/oasis.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/oasis.c.o.d"
+  "/home/volund/dbat_c/c_src/oasis_copy.c" "CMakeFiles/circlemud.dir/c_src/oasis_copy.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/oasis_copy.c.o.d"
+  "/home/volund/dbat_c/c_src/oasis_delete.c" "CMakeFiles/circlemud.dir/c_src/oasis_delete.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/oasis_delete.c.o.d"
+  "/home/volund/dbat_c/c_src/oasis_list.c" "CMakeFiles/circlemud.dir/c_src/oasis_list.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/oasis_list.c.o.d"
+  "/home/volund/dbat_c/c_src/obj_edit.c" "CMakeFiles/circlemud.dir/c_src/obj_edit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/obj_edit.c.o.d"
+  "/home/volund/dbat_c/c_src/objsave.c" "CMakeFiles/circlemud.dir/c_src/objsave.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/objsave.c.o.d"
+  "/home/volund/dbat_c/c_src/oedit.c" "CMakeFiles/circlemud.dir/c_src/oedit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/oedit.c.o.d"
+  "/home/volund/dbat_c/c_src/olc.c" "CMakeFiles/circlemud.dir/c_src/olc.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/olc.c.o.d"
+  "/home/volund/dbat_c/c_src/players.c" "CMakeFiles/circlemud.dir/c_src/players.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/players.c.o.d"
+  "/home/volund/dbat_c/c_src/races.c" "CMakeFiles/circlemud.dir/c_src/races.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/races.c.o.d"
+  "/home/volund/dbat_c/c_src/random.c" "CMakeFiles/circlemud.dir/c_src/random.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/random.c.o.d"
+  "/home/volund/dbat_c/c_src/redit.c" "CMakeFiles/circlemud.dir/c_src/redit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/redit.c.o.d"
+  "/home/volund/dbat_c/c_src/reset.c" "CMakeFiles/circlemud.dir/c_src/reset.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/reset.c.o.d"
+  "/home/volund/dbat_c/c_src/sedit.c" "CMakeFiles/circlemud.dir/c_src/sedit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/sedit.c.o.d"
+  "/home/volund/dbat_c/c_src/sha256.c" "CMakeFiles/circlemud.dir/c_src/sha256.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/sha256.c.o.d"
+  "/home/volund/dbat_c/c_src/shop.c" "CMakeFiles/circlemud.dir/c_src/shop.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/shop.c.o.d"
+  "/home/volund/dbat_c/c_src/spec_assign.c" "CMakeFiles/circlemud.dir/c_src/spec_assign.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/spec_assign.c.o.d"
+  "/home/volund/dbat_c/c_src/spec_procs.c" "CMakeFiles/circlemud.dir/c_src/spec_procs.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/spec_procs.c.o.d"
+  "/home/volund/dbat_c/c_src/spell_parser.c" "CMakeFiles/circlemud.dir/c_src/spell_parser.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/spell_parser.c.o.d"
+  "/home/volund/dbat_c/c_src/spells.c" "CMakeFiles/circlemud.dir/c_src/spells.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/spells.c.o.d"
+  "/home/volund/dbat_c/c_src/statedit.c" "CMakeFiles/circlemud.dir/c_src/statedit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/statedit.c.o.d"
+  "/home/volund/dbat_c/c_src/stringutils.c" "CMakeFiles/circlemud.dir/c_src/stringutils.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/stringutils.c.o.d"
+  "/home/volund/dbat_c/c_src/tedit.c" "CMakeFiles/circlemud.dir/c_src/tedit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/tedit.c.o.d"
+  "/home/volund/dbat_c/c_src/utils.c" "CMakeFiles/circlemud.dir/c_src/utils.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/utils.c.o.d"
+  "/home/volund/dbat_c/c_src/vehicles.c" "CMakeFiles/circlemud.dir/c_src/vehicles.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/vehicles.c.o.d"
+  "/home/volund/dbat_c/c_src/weather.c" "CMakeFiles/circlemud.dir/c_src/weather.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/weather.c.o.d"
+  "/home/volund/dbat_c/c_src/zedit.c" "CMakeFiles/circlemud.dir/c_src/zedit.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/zedit.c.o.d"
+  "/home/volund/dbat_c/c_src/zmalloc.c" "CMakeFiles/circlemud.dir/c_src/zmalloc.c.o" "gcc" "CMakeFiles/circlemud.dir/c_src/zmalloc.c.o.d"
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_FORWARD_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

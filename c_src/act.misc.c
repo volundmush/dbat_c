@@ -11,6 +11,7 @@
 *  original credits maintained where relevant for act.other.c as this is  *
 *  practically an act.other.c part two - Iovan 3/20/2011                  *
 ************************************************************************ */
+#include "libraries.h"
 #include "act.misc.h"
 #include "dg_comm.h"
 #include "act.item.h"

@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.28)
 
 project(circle)
 
-file(GLOB CIRCLE_INCLUDE src/*.h)
-file(GLOB CIRCLE_SRC src/*.c)
+file(GLOB CIRCLE_INCLUDE c_src/*.h)
+file(GLOB CIRCLE_SRC c_src/*.c)
 
 set_property(GLOBAL PROPERTY C_STANDARD 23)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
@@ -26,8 +26,8 @@ add_library(circlemud ${CIRCLE_INCLUDE} ${CIRCLE_SRC})
 link_libraries(circlemud)
 
 # the various binaries
-add_executable(circle apps/circle.c)
+#add_executable(circle apps/circle.c)
 
-target_compile_definitions(circle PUBLIC USING_CMAKE=1 CIRCLE_UNIX=1 POSIX=1)
+#target_compile_definitions(circle PUBLIC USING_CMAKE=1 CIRCLE_UNIX=1 POSIX=1)
 
 SET(circle_link ${CMAKE_INSTALL_PREFIX}/bin/)

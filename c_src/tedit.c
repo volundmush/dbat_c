@@ -4,7 +4,7 @@
  *
  * XXX: This needs Oasis-ifying.
  */
-
+#include "libraries.h"
 #include "structs.h"
 #include "utils.h"
 #include "interpreter.h"

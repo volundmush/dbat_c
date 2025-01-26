@@ -3,7 +3,7 @@
  * Copyright 1996 Harvey Gilpin						*
  * Copyright 1997-2001 George Greer (greerga@circlemud.org)		*
  ************************************************************************/
-
+#include "libraries.h"
 #include "medit.h"
 #include "interpreter.h"
 #include "comm.h"

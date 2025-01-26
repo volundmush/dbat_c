@@ -3,6 +3,7 @@
  * Copyright 1996 by Harvey Gilpin					*
  * Copyright 1997-2001 by George Greer (greerga@circlemud.org)		*
  ************************************************************************/
+#include "libraries.h"
 #include "gengld.h"
 #include "shop.h"
 #include "genolc.h"

@@ -13,7 +13,7 @@
 *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
-
+#include "libraries.h"
 #include "config.h"
 #include "interpreter.h"	/* alias_data definition for structs.h */
 

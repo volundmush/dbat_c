@@ -13,6 +13,7 @@
 Written by Jeremy Elson (jelson@circlemud.org)
 
 *************************************************************************/
+#include "libraries.h"
 #include "mail.h"
 #include "utils.h"
 #include "comm.h"

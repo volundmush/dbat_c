@@ -7,7 +7,7 @@
 *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
-
+#include "libraries.h"
 #include "db.h"
 #include "utils.h"
 #include "feats.h"
@@ -50,7 +50,6 @@ struct config_data config_info; /* Game configuration list.    */
 
 struct room_data *world = NULL;	/* array of rooms		 */
 room_rnum top_of_world = 0;	/* ref to top element of world	 */
-struct htree_node *room_htree = NULL;	/* hash tree for fast room lookup */
 
 struct char_data *character_list = NULL; /* global linked list of chars	 */
 struct char_data *affect_list = NULL; /* global linked list of chars with affects */
@@ -58,13 +57,11 @@ struct char_data *affectv_list = NULL; /* global linked list of chars with round
 struct index_data *mob_index;	/* index table for mobile file	 */
 struct char_data *mob_proto;	/* prototypes for mobs		 */
 mob_rnum top_of_mobt = 0;	/* top of mobile index table	 */
-struct htree_node *mob_htree = NULL;	/* hash tree for fast mob lookup */
 
 struct obj_data *object_list = NULL;	/* global linked list of objs	 */
 struct index_data *obj_index;	/* index table for object file	 */
 struct obj_data *obj_proto;	/* prototypes for objs		 */
 obj_rnum top_of_objt = 0;	/* top of object index table	 */
-struct htree_node *obj_htree = NULL;	/* hash tree for fast obj lookup */
 
 struct zone_data *zone_table;	/* zone table			 */
 zone_rnum top_of_zone_table = 0;/* top element of zone tab	 */
@@ -682,7 +679,6 @@ void destroy_db(void)
   }
   free(world);
   top_of_world = 0;
-  htree_free(room_htree);
 
   /* Objects */
   for (cnt = 0; cnt <= top_of_objt; cnt++) {
@@ -702,7 +698,6 @@ void destroy_db(void)
   }
   free(obj_proto);
   free(obj_index);
-  htree_free(obj_htree);
 
   /* Mobiles */
   for (cnt = 0; cnt <= top_of_mobt; cnt++) {
@@ -725,7 +720,6 @@ void destroy_db(void)
   }
   free(mob_proto);
   free(mob_index);
-  htree_free(mob_htree);
 
   /* Shops */
   destroy_shops();
@@ -810,8 +804,6 @@ void destroy_db(void)
 
   free_obj_unique_hash();
 
-  htree_shutdown();
-
   log("Freeing Assemblies.");
   free_assemblies();
 }
@@ -873,8 +865,6 @@ void boot_db(void)
   assign_feats();
 
   boot_world();
-
-  htree_test();
 
   log("Loading help entries.");
   index_boot(DB_BOOT_HLP);
@@ -1494,9 +1484,7 @@ static void parse_room(FILE *fl, int virtual_nr)
   world[room_nr].name = fread_string(fl, buf2);
   world[room_nr].description = fread_string(fl, buf2);
 
-  if (! room_htree)
-    room_htree = htree_init();
-  htree_add(room_htree, virtual_nr, room_nr);
+  htree_add(HTREE_ROOM, virtual_nr, room_nr);
 
   if (!get_line(fl, line)) {
     log("SYSERR: Expecting roomflags/sector type of room #%d but file ended!",
@@ -1730,17 +1718,17 @@ static void setup_dir(FILE *fl, int room, int dir)
 static void check_start_rooms(void)
 {
   if ((r_mortal_start_room = real_room(CONFIG_MORTAL_START)) == NOWHERE) {
-    log("SYSERR:  Mortal start room does not exist.  Change mortal_start_room in lib/etc/config.");
+    log("SYSERR:  Mortal start room does not exist.  Change mortal_start_room in /etc/config.");
     exit(1);
   }
   if ((r_immort_start_room = real_room(CONFIG_IMMORTAL_START)) == NOWHERE) {
     if (!mini_mud)
-      log("SYSERR:  Warning: Immort start room does not exist.  Change immort_start_room in /lib/etc/config.");
+      log("SYSERR:  Warning: Immort start room does not exist.  Change immort_start_room in /etc/config.");
     r_immort_start_room = r_mortal_start_room;
   }
   if ((r_frozen_start_room = real_room(CONFIG_FROZEN_START)) == NOWHERE) {
     if (!mini_mud)
-      log("SYSERR:  Warning: Frozen start room does not exist.  Change frozen_start_room in /lib/etc/config.");
+      log("SYSERR:  Warning: Frozen start room does not exist.  Change frozen_start_room in /etc/config.");
     r_frozen_start_room = r_mortal_start_room;
   }
 }
@@ -2321,9 +2309,7 @@ static void parse_mobile(FILE *mob_f, int nr)
   mob_proto[i].desc = NULL;
 
   if (parse_mobile_from_file(mob_f, mob_proto + i)) {
-    if (! mob_htree)
-      mob_htree = htree_init();
-    htree_add(mob_htree, nr, i);
+    htree_add(HTREE_MOB, nr, i);
 
     top_of_mobt = i++;
   } else { /* We used to exit in the file reading code, but now we do it here */
@@ -2349,9 +2335,7 @@ static char *parse_object(FILE *obj_f, int nr)
   obj_index[i].number = 0;
   obj_index[i].func = NULL;
 
-  if (! obj_htree)
-    obj_htree = htree_init();
-  htree_add(obj_htree, nr, i);
+  htree_add(HTREE_OBJ, nr, i);
 
   clear_object(obj_proto + i);
   obj_proto[i].item_number = i;
@@ -2627,170 +2611,177 @@ static char *parse_object(FILE *obj_f, int nr)
 }
 
 
-#define Z	zone_table[zone]
+#define Z zone_table[zone]
 
 /* load the zone table and command tables */
-static void load_zones(FILE *fl, char *zonename)
-{
-  static zone_rnum zone = 0;
-  int cmd_no, num_of_cmds = 0, line_num = 0, tmp, error, arg_num, version = 1;
-  char *ptr, buf[READ_SIZE], zname[READ_SIZE], buf2[MAX_STRING_LENGTH];
-  int zone_fix = FALSE;
-  char t1[80], t2[80], line[MAX_STRING_LENGTH];
+static void
+load_zones(FILE *fl, char *zonename) {
+    static zone_rnum zone = 0;
+    int cmd_no, num_of_cmds = 0, line_num = 0, tmp, error, arg_num, version = 1;
+    char *ptr, buf[READ_SIZE], zname[READ_SIZE], buf2[MAX_STRING_LENGTH];
+    int zone_fix = FALSE;
+    char t1[80], t2[80], line[MAX_STRING_LENGTH];
 
-  strlcpy(zname, zonename, sizeof(zname));
+    struct zone_data *curz = &zone_table[zone];
 
-  /* Skip first 3 lines lest we mistake the zone name for a command. */
-  for (tmp = 0; tmp < 3; tmp++)
-    get_line(fl, buf);
+    strlcpy(zname, zonename, sizeof(zname));
 
-  /*  More accurate count. Previous was always 4 or 5 too high. -gg 2001/1/17
-   *  Note that if a new zone command is added to reset_zone(), this string
-   *  will need to be updated to suit. - ae.
-   */
-  while (get_line(fl, buf))
-    if ((strchr("MOPGERDTV", buf[0]) && buf[1] == ' ') || (buf[0] == 'S' && buf[1] == '\0'))
-      num_of_cmds++;
+    /* Skip first 3 lines lest we mistake the zone name for a command. */
+    for(tmp = 0; tmp < 3; tmp++)
+        get_line(fl, buf);
 
-  rewind(fl);
-
-  if (num_of_cmds == 0) {
-    log("SYSERR: %s is empty!", zname);
-    exit(1);
-  } else
-    CREATE(Z.cmd, struct reset_com, num_of_cmds);
-
-  line_num += get_line(fl, buf);
-
-  if(*buf=='@') {
-    if(sscanf(buf,"@Version: %d", &version)!=1) {
-      log("SYSERR: Format error in %s (version)", zname);
-      log("SYSERR: ...Line: %s", line);
-      exit(1);
-    }
-    line_num+=get_line(fl,buf);
-  }
-
-  if (sscanf(buf, "#%hd", &Z.number) != 1) {
-    log("SYSERR: Format error in %s, line %d", zname, line_num);
-    exit(1);
-  }
-  snprintf(buf2, sizeof(buf2), "beginning of zone #%d", Z.number);
-
-  line_num += get_line(fl, buf);
-  if ((ptr = strchr(buf, '~')) != NULL)	/* take off the '~' if it's there */
-    *ptr = '\0';
-  Z.builders = strdup(buf);
-  
-  line_num += get_line(fl, buf);
-  if ((ptr = strchr(buf, '~')) != NULL)	/* take off the '~' if it's there */
-    *ptr = '\0';
-  Z.name = strdup(buf);
-
-  line_num += get_line(fl, buf);
-  if (version >= 2) {
-
-    char zbuf1[MAX_STRING_LENGTH];
-    char zbuf2[MAX_STRING_LENGTH];
-    char zbuf3[MAX_STRING_LENGTH];
-    char zbuf4[MAX_STRING_LENGTH];
-
-    if  (sscanf(buf, " %hd %hd %d %d %s %s %s %s %d %d", &Z.bot, &Z.top, &Z.lifespan,
-      &Z.reset_mode, zbuf1, zbuf2, zbuf3, zbuf4, &Z.min_level, &Z.max_level) != 10) {
-      log("SYSERR: Format error in 10-constant line of %s", zname);
-      exit(1);
-    }
-
-    Z.zone_flags[0] = asciiflag_conv(zbuf1);
-    Z.zone_flags[1] = asciiflag_conv(zbuf2);
-    Z.zone_flags[2] = asciiflag_conv(zbuf3);
-    Z.zone_flags[3] = asciiflag_conv(zbuf4);
-
-  } else if (sscanf(buf, " %hd %hd %d %d ", &Z.bot, &Z.top, &Z.lifespan, &Z.reset_mode) != 4) {
-    /*
-     * This may be due to the fact that the zone has no builder.  So, we just attempt
-     * to fix this by copying the previous 2 last reads into this variable and the
-     * last one.
+    /*  More accurate count. Previous was always 4 or 5 too high. -gg 2001/1/17
+     *  Note that if a new zone command is added to reset_zone(), this string
+     *  will need to be updated to suit. - ae.
      */
-    log("SYSERR: Format error in numeric constant line of %s, attempting to fix.", zname);
-    if (sscanf(Z.name, " %hd %hd %d %d ", &Z.bot, &Z.top, &Z.lifespan, &Z.reset_mode) != 4) {
-      log("SYSERR: Could not fix previous error, aborting game.");
-    exit(1);
-    } else {
-      free(Z.name);
-      Z.name = strdup(Z.builders);
-      free(Z.builders);
-      Z.builders = strdup("None.");
-      zone_fix = TRUE;
-    }
-  }
-  if (Z.bot > Z.top) {
-    log("SYSERR: Zone %d bottom (%d) > top (%d).", Z.number, Z.bot, Z.top);
-    exit(1);
-  }
+    while(get_line(fl, buf))
+        if((strchr("MOPGERDTV", buf[0]) && buf[1] == ' ') || (buf[0] == 'S' && buf[1] == '\0'))
+            num_of_cmds++;
 
-  cmd_no = 0;
+    rewind(fl);
 
-  for (;;) {
-    /* skip reading one line if we fixed above (line is correct already) */
-    if (zone_fix != TRUE) {
-    if ((tmp = get_line(fl, buf)) == 0) {
-      log("SYSERR: Format error in %s - premature end of file", zname);
-      exit(1);
-    }
+    if(num_of_cmds == 0) {
+        log("SYSERR: %s is empty!", zname);
+        exit(1);
     } else
-      zone_fix = FALSE;
-    
-    line_num += tmp;
-    ptr = buf;
-    skip_spaces(&ptr);
+        CREATE(Z.cmd, struct reset_com, num_of_cmds);
 
-    if ((ZCMD2.command = *ptr) == '*')
-      continue;
+    line_num += get_line(fl, buf);
 
-    ptr++;
-
-    if (ZCMD2.command == 'S' || ZCMD2.command == '$') {
-      ZCMD2.command = 'S';
-      break;
+    if(*buf == '@') {
+        if(sscanf(buf, "@Version: %d", &version) != 1) {
+            log("SYSERR: Format error in %s (version)", zname);
+            log("SYSERR: ...Line: %s", line);
+            exit(1);
+        }
+        line_num += get_line(fl, buf);
     }
-    error = 0;
-    if (strchr("MOEPDTVG", ZCMD2.command) == NULL) {	/* a 4-arg command */
-      if (sscanf(ptr, " %d %d %d %d ", &tmp, &ZCMD2.arg1, &ZCMD2.arg2, &ZCMD2.arg3) != 4)
-	error = 1;
-    } else if (ZCMD2.command=='V') { /* a string-arg command */
-      if (sscanf(ptr, " %d %d %d %d %d %d %79s %79[^\f\n\r\t\v]", &tmp, &ZCMD2.arg1, &ZCMD2.arg2, &ZCMD2.arg3, &ZCMD2.arg4, &ZCMD2.arg5, t1, t2) != 8) 
-      error = 1;
-      else {
-        ZCMD2.sarg1 = strdup(t1);
-        ZCMD2.sarg2 = strdup(t2);
-      }
-    } else {
-      if ((arg_num = sscanf(ptr, " %d %d %d %d %d %d ", &tmp, &ZCMD2.arg1, &ZCMD2.arg2, &ZCMD2.arg3, &ZCMD2.arg4, &ZCMD2.arg5)) != 6){
-        if (arg_num != 5) {
-	error = 1;
+
+    if(sscanf(buf, "#%hd", &Z.number) != 1) {
+        log("SYSERR: Format error in %s, line %d", zname, line_num);
+        exit(1);
+    }
+    snprintf(buf2, sizeof(buf2), "beginning of zone #%d", Z.number);
+
+    line_num += get_line(fl, buf);
+    if((ptr = strchr(buf, '~')) != NULL) /* take off the '~' if it's there */
+        *ptr = '\0';
+    Z.builders = strdup(buf);
+
+    line_num += get_line(fl, buf);
+    if((ptr = strchr(buf, '~')) != NULL) /* take off the '~' if it's there */
+        *ptr = '\0';
+    Z.name = strdup(buf);
+
+    line_num += get_line(fl, buf);
+    if(version >= 2) {
+
+        char zbuf1[MAX_STRING_LENGTH];
+        char zbuf2[MAX_STRING_LENGTH];
+        char zbuf3[MAX_STRING_LENGTH];
+        char zbuf4[MAX_STRING_LENGTH];
+
+        if(sscanf(buf, " %hd %hd %d %d %s %s %s %s %d %d", &Z.bot, &Z.top, &Z.lifespan, &Z.reset_mode, zbuf1, zbuf2,
+                  zbuf3, zbuf4, &Z.min_level, &Z.max_level)
+           != 10) {
+            log("SYSERR: Format error in 10-constant line of %s", zname);
+            exit(1);
+        }
+
+        Z.zone_flags[0] = asciiflag_conv(zbuf1);
+        Z.zone_flags[1] = asciiflag_conv(zbuf2);
+        Z.zone_flags[2] = asciiflag_conv(zbuf3);
+        Z.zone_flags[3] = asciiflag_conv(zbuf4);
+
+    } else if(sscanf(buf, " %hd %hd %d %d ", &Z.bot, &Z.top, &Z.lifespan, &Z.reset_mode) != 4) {
+        /*
+         * This may be due to the fact that the zone has no builder.  So, we just attempt
+         * to fix this by copying the previous 2 last reads into this variable and the
+         * last one.
+         */
+        log("SYSERR: Format error in numeric constant line of %s, attempting to fix.", zname);
+        if(sscanf(Z.name, " %hd %hd %d %d ", &Z.bot, &Z.top, &Z.lifespan, &Z.reset_mode) != 4) {
+            log("SYSERR: Could not fix previous error, aborting game.");
+            exit(1);
         } else {
-          ZCMD2.arg5 = 0;
+            free(Z.name);
+            Z.name = strdup(Z.builders);
+            free(Z.builders);
+            Z.builders = strdup("None.");
+            zone_fix = TRUE;
         }
     }
+    if(Z.bot > Z.top) {
+        log("SYSERR: Zone %d bottom (%d) > top (%d).", Z.number, Z.bot, Z.top);
+        exit(1);
     }
 
-    ZCMD2.if_flag = tmp;
+    cmd_no = 0;
 
-    if (error) {
-      log("SYSERR: Format error in %s, line %d: '%s'", zname, line_num, buf);
-      exit(1);
+    for(;;) {
+        /* skip reading one line if we fixed above (line is correct already) */
+        if(zone_fix != TRUE) {
+            if((tmp = get_line(fl, buf)) == 0) {
+                log("SYSERR: Format error in %s - premature end of file", zname);
+                exit(1);
+            }
+        } else
+            zone_fix = FALSE;
+
+        line_num += tmp;
+        ptr = buf;
+        skip_spaces(&ptr);
+
+        if((ZCMD2.command = *ptr) == '*')
+            continue;
+
+        ptr++;
+
+        if(ZCMD2.command == 'S' || ZCMD2.command == '$') {
+            ZCMD2.command = 'S';
+            break;
+        }
+        error = 0;
+        if(strchr("MOEPDTVG", ZCMD2.command) == NULL) { /* a 4-arg command */
+            if(sscanf(ptr, " %d %d %d %d ", &tmp, &ZCMD2.arg1, &ZCMD2.arg2, &ZCMD2.arg3) != 4)
+                error = 1;
+        } else if(ZCMD2.command == 'V') { /* a string-arg command */
+            if(sscanf(ptr, " %d %d %d %d %d %d %79s %79[^\f\n\r\t\v]", &tmp, &ZCMD2.arg1, &ZCMD2.arg2, &ZCMD2.arg3,
+                      &ZCMD2.arg4, &ZCMD2.arg5, t1, t2)
+               != 8)
+                error = 1;
+            else {
+                ZCMD2.sarg1 = strdup(t1);
+                ZCMD2.sarg2 = strdup(t2);
+            }
+        } else {
+            if((arg_num = sscanf(ptr, " %d %d %d %d %d %d ", &tmp, &ZCMD2.arg1, &ZCMD2.arg2, &ZCMD2.arg3, &ZCMD2.arg4,
+                                 &ZCMD2.arg5))
+               != 6) {
+                if(arg_num != 5) {
+                    error = 1;
+                } else {
+                    ZCMD2.arg5 = 0;
+                }
+            }
+        }
+
+        ZCMD2.if_flag = tmp;
+
+        if(error) {
+            log("SYSERR: Format error in %s, line %d: '%s'", zname, line_num, buf);
+            exit(1);
+        }
+        ZCMD2.line = line_num;
+        cmd_no++;
     }
-    ZCMD2.line = line_num;
-    cmd_no++;
-  }
 
-  if (num_of_cmds != cmd_no + 1) {
-    log("SYSERR: Zone command count mismatch for %s. Estimated: %d, Actual: %d", zname, num_of_cmds, cmd_no + 1);
-    exit(1);
-  }
+    if(num_of_cmds != cmd_no + 1) {
+        log("SYSERR: Zone command count mismatch for %s. Estimated: %d, Actual: %d", zname, num_of_cmds, cmd_no + 1);
+        exit(1);
+    }
 
-  top_of_zone_table = zone++;
+    top_of_zone_table = zone++;
 }
 
 #undef Z
@@ -4790,7 +4781,7 @@ room_rnum real_room(room_vnum vnum)
 {
   room_rnum bot, top, mid, i, last_top;
 
-  i = htree_find(room_htree, vnum);
+  i = htree_find(HTREE_ROOM, vnum);
 
   if (i != NOWHERE && world[i].number == vnum)
     return i;
@@ -4805,7 +4796,7 @@ room_rnum real_room(room_vnum vnum)
 
       if ((world + mid)->number == vnum) {
         log("room_htree sync fix: %d: %d -> %d", vnum, i, mid);
-        htree_add(room_htree, vnum, mid);
+        htree_add(HTREE_ROOM, vnum, mid);
         return (mid);
       }
       if (bot >= top)
@@ -4828,7 +4819,7 @@ mob_rnum real_mobile(mob_vnum vnum)
 {
   mob_rnum bot, top, mid, i, last_top;
 
-  i = htree_find(mob_htree, vnum);
+  i = htree_find(HTREE_MOB, vnum);
 
   if (i != NOBODY && mob_index[i].vnum == vnum)
     return i;
@@ -4843,7 +4834,7 @@ mob_rnum real_mobile(mob_vnum vnum)
 
       if ((mob_index + mid)->vnum == vnum) {
         log("mob_htree sync fix: %d: %d -> %d", vnum, i, mid);
-        htree_add(mob_htree, vnum, mid);
+        htree_add(HTREE_MOB, vnum, mid);
         return (mid);
       }
       if (bot >= top)
@@ -4865,7 +4856,7 @@ obj_rnum real_object(obj_vnum vnum)
 {
   obj_rnum bot, top, mid, i, last_top;
 
-  i = htree_find(obj_htree, vnum);
+  i = htree_find(HTREE_OBJ, vnum);
 
   if (i != NOWHERE && obj_index[i].vnum == vnum)
     return i;
@@ -4880,7 +4871,7 @@ obj_rnum real_object(obj_vnum vnum)
 
       if ((obj_index + mid)->vnum == vnum) {
         log("obj_htree sync fix: %d: %d -> %d", vnum, i, mid);
-        htree_add(obj_htree, vnum, mid);
+        htree_add(HTREE_OBJ, vnum, mid);
         return (mid);
       }
       if (bot >= top)

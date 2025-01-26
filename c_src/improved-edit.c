@@ -3,6 +3,7 @@
 improved-edit.c		Routines specific to the improved editor.
 
 */
+#include "libraries.h"
 #include "improved-edit.h"
 #include "utils.h"
 #include "db.h"

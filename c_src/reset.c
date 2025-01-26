@@ -8,7 +8,7 @@
 *  Copyright (C) 2007 Stefan Cole (a.k.a. Jamdog)                        * 
 *  To see this in action, check out AderonMUD                            * 
 ************************************************************************ */ 
-
+#include "libraries.h"
 #include "structs.h" 
 #include "utils.h" 
 #include "db.h"

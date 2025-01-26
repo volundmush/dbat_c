@@ -27,6 +27,7 @@
  * Thomas Arp - Welcor - 2002
  *
  */
+#include "libraries.h"
 #include "dg_event.h"
 #include "utils.h"
 #include <limits.h>

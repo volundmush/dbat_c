@@ -9,7 +9,7 @@
 *  contains code written by Iovan for use with the Real Dragonball Battle *
 *  System (RDBS) of the MUD Dragonball Advent Truth.                      *
 ************************************************************************ */
-
+#include "libraries.h"
 #include "combat.h"
 #include "act.movement.h"
 #include "act.item.h"

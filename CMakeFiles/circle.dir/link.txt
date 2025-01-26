@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/circle.dir/apps/circle.c.o -o bin/circle  /usr/lib/x86_64-linux-gnu/libz.so bin/libcirclemud.a /usr/lib/x86_64-linux-gnu/libz.so 

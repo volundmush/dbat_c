@@ -7,7 +7,7 @@
  * Comments and suggestions welcome: http://www.mudbytes.net/imc2-support-forum
  * License terms are available in the imc2freedom.license file.
  */
-
+#include "libraries.h"
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>

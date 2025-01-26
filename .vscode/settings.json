@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "boards.h": "c",
+        "unistd.h": "c",
+        "libraries.h": "c",
+        "act.movement.h": "c",
+        "genzon.h": "c",
+        "structs.h": "c",
+        "utils.h": "c",
+        "statedit.h": "c",
+        "uio.h": "c",
+        "stdbool.h": "c",
+        "signal.h": "c",
+        "inet.h": "c"
+    }
+}

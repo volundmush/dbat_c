@@ -3,7 +3,7 @@
  * Copyright 1996 by Harvey Gilpin					*
  * Copyright 1997-2001 by George Greer (greerga@circlemud.org)		*
  ************************************************************************/
-
+#include "libraries.h"
 #include "genmob.h"
 #include "utils.h"
 #include "db.h"
@@ -71,7 +71,7 @@ int add_mobile(struct char_data *mob, mob_vnum vnum)
     mob_index[i] = mob_index[i - 1];
     mob_proto[i] = mob_proto[i - 1];
     mob_proto[i].nr++;
-    htree_add(mob_htree, mob_index[i].vnum, i);
+    htree_add(HTREE_MOB, mob_index[i].vnum, i);
   }
   if (!found) {
     mob_proto[0] = *mob;
@@ -80,7 +80,7 @@ int add_mobile(struct char_data *mob, mob_vnum vnum)
     mob_index[0].vnum = vnum;
     mob_index[0].number = 0;
     mob_index[0].func = 0;
-    htree_add(mob_htree, mob_index[0].vnum, 0);
+    htree_add(HTREE_MOB, mob_index[0].vnum, 0);
   }
 
   log("GenOLC: add_mobile: Added mobile %d at index #%d.", vnum, found);

@@ -12,6 +12,7 @@
 *  $Date: 2004/10/11 12:07:00$                                            *
 *  $Revision: 1.0.14 $                                                    *
 ************************************************************************ */
+#include "libraries.h"
 #include "dg_comm.h"
 #include "act.informative.h"
 #include "utils.h"

@@ -29,14 +29,12 @@
 
 /* preamble *************************************************************/
 
-/*
- * As of bpl20, it should be safe to use unsigned data types for the
- * various virtual and real number data types.  There really isn't a
- * reason to use signed anymore so use the unsigned types and get
- * 65,535 objects instead of 32,768.
- *
- * NOTE: This will likely be unconditionally unsigned later.
- */
+#define HTREE_ROOM 0
+#define HTREE_OBJ 1
+#define HTREE_MOB 2
+#define HTREE_SHOP 3
+#define HTREE_TRIG 4
+#define HTREE_GUILD 5
 
 
 #define SG_MIN                                                                                                         \

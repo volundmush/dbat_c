@@ -5,6 +5,7 @@
  * Copyright 1997-2001 by George Greer (greerga@circlemud.org)		*
  ************************************************************************/
 #define __GENOLC_C__
+#include "libraries.h"
 #include "genolc.h"
 #include "gengld.h"
 #include "cedit.h"

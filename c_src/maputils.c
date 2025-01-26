@@ -6,6 +6,7 @@
 *				     		     * 
 * Paolo Libardi - pinkpallin@libero.it		     * 
 *****************************************************/
+#include "libraries.h"
 #include "maputils.h"
 #include "utils.h"
 #include "comm.h"

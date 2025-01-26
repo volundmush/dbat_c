@@ -14,7 +14,7 @@
  * you should go through this entire file from beginning to end and add
  * the appropriate new special cases for your new class.
  */
-
+#include "libraries.h"
 #include "class.h"
 #include "db.h"
 #include "utils.h"

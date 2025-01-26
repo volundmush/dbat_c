@@ -5,7 +5,7 @@
 /** Copyright 1997-2001 George Greer (greerga@circlemud.org)                 **/
 /** Copyright 2002 Kip Potter [Mythran] (kip_potter@hotmail.com)             **/
 /******************************************************************************/
-
+#include "libraries.h"
 #include "structs.h"
 #include "utils.h"
 #include "comm.h"

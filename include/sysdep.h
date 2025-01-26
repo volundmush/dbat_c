@@ -3,57 +3,10 @@
 // #include "conf.h"
 #include "typestubs.h"
 
-#define CIRCLE_GNU_LIBC_MEMORY_TRACK 0 /* 0 = off, 1 = on */
-
-#include <arpa/inet.h>
-#include <arpa/telnet.h>
-#include <assert.h>
-#include <crypt.h>
-#include <ctype.h>
-#include <dirent.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <limits.h>
-#include <linux/limits.h>
-#include <netdb.h>
-#include <netinet/in.h>
-#include <signal.h>
-#include <stdarg.h>
-#include <stdbool.h>
-#include <stddef.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <strings.h>
-#include <sys/fcntl.h>
-#include <sys/resource.h>
-#include <sys/select.h>
-#include <sys/socket.h>
-#include <sys/stat.h>
-#include <sys/time.h>
-#include <sys/types.h>
-#include <sys/uio.h>
-#include <sys/wait.h>
-#include <time.h>
-#include <unistd.h>
-#include <zlib.h>
-
 #ifdef HAVE_LIBBSD
 #include <bsd/string.h>
 #else
 #include "stringutils.h"
-#endif
-
-/* Basic system dependencies *******************************************/
-#if CIRCLE_GNU_LIBC_MEMORY_TRACK && !defined(HAVE_MCHECK_H)
-#error "Cannot use GNU C library memory tracking without <mcheck.h>"
-#endif
-
-#ifdef __cplusplus /* C++ */
-#define cpp_extern extern
-#else /* C */
-#define cpp_extern /* Nothing */
 #endif
 
 #define HAS_RLIMIT
@@ -64,7 +17,7 @@
 #define IDXTYPE uint16_t
 #define NOTHING ((IDXTYPE) ~0)
 #else
-#define IDXTYPE int16_t
+#define IDXTYPE int
 #define NOTHING (-1) /* nil reference for objects	*/
 #endif
 #define NOBODY NOTHING

@@ -1,0 +1,3 @@
+/home/volund/dbat_c/build/CMakeFiles/circlemud.dir
+/home/volund/dbat_c/build/CMakeFiles/edit_cache.dir
+/home/volund/dbat_c/build/CMakeFiles/rebuild_cache.dir

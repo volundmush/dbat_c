@@ -7,7 +7,7 @@
 *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
-
+#include "libraries.h"
 #include "objsave.h"
 #include "unistd.h"
 #include "errno.h"
@@ -104,7 +104,7 @@ int load_inv_backup(struct char_data *ch)
     snprintf(source_file, sizeof(source_file), "plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
     if (!get_filename(buf2, sizeof(buf2), NEW_OBJ_FILES, GET_NAME(ch)))
      return -1;
-    snprintf(target_file, sizeof(target_file), "/home/m053car2/dbat/lib/%s", buf2);
+    snprintf(target_file, sizeof(target_file), "%s", buf2);
 
     if (!(source = fopen(source_file, "r"))) {
       log("%s", "Source in load_inv_backup failed to load.");

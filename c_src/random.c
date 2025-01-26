@@ -2,7 +2,7 @@
 *   File: random.c                                      Part of CircleMUD *
 *  Usage: pseudo-random number generator                                  *
 ************************************************************************ */
-
+#include "libraries.h"
 #include "random.h"
 
 /*

@@ -4,7 +4,7 @@
  * Copyright 1996 by Harvey Gilpin					*
  * Copyright 1997-2001 by George Greer (greerga@circlemud.org)		*
  ************************************************************************/
-
+#include "libraries.h"
 #include "genwld.h"
 #include "utils.h"
 #include "db.h"
@@ -67,7 +67,7 @@ room_rnum add_room(struct room_data *room)
       for (tobj = world[i].contents; tobj; tobj = tobj->next_content)
 	IN_ROOM(tobj) += (IN_ROOM(tobj) != NOWHERE);
     }
-    htree_add(room_htree, world[i].number, i);
+    htree_add(HTREE_ROOM, world[i].number, i);
   }
   if (!found) {
     world[0] = *room;	/* Last place, in front. */
@@ -147,7 +147,7 @@ int delete_room(room_rnum rnum)
   add_to_save_list(zone_table[room->zone].number, SL_WLD);
 
   /* remove from realnum lookup tree */
-  htree_del(room_htree, room->number);
+  htree_del(HTREE_ROOM, room->number);
 
   /* This is something you might want to read about in the logs. */
   log("GenOLC: delete_room: Deleting room #%d (%s).", room->number, room->name);

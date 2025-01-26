@@ -5,7 +5,7 @@
 ** Created Thursday, September 5, 2002                                      **
 **                                                                          **
 *****************************************************************************/
-
+#include "libraries.h"
 
 #include "feats.h"
 #include "utils.h"

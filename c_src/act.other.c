@@ -7,6 +7,7 @@
 *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 **************************************************************************/
+#include "libraries.h"
 #include "act.other.h"
 #include "utils.h"
 #include "comm.h"
@@ -15843,10 +15844,10 @@ ACMD(do_file)
     char *file;
  } fields[] = {
      { "none",           6,    "Does Nothing" },
-     { "bug",            ADMLVL_IMMORT,    "../lib/misc/bugs"},
-     { "typo",           ADMLVL_IMMORT,   "../lib/misc/typos"},
-     { "report",         ADMLVL_IMMORT,    "../lib/misc/ideas"},
-     { "xnames",         4,     "../lib/misc/xnames"},
+     { "bug",            ADMLVL_IMMORT,    "../data/misc/bugs"},
+     { "typo",           ADMLVL_IMMORT,   "../data/misc/typos"},
+     { "report",         ADMLVL_IMMORT,    "../data/misc/ideas"},
+     { "xnames",         4,     "../data/misc/xnames"},
      { "levels",         4,    "../log/levels" },
      { "rip",            4,    "../log/rip" },
      { "players",        4,    "../log/newplayers" },
@@ -15855,8 +15856,8 @@ ACMD(do_file)
      { "godcmds",        4,    "../log/godcmds" },
      { "syslog",         ADMLVL_IMMORT,    "../syslog" },
      { "crash",          ADMLVL_IMMORT,    "../syslog.CRASH" },
-     { "immlog",         ADMLVL_IMMORT,    "../lib/misc/request" },
-     { "customs",        ADMLVL_IMMORT,    "../lib/misc/customs" },
+     { "immlog",         ADMLVL_IMMORT,    "../data/misc/request" },
+     { "customs",        ADMLVL_IMMORT,    "../data/misc/customs" },
      { "todo",           5,    "../todo" },
      { "\n", 0, "\n" }
 };

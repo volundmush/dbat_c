@@ -57,7 +57,7 @@ cmake-build-*
 
 # DBAT
 data/
-src/Makefile
+c_src/Makefile
 config.log
 config.status
 utils/Makefile
@@ -72,3 +72,7 @@ bin/showplay
 bin/sign
 bin/split
 bin/wld2html
+
+# Added by cargo
+
+/target

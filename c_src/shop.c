@@ -11,6 +11,7 @@
 /***
  * The entire shop rewrite for Circle 3.0 was done by Jeff Fink.  Thanks Jeff!
  ***/
+#include "libraries.h"
 #include "shop.h"
 #include "comm.h"
 #include "handler.h"

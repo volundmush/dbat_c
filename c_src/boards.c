@@ -44,6 +44,7 @@ it.
     similar fashion.
 
 */
+#include "libraries.h"
 
 #include "boards.h"
 #include "utils.h"

@@ -5,7 +5,7 @@
  * -------------------------------------------------------------------- *
  * 1999 July 25 caminturn@earthlink.net                                *
  * ******************************************************************** */
-
+#include "libraries.h"
 #include "assedit.h"
 #include "utils.h"
 #include "db.h"

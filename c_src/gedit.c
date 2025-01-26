@@ -6,6 +6,7 @@
  *  Made for Oasis OLC                                                   *
  *  Copyright 1996 Harvey Gilpin.                                        *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include "libraries.h"
 #include "gedit.h"
 #include "genzon.h"
 #include "act.informative.h"

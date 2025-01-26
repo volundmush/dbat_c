@@ -9,7 +9,7 @@
  *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
  ************************************************************************ */
 #include "structs.h"
-
+#include <stdio.h>
 
 /* arbitrary constants used by index_boot() (must be unique) */
 #define DB_BOOT_WLD 0
@@ -331,10 +331,6 @@ extern struct index_data *obj_index;
 extern struct obj_data *object_list;
 extern struct obj_data *obj_proto;
 extern obj_rnum top_of_objt;
-
-extern struct htree_node *room_htree;
-extern struct htree_node *mob_htree;
-extern struct htree_node *obj_htree;
 
 extern struct social_messg *soc_mess_list;
 extern int top_of_socialt;

@@ -7,14 +7,14 @@
 *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
-
+#include "libraries.h"
 #include "constants.h"
 
-cpp_extern const char *circlemud_version = "CircleMUD, version 3.1";
+const char *circlemud_version = "CircleMUD, version 3.1";
 
-cpp_extern const char *oasisolc_version = "OasisOLC 2.0.6";
+const char *oasisolc_version = "OasisOLC 2.0.6";
 
-cpp_extern const char *ascii_pfiles_version = "ASCII Player Files 3.0.1";
+const char *ascii_pfiles_version = "ASCII Player Files 3.0.1";
 
 /* strings corresponding to ordinals/bitvectors in structs.h ***********/
 

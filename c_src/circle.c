@@ -1,6 +1,7 @@
 //
 // Created by basti on 10/22/2021.
 //
+#include "libraries.h"
 
 #include "comm.h"
 #include "utils.h"
@@ -13,7 +14,7 @@
 #include "ban.h"
 #include "genolc.h"
 
-int main(int argc, char **argv)
+int circle_main(int argc, char **argv)
 {
     int pos = 1;
     const char *dir;
@@ -55,6 +56,7 @@ int main(int argc, char **argv)
 
     port = CONFIG_DFLT_PORT;
     dir = CONFIG_DFLT_DIR;
+
 
     while ((pos < argc) && (*(argv[pos]) == '-')) {
         switch (*(argv[pos] + 1)) {
@@ -159,8 +161,10 @@ int main(int argc, char **argv)
     log("%s", ascii_pfiles_version);
     log("%s", CWG_VERSION);
     xap_objs = 1;
+
     if (chdir(dir) < 0) {
         perror("SYSERR: Fatal error changing to data directory");
+        log("Attempted to switch to: %s", dir);
         exit(1);
     }
     log("Using %s as data directory.", dir);

@@ -34,7 +34,7 @@
 *  $Date: 2004/10/11 12:07:00$                                            *
 *  $Revision: 1.0.14 $                                                    *
 **************************************************************************/
-
+#include "libraries.h"
 #include "structs.h"
 #include "screen.h"
 #include "dg_scripts.h"

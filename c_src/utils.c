@@ -7,7 +7,7 @@
 *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
-
+#include "libraries.h"
 #include "utils.h"
 #include "comm.h"
 #include "handler.h"
@@ -4924,7 +4924,7 @@ int count_color_chars(char *string)
 void trim(char *s)
 {
 	// Trim spaces and tabs from beginning:
-	int i=0,j;
+	size_t i=0,j;
 	while((s[i]==' ')||(s[i]=='\t')) {
 		i++;
 	}

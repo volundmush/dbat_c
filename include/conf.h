@@ -162,7 +162,7 @@
 #define HAVE_UNISTD_H 1
 
 /* Define if you have the <zlib.h> header file.  */
-#define HAVE_ZLIB_H 1
+#define HAVE_ZLIB_H 0
 
 /* Define if you have the malloc library (-lmalloc).  */
 /* #undef HAVE_LIBMALLOC */

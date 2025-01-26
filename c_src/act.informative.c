@@ -7,6 +7,7 @@
 *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
+#include "libraries.h"
 #include "act.informative.h"
 #include "act.wizard.h"
 #include "vehicles.h"
@@ -7336,7 +7337,7 @@ ACMD(do_users)
 	d->original && d->original->name ? d->original->name :
 	d->character && d->character->name ? d->character->name :
 	"UNDEFINED", d->user ? d->user : "UNKNOWN", state, idletime, timeptr,
-        d->comp->state ? d->comp->state == 1 ? "?" : "Y" : "N");
+        "N");
 
     if (d->host && *d->host)
       sprintf(line + strlen(line), "\n%3d [%s Site: %s]\r\n", d->desc_num, d->user ? d->user : "UNKNOWN", d->host);

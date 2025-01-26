@@ -30,6 +30,8 @@
 #define NUM_RESERVED_DESCS 8
 #define COPYOVER_FILE "copyover.dat"
 
+int circle_main(int argc, char **argv);
+
 /* comm.c */
 extern int arena_watch(struct char_data *ch);
 extern void send_to_eaves(const char *messg, struct char_data *tch, ...) __attribute__((format(printf, 1, 3)));
@@ -60,7 +62,7 @@ extern void close_socket(struct descriptor_data *d);
 
 /* I/O functions */
 extern void write_to_q(const char *txt, struct txt_q *queue, int aliased);
-extern int write_to_descriptor(socklen_t desc, const char *txt, struct compr *comp);
+extern int write_to_descriptor(socklen_t desc, const char *txt);
 extern size_t write_to_output(struct descriptor_data *d, const char *txt, ...) __attribute__((format(printf, 2, 3)));
 extern size_t vwrite_to_output(struct descriptor_data *d, const char *format, va_list args);
 extern void string_add(struct descriptor_data *d, char *str);
@@ -93,7 +95,7 @@ void reap(int sig);
 void checkpointing(int sig);
 void hupsig(int sig);
 ssize_t perform_socket_read(socklen_t desc, char *read_point, size_t space_left);
-ssize_t perform_socket_write(socklen_t desc, const char *txt, size_t length, struct compr *comp);
+ssize_t perform_socket_write(socklen_t desc, const char *txt, size_t length);
 void echo_off(struct descriptor_data *d);
 void echo_on(struct descriptor_data *d);
 void circle_sleep(struct timeval *timeout);

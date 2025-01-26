@@ -7,7 +7,7 @@
 *  Copyright (C) 1993, 94 by the Trustees of the Johns Hopkins University *
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 ************************************************************************ */
-
+#include "libraries.h"
 #include "act.wizard.h"
 #include "interpreter.h"
 #include "utils.h"
@@ -122,7 +122,7 @@ void update_space(void)
   log("Updated Space Map. ");
 
   //Load the map vnums from a file into an array
-  mapfile = fopen("../lib/surface.map", "r");
+  mapfile = fopen("surface.map", "r");
 
   for (rowcounter = 0; rowcounter <= MAP_ROWS; rowcounter++) {
     for (colcounter = 0; colcounter <= MAP_COLS; colcounter++) {
@@ -2522,34 +2522,23 @@ execute_copyover(void) {
         struct char_data *och = d->character;
         d_next = d->next; /* We delete from the list , so need to save this */
         if(!d->character || d->connected > CON_PLAYING) {
-            write_to_descriptor(d->descriptor, "\n\rSorry, we are rebooting. Come back in a few seconds.\n\r", d->comp);
+            write_to_descriptor(d->descriptor, "\n\rSorry, we are rebooting. Come back in a few seconds.\n\r");
             close_socket(d); /* throw'em out */
-        } else {
-            if(GET_ROOM_VNUM(IN_ROOM(och)) > 1) {
-                fprintf(fp, "%d %s %s %d %s\n", d->descriptor, GET_NAME(och), d->host, GET_ROOM_VNUM(IN_ROOM(och)),
-                        d->user);
-            } else if(GET_ROOM_VNUM(IN_ROOM(och)) <= 1 && GET_ROOM_VNUM(GET_WAS_IN(och)) > 1) {
-                fprintf(fp, "%d %s %s %d %s\n", d->descriptor, GET_NAME(och), d->host, GET_ROOM_VNUM(GET_WAS_IN(och)),
-                        d->user);
-            } else {
-                fprintf(fp, "%d %s %s 300 %s\n", d->descriptor, GET_NAME(och), d->host, d->user);
-            }
-            log("printing descriptor name and host of connected players");
-            /* save och */
-            Crash_rentsave(och, 0);
-            save_char(och);
-            if(d->comp->state == 2) {
-                d->comp->state = 3; /* Code to use Z_FINISH for deflate */
-            }
-            write_to_descriptor(d->descriptor, buf, d->comp);
-            d->comp->state = 0;
-            if(d->comp->stream) {
-                deflateEnd(d->comp->stream);
-                free(d->comp->stream);
-                free(d->comp->buff_out);
-                free(d->comp->buff_in);
-            }
+            continue;
         }
+        if(GET_ROOM_VNUM(IN_ROOM(och)) > 1) {
+            fprintf(fp, "%d %s %s %d %s\n", d->descriptor, GET_NAME(och), d->host, GET_ROOM_VNUM(IN_ROOM(och)),
+                    d->user);
+        } else if(GET_ROOM_VNUM(IN_ROOM(och)) <= 1 && GET_ROOM_VNUM(GET_WAS_IN(och)) > 1) {
+            fprintf(fp, "%d %s %s %d %s\n", d->descriptor, GET_NAME(och), d->host, GET_ROOM_VNUM(GET_WAS_IN(och)),
+                    d->user);
+        } else {
+            fprintf(fp, "%d %s %s 300 %s\n", d->descriptor, GET_NAME(och), d->host, d->user);
+        }
+        log("printing descriptor name and host of connected players");
+        /* save och */
+        Crash_rentsave(och, 0);
+        save_char(och);
     }
 
     fprintf(fp, "-1\n");

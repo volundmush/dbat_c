@@ -5,7 +5,7 @@
  * for use with OasisOLC
  * ftpable from ftp.circlemud.org:/pub/CircleMUD/contrib/code
  */
-
+#include "libraries.h"
 #include "aedit.h"
 #include "act.informative.h"
 #include "act.social.h"

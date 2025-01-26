@@ -9,7 +9,7 @@
 *  InfoTechMUD is based on CircleMUD, Copyright (C) 1993, 1994.           *
 *  CircleMUD is based on DikuMUD, Copyright (C) 1990, 1991.               *
 **************************************************************************/
-
+#include "libraries.h"
 #include "hedit.h"
 #include "comm.h"
 #include "interpreter.h"

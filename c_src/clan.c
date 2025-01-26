@@ -27,8 +27,7 @@
 //    telnet://dreams.game-host.org:4000
 //
 //********************************************************************************
-
-
+#include "libraries.h"
 #include "clan.h"        // the interface we need to impleme
 #include "db.h"             // for LIB_ETC
 #include "comm.h"           // for send_to_char
