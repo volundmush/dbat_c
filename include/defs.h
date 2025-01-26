@@ -1466,6 +1466,7 @@
 #define AD_ARRAY_MAX 4
 #define FT_ARRAY_MAX 4
 #define ZF_ARRAY_MAX 4
+#define TRANS_ARRAY_MAX 4
 
 
 /* History */

@@ -435,7 +435,6 @@ int load_char(const char *name, struct char_data *ch)
     GET_INVIS_LEV(ch) = PFDEF_INVISLEV;
     GET_FREEZE_LEV(ch) = PFDEF_FREEZELEV;
     GET_WIMP_LEV(ch) = PFDEF_WIMPLEV;
-    GET_POWERATTACK(ch) = PFDEF_POWERATT;
     GET_COND(ch, HUNGER) = PFDEF_HUNGER;
     GET_COND(ch, THIRST) = PFDEF_THIRST;
     GET_COND(ch, DRUNK) = PFDEF_DRUNK;
@@ -664,7 +663,6 @@ int load_char(const char *name, struct char_data *ch)
 #endif
        else if (!strcmp(tag, "Pole"))  GET_POLE_BONUS(ch)       = atoi(line);
        else if (!strcmp(tag, "Posi"))  GET_POS(ch)              = atoi(line);
-       else if (!strcmp(tag, "PwrA"))  GET_POWERATTACK(ch)      = atoi(line);
        else if (!strcmp(tag, "Pref")) {
          sscanf(line, "%s %s %s %s", f1, f2, f3, f4);
          PRF_FLAGS(ch)[0] = asciiflag_conv(f1);
@@ -1075,7 +1073,6 @@ void save_char(struct char_data * ch)
   if (GET_SAVE_MOD(ch, 2)   != PFDEF_SAVETHROW)	fprintf(fl, "Thr3: %d\n", GET_SAVE_MOD(ch, 2));
 
   if (GET_WIMP_LEV(ch)	   != PFDEF_WIMPLEV)	fprintf(fl, "Wimp: %d\n", GET_WIMP_LEV(ch));
-  if (GET_POWERATTACK(ch)  != PFDEF_POWERATT)	fprintf(fl, "PwrA: %d\n", GET_POWERATTACK(ch));
   if (GET_FREEZE_LEV(ch)   != PFDEF_FREEZELEV)	fprintf(fl, "Frez: %d\n", GET_FREEZE_LEV(ch));
   if (GET_INVIS_LEV(ch)	   != PFDEF_INVISLEV)	fprintf(fl, "Invs: %d\n", GET_INVIS_LEV(ch));
   if (GET_LOADROOM(ch)	   != PFDEF_LOADROOM)	fprintf(fl, "Room: %d\n", GET_LOADROOM(ch));

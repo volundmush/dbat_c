@@ -459,7 +459,8 @@ struct char_data {
     int16_t saving_throw[3]; /* Saving throw				*/
     int16_t apply_saving_throw[3]; /* Saving throw bonuses			*/
 
-    int powerattack; /* Setting for power attack level	*/
+    short song;
+
     int combatexpertise; /* Setting for Combat expertise level   */
 
     int64_t baseki;
@@ -474,9 +475,13 @@ struct char_data {
     int64_t move;
     int64_t max_move; /* Max move for PC/NPC			*/
 
+    int kaioken;
+    int transclass;
+    int transcost[6];
+
     bool bonuses[MAX_BONUSES];
     int armor; /* Internally stored *10		*/
-    int16_t shield_bonus; /* Shield bonus for AC			*/
+    int16_t shield_bonus; /* Shield bonus for AC */
     int gold; /* Money carried			*/
     int bank_gold; /* Gold the char has in a bank account	*/
     int64_t exp; /* The experience of the player		*/
@@ -513,7 +518,7 @@ struct char_data {
 
     room_vnum listenroom;
     int crank;
-    int kaioken;
+
     int absorbs;
     int boosts;
     int upgrade;
@@ -533,7 +538,6 @@ struct char_data {
     int lasthit;
     int dcount;
     char *voice; /* PC's snet voice */
-    int limbs[5]; /* 1 Right Arm, 2 Left Arm, 3 Right Leg, 4 Left Leg, existing code starts at 1 so we don't use 0. */
     int aura;
     time_t rewtime;
     struct char_data *grappling;
@@ -563,8 +567,7 @@ struct char_data {
     int tail_growth;
     int rage_meter;
     char *feature;
-    int transclass;
-    int transcost[6];
+
     int armor_last;
     int forgeting;
     int forgetcount;
@@ -584,6 +587,8 @@ struct char_data {
 
     int64_t lifeforce;
     int lifeperc;
+    int lifebonus;
+
     int gooptime;
     int blesslvl;
     struct char_data *poisonby;
@@ -592,19 +597,16 @@ struct char_data {
     int preference;
     int aggtimer;
 
-    int lifebonus;
     int asb;
     int regen;
     int rbank;
     int con_sdcooldown;
 
+    /* 1 Right Arm, 2 Left Arm, 3 Right Leg, 4 Left Leg, existing code starts at 1 so we don't use 0. */
     int limb_condition[4];
-
-    char placeholder[2];
 
     char *rdisplay;
 
-    short song;
     struct char_data *original;
     short clones;
     int relax_count;

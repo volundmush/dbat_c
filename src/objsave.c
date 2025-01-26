@@ -61,7 +61,7 @@ void delete_inv_backup(struct char_data *ch)
     } else if (name[0] == 'u' || name[0] == 'U' || name[0] == 'v' || name[0] == 'V' || name[0] == 'w' || name[0] == 'W' || name[0] == 'x' || name[0] == 'X' || name[0] == 'y' || name[0] == 'Y' || name[0] == 'z' || name[0] == 'Z') {
      snprintf(alpha, sizeof(alpha),"U-Z");
     }
-    snprintf(source_file, sizeof(source_file), ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
+    snprintf(source_file, sizeof(source_file), "plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
 
     if (!(source = fopen(source_file, "r"))) {
       return;
@@ -101,7 +101,7 @@ int load_inv_backup(struct char_data *ch)
      snprintf(alpha, sizeof(alpha),"U-Z");
     }
 
-    snprintf(source_file, sizeof(source_file), ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
+    snprintf(source_file, sizeof(source_file), "plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
     if (!get_filename(buf2, sizeof(buf2), NEW_OBJ_FILES, GET_NAME(ch)))
      return -1;
     snprintf(target_file, sizeof(target_file), "/home/m053car2/dbat/lib/%s", buf2);
@@ -149,7 +149,7 @@ static int inv_backup(struct char_data *ch)
      snprintf(alpha, sizeof(alpha),"%s", "U-Z");
     }
 
-  snprintf(buf, sizeof(buf), ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
+  snprintf(buf, sizeof(buf), "plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
 
   if (!(backup = fopen(buf, "r")))
     return -1;
@@ -179,10 +179,10 @@ int cp(struct char_data *ch)
      snprintf(alpha, sizeof(alpha),"%s", "U-Z");
     }
 
-    snprintf(target_file, sizeof(target_file), ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
+    snprintf(target_file, sizeof(target_file), "plrobjs"SLASH"%s"SLASH"%s.copy", alpha, ch->name);
     if (!get_filename(buf2, sizeof(buf2), NEW_OBJ_FILES, GET_NAME(ch)))
      return -1;
-    snprintf(source_file, sizeof(source_file), ""SLASH"home"SLASH"m053car2"SLASH"dbat"SLASH"lib"SLASH"%s", buf2);
+    snprintf(source_file, sizeof(source_file), "%s", buf2);
 
     if (!(source = fopen(source_file, "r"))) {
       log("%s", "Source failed to load.");
